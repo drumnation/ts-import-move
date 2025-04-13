@@ -18,6 +18,23 @@ function createPrompt(): readline.Interface {
 }
 
 /**
+ * Find the project root by looking for package.json upwards from current directory
+ */
+function findProjectRoot(startDir: string = process.cwd()): string {
+  // Start from the current directory and go up until we find package.json
+  let currentDir = startDir;
+  while (currentDir !== path.parse(currentDir).root) {
+    if (fs.existsSync(path.join(currentDir, 'package.json'))) {
+      return currentDir;
+    }
+    // Go up one level
+    currentDir = path.dirname(currentDir);
+  }
+  // If no package.json found, fall back to current working directory
+  return process.cwd();
+}
+
+/**
  * Install ts-import-move rules to the Cursor rules folder
  */
 export async function installCursorRules(): Promise<void> {
@@ -28,6 +45,7 @@ export async function installCursorRules(): Promise<void> {
     
     // Source files in the package
     const packageDir = path.dirname(__dirname);
+    
     const simpleRulePath = path.join(packageDir, 'rules', 'ts-import-move-simple.rules.mdc');
     const advancedRulePath = path.join(packageDir, 'rules', 'ts-import-move-advanced.rules.mdc');
     
@@ -38,9 +56,40 @@ export async function installCursorRules(): Promise<void> {
       process.exit(1);
     }
 
-    // Target directory (.cursor/rules in user's home directory)
-    const homeDir = os.homedir();
-    const cursorRulesDir = path.join(homeDir, '.cursor', 'rules');
+    // Find project root directory
+    const projectRoot = findProjectRoot();
+    
+    // Ask user if they want to install globally or locally
+    const rl = createPrompt();
+    console.log('\n🛠️  ts-import-move Cursor Rules Installer\n');
+    
+    console.log('Where would you like to install the rules?\n');
+    console.log('1. Locally (to current project) - for use in this project only');
+    console.log(`   Path: ${projectRoot}/.cursor/rules/`);
+    console.log('2. Globally (to user home directory) - for use in all projects');
+    console.log('   Path: ~/.cursor/rules/\n');
+    
+    const locationAnswer = await new Promise<string>(resolve => {
+      rl.question('Enter your choice (1-2) [1]: ', (answer) => {
+        // Default to option 1 (local) if empty
+        resolve(answer || '1');
+      });
+    });
+    
+    let cursorRulesDir: string;
+    let isGlobalInstall = false;
+    
+    if (locationAnswer === '2') {
+      // Global installation to user home directory
+      isGlobalInstall = true;
+      const homeDir = os.homedir();
+      cursorRulesDir = path.join(homeDir, '.cursor', 'rules');
+      console.log('Installing globally to user home directory...');
+    } else {
+      // Local installation to project directory (default)
+      cursorRulesDir = path.join(projectRoot, '.cursor', 'rules');
+      console.log(`Installing locally to project directory: ${projectRoot}`);
+    }
     
     // Create the directory if it doesn't exist
     if (!fs.existsSync(cursorRulesDir)) {
@@ -52,17 +101,15 @@ export async function installCursorRules(): Promise<void> {
     const targetSimpleRulePath = path.join(cursorRulesDir, 'ts-import-move-simple.rules.mdc');
     const targetAdvancedRulePath = path.join(cursorRulesDir, 'ts-import-move-advanced.rules.mdc');
     
-    // Create interactive prompt
-    const rl = createPrompt();
-    console.log('\n🛠️  ts-import-move Cursor Rules Installer\n');
-    console.log('Which rules would you like to install?\n');
+    // Now ask which rules they want to install
+    console.log('\nWhich rules would you like to install?\n');
     console.log('1. Simple Rules - Basic rules for replacing mv with ts-import-move');
     console.log('   (Best for basic usage, smaller context size for AI agents)');
     console.log('2. Advanced Rules - More comprehensive rules with additional patterns and examples');
     console.log('   (Best for complex refactoring needs, larger context size for AI agents)');
-    console.log('3. Both (Install both but use selectively)\n');
+    console.log('3. Both\n');
     
-    const answer = await new Promise<string>(resolve => {
+    const rulesAnswer = await new Promise<string>(resolve => {
       rl.question('Enter your choice (1-3) [1]: ', (answer) => {
         rl.close();
         // Default to option 1 (simple rules) if empty
@@ -70,8 +117,8 @@ export async function installCursorRules(): Promise<void> {
       });
     });
     
-    const installSimple = ['1', '3'].includes(answer);
-    const installAdvanced = ['2', '3'].includes(answer);
+    const installSimple = ['1', '3'].includes(rulesAnswer);
+    const installAdvanced = ['2', '3'].includes(rulesAnswer);
     
     if (!installSimple && !installAdvanced) {
       console.log('Invalid choice. Please run the command again and select options 1-3.');
@@ -80,12 +127,26 @@ export async function installCursorRules(): Promise<void> {
     
     // Install selected rules
     if (installSimple) {
-      fs.copyFileSync(simpleRulePath, targetSimpleRulePath);
+      console.log('Copying simple rule...');
+      try {
+        fs.copyFileSync(simpleRulePath, targetSimpleRulePath);
+        console.log('Copy succeeded for simple rule');
+      } catch (err) {
+        console.error('Error copying simple rule:', err);
+        throw err;
+      }
       console.log(`Installed simple rules to: ${targetSimpleRulePath}`);
     }
     
     if (installAdvanced) {
-      fs.copyFileSync(advancedRulePath, targetAdvancedRulePath);
+      console.log('Copying advanced rule...');
+      try {
+        fs.copyFileSync(advancedRulePath, targetAdvancedRulePath);
+        console.log('Copy succeeded for advanced rule');
+      } catch (err) {
+        console.error('Error copying advanced rule:', err);
+        throw err;
+      }
       console.log(`Installed advanced rules to: ${targetAdvancedRulePath}`);
     }
     
@@ -103,7 +164,51 @@ export async function installCursorRules(): Promise<void> {
     exampleJson += '\n  ]\n}';
     
     console.log('\x1b[36m%s\x1b[0m', exampleJson);
-    console.log('\nOr enable them in Cursor through the Command Palette: "Cursor: Load Rule"');
+    
+    if (isGlobalInstall) {
+      console.log('\nOr enable them in Cursor through the Command Palette: "Cursor: Load Rule"');
+    } else {
+      // If local install, offer to create/update .cursorrules file
+      const cursorrules = path.join(projectRoot, '.cursorrules');
+      const createCursorRules = await new Promise<boolean>(resolve => {
+        const innerRl = createPrompt();
+        innerRl.question('\nWould you like to create/update .cursorrules file in this project? (y/n) [y]: ', (answer) => {
+          innerRl.close();
+          resolve(answer.toLowerCase() !== 'n');
+        });
+      });
+      
+      if (createCursorRules) {
+        try {
+          let cursorrulesContent: { rules?: string[] } = {};
+          
+          // Try to read existing file
+          if (fs.existsSync(cursorrules)) {
+            cursorrulesContent = JSON.parse(fs.readFileSync(cursorrules, 'utf8'));
+          }
+          
+          // Ensure rules array exists
+          if (!cursorrulesContent.rules) {
+            cursorrulesContent.rules = [];
+          }
+          
+          // Add rules if not already there
+          if (installSimple && !cursorrulesContent.rules.includes('ts-import-move-simple.rules.mdc')) {
+            cursorrulesContent.rules.push('ts-import-move-simple.rules.mdc');
+          }
+          
+          if (installAdvanced && !cursorrulesContent.rules.includes('ts-import-move-advanced.rules.mdc')) {
+            cursorrulesContent.rules.push('ts-import-move-advanced.rules.mdc');
+          }
+          
+          // Write back to file
+          fs.writeFileSync(cursorrules, JSON.stringify(cursorrulesContent, null, 2), 'utf8');
+          console.log(`\nUpdated ${cursorrules} with installed rules.`);
+        } catch (err) {
+          console.error('Error updating .cursorrules file:', err);
+        }
+      }
+    }
     
   } catch (error) {
     console.error('Error installing Cursor rules:', error);

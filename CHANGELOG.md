@@ -8,8 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added project root detection for more accurate local rule installation
+- Made local installation (project-specific) the default installation option
+
+## [0.2.5] - 2025-04-13
+
+### Added
 - Added CONTRIBUTING.md with guidelines for project contributions
 - Added interactive mode for rules installation, allowing users to choose between simple, advanced, or both rules
+- Improved rules installer with context size guidance for AI-powered tools
 
 ### Fixed
 - Fixed ESM compatibility issue in rules installation command (`__dirname` not defined)
