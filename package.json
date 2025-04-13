@@ -1,20 +1,43 @@
 {
-  "name": "ts-import-move",
-  "version": "0.1.0",
+  "name": "@drumnation/ts-import-move",
+  "version": "0.2.0",
   "description": "Safely move TypeScript files/folders and update imports",
   "bin": {
-    "ts-import-move": "./bin/ts-import-move.js",
+    "tsmove": "./bin/tsmove.js",
     "install-cursor-rules": "./bin/install-cursor-rules.js"
   },
   "scripts": {
     "dev": "tsx bin/index.ts",
-    "build": "tsup src/index.ts src/cli-install-rules.ts --format esm --dts",
+    "clean": "rm -rf dist",
+    "build": "pnpm clean && tsup src/index.ts src/cli-install-rules.ts --format esm --dts",
     "postbuild": "chmod +x dist/index.js && echo '#!/usr/bin/env node' | cat - dist/index.js > temp && mv temp dist/index.js",
     "test": "vitest run",
     "test:watch": "vitest",
-    "prepublishOnly": "pnpm build",
+    "prepublishOnly": "pnpm run test && pnpm run build",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "release": "npm version",
+    "release:patch": "npm version patch",
+    "release:minor": "npm version minor",
+    "release:major": "npm version major",
+    "do-publish": "npm publish --access public"
+  },
+  "keywords": [
+    "typescript",
+    "refactoring",
+    "import",
+    "move",
+    "refactor",
+    "cli",
+    "cursor",
+    "tooling"
+  ],
+  "author": "Cursor AI Tools",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drumnation/ts-import-move.git"
   },
   "files": [
     "bin/",
@@ -34,8 +57,10 @@
     "tsup": "^7.2.0",
     "typescript": "^5.1.6",
     "vitest": "^0.34.3",
-    "eslint": "^8.46.0",
-    "prettier": "^3.0.1"
+    "eslint": "^8.57.0",
+    "prettier": "^3.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.29.1",
+    "@typescript-eslint/parser": "^8.29.1"
   },
   "engines": {
     "node": ">=16"
