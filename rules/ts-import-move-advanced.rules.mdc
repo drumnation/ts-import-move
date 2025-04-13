@@ -1,0 +1,174 @@
+---
+description: Use ts-import-move when moving or renaming TypeScript files or directories to ensure all related import paths are automatically updated. This is essential during refactors, restructures, or agent-driven file operations to avoid breaking the project.
+globs: 
+alwaysApply: false
+---
+ # Rule: Advanced ts-import-move Usage for TypeScript Refactoring
+
+## Purpose
+
+This rule provides comprehensive mapping between Unix `mv` command options and their `ts-import-move` equivalents to ensure AI agents can handle complex TypeScript refactoring operations without breaking import references.
+
+## When to Apply This Rule
+
+Apply this rule when:
+- Performing complex refactoring operations
+- Moving multiple files or directories
+- Using advanced options like force, recursive, or interactive modes
+- Creating automation scripts that move TypeScript files
+- Reorganizing project structure
+
+## Unix mv Command Options and ts-import-move Equivalents
+
+| Unix mv Option | ts-import-move Equivalent | Description |
+|----------------|---------------------------|-------------|
+| `mv source dest` | `ts-import-move source dest` | Basic move operation |
+| `mv -i source dest` | `ts-import-move -i source dest` | Interactive mode (prompt before overwrite) |
+| `mv -f source dest` | `ts-import-move -f source dest` | Force overwrite without prompting |
+| `mv -n source dest` | `ts-import-move --dry-run source dest` | Dry run (no actual changes) |
+| `mv -v source dest` | `ts-import-move -v source dest` | Verbose mode |
+| `mv -r dir1 dir2` | `ts-import-move -r dir1 dir2` | Recursive directory move |
+| `mv file1 file2 dir/` | `ts-import-move file1 file2 dir/` | Move multiple files to directory |
+| `mv *.ts dir/` | `ts-import-move "*.ts" dir/` | Move files matching pattern (note the quotes) |
+
+## Advanced Command Patterns
+
+### 1. Force Overwrite with Verbose Output
+
+```bash
+# Unix mv:
+mv -fv src/components/old/ src/ui/components/
+
+# ts-import-move equivalent:
+ts-import-move -f -v src/components/old/ src/ui/components/
+```
+
+### 2. Interactive Recursive Move
+
+```bash
+# Unix mv:
+mv -ir src/utils/ src/common/
+
+# ts-import-move equivalent:
+ts-import-move -i -r src/utils/ src/common/
+```
+
+### 3. Complex Glob Patterns
+
+```bash
+# Unix mv:
+mv src/components/**/*Button*.tsx src/ui/buttons/
+
+# ts-import-move equivalent:
+ts-import-move "src/components/**/*Button*.tsx" src/ui/buttons/
+```
+
+### 4. Dry Run with Recursive Flag
+
+```bash
+# Unix mv:
+mv -n -r src/services/ src/api/
+
+# ts-import-move equivalent:
+ts-import-move -n -r src/services/ src/api/
+```
+
+### 5. Multiple Source Files with Force Flag
+
+```bash
+# Unix mv:
+mv -f src/utils/{date,string,number}.ts src/common/
+
+# ts-import-move equivalent:
+ts-import-move -f src/utils/date.ts src/utils/string.ts src/utils/number.ts src/common/
+```
+
+## TypeScript-Specific Options
+
+`ts-import-move` adds the following TypeScript-specific options not found in Unix `mv`:
+
+| Option | Description |
+|--------|-------------|
+| `--extensions <ext>` | Specify file extensions to process (default: `.ts,.tsx`) |
+| `--tsconfig <path>` | Path to tsconfig.json (auto-detected by default) |
+
+Example:
+```bash
+ts-import-move --extensions .ts,.tsx,.js,.jsx src/utils/ src/common/
+```
+
+## Best Practices for Complex Refactoring
+
+1. **Start with Dry Run**: Use `-n` to preview changes before executing them
+   ```bash
+   ts-import-move -n -r src/features/ src/modules/
+   ```
+
+2. **Monitor Import Updates**: Use `-v` for detailed logs of import path updates
+   ```bash
+   ts-import-move -v src/components/Button.tsx src/ui/Button.tsx
+   ```
+
+3. **Handle Large Moves in Stages**: For very large refactorings, break into multiple commands
+   ```bash
+   # Step 1: Move components
+   ts-import-move -r src/components/ src/ui/components/
+   
+   # Step 2: Move hooks
+   ts-import-move -r src/hooks/ src/ui/hooks/
+   
+   # Step 3: Move utilities
+   ts-import-move -r src/utils/ src/ui/utils/
+   ```
+
+4. **Backup Strategy**: Create a git commit before large refactoring operations
+   ```bash
+   git commit -am "Pre-refactoring commit"
+   ```
+
+## Error Handling
+
+If `ts-import-move` fails:
+
+1. Check that the tool is installed: `ts-import-move --version`
+2. Verify `tsconfig.json` includes all relevant files
+3. Look for files not tracked by TypeScript (test if they need the `--extensions` flag)
+4. Check for syntax errors in source files that might prevent AST parsing
+
+## Automation Script Example
+
+```bash
+#!/bin/bash
+
+# Comprehensive project reorganization script
+echo "Starting TypeScript project reorganization..."
+
+# Create new structure
+mkdir -p src/ui/{components,hooks,utils}
+mkdir -p src/features/{auth,user,admin}
+mkdir -p src/core/{api,services,state}
+
+# Move components (with dry run first)
+ts-import-move -n "src/components/**/*.tsx" src/ui/components/
+ts-import-move -r "src/components/**/*.tsx" src/ui/components/
+
+# Move hooks
+ts-import-move -r src/hooks/ src/ui/hooks/
+
+# Move utilities
+ts-import-move -r src/utils/ src/ui/utils/
+
+# Move feature-specific code
+ts-import-move -r src/auth/ src/features/auth/
+ts-import-move -r src/user/ src/features/user/
+ts-import-move -r src/admin/ src/features/admin/
+
+# Move core services
+ts-import-move -r src/api/ src/core/api/
+ts-import-move -r src/services/ src/core/services/
+ts-import-move -r src/state/ src/core/state/
+
+echo "Project reorganization complete."
+```
+
+By using the appropriate `ts-import-move` commands that mirror Unix `mv` functionality, AI agents can efficiently and safely refactor TypeScript projects of any complexity.

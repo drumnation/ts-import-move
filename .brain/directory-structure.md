@@ -4,8 +4,8 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 26 |
-| Total Lines | 10010 |
+| Total Files | 34 |
+| Total Lines | 10857 |
 | Files with Functions | 0 |
 | Total Functions | 0 |
 
@@ -14,6 +14,10 @@
 ```
 . 📁 bin/
   ├─ 📄 index.ts
+  ├─ 📄 install-cursor-rules.js
+  ├─ 📄 ts-import-move.js
+. 📁 docs/
+  ├─ 📄 FOR_AI_AGENTS.md
 . 📁 example/
   ├─ 📁 src/
     ├─ 📁 components/
@@ -26,6 +30,9 @@
       ├─ 📄 validator.ts
     ├─ 📁 utils/
   ├─ 📄 tsconfig.json
+. 📁 rules/
+  ├─ 📄 ts-import-move-advanced.rules.mdc
+  ├─ 📄 ts-import-move-simple.rules.mdc
 . 📁 src/
   ├─ 📁 commands/
     ├─ 📄 move.ts
@@ -36,6 +43,8 @@
     ├─ 📄 pathUpdater.ts
   ├─ 📁 types/
     ├─ 📄 index.d.ts
+  ├─ 📄 cli-install-rules.ts
+  ├─ 📄 index.ts
 . 📁 tests/
   ├─ 📁 e2e/
     ├─ 📄 cli.test.ts
@@ -44,6 +53,7 @@
     ├─ 📄 moveWithImports.test.ts
   ├─ 📁 unit/
     ├─ 📄 fileHandler.test.ts
+  ├─ 📄 cli-install-rules.test.ts
   ├─ 📄 setup.ts
 . 📄 CHANGELOG.md
 . 📄 package-lock.json
@@ -59,17 +69,19 @@
 
 | Extension | Files | Lines | Lines/File |
 |-----------|-------|-------|------------|
-| .ts | 16 | 6160 | 385 |
-| .json | 4 | 1540 | 385 |
-| .tsx | 3 | 1155 | 385 |
-| .md | 2 | 770 | 385 |
-| .yaml | 1 | 385 | 385 |
+| .ts | 19 | 6061 | 319 |
+| .json | 4 | 1276 | 319 |
+| .md | 3 | 957 | 319 |
+| .tsx | 3 | 957 | 319 |
+| .js | 2 | 638 | 319 |
+| .mdc | 2 | 638 | 319 |
+| .yaml | 1 | 319 | 319 |
 
 ---
 
 ### Document Information
 
-- Generated: April 13, 2025 at 2:06 PM
+- Generated: April 13, 2025 at 2:29 PM
 - Project Root: 
 - Analysis Depth: 3 levels
-- Status: Completed on April 13, 2025 at 2:06 PM
+- Status: Completed on April 13, 2025 at 2:29 PM

@@ -1,6 +1,24 @@
 # ts-import-move
 
-Safely move TypeScript files/folders and update imports automatically. This CLI tool is designed to emulate the versatility of the Unix `mv` command, tailored specifically for TypeScript projects.
+**Stop breaking your TypeScript projects when refactoring!** This powerful CLI tool safely moves TypeScript files/folders while automatically updating all import references, preventing the #1 cause of refactoring pain.
+
+## Why Your Project Needs This
+
+When refactoring TypeScript projects, using the standard Unix `mv` command will silently **break all import statements** across your project, leading to:
+
+- ❌ Hours of frustrating debugging
+- ❌ Compilation errors everywhere
+- ❌ Wasted development time fixing imports manually
+- ❌ Broken CI/CD pipelines
+
+Without `ts-import-move`, the only way to safely move TypeScript files is through VS Code's GUI interface—leaving command-line workflows and CI/CD pipelines vulnerable to broken imports.
+
+**This tool bridges that critical gap**, providing a drop-in replacement for `mv` that's TypeScript-aware:
+
+- ✅ Seamlessly preserves all import references
+- ✅ Works with the same familiar command-line syntax
+- ✅ Integrates perfectly with automation and CI/CD
+- ✅ Saves hours of tedious manual fixes
 
 ## Features
 
@@ -31,6 +49,10 @@ ts-import-move [options] <sources...> <destination>
 Move a single file:
 
 ```bash
+# Instead of breaking your project with:
+# mv src/utils/helpers.ts src/shared/helpers.ts
+
+# Use this and keep everything working:
 ts-import-move src/utils/helpers.ts src/shared/helpers.ts
 ```
 
@@ -64,7 +86,21 @@ ts-import-move -n src/old/ src/new/
 
 ## For AI Agents
 
-This tool is designed to be easily used by AI agents for programmatically reorganizing TypeScript projects:
+This tool is especially valuable for AI agents working with TypeScript codebases:
+
+### Best Practice for AI Agents
+
+AI agents should adopt the following pattern when refactoring TypeScript projects:
+
+```bash
+# Instead of:
+mv src/components/Button.tsx src/ui/
+
+# Use:
+ts-import-move src/components/Button.tsx src/ui/
+```
+
+This small change prevents import breakage while maintaining the familiar move command syntax, saving debugging time and reducing token usage that would otherwise be spent fixing broken imports.
 
 ### Agent Integration Examples
 
@@ -133,3 +169,77 @@ pnpm test
 ## License
 
 MIT
+
+# Verify everything works after refactoring
+npm run build
+npm test
+
+## Cursor AI Integration
+
+`ts-import-move` includes special rules for the Cursor AI editor to ensure that AI agents always use the tool correctly when refactoring TypeScript code.
+
+### Installing Cursor Rules
+
+After installing the package globally, you can install the Cursor rules with either of these commands:
+
+```bash
+# As a subcommand of ts-import-move
+ts-import-move install-rules
+
+# Or using the dedicated command
+install-cursor-rules
+```
+
+This adds two rule files to your Cursor rules directory:
+- `ts-import-move-simple.rules.mdc` - Basic rule for direct substitution of `mv` with `ts-import-move`
+- `ts-import-move-advanced.rules.mdc` - Advanced rule with detailed mapping of all `mv` options
+
+### What These Rules Do
+
+Cursor rules teach AI assistants how to properly use tools in your TypeScript projects:
+
+1. **Simple Rule**: Ensures the AI always uses `ts-import-move` instead of `mv` when moving TypeScript files, providing basic examples for common operations.
+
+2. **Advanced Rule**: Provides comprehensive mapping between all Unix `mv` command options and their `ts-import-move` equivalents, with examples for complex refactoring operations.
+
+### Enabling the Rules in Cursor
+
+There are two ways to enable these rules in Cursor:
+
+#### Option 1: Add to your project's `.cursorrules` file
+
+Add one or both rules to your `.cursorrules` file in your project root:
+
+```json
+{
+  "rules": [
+    "ts-import-move-simple.rules.mdc"
+  ]
+}
+```
+
+This will automatically apply the rule when Cursor AI reads files in your project.
+
+#### Option 2: Load via Command Palette
+
+1. Open Cursor AI editor
+2. Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux) to open the Command Palette
+3. Type "Cursor: Load Rule" and select it
+4. Choose either `ts-import-move-simple.rules.mdc` or `ts-import-move-advanced.rules.mdc`
+
+### Validating the Rules Are Working
+
+Once the rules are installed and enabled, you can verify they're working by:
+
+1. Opening a TypeScript project in Cursor
+2. Asking the AI to move a TypeScript file (e.g., "move src/utils/helpers.ts to src/common/helpers.ts")
+3. Confirming the AI uses `ts-import-move` in its response instead of the standard `mv` command
+
+### Troubleshooting Rules Installation
+
+If the rules aren't working as expected:
+
+- Ensure the `install-cursor-rules` command completed successfully
+- Check that your `.cursor/rules/` directory contains the rule files
+- Verify the rule is correctly referenced in your `.cursorrules` file
+- Try restarting the Cursor application

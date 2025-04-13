@@ -1,0 +1,68 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+ # Rule: Use ts-import-move Instead of mv for TypeScript Files
+
+## Purpose
+
+This rule ensures that AI agents use the `ts-import-move` tool instead of the standard Unix `mv` command when moving or renaming TypeScript files, preventing broken imports and compilation errors.
+
+## When to Apply This Rule
+
+Apply this rule whenever you need to:
+- Move TypeScript (`.ts`, `.tsx`) files to a different location
+- Rename TypeScript files
+- Reorganize TypeScript project structure
+- Refactor component hierarchies
+
+## Basic Instructions
+
+For any operation that would normally use the `mv` command on TypeScript files, substitute `mv` with `ts-import-move`:
+
+### Simple Substitution Pattern
+
+```bash
+# INCORRECT ❌ - Will break all imports:
+mv src/components/Button.tsx src/ui/Button.tsx
+
+# CORRECT ✓ - Will update all imports automatically:
+ts-import-move src/components/Button.tsx src/ui/Button.tsx
+```
+
+## Common Usage Examples
+
+### Rename a File
+```bash
+ts-import-move src/utils/format.ts src/utils/formatter.ts
+```
+
+### Move a File to Another Directory
+```bash
+ts-import-move src/components/Button.tsx src/ui/components/Button.tsx
+```
+
+### Move Multiple Files
+```bash
+ts-import-move src/utils/date.ts src/utils/string.ts src/common/
+```
+
+### Move Using Glob Pattern
+```bash
+ts-import-move "src/components/*.tsx" src/ui/
+```
+
+### Move a Directory (with recursive flag)
+```bash
+ts-import-move -r src/utils src/common/utils
+```
+
+## Important Notes
+
+- Remember to quote glob patterns (`"src/components/*.tsx"`)
+- Use the `-r` flag for moving directories recursively
+- For large refactoring operations, consider running with `-n` (dry run) first
+- Global installation required: `npm install -g ts-import-move`
+
+By following this simple substitution pattern, AI agents can safely refactor TypeScript projects without breaking import references.
