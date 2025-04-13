@@ -54,10 +54,10 @@ Without `ts-import-move`, the only way to safely move TypeScript files is throug
 
 ```bash
 # Install globally
-npm install -g ts-import-move
+npm install -g @drumnation/ts-import-move
 
 # Or with pnpm
-pnpm add -g ts-import-move
+pnpm add -g @drumnation/ts-import-move
 ```
 
 ## Usage
@@ -166,7 +166,7 @@ The tool will automatically:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/ts-import-move.git
+git clone https://github.com/drumnation/ts-import-move.git
 cd ts-import-move
 
 # Install dependencies
@@ -215,55 +215,4 @@ install-cursor-rules
 
 This adds two rule files to your Cursor rules directory:
 
-- `ts-import-move-simple.rules.mdc` - Basic rule for direct substitution of `mv` with `ts-import-move`
-- `ts-import-move-advanced.rules.mdc` - Advanced rule with detailed mapping of all `mv` options
-
-### What These Rules Do
-
-Cursor rules teach AI assistants how to properly use tools in your TypeScript projects:
-
-1. **Simple Rule**: Ensures the AI always uses `ts-import-move` instead of `mv` when moving TypeScript files, providing basic examples for common operations.
-
-2. **Advanced Rule**: Provides comprehensive mapping between all Unix `mv` command options and their `ts-import-move` equivalents, with examples for complex refactoring operations.
-
-### Enabling the Rules in Cursor
-
-There are two ways to enable these rules in Cursor:
-
-#### Option 1: Add to your project's `.cursorrules` file
-
-Add one or both rules to your `.cursorrules` file in your project root:
-
-```json
-{
-  "rules": [
-    "ts-import-move-simple.rules.mdc"
-  ]
-}
-```
-
-This will automatically apply the rule when Cursor AI reads files in your project.
-
-#### Option 2: Load via Command Palette
-
-1. Open Cursor AI editor
-2. Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux) to open the Command Palette
-3. Type "Cursor: Load Rule" and select it
-4. Choose either `ts-import-move-simple.rules.mdc` or `ts-import-move-advanced.rules.mdc`
-
-### Validating the Rules Are Working
-
-Once the rules are installed and enabled, you can verify they're working by:
-
-1. Opening a TypeScript project in Cursor
-2. Asking the AI to move a TypeScript file (e.g., "move src/utils/helpers.ts to src/common/helpers.ts")
-3. Confirming the AI uses `ts-import-move` in its response instead of the standard `mv` command
-
-### Troubleshooting Rules Installation
-
-If the rules aren't working as expected:
-
-- Ensure the `install-cursor-rules` command completed successfully
-- Check that your `.cursor/rules/` directory contains the rule files
-- Verify the rule is correctly referenced in your `.cursorrules` file
-- Try restarting the Cursor application
+- `
