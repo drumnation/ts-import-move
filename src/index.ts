@@ -6,6 +6,12 @@ import { Command } from 'commander';
 import fastGlob from 'fast-glob';
 import { Project } from 'ts-morph';
 import { installCursorRules } from './cli-install-rules.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// Create __dirname equivalent for ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Import version from package.json
 const packageJson = JSON.parse(

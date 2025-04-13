@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added CONTRIBUTING.md with guidelines for project contributions
 
+## [0.2.3] - 2025-04-13
+
+### Fixed
+- Fixed ESM compatibility issue with `__dirname` not being defined in ES modules
+- Updated code to use `import.meta.url` for path resolution in ES modules
+
 ## [0.2.2] - 2025-04-13
 
 ### Changed
