@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Added CONTRIBUTING.md with guidelines for project contributions
+
+## [0.2.1] - 2025-04-13
+
+### Changed
+- Version bump to resolve npm publishing issues
+- Fixed package script configuration to avoid recursive publishing
+
 ## [0.2.0] - 2025-04-13
 
 ### Changed
