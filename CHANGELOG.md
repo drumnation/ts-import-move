@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Added CONTRIBUTING.md with guidelines for project contributions
+- Added interactive mode for rules installation, allowing users to choose between simple, advanced, or both rules
+
+### Fixed
+- Fixed ESM compatibility issue in rules installation command (`__dirname` not defined)
 
 ## [0.2.4] - 2025-04-13
 
