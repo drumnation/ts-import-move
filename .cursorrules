@@ -2,25 +2,6 @@
     "name": "project-context",
     "description": "Initialize project context from .brain documentation",
     "rules": [
-        {
-            "pattern": "**/*",
-            "context": [
-                {
-                    "source": ".brain/project-overview.md",
-                    "description": "Project overview documentation",
-                    "weight": 1.0
-                },
-                {
-                    "source": ".brain/project-plan.md",
-                    "description": "Project planning documentation",
-                    "weight": 1.0
-                },
-                {
-                    "source": ".brain/directory-structure.md",
-                    "description": "Directory structure documentation",
-                    "weight": 1.0
-                }
-            ]
-        }
+        "ts-import-move-simple.rules.mdc"
     ]
 }
