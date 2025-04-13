@@ -57,14 +57,16 @@ export async function installCursorRules(): Promise<void> {
     console.log('\n🛠️  ts-import-move Cursor Rules Installer\n');
     console.log('Which rules would you like to install?\n');
     console.log('1. Simple Rules - Basic rules for replacing mv with ts-import-move');
+    console.log('   (Best for basic usage, smaller context size for AI agents)');
     console.log('2. Advanced Rules - More comprehensive rules with additional patterns and examples');
-    console.log('3. Both (recommended)\n');
+    console.log('   (Best for complex refactoring needs, larger context size for AI agents)');
+    console.log('3. Both (Install both but use selectively)\n');
     
     const answer = await new Promise<string>(resolve => {
-      rl.question('Enter your choice (1-3) [3]: ', (answer) => {
+      rl.question('Enter your choice (1-3) [1]: ', (answer) => {
         rl.close();
-        // Default to option 3 if empty
-        resolve(answer || '3');
+        // Default to option 1 (simple rules) if empty
+        resolve(answer || '1');
       });
     });
     
