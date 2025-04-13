@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added CONTRIBUTING.md with guidelines for project contributions
 
+## [0.2.4] - 2025-04-13
+
+### Fixed
+- Fixed CLI argument ordering to ensure compatibility with Commander.js
+- Improved CLI usability by making destination first, followed by sources
+- Fixed binary script to correctly handle global installation
+
 ## [0.2.3] - 2025-04-13
 
 ### Fixed

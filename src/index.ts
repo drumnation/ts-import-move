@@ -3,8 +3,9 @@
 import path from 'path';
 import fs from 'fs';
 import { Command } from 'commander';
-import fastGlob from 'fast-glob';
-import { Project } from 'ts-morph';
+// These imports will be used in the full implementation
+// import fastGlob from 'fast-glob';
+// import { Project } from 'ts-morph';
 import { installCursorRules } from './cli-install-rules.js';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -26,24 +27,35 @@ program
   .description('Safely move TypeScript files/folders and update imports')
   .version(packageJson.version);
 
+// Define common options
+const addCommonOptions = (cmd: Command) => {
+  return cmd
+    .option('-r, --recursive', 'Recursively move directories')
+    .option('-i, --interactive', 'Prompt before overwrite')
+    .option('-f, --force', 'Force overwrite without prompt')
+    .option('-n, --dry-run', 'Show what would be moved without making changes')
+    .option('-v, --verbose', 'Display detailed operation logs')
+    .option('--extensions <ext>', 'Specify file extensions to consider (comma separated)', '.ts,.tsx')
+    .option('--tsconfig <path>', 'Path to tsconfig.json');
+};
+
 // Add the move command (main functionality)
 const moveCommand = program
   .command('move')
-  .description('Move TypeScript files/folders and update imports')
-  .argument('<sources...>', 'Source file(s) or directory')
+  .description('Move TypeScript files/folders and update imports');
+
+// Apply common options
+addCommonOptions(moveCommand);
+
+// Add arguments and action - DESTINATION first, SOURCE variadic as last argument
+moveCommand
   .argument('<destination>', 'Destination file or directory')
-  .option('-r, --recursive', 'Recursively move directories')
-  .option('-i, --interactive', 'Prompt before overwrite')
-  .option('-f, --force', 'Force overwrite without prompt')
-  .option('-n, --dry-run', 'Show what would be moved without making changes')
-  .option('-v, --verbose', 'Display detailed operation logs')
-  .option('--extensions <ext>', 'Specify file extensions to consider (comma separated)', '.ts,.tsx')
-  .option('--tsconfig <path>', 'Path to tsconfig.json')
-  .action(async (sources, destination, options) => {
+  .argument('<source...>', 'Source file(s) or directory')
+  .action(async (destination, source, options) => {
     // Implementation will go here
     console.log('Moving files...');
-    console.log('Sources:', sources);
     console.log('Destination:', destination);
+    console.log('Sources:', source);
     console.log('Options:', options);
     
     // This is a placeholder for actual implementation
@@ -59,19 +71,19 @@ program
   });
 
 // Handle direct arguments for default command
-program
-  .arguments('<sources...> <destination>')
-  .option('-r, --recursive', 'Recursively move directories')
-  .option('-i, --interactive', 'Prompt before overwrite')
-  .option('-f, --force', 'Force overwrite without prompt')
-  .option('-n, --dry-run', 'Show what would be moved without making changes')
-  .option('-v, --verbose', 'Display detailed operation logs')
-  .option('--extensions <ext>', 'Specify file extensions to consider (comma separated)', '.ts,.tsx')
-  .option('--tsconfig <path>', 'Path to tsconfig.json')
-  .action(async (sources, destination, options) => {
+const defaultCommand = program;
+
+// Apply common options
+addCommonOptions(defaultCommand);
+
+// Add arguments and action - DESTINATION first, SOURCE variadic as last argument
+defaultCommand
+  .argument('<destination>', 'Destination file or directory')
+  .argument('<source...>', 'Source file(s) or directory')
+  .action(async (destination, source, options) => {
     // Just delegate to the move command's action handler
-    // @ts-ignore - Action expects different parameters when called directly
-    await moveCommand.action(sources, destination, options);
+    // @ts-expect-error - moveCommand.action expects different signature
+    await moveCommand.action(destination, source, options);
   });
 
 program.parse(process.argv); 
