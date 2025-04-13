@@ -1,21 +1,29 @@
-.cursor
-└── rules
-    ├── agent-use-project-docs.rules.mdc
-    ├── automatic-git-commit.rules.mdc
-    ├── changelog.rules.mdc
-    ├── code-standards.rules.mdc
-    ├── contributing.rules.mdc
-    ├── date-time.rules.mdc
-    ├── file-organization.mdc
-    ├── functional-test-principals.rules.mdc
-    ├── onboarding.rules.mdc
-    ├── project-documentation-structure.rules.mdc
-    ├── project-guidelines.rules.mdc
-    ├── readme.rules.mdc
-    ├── tdd-tom-testing-rules.mdc
-    └── typescript-standards.rules.mdc
-
-
+{
+    "name": "project-context",
+    "description": "Initialize project context from .brain documentation",
+    "rules": [
+        {
+            "pattern": "**/*",
+            "context": [
+                {
+                    "source": ".brain/project-overview.md",
+                    "description": "Project overview documentation",
+                    "weight": 1.0
+                },
+                {
+                    "source": ".brain/project-plan.md",
+                    "description": "Project planning documentation",
+                    "weight": 1.0
+                },
+                {
+                    "source": ".brain/directory-structure.md",
+                    "description": "Directory structure documentation",
+                    "weight": 1.0
+                }
+            ]
+        }
+    ]
+}
 
 # ./.cursor/rules/agent-use-project-docs.rules.mdc
 

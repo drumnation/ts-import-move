@@ -92,13 +92,13 @@
   },
   "update_interval": 60,
   "framework": "unknown",
-  "main_language": "unknown",
-  "project_type": "generic",
+  "main_language": "javascript",
+  "project_type": "javascript",
   "projects": [
     {
       "name": "ts-import-move",
       "project_path": "/Users/dmieloch/Dev/singularityApps/cursor-tools/ts-import-move",
-      "type": "generic",
+      "type": "javascript",
       "watch": true
     }
   ]

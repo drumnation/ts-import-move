@@ -1,0 +1,26 @@
+# Source files
+src/
+bin/
+tests/
+example/
+.brain/
+
+# Config files
+.eslintrc.js
+.prettierrc.js
+tsconfig.json
+vitest.config.ts
+.github/
+.vscode/
+
+# Build artifacts
+coverage/
+.nyc_output/
+temp/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log* 

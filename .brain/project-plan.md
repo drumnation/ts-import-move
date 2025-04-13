@@ -48,6 +48,11 @@ ts-import-move
   - **`integration/`**: Tests that ensure multiple modules work together (e.g., a small TS project simulating a multi-file move).  
   - **`e2e/`**: CLI-level tests using real or mocked file systems to confirm correct behavior on actual commands.
 
+### Development Environment
+
+- **Package Manager**: Use `pnpm` for package management to ensure efficient dependency management with faster installation times and disk space savings.
+- **Development Runtime**: Utilize `tsx` library during development to run TypeScript files directly without a compilation step, improving developer experience.
+
 ---
 
 ## 2. **Detailed Workflow**
@@ -63,7 +68,7 @@ ts-import-move
 3. **Project Setup**  
    - Locate `tsconfig.json` (use command-line override if specified, else auto-detect in the current working directory or parent directories).  
    - Initialize a `ts-morph` `Project` using the discovered `tsconfig.json`.  
-   - Add relevant files to the project, ensuring they’re recognized by `ts-morph`.
+   - Add relevant files to the project, ensuring they're recognized by `ts-morph`.
 
 4. **Validation & Confirmation**  
    - If `--interactive` is set, display a summary of the move operations (source → destination) and ask the user to confirm.  
@@ -71,7 +76,7 @@ ts-import-move
 
 5. **Core Move and Import Update**  
    - For each file:
-     1. **Check Destination**: Determine if the target path is valid. If it’s a directory move, maintain filenames; if it’s a rename, adopt the new name.  
+     1. **Check Destination**: Determine if the target path is valid. If it's a directory move, maintain filenames; if it's a rename, adopt the new name.  
      2. **Move File**: Physically move the file (via `fs.renameSync` or `fs-extra.moveSync`) in `fileHandler.ts`.  
      3. **Update Imports**:  
         - Let `ts-morph` automatically track the old location and the new location.  
@@ -107,10 +112,10 @@ ts-import-move
      - Or detect symlinks and skip them (or provide a warning).  
 
 4. **Non-TS Files**  
-   - By default, you might only want to move `.ts` and `.tsx` files. If the user wants to move other files (like `.json`, `.js`), that’s possible, but the tool only updates imports for TS references. Provide a note in the docs.
+   - By default, you might only want to move `.ts` and `.tsx` files. If the user wants to move other files (like `.json`, `.js`), that's possible, but the tool only updates imports for TS references. Provide a note in the docs.
 
 5. **Import Aliases**  
-   - If the user’s `tsconfig.json` uses paths aliases (e.g., `paths` in `compilerOptions`), ensure you respect them when updating imports. `ts-morph` can handle this if you provide the correct `tsconfig.json` with the path mappings.
+   - If the user's `tsconfig.json` uses paths aliases (e.g., `paths` in `compilerOptions`), ensure you respect them when updating imports. `ts-morph` can handle this if you provide the correct `tsconfig.json` with the path mappings.
 
 ---
 
@@ -273,32 +278,138 @@ export function updateImports(
 
 ## 6. **Testing Approach**
 
-1. **Unit Tests**  
+1. **Unit Tests with Vitest**  
    - **`fileHandler.test.ts`**: Validate file copying, renaming, overwriting, error handling on non-existent paths.  
    - **`pathUpdater.test.ts`**: Mock up a small in-memory TS project with `ts-morph` and check if imports are updated correctly.
+   - Use Vitest's mocking capabilities for file system operations and project objects.
 
 2. **Integration Tests**  
    - **`moveMultipleFiles.test.ts`**: Move a set of files (e.g., `Button.tsx`, `Input.tsx`) to a new folder and verify the import references in a sample project.  
    - **`aliasPaths.test.ts`**: For a `tsconfig` with path aliases, confirm that the new paths remain valid.
+   - Leverage Vitest's test fixtures for setting up consistent test environments.
 
 3. **E2E Tests**  
-   - Use a temporary directory or fixture-based approach: copy a small TS project into a temp folder, run the CLI (via a Node child process call), and verify outcomes (final files, final `import` statements).  
-   - Example assertion: `grep` or parse each file to ensure references are updated.
+   - Use Vitest's setup and teardown hooks to manage temporary directories: copy a small TS project into a temp folder, run the CLI (via a Node child process call), and verify outcomes (final files, final `import` statements).  
+   - Example assertion: Use Vitest's file snapshot capabilities to verify the correct structure and content of updated files.
+
+### 6.1 Test Configuration (`vitest.config.ts`)
+
+```ts
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    globals: true,
+    environment: 'node',
+    coverage: {
+      reporter: ['text', 'json', 'html'],
+      exclude: ['**/node_modules/**', '**/dist/**', '**/tests/**'],
+    },
+    setupFiles: ['./tests/setup.ts'],
+    testTimeout: 10000,
+  },
+});
+```
+
+### 6.2 Example Test (`tests/unit/fileHandler.test.ts`)
+
+```ts
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { mkdirSync, rmSync } from 'fs';
+import { join } from 'path';
+import { handleFileMove } from '../../src/lib/fileHandler';
+
+describe('fileHandler', () => {
+  const testDir = join(process.cwd(), 'test-temp');
+  const sourceFile = join(testDir, 'source.ts');
+  const targetDir = join(testDir, 'target');
+  
+  beforeEach(() => {
+    // Setup test directory and files
+    mkdirSync(testDir, { recursive: true });
+    mkdirSync(targetDir, { recursive: true });
+    // Create test files
+    // ...
+  });
+  
+  afterEach(() => {
+    // Clean up
+    rmSync(testDir, { recursive: true, force: true });
+    vi.restoreAllMocks();
+  });
+  
+  it('should move a file to a target directory', async () => {
+    const newPath = await handleFileMove(sourceFile, targetDir, { force: true });
+    expect(newPath).toBe(join(targetDir, 'source.ts'));
+    // Additional assertions
+  });
+  
+  // Additional tests
+});
+```
 
 ---
 
 ## 7. **Deployment & Release**
 
-1. **Build**  
-   - Use a single build step (e.g., `tsc` or `esbuild`) to create a compiled Node script.  
-   - Optionally wrap in a binary using `pkg` if you want a stand-alone executable.
+1. **Development Environment**  
+   - Use `tsx` to run TypeScript code directly during development (`pnpm tsx bin/index.ts ...`).
+   - Supports rapid iteration without needing to compile TS code first.
 
-2. **Versioning & Tagging**  
+2. **Build**  
+   - Use a single build step (e.g., `tsc` or `esbuild`) to create a compiled Node script for production.
+   - Configure `package.json` scripts to leverage `tsx` for development and build tools for production.
+
+3. **Versioning & Tagging**  
    - Adopt Semantic Versioning (`1.0.0`, `1.1.0`, etc.).  
    - Generate changelogs automatically (e.g., via `auto-changelog` or `standard-version`).
 
-3. **Publishing**  
-   - Release on npm (`npm publish`), so users can install with `npm i -g ts-import-move` or `yarn global add ts-import-move`.
+4. **Publishing**  
+   - Release on npm using `pnpm publish`, so users can install with `pnpm add -g ts-import-move` or other package managers.
+
+### 7.1 Package Configuration (`package.json`)
+
+```json
+{
+  "name": "ts-import-move",
+  "version": "0.1.0",
+  "description": "Safely move TypeScript files/folders and update imports",
+  "bin": {
+    "ts-import-move": "./bin/index.js"
+  },
+  "scripts": {
+    "dev": "tsx bin/index.ts",
+    "build": "tsup bin/index.ts --format cjs --dts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "dependencies": {
+    "commander": "^11.0.0",
+    "fast-glob": "^3.3.0",
+    "ts-morph": "^19.0.0",
+    "chalk": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.0",
+    "tsx": "^3.12.7", 
+    "tsup": "^7.2.0",
+    "typescript": "^5.1.6",
+    "vitest": "^0.34.3",
+    "eslint": "^8.46.0",
+    "prettier": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "packageManager": "pnpm@8.6.12"
+}
+```
 
 ---
 
@@ -309,7 +420,7 @@ export function updateImports(
 - **Interactive File-Tree GUI**  
   - Possibly integrate `blessed` or a TUI library for a more visual approach to selecting files to move.
 - **VSCode Plugin**  
-  - Wrap this functionality in a VSCode extension that does “move + import update” with a single drag-and-drop.
+  - Wrap this functionality in a VSCode extension that does "move + import update" with a single drag-and-drop.
 
 ---
 

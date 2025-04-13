@@ -1,12 +1,42 @@
 {
   "name": "ts-import-move",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "0.1.0",
+  "description": "Safely move TypeScript files/folders and update imports",
+  "bin": {
+    "ts-import-move": "./dist/index.cjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "scripts": {
+    "dev": "tsx bin/index.ts",
+    "build": "tsup bin/index.ts --format cjs --dts",
+    "postbuild": "chmod +x dist/index.cjs && echo '#!/usr/bin/env node' | cat - dist/index.cjs > temp && mv temp dist/index.cjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "pnpm build",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "dependencies": {
+    "commander": "^11.0.0",
+    "fast-glob": "^3.3.0",
+    "ts-morph": "^19.0.0",
+    "chalk": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.0",
+    "tsx": "^3.12.7", 
+    "tsup": "^7.2.0",
+    "typescript": "^5.1.6",
+    "vitest": "^0.34.3",
+    "eslint": "^8.46.0",
+    "prettier": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "packageManager": "pnpm@8.6.12",
+  "type": "module"
 }
