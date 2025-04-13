@@ -4,8 +4,8 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 36 |
-| Total Lines | 11143 |
+| Total Files | 37 |
+| Total Lines | 11239 |
 | Files with Functions | 0 |
 | Total Functions | 0 |
 
@@ -57,6 +57,7 @@
   ├─ 📄 cli-install-rules.test.ts
   ├─ 📄 setup.ts
 . 📄 CHANGELOG.md
+. 📄 CONTRIBUTING.md
 . 📄 package-lock.json
 . 📄 package.json
 . 📄 pnpm-lock.yaml
@@ -70,19 +71,19 @@
 
 | Extension | Files | Lines | Lines/File |
 |-----------|-------|-------|------------|
-| .ts | 19 | 5890 | 310 |
-| .json | 5 | 1550 | 310 |
-| .md | 3 | 930 | 310 |
-| .js | 3 | 930 | 310 |
-| .tsx | 3 | 930 | 310 |
-| .mdc | 2 | 620 | 310 |
-| .yaml | 1 | 310 | 310 |
+| .ts | 19 | 5776 | 304 |
+| .json | 5 | 1520 | 304 |
+| .md | 4 | 1216 | 304 |
+| .js | 3 | 912 | 304 |
+| .tsx | 3 | 912 | 304 |
+| .mdc | 2 | 608 | 304 |
+| .yaml | 1 | 304 | 304 |
 
 ---
 
 ### Document Information
 
-- Generated: April 13, 2025 at 2:56 PM
+- Generated: April 13, 2025 at 2:59 PM
 - Project Root: 
 - Analysis Depth: 3 levels
-- Status: Completed on April 13, 2025 at 2:56 PM
+- Status: Completed on April 13, 2025 at 2:59 PM
