@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.6] - 2025-04-13
+
 ### Added
 - Added project root detection for more accurate local rule installation
 - Made local installation (project-specific) the default installation option
