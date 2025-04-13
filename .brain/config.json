@@ -1,0 +1,72 @@
+{
+  "agentPath": "1-agent-smith",
+  "agents": {
+    "1-agent-smith": {
+      "description": "Primary development agent",
+      "name": "Agent Smith",
+      "skills": [
+        "typescript",
+        "testing",
+        "documentation"
+      ],
+      "specialties": [
+        "core-architecture",
+        "project-planning"
+      ]
+    }
+  },
+  "debugCommands": {
+    "e2e": "pnpm test:e2e",
+    "integration": "pnpm test:integration",
+    "storybook": "pnpm storybook:test",
+    "typescript": "pnpm tsc --noEmit",
+    "unit": "pnpm test:unit"
+  },
+  "apiKeys": {
+    "anthropic": "",
+    "deepseek": "",
+    "googleAi": "",
+    "openAi": ""
+  },
+  "defaultAgent": "1-agent-smith",
+  "directory-structure": {
+    "gemini_config": {
+      "rate_limit": {
+        "requests_per_minute": 5
+      }
+    },
+    "max_depth": 3,
+    "gemini_descriptions_enabled": true,
+    "name": "ai-brain-garden"
+  },
+  "paths": {
+    "brain": ".brain",
+    "concepts": ".concepts",
+    "features": "b-features",
+    "knowledge": "d-knowledge",
+    "prompts": ".prompts",
+    "testing": ".testing"
+  },
+  "projectDescription": "AI-powered project management and development assistant",
+  "projectName": "ai-brain-garden",
+  "promptsDir": ".brain/prompts",
+  "promptsSourceDir": "packages/prompts/src/sync-prompts",
+  "watch": {
+    "enabled": true,
+    "excludePatterns": [
+      "**/node_modules/**",
+      "**/.git/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/coverage/**",
+      "**/.DS_Store",
+      "**/manifest.json",
+      "**/config.json"
+    ],
+    "includePatterns": [
+      "**/*.md",
+      "**/*.ts"
+    ],
+    "syncOnChange": true
+  }
+}

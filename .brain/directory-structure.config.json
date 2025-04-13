@@ -1,0 +1,105 @@
+{
+  "binary_extensions": [
+    ".bin",
+    ".exe",
+    ".gif",
+    ".ico",
+    ".jpeg",
+    ".jpg",
+    ".pdf",
+    ".png"
+  ],
+  "file_length_standards": {
+    ".css": 400,
+    ".ctp": 300,
+    ".html": 300,
+    ".js": 300,
+    ".json": 100,
+    ".jsx": 250,
+    ".kt": 300,
+    ".less": 400,
+    ".md": 500,
+    ".php": 400,
+    ".phtml": 300,
+    ".py": 400,
+    ".rst": 500,
+    ".sass": 400,
+    ".scss": 400,
+    ".svelte": 250,
+    ".swift": 300,
+    ".toml": 100,
+    ".ts": 300,
+    ".tsx": 250,
+    ".vue": 250,
+    ".yaml": 100,
+    ".yml": 100,
+    "default": 300
+  },
+  "file_length_thresholds": {
+    "critical": 1.5,
+    "severe": 2,
+    "warning": 1
+  },
+  "ignored_directories": [
+    ".git",
+    ".idea",
+    ".vscode",
+    "CursorFocus",
+    "__pycache__",
+    "build",
+    "dist",
+    "node_modules",
+    "venv"
+  ],
+  "ignored_files": [
+    ".DS_Store",
+    "*.pyc",
+    "*.pyo"
+  ],
+  "max_depth": 3,
+  "project_path": "/Users/dmieloch/Dev/singularityApps/cursor-tools/ts-import-move",
+  "project_types": {
+    "chrome_extension": {
+      "description": "Chrome Extension",
+      "indicators": [
+        "manifest.json"
+      ],
+      "required_files": []
+    },
+    "node_js": {
+      "description": "Node.js Project",
+      "indicators": [
+        "package.json"
+      ],
+      "required_files": []
+    },
+    "python": {
+      "description": "Python Project",
+      "indicators": [
+        "setup.py",
+        "pyproject.toml"
+      ],
+      "required_files": []
+    },
+    "react": {
+      "description": "React Application",
+      "indicators": [],
+      "required_files": [
+        "src/App.js",
+        "src/index.js"
+      ]
+    }
+  },
+  "update_interval": 60,
+  "framework": "unknown",
+  "main_language": "unknown",
+  "project_type": "generic",
+  "projects": [
+    {
+      "name": "ts-import-move",
+      "project_path": "/Users/dmieloch/Dev/singularityApps/cursor-tools/ts-import-move",
+      "type": "generic",
+      "watch": true
+    }
+  ]
+}
