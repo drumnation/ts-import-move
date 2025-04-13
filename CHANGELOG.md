@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added CONTRIBUTING.md with guidelines for project contributions
 
+## [0.2.2] - 2025-04-13
+
+### Changed
+- Simplified bin configuration to use a single entry point
+- Improved module loading to support both ESM and CommonJS environments
+- Updated build script to output both ESM and CommonJS formats
+
+### Fixed
+- Fixed installation issues when using npm install -g
+
 ## [0.2.1] - 2025-04-13
 
 ### Changed
