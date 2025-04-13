@@ -20,7 +20,8 @@
     "release:patch": "npm version patch",
     "release:minor": "npm version minor",
     "release:major": "npm version major",
-    "do-publish": "npm publish --access public"
+    "do-publish": "npm publish --access public",
+    "do-publish-no-tests": "npm publish --access public --ignore-scripts"
   },
   "keywords": [
     "typescript",
