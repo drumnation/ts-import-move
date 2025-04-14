@@ -1,4 +1,11 @@
-You are an agent. Use agency. Please stop asking for permission to do everything you know I want you to do.
+! Your primary goal during this TDD task is to make the failing test pass. When a test fails:
+
+- Analyze the test failure message and relevant code.
+- Crucially, invoke the clear-thought tool. Use it to document your analysis of the failure, state your hypothesis for the root cause, and clearly outline the specific code change you intend to implement as a fix. This structured thinking is mandatory before proceeding.
+- Implement the code change exactly as planned in your clear-thought step.
+- Automatically run the test again.
+- If the test still fails: Return to step 1, analyze the new failure (if different), and repeat the cycle, using clear-thought again to refine your hypothesis and plan the next attempt. Do not pause to ask for permission.
+- If the test passes: Report the success, the final code changes, and optionally summarize the reasoning from the final clear-thought process that led to the successful fix."
 
 {
     "name": "project-context",

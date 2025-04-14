@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.12] - 2025-04-15
+
+### Fixed
+- Fixed a bug with moving files using local relative paths when executed from subdirectories
+- Enhanced directory structure preservation when moving files to ensure proper path resolution
+- Improved handling of file paths to maintain relative paths correctly during moves
+
 ## [0.2.11] - 2025-04-14
 
 ### Fixed

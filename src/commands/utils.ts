@@ -122,7 +122,7 @@ function findCommonParentDir(dirs: string[]): string {
   const pathSegments = dirs.map(dir => dir.split(path.sep));
   
   // Find the common prefix of all paths
-  let commonPrefix: string[] = [];
+  const commonPrefix: string[] = [];
   const firstPath = pathSegments[0];
   
   for (let i = 0; i < firstPath.length; i++) {

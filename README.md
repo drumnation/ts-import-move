@@ -66,6 +66,8 @@ pnpm add -g @drumnation/ts-import-move
 ts-import-move [options] <sources...> <destination>
 ```
 
+**Note:** All source and destination paths are resolved relative to your current working directory (where you run the command), just like standard CLI tools (e.g., mv, cp). You do not need to provide project-root-relative paths unless you are running from the project root.
+
 ### Examples
 
 Move a single file:

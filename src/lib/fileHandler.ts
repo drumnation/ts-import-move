@@ -9,12 +9,14 @@ import { MoveOptions } from '../types/index.js';
  * @param sourcePath Source file path
  * @param destinationPath Destination path (file or directory)
  * @param options Move options
+ * @param sourceRoot Optional source root path
  * @returns The path where the file was actually moved to
  */
 export async function handleFileMove(
   sourcePath: string,
   destinationPath: string,
-  options: MoveOptions
+  options: MoveOptions,
+  sourceRoot?: string
 ): Promise<string> {
   // Check if source exists
   if (!fs.existsSync(sourcePath)) {
@@ -32,14 +34,15 @@ export async function handleFileMove(
     }
 
     // Get destination directory path
-    const sourceBasename = path.basename(sourcePath);
     let targetDirPath = destinationPath;
-    
-    // If destination is a directory, create a subdirectory with the source name
+    // If this is the root call, set the sourceRoot
+    const root = sourceRoot || sourcePath;
+    // Compute the relative path from the root
+    const relPath = path.relative(root, sourcePath);
+    // If destination is a directory, preserve structure
     if (fs.existsSync(destinationPath) && fs.statSync(destinationPath).isDirectory()) {
-      targetDirPath = path.join(destinationPath, sourceBasename);
+      targetDirPath = path.join(destinationPath, relPath.length > 0 ? relPath : path.basename(sourcePath));
     }
-    
     // Create the destination directory if it doesn't exist
     if (!fs.existsSync(targetDirPath)) {
       fs.mkdirSync(targetDirPath, { recursive: true });
@@ -62,10 +65,8 @@ export async function handleFileMove(
     // Process each file or subdirectory
     for (const file of files) {
       const sourceFilePath = path.join(sourcePath, file);
-      const targetFilePath = path.join(targetDirPath, file);
-      
-      // Recursive call to handleFileMove for each file/directory
-      await handleFileMove(sourceFilePath, targetDirPath, options);
+      // Recursive call to handleFileMove for each file/directory, passing correct subdirectory destination
+      await handleFileMove(sourceFilePath, targetDirPath, options, root);
     }
     
     // Remove the source directory if empty (all files were moved)

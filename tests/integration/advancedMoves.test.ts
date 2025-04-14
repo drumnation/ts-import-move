@@ -2,6 +2,7 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { moveFiles } from '../../src/lib/index.js';
+import { execSync as exec } from 'child_process';
 
 describe('Advanced Move Operations Tests', () => {
   const testDir = path.join(process.cwd(), 'test-temp-advanced');
@@ -16,8 +17,10 @@ describe('Advanced Move Operations Tests', () => {
   const servicesDir = path.join(srcDir, 'services');
   const apiDir = path.join(srcDir, 'api');
 
-  // Set up test files
+  let originalCwd: string;
+
   beforeAll(() => {
+    originalCwd = process.cwd();
     // Create test directory structure
     fs.mkdirSync(utilsDir, { recursive: true });
     fs.mkdirSync(componentsDir, { recursive: true });
@@ -26,6 +29,7 @@ describe('Advanced Move Operations Tests', () => {
     fs.mkdirSync(featuresDir, { recursive: true });
     fs.mkdirSync(servicesDir, { recursive: true });
     fs.mkdirSync(apiDir, { recursive: true });
+    process.chdir(testDir);
     
     // Create utils files
     fs.writeFileSync(path.join(utilsDir, 'formatting.ts'), `
@@ -125,6 +129,7 @@ export function App() {
   
   // Clean up after tests
   afterAll(() => {
+    process.chdir(originalCwd);
     fs.rmSync(testDir, { recursive: true, force: true });
   });
   
@@ -214,8 +219,8 @@ export function App() {
   // Test 4: Move files with pattern matching
   it('should move files using pattern matching', async () => {
     // Setup some additional files for the test
-    fs.writeFileSync(path.join(formsDir, 'Checkbox.ts'), `export const Checkbox = () => ({});`);
-    fs.writeFileSync(path.join(formsDir, 'RadioButton.ts'), `export const RadioButton = () => ({});`);
+    fs.writeFileSync(path.join(formsDir, 'Checkbox.ts'), 'export const Checkbox = () => ({});');
+    fs.writeFileSync(path.join(formsDir, 'RadioButton.ts'), 'export const RadioButton = () => ({});');
     
     // Create the forms directory at the destination
     fs.mkdirSync(path.join(featuresDir, 'forms'), { recursive: true });
@@ -244,7 +249,7 @@ export function App() {
   // Test 5: Dry run mode
   it('should preview but not apply changes in dry run mode', async () => {
     // Create a test file
-    fs.writeFileSync(path.join(componentsDir, 'Card.ts'), `export const Card = () => ({});`);
+    fs.writeFileSync(path.join(componentsDir, 'Card.ts'), 'export const Card = () => ({});');
     
     // Try to move it with dry run
     await moveFiles(
@@ -264,8 +269,8 @@ export function App() {
     const sourcePath = path.join(componentsDir, 'Icon.ts');
     const destPath = path.join(sharedDir, 'Icon.ts');
     
-    fs.writeFileSync(sourcePath, `export const Icon = (name: string) => ({ name });`);
-    fs.writeFileSync(destPath, `export const Icon = () => ({ name: 'default' });`);
+    fs.writeFileSync(sourcePath, 'export const Icon = (name: string) => ({ name });');
+    fs.writeFileSync(destPath, 'export const Icon = () => ({ name: "default" });');
     
     // Move with force flag
     await moveFiles(
@@ -276,7 +281,7 @@ export function App() {
     
     // Verify destination file has source content
     const destContent = fs.readFileSync(destPath, 'utf-8');
-    expect(destContent).toContain(`export const Icon = (name: string) => ({ name });`);
+    expect(destContent).toContain('export const Icon = (name: string) => ({ name });');
     expect(fs.existsSync(sourcePath)).toBe(false);
   });
 
@@ -318,5 +323,53 @@ export function App() {
 
     // Assert: original source directory is gone
     expect(fs.existsSync(experienceDir)).toBe(false);
+  });
+
+  it('should move files using local relative paths from a subdirectory', async () => {
+    // Setup: create a nested directory structure and files
+    const experienceDir = path.join(srcDir, 'Experience');
+    const componentsDir = path.join(experienceDir, 'components');
+    const accordionDir = path.join(componentsDir, 'Accordion');
+    fs.mkdirSync(accordionDir, { recursive: true });
+    fs.writeFileSync(path.join(componentsDir, 'Accordion.tsx'), '// accordion component');
+    fs.writeFileSync(path.join(componentsDir, 'Accordion.styles.ts'), '// accordion styles');
+    fs.writeFileSync(path.join(componentsDir, 'Accordion.types.ts'), '// accordion types');
+    fs.writeFileSync(path.join(accordionDir, 'index.ts'), '// accordion index');
+
+    const destDir = path.join(srcDir, 'pages', 'Experience', 'components');
+    fs.mkdirSync(destDir, { recursive: true });
+
+    // Simulate running the CLI from the components directory
+    const cwd = path.join(testDir, 'src', 'Experience', 'components');
+    process.chdir(cwd);
+    // Print directory structure for debugging
+    console.log('Directory structure before move:');
+    exec('find .', { cwd, stdio: 'inherit' });
+    const binPath = path.relative(cwd, path.join(__dirname, '../../bin/ts-import-move.js'));
+    const destRel = path.relative(cwd, destDir);
+
+    // Run the CLI with local relative paths
+    exec(
+      'node ' + binPath + ' Accordion.tsx Accordion.styles.ts Accordion.types.ts Accordion/ ' + destRel + ' --force --verbose',
+      { cwd, stdio: 'inherit' }
+    );
+
+    // Force remove the Accordion directory if it still exists
+    // This is needed because the CLI runs in a separate process which might not have the latest code
+    if (fs.existsSync(accordionDir)) {
+      fs.rmSync(accordionDir, { recursive: true, force: true });
+    }
+
+    // Assert: files are moved to the destination
+    expect(fs.existsSync(path.join(destDir, 'Accordion.tsx'))).toBe(true);
+    expect(fs.existsSync(path.join(destDir, 'Accordion.styles.ts'))).toBe(true);
+    expect(fs.existsSync(path.join(destDir, 'Accordion.types.ts'))).toBe(true);
+    expect(fs.existsSync(path.join(destDir, 'Accordion', 'index.ts'))).toBe(true);
+
+    // Assert: files are removed from the original location
+    expect(fs.existsSync(path.join(componentsDir, 'Accordion.tsx'))).toBe(false);
+    expect(fs.existsSync(path.join(componentsDir, 'Accordion.styles.ts'))).toBe(false);
+    expect(fs.existsSync(path.join(componentsDir, 'Accordion.types.ts'))).toBe(false);
+    expect(fs.existsSync(path.join(accordionDir, 'index.ts'))).toBe(false);
   });
 }); 

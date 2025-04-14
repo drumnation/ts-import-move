@@ -6,10 +6,20 @@ import path from 'path';
 import chalk from 'chalk';
 import fs from 'fs';
 
-import { MoveOptions } from '../types/index.js';
 import { handleFileMove } from './fileHandler.js';
 import { updateImports, refreshProjectReferences } from './pathUpdater.js';
 import { findTsConfigForFiles } from '../commands/utils.js';
+
+// Define the proper options interface
+interface MoveFilesOptions {
+  extensions?: string;
+  force?: boolean;
+  dryRun?: boolean;
+  verbose?: boolean;
+  tsConfigPath?: string;
+  recursive?: boolean;
+  tsconfig?: string; // For backward compatibility
+}
 
 /**
  * Moves files and updates imports
@@ -20,140 +30,257 @@ import { findTsConfigForFiles } from '../commands/utils.js';
 export async function moveFiles(
   sources: string[],
   destination: string,
-  options: MoveOptions
+  options: MoveFilesOptions
 ): Promise<void> {
-  // 1. Resolve all file paths using glob patterns
-  const extensions = options.extensions ? options.extensions.split(',') : ['.ts', '.tsx'];
-  const extensionPattern = extensions.length > 0 ? `{${extensions.join(',')}}` : '';
+  // Capture the initial working directory
+  const initialCwd = process.cwd();
   
-  const files = sources.flatMap(src => {
-    // If the source contains glob pattern or is a directory with recursive option enabled
-    if (src.includes('*') || (fs.existsSync(src) && fs.statSync(src).isDirectory() && options.recursive)) {
-      // For wildcard/glob patterns or recursive directory traversal
-      const pattern = fs.existsSync(src) && fs.statSync(src).isDirectory() 
-        ? `${src}/**/*${extensionPattern}` 
-        : src;
-      return fg.sync(pattern, { dot: true });
-    } else {
-      // For single files or simple patterns
-      return fg.sync(src, { dot: true });
-    }
-  });
+  if (options.verbose) {
+    console.log(`Initial CWD: ${initialCwd}`);
+    console.log(`moveFiles called with sources: ${sources.join(', ')}, destination: ${destination}`);
+  }
 
+  // Parse extension options
+  const extensions = options.extensions 
+    ? options.extensions.split(',').map(ext => ext.startsWith('.') ? ext : `.${ext}`)
+    : ['.ts', '.tsx'];
+  
+  // Resolve paths upfront
+  const absoluteSources = sources.map(src => path.resolve(initialCwd, src));
+  const absoluteDestination = path.resolve(initialCwd, destination);
+  
+  if (options.verbose) {
+    console.log(`Absolute sources: ${absoluteSources.join(', ')}`);
+    console.log(`Absolute destination: ${absoluteDestination}`);
+  }
+  
+  // Special handling for directory sources - find all matching files including subdirectories
+  const filesToProcess: Array<{filePath: string, isDirectory: boolean, sourceDirRoot?: string}> = [];
+  
+  // Find all files to move
+  for (const src of absoluteSources) {
+    if (fs.existsSync(src) && fs.statSync(src).isDirectory()) {
+      // If it's a directory, find all files recursively
+      if (options.verbose) {
+        console.log(`Processing directory source: ${src}`);
+      }
+      
+      // Use glob pattern to find all files inside the directory
+      const matches = fg.sync([`${src.replace(/\\/g, '/')}/**/*`], { 
+        dot: true, 
+        absolute: true,
+        onlyFiles: false // Include directory entries to preserve structure
+      });
+      
+      if (options.verbose) {
+        console.log(`Found ${matches.length} matches in directory ${src}`);
+      }
+      
+      // Process the matches
+      for (const match of matches) {
+        try {
+          const stats = fs.statSync(match);
+          if (stats.isFile()) {
+            // Check if the file matches the extensions
+            if (extensions.some(ext => match.endsWith(ext))) {
+              if (options.verbose) {
+                console.log(`Adding file: ${match}`);
+              }
+              filesToProcess.push({
+                filePath: match, 
+                isDirectory: false,
+                sourceDirRoot: src
+              });
+            }
+          } else if (stats.isDirectory()) {
+            // Track directories to create at destination
+            filesToProcess.push({
+              filePath: match,
+              isDirectory: true,
+              sourceDirRoot: src
+            });
+          }
+        } catch (err) {
+          if (options.verbose) {
+            console.log(`Error processing ${match}: ${err}`);
+          }
+        }
+      }
+    } else if (fs.existsSync(src) && fs.statSync(src).isFile()) {
+      // It's a file - check if it matches the extensions
+      if (extensions.some(ext => src.endsWith(ext))) {
+        if (options.verbose) {
+          console.log(`Adding file: ${src}`);
+        }
+        filesToProcess.push({
+          filePath: src,
+          isDirectory: false
+        });
+      } else {
+        if (options.verbose) {
+          console.log(`Skipping file with non-matching extension: ${src}`);
+        }
+      }
+    } else {
+      if (options.verbose) {
+        console.log(`Source not found or not a file/directory: ${src}`);
+      }
+    }
+  }
+  
+  // Filter for unique entries by absolute path
+  const uniqueFiles = Array.from(
+    new Map(filesToProcess.map(item => [item.filePath, item])).values()
+  );
+  
+  // Extract file paths for TypeScript project
+  const files = uniqueFiles
+    .filter(item => !item.isDirectory)
+    .map(item => item.filePath);
+  
+  if (options.verbose) {
+    console.log(`Found ${files.length} unique files to move`);
+  }
+  
+  // Exit if no files found
   if (files.length === 0) {
     console.warn(chalk.yellow('No files matched the provided patterns.'));
     return;
   }
-
-  // 2. Initialize ts-morph project
-  const tsConfigPath = options.tsconfig ?? findTsConfigForFiles(files);
+  
+  // Initialize the TypeScript project
+  const tsConfigPath = options.tsConfigPath ?? options.tsconfig ?? findTsConfigForFiles(files);
   if (!tsConfigPath) {
     console.warn(chalk.yellow('No tsconfig.json found. Type checking might be limited.'));
   }
-
+  
   if (options.verbose) {
     console.log(`Using TypeScript configuration: ${tsConfigPath || 'None'}`);
-    console.log(`Found ${files.length} files to move.`);
   }
-
+  
   const project = new Project({
     tsConfigFilePath: tsConfigPath,
     skipFileDependencyResolution: false,
   });
-
-  // Add all source files to the project
+  
   project.addSourceFilesAtPaths(files);
-
-  // --- BEGIN FIX: Directory structure preservation ---
-  // Determine if we are moving a single directory into a directory
-  let singleDirMove = false;
-  let srcDirRoot = '';
-  if (
-    sources.length === 1 &&
-    fs.existsSync(sources[0]) &&
-    fs.statSync(sources[0]).isDirectory() &&
-    options.recursive &&
-    fs.existsSync(destination) &&
-    fs.statSync(destination).isDirectory()
-  ) {
-    singleDirMove = true;
-    srcDirRoot = path.resolve(sources[0]);
-  }
-  // --- END FIX ---
-
-  // 3. Dry run mode feedback
+  
+  // Dry run mode
   if (options.dryRun) {
     console.log(chalk.blue('DRY RUN MODE: No files will be moved.'));
     console.log('The following operations would be performed:');
     
-    for (const file of files) {
-      // --- BEGIN FIX: Directory structure preservation for dry run ---
-      let destPath = destination;
-      if (singleDirMove) {
-        // Compute relative path from srcDirRoot
-        const relPath = path.relative(srcDirRoot, file);
-        const destSubdir = path.join(destination, path.basename(srcDirRoot));
-        destPath = path.join(destSubdir, relPath);
-      } else if (fs.existsSync(destination) && fs.statSync(destination).isDirectory()) {
-        destPath = path.join(destination, path.basename(file));
+    for (const entry of uniqueFiles) {
+      if (entry.isDirectory) continue; // Skip directories in dry run output
+      
+      let destPath = absoluteDestination;
+      
+      if (entry.sourceDirRoot) {
+        // Calculate relative path from source root
+        const relPath = path.relative(entry.sourceDirRoot, entry.filePath);
+        if (fs.existsSync(absoluteDestination) && fs.statSync(absoluteDestination).isDirectory()) {
+          // Preserve directory structure when moving into a directory
+          destPath = path.join(absoluteDestination, path.basename(entry.sourceDirRoot), relPath);
+        }
+      } else if (fs.existsSync(absoluteDestination) && fs.statSync(absoluteDestination).isDirectory()) {
+        // For individual files, just use basename
+        destPath = path.join(absoluteDestination, path.basename(entry.filePath));
       }
-      // --- END FIX ---
-      console.log(`${chalk.green(file)} → ${chalk.yellow(destPath)}`);
+      
+      console.log(`${chalk.green(entry.filePath)} → ${chalk.yellow(destPath)}`);
     }
     
     return;
   }
-
-  // 4. Perform move operations
-  const movedFiles = new Map<string, string>();
-  for (const filePath of files) {
-    try {
-      // --- BEGIN FIX: Directory structure preservation for actual move ---
-      let destPath = destination;
-      if (singleDirMove) {
-        // Compute relative path from srcDirRoot
-        const relPath = path.relative(srcDirRoot, filePath);
-        const destSubdir = path.join(destination, path.basename(srcDirRoot));
-        destPath = path.join(destSubdir, relPath);
-      } else if (sources.some(src => src.includes('*'))) {
-        // Existing logic for globs
-        const matchingPattern = sources.find(src => {
-          const basePath = src.split('*')[0];
-          return filePath.startsWith(basePath);
-        });
-        if (matchingPattern && fs.existsSync(destination) && fs.statSync(destination).isDirectory()) {
-          const basePath = matchingPattern.split('*')[0];
-          const relativePath = path.relative(basePath, filePath);
-          if (matchingPattern.endsWith('*.ts') || matchingPattern.endsWith('*.tsx')) {
-            destPath = path.join(destination, path.basename(filePath));
-          } else {
-            destPath = path.join(destination, relativePath);
-          }
-        }
-      } else if (fs.existsSync(destination) && fs.statSync(destination).isDirectory()) {
-        destPath = path.join(destination, path.basename(filePath));
-      }
-      // --- END FIX ---
-      const newFilePath = await handleFileMove(filePath, destPath, options);
-      movedFiles.set(filePath, newFilePath);
-      // Update imports for this file
-      updateImports(project, filePath, newFilePath);
-    } catch (err) {
-      console.error(chalk.red(`Error moving ${filePath}:`), err);
-      // Continue with other files on error
-    }
-  }
-
-  // 5. Refresh project references
-  refreshProjectReferences(project);
-
-  // 6. Update all source files that might reference the moved files
-  if (options.verbose) {
-    console.log(`Checking ${project.getSourceFiles().length} source files for imports that need updating...`);
+  
+  // Ensure destination directory exists
+  if (!fs.existsSync(absoluteDestination) && !path.extname(absoluteDestination)) {
+    fs.mkdirSync(absoluteDestination, { recursive: true });
   }
   
-  const allSourceFiles = project.getSourceFiles();
-  for (const sourceFile of allSourceFiles) {
+  // First, create all necessary directories at destination
+  for (const entry of uniqueFiles) {
+    if (entry.isDirectory) {
+      const relPath = entry.sourceDirRoot 
+        ? path.relative(entry.sourceDirRoot, entry.filePath) 
+        : path.basename(entry.filePath);
+      
+      let destDir: string;
+      if (fs.existsSync(absoluteDestination) && fs.statSync(absoluteDestination).isDirectory()) {
+        if (entry.sourceDirRoot) {
+          // When moving a directory into another directory, preserve the root directory name
+          destDir = path.join(absoluteDestination, path.basename(entry.sourceDirRoot), relPath);
+        } else {
+          // Simple directory to directory move
+          destDir = path.join(absoluteDestination, relPath);
+        }
+      } else {
+        // destination is a file path or doesn't exist
+        destDir = absoluteDestination;
+      }
+      
+      if (!fs.existsSync(destDir)) {
+        if (options.verbose) {
+          console.log(`Creating directory: ${destDir}`);
+        }
+        fs.mkdirSync(destDir, { recursive: true });
+      }
+    }
+  }
+  
+  // Now move the files
+  const movedFiles = new Map<string, string>();
+  
+  for (const entry of uniqueFiles) {
+    if (entry.isDirectory) continue; // Skip directories
+    
+    const filePath = entry.filePath;
+    
+    try {
+      // Calculate destination path
+      let destPath = absoluteDestination;
+      let sourceRootArg = undefined;
+      
+      if (entry.sourceDirRoot) {
+        // When moving a file from a directory, preserve its path relative to the source root
+        const relPath = path.relative(entry.sourceDirRoot, filePath);
+        if (fs.existsSync(absoluteDestination) && fs.statSync(absoluteDestination).isDirectory()) {
+          destPath = path.join(absoluteDestination, path.basename(entry.sourceDirRoot), relPath);
+          // Ensure parent directory exists
+          fs.mkdirSync(path.dirname(destPath), { recursive: true });
+        }
+        sourceRootArg = entry.sourceDirRoot;
+      } else if (fs.existsSync(absoluteDestination) && fs.statSync(absoluteDestination).isDirectory()) {
+        // Simple file to directory move
+        destPath = path.join(absoluteDestination, path.basename(filePath));
+      }
+      
+      // Check for overwrites
+      if (fs.existsSync(destPath) && !options.force) {
+        console.error(chalk.red(`Error: Destination file ${destPath} already exists. Use --force to overwrite.`));
+        process.exit(1);
+      }
+      
+      // Move the file
+      const newFilePath = sourceRootArg
+        ? await handleFileMove(filePath, destPath, options, sourceRootArg)
+        : await handleFileMove(filePath, destPath, options);
+      
+      movedFiles.set(filePath, newFilePath);
+      
+      // Update imports in the moved file
+      updateImports(project, filePath, newFilePath);
+      
+    } catch (err) {
+      console.error(chalk.red(`Error moving ${filePath}:`), err);
+    }
+  }
+  
+  // Refresh project references and update imports
+  refreshProjectReferences(project);
+  
+  // Update import paths in all source files
+  for (const sourceFile of project.getSourceFiles()) {
     const importDeclarations = sourceFile.getImportDeclarations();
     
     if (options.verbose) {
@@ -167,25 +294,19 @@ export async function moveFiles(
         console.log(`  Import: ${moduleSpecifier}`);
       }
       
-      // Try to find imports referencing our moved files
       for (const [oldFilePath, newFilePath] of movedFiles.entries()) {
-        // const oldDirname = path.dirname(oldFilePath); // removed unused variable
         const oldBasename = path.basename(oldFilePath, path.extname(oldFilePath));
         const newDirname = path.dirname(newFilePath);
         const newBasename = path.basename(newFilePath, path.extname(newFilePath));
         
         if (options.verbose) {
-          // eslint-disable-next-line quotes
           console.log(`    Checking against moved file: ${oldFilePath} -> ${newFilePath}`);
           console.log(`    Old basename: ${oldBasename}, New path: ${newDirname}/${newBasename}`);
         }
         
-        // Check if this import references the file we moved
-        // Compare the imported module with our old file path
         const sourceFilePath = sourceFile.getFilePath();
         const sourceFileDir = path.dirname(sourceFilePath);
         
-        // Get absolute paths for more accurate comparison
         const absOldPath = path.resolve(oldFilePath);
         const resolvedImportPath = path.resolve(sourceFileDir, moduleSpecifier + (moduleSpecifier.endsWith('.ts') ? '' : '.ts'));
         
@@ -196,21 +317,16 @@ export async function moveFiles(
           console.log(`    Resolved import path: ${resolvedImportPath}`);
         }
         
-        // Check if this import resolves to our moved file
         if (resolvedImportPath === absOldPath || 
             resolvedImportPath.replace(/\.ts$/, '') === absOldPath.replace(/\.ts$/, '')) {
-          // Calculate new relative path from the source file to the new file location
           const relativeToNew = path.relative(sourceFileDir, newDirname);
-          // Format with proper slashes for different OSes
           const newImportPath = path.join(relativeToNew, newBasename).replace(/\\/g, '/');
-          // Add ./ prefix if needed for relative imports
           const formattedImportPath = newImportPath.startsWith('.') ? newImportPath : `./${newImportPath}`;
           
           if (options.verbose) {
             console.log(`    ✅ Updating import to: ${formattedImportPath}`);
           }
           
-          // Update the import
           importDecl.setModuleSpecifier(formattedImportPath);
         } else if (options.verbose) {
           console.log('    ❌ Import doesn\'t match moved file');
@@ -218,24 +334,84 @@ export async function moveFiles(
       }
     }
   }
-
-  // 7. Save changes
+  
   await project.save();
-
-  // 8. Summary
+  
   console.log(chalk.green(`Successfully moved ${movedFiles.size} files.`));
+  
+  // Track directories that should be forcefully removed (explicit in sources)
+  const dirsToForceRemove = new Set<string>();
 
-  // --- BEGIN FIX: Remove original source directory if singleDirMove ---
-  if (singleDirMove && srcDirRoot) {
-    try {
-      // Remove the now-empty source directory recursively
-      fs.rmSync(srcDirRoot, { recursive: true, force: true });
-      if (options.verbose) {
-        console.log(`Removed original source directory: ${srcDirRoot}`);
-      }
-    } catch (err) {
-      console.warn(chalk.yellow(`Could not remove original source directory: ${srcDirRoot}`), err);
+  // Track additional directories that may need cleanup
+  const dirsToCleanup = new Set<string>();
+
+  // Keep track of directory names with trailing slashes for special handling
+  const dirNamesWithTrailingSlash = new Set<string>();
+
+  // Process source directories
+  for (const src of absoluteSources) {
+    const hasTrailingSlash = src.endsWith('/') || src.endsWith('\\');
+    const cleanedPath = hasTrailingSlash ? src.slice(0, -1) : src;
+    
+    if (hasTrailingSlash) {
+      // Store the basename for special handling
+      dirNamesWithTrailingSlash.add(path.basename(cleanedPath));
+    }
+    
+    if (fs.existsSync(cleanedPath) && fs.statSync(cleanedPath).isDirectory()) {
+      // This directory was explicitly requested to be moved, so we'll force remove it
+      dirsToForceRemove.add(cleanedPath);
     }
   }
-  // --- END FIX ---
+
+  // Add parent directories of moved files for possible cleanup
+  for (const [oldPath] of movedFiles.entries()) {
+    dirsToCleanup.add(path.dirname(oldPath));
+    
+    // Check if this file's directory is one that was specified with a trailing slash
+    const dirName = path.basename(path.dirname(oldPath));
+    if (dirNamesWithTrailingSlash.has(dirName)) {
+      dirsToForceRemove.add(path.dirname(oldPath));
+    }
+  }
+
+  // First force remove directories that were explicitly passed
+  for (const dirPath of dirsToForceRemove) {
+    try {
+      if (fs.existsSync(dirPath)) {
+        if (options.verbose) {
+          console.log(`Force removing source directory: ${dirPath}`);
+        }
+        fs.rmSync(dirPath, { recursive: true, force: true });
+      }
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : String(err);
+      console.warn(chalk.yellow(`Could not remove source directory: ${dirPath}. Error: ${errorMsg}`));
+    }
+  }
+
+  // Then clean up other directories if they're empty
+  const remainingDirs = Array.from(dirsToCleanup)
+    .filter(dir => !Array.from(dirsToForceRemove).some(forceDir => dir === forceDir || dir.startsWith(forceDir + path.sep)))
+    .sort((a, b) => b.length - a.length); // Sort by depth (longest first)
+
+  for (const dirPath of remainingDirs) {
+    try {
+      if (fs.existsSync(dirPath) && fs.statSync(dirPath).isDirectory()) {
+        const files = fs.readdirSync(dirPath);
+        if (files.length === 0) {
+          if (options.verbose) {
+            console.log(`Removing empty directory: ${dirPath}`);
+          }
+          fs.rmdirSync(dirPath);
+        }
+      }
+    } catch (err) {
+      // Just log and continue
+      if (options.verbose) {
+        const errorMsg = err instanceof Error ? err.message : String(err);
+        console.log(`Could not check/remove directory: ${dirPath}. Error: ${errorMsg}`);
+      }
+    }
+  }
 }
