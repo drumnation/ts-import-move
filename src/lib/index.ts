@@ -9,7 +9,7 @@ import fs from 'fs';
 import { MoveOptions } from '../types/index.js';
 import { handleFileMove } from './fileHandler.js';
 import { updateImports, refreshProjectReferences } from './pathUpdater.js';
-import { findTsConfig, findTsConfigForFiles } from '../commands/utils.js';
+import { findTsConfigForFiles } from '../commands/utils.js';
 
 /**
  * Moves files and updates imports
@@ -102,7 +102,7 @@ export async function moveFiles(
           // Get the relative path from the base path
           const relativePath = path.relative(basePath, filePath);
           // Only use the filename, not full relative path for simple patterns
-          const relativeDir = path.dirname(relativePath);
+          // const relativeDir = path.dirname(relativePath); // removed unused variable
           
           // If the source pattern is just a directory with a wildcard for files
           if (matchingPattern.endsWith('*.ts') || matchingPattern.endsWith('*.tsx')) {
@@ -151,12 +151,13 @@ export async function moveFiles(
       
       // Try to find imports referencing our moved files
       for (const [oldFilePath, newFilePath] of movedFiles.entries()) {
-        const oldDirname = path.dirname(oldFilePath);
+        // const oldDirname = path.dirname(oldFilePath); // removed unused variable
         const oldBasename = path.basename(oldFilePath, path.extname(oldFilePath));
         const newDirname = path.dirname(newFilePath);
         const newBasename = path.basename(newFilePath, path.extname(newFilePath));
         
         if (options.verbose) {
+          // eslint-disable-next-line quotes
           console.log(`    Checking against moved file: ${oldFilePath} -> ${newFilePath}`);
           console.log(`    Old basename: ${oldBasename}, New path: ${newDirname}/${newBasename}`);
         }
@@ -194,7 +195,7 @@ export async function moveFiles(
           // Update the import
           importDecl.setModuleSpecifier(formattedImportPath);
         } else if (options.verbose) {
-          console.log(`    ❌ Import doesn't match moved file`);
+          console.log('    ❌ Import doesn\'t match moved file');
         }
       }
     }

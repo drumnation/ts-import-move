@@ -249,6 +249,85 @@ export const Profile = {
         throw error;
       }
     });
+
+    it('should handle multiple source files moving to a single destination', async () => {
+      // Create test directories and files
+      const utilsDirPath = path.join(srcDir, 'utils');
+      const componentsDirPath = path.join(srcDir, 'components');
+      const sharedDirPath = path.join(srcDir, 'shared');
+      
+      // Create directories if they don't exist
+      fs.mkdirSync(utilsDirPath, { recursive: true });
+      fs.mkdirSync(componentsDirPath, { recursive: true });
+      fs.mkdirSync(sharedDirPath, { recursive: true });
+      
+      // Create test files
+      const dateUtilPath = path.join(utilsDirPath, 'date.ts');
+      const stringUtilPath = path.join(utilsDirPath, 'string.ts');
+      
+      fs.writeFileSync(dateUtilPath, `
+export const formatDate = (date: Date): string => {
+  return date.toLocaleDateString();
+};
+`);
+      
+      fs.writeFileSync(stringUtilPath, `
+export const capitalize = (str: string): string => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+`);
+      
+      // Create a component that imports both utils
+      const buttonComponentPath = path.join(componentsDirPath, 'Button.ts');
+      fs.writeFileSync(buttonComponentPath, `
+import { formatDate } from '../utils/date';
+import { capitalize } from '../utils/string';
+
+export const Button = {
+  formatLabel: (label: string, date: Date) => {
+    return \`\${capitalize(label)} - \${formatDate(date)}\`;
+  }
+};
+`);
+      
+      try {
+        // Run the command to move both utils to shared directory
+        // This tests multiple source files with a destination at the end
+        const output = execSync(
+          `pnpm tsx bin/index.ts -v "${dateUtilPath}" "${stringUtilPath}" "${sharedDirPath}"`,
+          { cwd: process.cwd(), encoding: 'utf8' }
+        );
+        
+        console.log('Multiple source files test output:', output);
+        
+        // Verify both files were moved correctly
+        const movedDateUtilPath = path.join(sharedDirPath, 'date.ts');
+        const movedStringUtilPath = path.join(sharedDirPath, 'string.ts');
+        
+        expect(fs.existsSync(movedDateUtilPath)).toBe(true);
+        expect(fs.existsSync(movedStringUtilPath)).toBe(true);
+        expect(fs.existsSync(dateUtilPath)).toBe(false);
+        expect(fs.existsSync(stringUtilPath)).toBe(false);
+        
+        // Verify imports were updated correctly
+        const updatedButtonContent = fs.readFileSync(buttonComponentPath, 'utf-8');
+        expect(updatedButtonContent).toContain("from '../shared/date'");
+        expect(updatedButtonContent).toContain("from '../shared/string'");
+        expect(updatedButtonContent).not.toContain("from '../utils/date'");
+        expect(updatedButtonContent).not.toContain("from '../utils/string'");
+        
+        // Verify the extracted sources and destination logs
+        expect(output).toContain('Extracted sources:');
+        expect(output).toContain('Extracted destination:');
+        expect(output).toContain(dateUtilPath);
+        expect(output).toContain(stringUtilPath);
+        expect(output).toContain(sharedDirPath);
+      } catch (error: any) {
+        console.error('Multiple source files test failed:', error.message);
+        console.error('CLI stderr:', error.stderr);
+        throw error;
+      }
+    });
   });
 
   describe('install-rules command', () => {

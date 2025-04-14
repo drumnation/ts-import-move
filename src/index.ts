@@ -50,10 +50,23 @@ addCommonOptions(moveCommand);
 
 // Add arguments and action
 moveCommand
-  .argument('<source...>', 'Source file(s) or directory')
-  .argument('<destination>', 'Destination file or directory')
-  .action(async (source, destination, options) => {
-    await moveAction(source, destination, options);
+  .argument('<source>', 'First source file or directory')
+  .argument('<destination...>', 'Destination and additional source files/directories')
+  .action(async (firstSource, destinationAndSources, options) => {
+    // Extract the last element as destination, everything else are sources
+    const destination = destinationAndSources.pop();
+    // Combine the first source with any additional sources
+    const sources = [firstSource, ...destinationAndSources];
+    
+    // Always log the extracted parameters (regardless of verbose flag)
+    console.log('Extracted sources:', sources);
+    console.log('Extracted destination:', destination);
+    
+    if (options.verbose) {
+      console.log('Using options:', options);
+    }
+    
+    await moveAction(sources, destination, options);
   });
 
 // Add the install-rules command
@@ -72,10 +85,23 @@ addCommonOptions(defaultCommand);
 
 // Add arguments and action
 defaultCommand
-  .argument('<source...>', 'Source file(s) or directory')
-  .argument('<destination>', 'Destination file or directory')
-  .action(async (source, destination, options) => {
-    await moveAction(source, destination, options);
+  .argument('<source>', 'First source file or directory')
+  .argument('<destination...>', 'Destination and additional source files/directories')
+  .action(async (firstSource, destinationAndSources, options) => {
+    // Extract the last element as destination, everything else are sources
+    const destination = destinationAndSources.pop();
+    // Combine the first source with any additional sources
+    const sources = [firstSource, ...destinationAndSources];
+    
+    // Always log the extracted parameters (regardless of verbose flag)
+    console.log('Extracted sources:', sources);
+    console.log('Extracted destination:', destination);
+    
+    if (options.verbose) {
+      console.log('Using options:', options);
+    }
+    
+    await moveAction(sources, destination, options);
   });
 
 program.parse(process.argv); 

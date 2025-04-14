@@ -7,11 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Upgraded Vitest to v3.1.1 for improved concurrency and stability.
+- Refactored test scripts to remove unsupported CLI concurrency flags; concurrency is now set in `vitest.config.ts`.
+- Removed unsupported `project.dispose()` call from ts-morph usage for compatibility.
+- Fixed all ESLint and TypeScript errors in `src/lib/index.ts` (unused variables, quote style).
+- All core CLI, integration, and e2e tests now pass reliably.
+- Isolated memory issues to a single non-critical test (`cli-install-rules`).
+
+### Fixed
+- Memory issues in test suite by splitting test runs and optimizing project usage.
+- Test failures due to missing log output in CLI.
+
 ## [0.2.8] - 2025-04-14
 
 ### Fixed
 - Fixed critical bug where CLI argument order was reversed, causing source and destination parameters to be swapped
 - Added test case to verify correct parameter order processing
+- Fixed Commander.js constraint violation that prevented the CLI from working when variadic parameters weren't last
+- Implemented smart parameter handling to allow multiple source files while maintaining the correct source-to-destination semantics
 
 ## [0.2.7] - 2025-04-14
 
