@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.10] - 2025-04-14
+
+### Fixed
+- Fixed Commander.js CLI definition to use a single variadic argument (`<args...>`) and parse sources/destination in code, resolving the "only the last argument can be variadic" error for all users.
+- Ensured CLI works with all argument patterns and passes all e2e tests.
+
 ## [0.2.9] - 2025-04-14
 
 ### Changed
