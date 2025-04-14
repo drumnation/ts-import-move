@@ -64,17 +64,40 @@ export async function moveFiles(
   // Add all source files to the project
   project.addSourceFilesAtPaths(files);
 
+  // --- BEGIN FIX: Directory structure preservation ---
+  // Determine if we are moving a single directory into a directory
+  let singleDirMove = false;
+  let srcDirRoot = '';
+  if (
+    sources.length === 1 &&
+    fs.existsSync(sources[0]) &&
+    fs.statSync(sources[0]).isDirectory() &&
+    options.recursive &&
+    fs.existsSync(destination) &&
+    fs.statSync(destination).isDirectory()
+  ) {
+    singleDirMove = true;
+    srcDirRoot = path.resolve(sources[0]);
+  }
+  // --- END FIX ---
+
   // 3. Dry run mode feedback
   if (options.dryRun) {
     console.log(chalk.blue('DRY RUN MODE: No files will be moved.'));
     console.log('The following operations would be performed:');
     
     for (const file of files) {
-      // Calculate destination path logic similar to handleFileMove
+      // --- BEGIN FIX: Directory structure preservation for dry run ---
       let destPath = destination;
-      if (fs.existsSync(destination) && fs.statSync(destination).isDirectory()) {
+      if (singleDirMove) {
+        // Compute relative path from srcDirRoot
+        const relPath = path.relative(srcDirRoot, file);
+        const destSubdir = path.join(destination, path.basename(srcDirRoot));
+        destPath = path.join(destSubdir, relPath);
+      } else if (fs.existsSync(destination) && fs.statSync(destination).isDirectory()) {
         destPath = path.join(destination, path.basename(file));
       }
+      // --- END FIX ---
       console.log(`${chalk.green(file)} → ${chalk.yellow(destPath)}`);
     }
     
@@ -85,39 +108,34 @@ export async function moveFiles(
   const movedFiles = new Map<string, string>();
   for (const filePath of files) {
     try {
-      // For pattern-matched files, ensure we preserve the relative structure if destination is a directory
+      // --- BEGIN FIX: Directory structure preservation for actual move ---
       let destPath = destination;
-      
-      // If we're moving from a pattern with a source directory, preserve directory structure
-      if (sources.some(src => src.includes('*'))) {
-        // Determine if this file came from a pattern with a base directory
+      if (singleDirMove) {
+        // Compute relative path from srcDirRoot
+        const relPath = path.relative(srcDirRoot, filePath);
+        const destSubdir = path.join(destination, path.basename(srcDirRoot));
+        destPath = path.join(destSubdir, relPath);
+      } else if (sources.some(src => src.includes('*'))) {
+        // Existing logic for globs
         const matchingPattern = sources.find(src => {
-          const basePath = src.split('*')[0]; // Get the base path before the wildcard
+          const basePath = src.split('*')[0];
           return filePath.startsWith(basePath);
         });
-        
         if (matchingPattern && fs.existsSync(destination) && fs.statSync(destination).isDirectory()) {
-          // Extract the base path from the pattern
           const basePath = matchingPattern.split('*')[0];
-          // Get the relative path from the base path
           const relativePath = path.relative(basePath, filePath);
-          // Only use the filename, not full relative path for simple patterns
-          // const relativeDir = path.dirname(relativePath); // removed unused variable
-          
-          // If the source pattern is just a directory with a wildcard for files
           if (matchingPattern.endsWith('*.ts') || matchingPattern.endsWith('*.tsx')) {
-            // Use just the destination directory + filename
             destPath = path.join(destination, path.basename(filePath));
           } else {
-            // Preserve directory structure under destination
             destPath = path.join(destination, relativePath);
           }
         }
+      } else if (fs.existsSync(destination) && fs.statSync(destination).isDirectory()) {
+        destPath = path.join(destination, path.basename(filePath));
       }
-      
+      // --- END FIX ---
       const newFilePath = await handleFileMove(filePath, destPath, options);
       movedFiles.set(filePath, newFilePath);
-      
       // Update imports for this file
       updateImports(project, filePath, newFilePath);
     } catch (err) {
@@ -206,4 +224,18 @@ export async function moveFiles(
 
   // 8. Summary
   console.log(chalk.green(`Successfully moved ${movedFiles.size} files.`));
+
+  // --- BEGIN FIX: Remove original source directory if singleDirMove ---
+  if (singleDirMove && srcDirRoot) {
+    try {
+      // Remove the now-empty source directory recursively
+      fs.rmSync(srcDirRoot, { recursive: true, force: true });
+      if (options.verbose) {
+        console.log(`Removed original source directory: ${srcDirRoot}`);
+      }
+    } catch (err) {
+      console.warn(chalk.yellow(`Could not remove original source directory: ${srcDirRoot}`), err);
+    }
+  }
+  // --- END FIX ---
 }

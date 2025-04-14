@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.11] - 2025-04-14
+
+### Fixed
+- Fixed critical bug where moving a directory into another directory with `-r` would flatten the directory structure and cause file collisions. The tool now preserves the full hierarchy by creating a subfolder in the destination matching the source directory name, just like standard `mv` behavior.
+- The original source directory is now removed after a successful move, matching expected CLI semantics.
+
+### Added
+- Added an integration test to ensure directory structure is preserved when moving a directory with subfolders into another directory. This prevents regressions for this critical behavior.
+
+### Changed
+- Improved move logic to handle single-directory moves robustly and safely, with better error handling and verbose output for debugging.
+
 ## [0.2.10] - 2025-04-14
 
 ### Fixed

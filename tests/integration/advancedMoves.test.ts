@@ -279,4 +279,44 @@ export function App() {
     expect(destContent).toContain(`export const Icon = (name: string) => ({ name });`);
     expect(fs.existsSync(sourcePath)).toBe(false);
   });
+
+  it('should preserve directory structure when moving a directory into another directory', async () => {
+    // Setup: create a nested directory structure
+    const experienceDir = path.join(srcDir, 'Experience');
+    const accordionDir = path.join(experienceDir, 'components', 'Accordion');
+    fs.mkdirSync(accordionDir, { recursive: true });
+    fs.writeFileSync(path.join(experienceDir, 'ExampleUsage.ts'), '// example usage');
+    fs.writeFileSync(path.join(experienceDir, 'Experience.ts'), '// experience');
+    fs.writeFileSync(path.join(accordionDir, 'Accordion.tsx'), '// accordion');
+    fs.writeFileSync(path.join(accordionDir, 'index.ts'), '// accordion index');
+    fs.writeFileSync(path.join(experienceDir, 'index.ts'), '// experience index');
+
+    const destPagesDir = path.join(srcDir, 'pages');
+    fs.mkdirSync(destPagesDir, { recursive: true });
+
+    // Action: move Experience into pages/
+    await moveFiles(
+      [experienceDir],
+      destPagesDir,
+      { recursive: true, force: true }
+    );
+
+    // Assert: directory structure is preserved
+    const destExperienceDir = path.join(destPagesDir, 'Experience');
+    expect(fs.existsSync(destExperienceDir)).toBe(true);
+    expect(fs.existsSync(path.join(destExperienceDir, 'ExampleUsage.ts'))).toBe(true);
+    expect(fs.existsSync(path.join(destExperienceDir, 'Experience.ts'))).toBe(true);
+    expect(fs.existsSync(path.join(destExperienceDir, 'index.ts'))).toBe(true);
+    expect(fs.existsSync(path.join(destExperienceDir, 'components', 'Accordion', 'Accordion.tsx'))).toBe(true);
+    expect(fs.existsSync(path.join(destExperienceDir, 'components', 'Accordion', 'index.ts'))).toBe(true);
+
+    // Assert: files are NOT flattened into pages/
+    expect(fs.existsSync(path.join(destPagesDir, 'ExampleUsage.ts'))).toBe(false);
+    expect(fs.existsSync(path.join(destPagesDir, 'Experience.ts'))).toBe(false);
+    expect(fs.existsSync(path.join(destPagesDir, 'index.ts'))).toBe(false);
+    expect(fs.existsSync(path.join(destPagesDir, 'Accordion.tsx'))).toBe(false);
+
+    // Assert: original source directory is gone
+    expect(fs.existsSync(experienceDir)).toBe(false);
+  });
 }); 

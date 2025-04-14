@@ -1,6 +1,6 @@
 {
   "name": "@drumnation/ts-import-move",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "description": "Safely move TypeScript files/folders and update imports",
   "bin": {
     "ts-import-move": "./dist/index.js"
