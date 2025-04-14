@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.14] - 2025-04-14
+
+### Changed
+- Version bump for release. No user-facing changes since 0.2.13, but ensures all dependencies and metadata are up to date.
+
+## [0.2.13] - 2025-04-14
+
+### Fixed
+- Fixed a critical bug where the CLI, when run globally or from a published package, failed to move files using relative paths from a subdirectory ("No files matched the provided patterns"). The CLI now correctly passes original arguments to the main logic, preserving expected behavior for all path types and working directories.
+
+### Added
+- Added an end-to-end (E2E) test that runs the built CLI from a subdirectory using relative paths, ensuring this regression is caught in the future.
+
 ## [0.2.12] - 2025-04-15
 
 ### Fixed

@@ -58,72 +58,93 @@ export async function moveFiles(
   const filesToProcess: Array<{filePath: string, isDirectory: boolean, sourceDirRoot?: string}> = [];
   
   // Find all files to move
-  for (const src of absoluteSources) {
-    if (fs.existsSync(src) && fs.statSync(src).isDirectory()) {
+  for (const src of sources) { // Use original pattern, not resolved path
+    const absSrc = path.resolve(initialCwd, src);
+    if (fs.existsSync(absSrc) && fs.statSync(absSrc).isDirectory()) {
       // If it's a directory, find all files recursively
       if (options.verbose) {
-        console.log(`Processing directory source: ${src}`);
+        console.log(`Processing directory source: ${absSrc}`);
       }
-      
-      // Use glob pattern to find all files inside the directory
-      const matches = fg.sync([`${src.replace(/\\/g, '/')}/**/*`], { 
-        dot: true, 
-        absolute: true,
-        onlyFiles: false // Include directory entries to preserve structure
+
+      // Use glob pattern to find all files inside the directory, relative to cwd
+      const matches = fg.sync([`${src.replace(/\\/g, '/')}/**/*`], {
+        dot: true,
+        absolute: false, // Get relative paths, resolve later
+        onlyFiles: false,
+        cwd: initialCwd // Ensure matching is relative to where command is run
       });
-      
+
       if (options.verbose) {
         console.log(`Found ${matches.length} matches in directory ${src}`);
       }
-      
+
       // Process the matches
       for (const match of matches) {
+        const absMatch = path.resolve(initialCwd, match);
         try {
-          const stats = fs.statSync(match);
+          const stats = fs.statSync(absMatch);
           if (stats.isFile()) {
             // Check if the file matches the extensions
-            if (extensions.some(ext => match.endsWith(ext))) {
+            if (extensions.some(ext => absMatch.endsWith(ext))) {
               if (options.verbose) {
-                console.log(`Adding file: ${match}`);
+                console.log(`Adding file: ${absMatch}`);
               }
               filesToProcess.push({
-                filePath: match, 
+                filePath: absMatch,
                 isDirectory: false,
-                sourceDirRoot: src
+                sourceDirRoot: absSrc
               });
             }
           } else if (stats.isDirectory()) {
-            // Track directories to create at destination
             filesToProcess.push({
-              filePath: match,
+              filePath: absMatch,
               isDirectory: true,
-              sourceDirRoot: src
+              sourceDirRoot: absSrc
             });
           }
         } catch (err) {
           if (options.verbose) {
-            console.log(`Error processing ${match}: ${err}`);
+            console.log(`Error processing ${absMatch}: ${err}`);
           }
         }
       }
-    } else if (fs.existsSync(src) && fs.statSync(src).isFile()) {
+    } else if (fs.existsSync(absSrc) && fs.statSync(absSrc).isFile()) {
       // It's a file - check if it matches the extensions
-      if (extensions.some(ext => src.endsWith(ext))) {
+      if (extensions.some(ext => absSrc.endsWith(ext))) {
         if (options.verbose) {
-          console.log(`Adding file: ${src}`);
+          console.log(`Adding file: ${absSrc}`);
         }
         filesToProcess.push({
-          filePath: src,
+          filePath: absSrc,
           isDirectory: false
         });
       } else {
         if (options.verbose) {
-          console.log(`Skipping file with non-matching extension: ${src}`);
+          console.log(`Skipping file with non-matching extension: ${absSrc}`);
         }
       }
     } else {
-      if (options.verbose) {
-        console.log(`Source not found or not a file/directory: ${src}`);
+      // Try glob matching for non-existing files (e.g., patterns)
+      const matches = fg.sync([src], {
+        dot: true,
+        absolute: false,
+        onlyFiles: true,
+        cwd: initialCwd
+      });
+      for (const match of matches) {
+        const absMatch = path.resolve(initialCwd, match);
+        if (extensions.some(ext => absMatch.endsWith(ext))) {
+          if (options.verbose) {
+            console.log(`Adding file from pattern: ${absMatch}`);
+          }
+          filesToProcess.push({
+            filePath: absMatch,
+            isDirectory: false
+          });
+        }
+      }
+      if (options.verbose && matches.length === 0) {
+        console.log(`No files matched pattern: ${src}`);
       }
     }
   }
