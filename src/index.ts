@@ -50,9 +50,9 @@ addCommonOptions(moveCommand);
 
 // Add arguments and action
 moveCommand
-  .argument('<destination>', 'Destination file or directory')
   .argument('<source...>', 'Source file(s) or directory')
-  .action(async (destination, source, options) => {
+  .argument('<destination>', 'Destination file or directory')
+  .action(async (source, destination, options) => {
     await moveAction(source, destination, options);
   });
 
@@ -72,9 +72,9 @@ addCommonOptions(defaultCommand);
 
 // Add arguments and action
 defaultCommand
-  .argument('<destination>', 'Destination file or directory')
   .argument('<source...>', 'Source file(s) or directory')
-  .action(async (destination, source, options) => {
+  .argument('<destination>', 'Destination file or directory')
+  .action(async (source, destination, options) => {
     await moveAction(source, destination, options);
   });
 

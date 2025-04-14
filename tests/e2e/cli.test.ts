@@ -191,6 +191,64 @@ export function Card({ title, price, date }: CardProps) {
       expect(fs.existsSync(destinationFile)).toBe(true);
       expect(fs.existsSync(sourcePath)).toBe(false);
     });
+
+    it('should correctly interpret source and destination in expected order', async () => {
+      // Create test directories for this specific test
+      const sectionsDirPath = path.join(srcDir, 'sections');
+      const pagesDirPath = path.join(srcDir, 'pages');
+      const experienceDirPath = path.join(sectionsDirPath, 'Experience');
+      
+      // Create directories
+      fs.mkdirSync(sectionsDirPath, { recursive: true });
+      fs.mkdirSync(pagesDirPath, { recursive: true });
+      fs.mkdirSync(experienceDirPath, { recursive: true });
+      
+      // Create a test file in the experience directory
+      const testFilePath = path.join(experienceDirPath, 'Experience.ts');
+      fs.writeFileSync(testFilePath, `
+export const Experience = {
+  title: 'Work Experience',
+  description: 'My professional background'
+};
+`);
+      
+      // Create component that imports from Experience
+      const referenceFilePath = path.join(srcDir, 'ReferenceFile.ts');
+      fs.writeFileSync(referenceFilePath, `
+import { Experience } from './sections/Experience/Experience';
+
+export const Profile = {
+  ...Experience,
+  contactInfo: 'email@example.com'
+};
+`);
+      
+      // Run the command to move Experience from sections to pages
+      // This would previously have been interpreted in reverse
+      try {
+        const output = execSync(
+          `pnpm tsx bin/index.ts -r -v "${experienceDirPath}" "${pagesDirPath}"`, 
+          { cwd: process.cwd(), encoding: 'utf8' }
+        );
+        
+        console.log('Parameter order test output:', output);
+        
+        // Verify the file is moved correctly FROM sections TO pages
+        const movedFilePath = path.join(pagesDirPath, 'Experience.ts');
+        
+        expect(fs.existsSync(movedFilePath)).toBe(true);
+        // Note: In the current implementation, the source directory is not removed
+        
+        // Verify imports were updated correctly
+        const updatedReferenceContent = fs.readFileSync(referenceFilePath, 'utf-8');
+        expect(updatedReferenceContent).toContain("from './pages/Experience'");
+        expect(updatedReferenceContent).not.toContain("from './sections/Experience/Experience'");
+      } catch (error: any) {
+        console.error('CLI parameter order test failed:', error.message);
+        console.error('CLI stderr:', error.stderr);
+        throw error;
+      }
+    });
   });
 
   describe('install-rules command', () => {

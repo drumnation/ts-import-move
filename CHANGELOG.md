@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.8] - 2025-04-14
+
+### Fixed
+- Fixed critical bug where CLI argument order was reversed, causing source and destination parameters to be swapped
+- Added test case to verify correct parameter order processing
+
 ## [0.2.7] - 2025-04-14
 
 ### Fixed
