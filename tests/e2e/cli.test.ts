@@ -173,9 +173,8 @@ export function Card({ title, price, date }: CardProps) {
 
       // Destination path
       const destDir = path.join(testDir, 'src/debug');
-      
-      // Capture console output
-      const consoleLogSpy = vi.spyOn(console, 'log');
+      // Make sure destination directory exists
+      fs.mkdirSync(destDir, { recursive: true });
       
       // Run the command with verbose flag
       const cliOutput = execSync(
@@ -184,7 +183,6 @@ export function Card({ title, price, date }: CardProps) {
       );
       
       // Verify console output and file movement
-      expect(consoleLogSpy).toHaveBeenCalled();
       expect(cliOutput).toContain('moveFiles called with');
       expect(cliOutput).toContain('verbose');
       
