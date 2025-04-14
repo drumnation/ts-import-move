@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Fixed critical bug where file movement commands completed silently without actually moving files
+- Connected CLI commands to the actual implementation in the moveAction function
+
 ## [0.2.6] - 2025-04-13
 
 ### Added

@@ -163,6 +163,36 @@ export function Card({ title, price, date }: CardProps) {
         throw error;
       }
     });
+
+    it('should show verbose output when moving files with verbose flag', async () => {
+      // Create a test file
+      const sourcePath = path.join(testDir, 'src/utils/debug-test.ts');
+      const sourceDir = path.dirname(sourcePath);
+      fs.mkdirSync(sourceDir, { recursive: true });
+      fs.writeFileSync(sourcePath, 'export const debug = true;');
+
+      // Destination path
+      const destDir = path.join(testDir, 'src/debug');
+      
+      // Capture console output
+      const consoleLogSpy = vi.spyOn(console, 'log');
+      
+      // Run the command with verbose flag
+      const cliOutput = execSync(
+        `pnpm tsx bin/index.ts --verbose "${sourcePath}" "${destDir}"`,
+        { cwd: testDir, encoding: 'utf8' }
+      );
+      
+      // Verify console output and file movement
+      expect(consoleLogSpy).toHaveBeenCalled();
+      expect(cliOutput).toContain('moveFiles called with');
+      expect(cliOutput).toContain('verbose');
+      
+      // Verify the file was actually moved
+      const destinationFile = path.join(destDir, 'debug-test.ts');
+      expect(fs.existsSync(destinationFile)).toBe(true);
+      expect(fs.existsSync(sourcePath)).toBe(false);
+    });
   });
 
   describe('install-rules command', () => {
