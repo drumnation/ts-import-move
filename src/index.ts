@@ -50,22 +50,16 @@ addCommonOptions(moveCommand);
 
 // Add arguments and action
 moveCommand
-  .argument('<source>', 'First source file or directory')
-  .argument('<destination...>', 'Destination and additional source files/directories')
-  .action(async (firstSource, destinationAndSources, options) => {
-    // Extract the last element as destination, everything else are sources
-    const destination = destinationAndSources.pop();
-    // Combine the first source with any additional sources
-    const sources = [firstSource, ...destinationAndSources];
-    
+  .argument('<args...>', 'Source file(s) followed by destination')
+  .action(async (args, options) => {
+    const destination = args[args.length - 1];
+    const sources = args.slice(0, -1);
     // Always log the extracted parameters (regardless of verbose flag)
     console.log('Extracted sources:', sources);
     console.log('Extracted destination:', destination);
-    
     if (options.verbose) {
       console.log('Using options:', options);
     }
-    
     await moveAction(sources, destination, options);
   });
 
@@ -85,22 +79,16 @@ addCommonOptions(defaultCommand);
 
 // Add arguments and action
 defaultCommand
-  .argument('<source>', 'First source file or directory')
-  .argument('<destination...>', 'Destination and additional source files/directories')
-  .action(async (firstSource, destinationAndSources, options) => {
-    // Extract the last element as destination, everything else are sources
-    const destination = destinationAndSources.pop();
-    // Combine the first source with any additional sources
-    const sources = [firstSource, ...destinationAndSources];
-    
+  .argument('<args...>', 'Source file(s) followed by destination')
+  .action(async (args, options) => {
+    const destination = args[args.length - 1];
+    const sources = args.slice(0, -1);
     // Always log the extracted parameters (regardless of verbose flag)
     console.log('Extracted sources:', sources);
     console.log('Extracted destination:', destination);
-    
     if (options.verbose) {
       console.log('Using options:', options);
     }
-    
     await moveAction(sources, destination, options);
   });
 

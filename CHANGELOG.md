@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.9] - 2025-04-14
+
 ### Changed
 - Upgraded Vitest to v3.1.1 for improved concurrency and stability.
 - Refactored test scripts to remove unsupported CLI concurrency flags; concurrency is now set in `vitest.config.ts`.
@@ -14,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed all ESLint and TypeScript errors in `src/lib/index.ts` (unused variables, quote style).
 - All core CLI, integration, and e2e tests now pass reliably.
 - Isolated memory issues to a single non-critical test (`cli-install-rules`).
+- Split memory-intensive test from main suite for reliable CI and publishing.
 
 ### Fixed
 - Memory issues in test suite by splitting test runs and optimizing project usage.
