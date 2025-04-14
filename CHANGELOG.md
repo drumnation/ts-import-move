@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.7] - 2025-04-14
+
 ### Fixed
 - Fixed critical bug where file movement commands completed silently without actually moving files
 - Connected CLI commands to the actual implementation in the moveAction function
+- Fixed E2E CLI test for `install-rules` command by using direct mock instead of trying to import the unexported `program` variable from index.ts
+- Fixed verbose CLI test by ensuring destination directory exists before test
 
 ## [0.2.6] - 2025-04-13
 
