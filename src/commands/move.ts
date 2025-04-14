@@ -16,6 +16,12 @@ export async function moveAction(
     process.exit(1);
   }
 
+  // Add enhanced debug output
+  console.log('DEBUG: moveAction called');
+  console.log(`DEBUG: sources: ${JSON.stringify(sources)}`);
+  console.log(`DEBUG: destination: ${destination}`);
+  console.log(`DEBUG: options: ${JSON.stringify(options)}`);
+
   if (options.verbose) {
     console.log(`moveFiles called with source: ${sources.join(', ')}, destination: ${destination}, options: ${JSON.stringify(options)}`);
   }

@@ -9,6 +9,7 @@ import { Command } from 'commander';
 import { installCursorRules } from './cli-install-rules.js';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { moveAction } from './commands/move.js';
 
 // Create __dirname equivalent for ESM
 const __filename = fileURLToPath(import.meta.url);
@@ -47,19 +48,12 @@ const moveCommand = program
 // Apply common options
 addCommonOptions(moveCommand);
 
-// Add arguments and action - DESTINATION first, SOURCE variadic as last argument
+// Add arguments and action
 moveCommand
   .argument('<destination>', 'Destination file or directory')
   .argument('<source...>', 'Source file(s) or directory')
   .action(async (destination, source, options) => {
-    // Implementation will go here
-    console.log('Moving files...');
-    console.log('Destination:', destination);
-    console.log('Sources:', source);
-    console.log('Options:', options);
-    
-    // This is a placeholder for actual implementation
-    console.log('Not fully implemented yet. This is a test version for the command infrastructure.');
+    await moveAction(source, destination, options);
   });
 
 // Add the install-rules command
@@ -76,14 +70,12 @@ const defaultCommand = program;
 // Apply common options
 addCommonOptions(defaultCommand);
 
-// Add arguments and action - DESTINATION first, SOURCE variadic as last argument
+// Add arguments and action
 defaultCommand
   .argument('<destination>', 'Destination file or directory')
   .argument('<source...>', 'Source file(s) or directory')
   .action(async (destination, source, options) => {
-    // Just delegate to the move command's action handler
-    // @ts-expect-error - moveCommand.action expects different signature
-    await moveCommand.action(destination, source, options);
+    await moveAction(source, destination, options);
   });
 
 program.parse(process.argv); 
