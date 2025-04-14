@@ -234,14 +234,14 @@ export const Profile = {
         console.log('Parameter order test output:', output);
         
         // Verify the file is moved correctly FROM sections TO pages
-        const movedFilePath = path.join(pagesDirPath, 'Experience.ts');
+        const movedFilePath = path.join(pagesDirPath, 'Experience', 'Experience.ts');
         
         expect(fs.existsSync(movedFilePath)).toBe(true);
         // Note: In the current implementation, the source directory is not removed
         
         // Verify imports were updated correctly
         const updatedReferenceContent = fs.readFileSync(referenceFilePath, 'utf-8');
-        expect(updatedReferenceContent).toContain("from './pages/Experience'");
+        expect(updatedReferenceContent).toContain("from './pages/Experience/Experience'");
         expect(updatedReferenceContent).not.toContain("from './sections/Experience/Experience'");
       } catch (error: any) {
         console.error('CLI parameter order test failed:', error.message);
