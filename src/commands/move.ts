@@ -16,6 +16,10 @@ export async function moveAction(
     process.exit(1);
   }
 
+  // Add logs to match test expectations
+  console.log('Extracted sources:', sources);
+  console.log('Extracted destination:', destination);
+
   // Add enhanced debug output
   console.log('DEBUG: moveAction called');
   console.log(`DEBUG: sources: ${JSON.stringify(sources)}`);
