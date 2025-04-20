@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.16] - 2025-04-20
+
+### Fixed
+- Resolved unit test failures related to module loading (`require` vs `import`) and incorrect mocking of `child_process.execSync`.
+- Ensured `execMoveCommand` unit tests properly mock external system calls instead of attempting real `mv` operations.
+
+### Added
+- Added a new end-to-end (E2E) test (`cli-move-import-update.spec.ts`) to specifically verify that the CLI moves files *and* updates import paths correctly when run.
+- Performed manual verification of the globally installed CLI tool to confirm the hybrid move-and-update approach works as expected.
+
 ## [0.2.14] - 2025-04-14
 
 ### Changed
