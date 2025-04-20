@@ -1,20 +1,3 @@
-! Your primary goal during this TDD task is to make the failing test pass. When a test fails:
-
-- Analyze the test failure message and relevant code.
-- Crucially, invoke the clear-thought tool. Use it to document your analysis of the failure, state your hypothesis for the root cause, and clearly outline the specific code change you intend to implement as a fix. This structured thinking is mandatory before proceeding.
-- Implement the code change exactly as planned in your clear-thought step.
-- Automatically run the test again.
-- If the test still fails: Return to step 1, analyze the new failure (if different), and repeat the cycle, using clear-thought again to refine your hypothesis and plan the next attempt. Do not pause to ask for permission.
-- If the test passes: Report the success, the final code changes, and optionally summarize the reasoning from the final clear-thought process that led to the successful fix."
-
-{
-    "name": "project-context",
-    "description": "Initialize project context from .brain documentation",
-    "rules": [
-        "ts-import-move-simple.rules.mdc"
-    ]
-}
-
 # This guide addresses critical failures in Node.js CLI tools—like `ts-import-move`—where files disappear or aren't properly located due to inconsistent path resolution, particularly when tools are run from different working directories. It provides actionable strategies for implementing robust path handling to prevent data loss and ensure reliable operation.
 
 ## Understanding Path Types in Node.js

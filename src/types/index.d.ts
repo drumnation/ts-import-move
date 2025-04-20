@@ -48,3 +48,11 @@ export interface MoveOptions {
    */
   verbose?: boolean;
 }
+
+/**
+ * Mapping of original file paths to their new locations after a move operation.
+ * Used to update import statements project-wide.
+ * Key: absolute or project-relative old file path
+ * Value: absolute or project-relative new file path
+ */
+export type MovedFilesMap = Record<string, string>;
