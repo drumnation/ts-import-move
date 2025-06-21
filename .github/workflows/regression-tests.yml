@@ -1,0 +1,116 @@
+name: Deeply Nested Regression Tests
+
+on:
+  # Run on every push to main
+  push:
+    branches: [ main ]
+  
+  # Run on PRs that modify core functionality
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'package.json'
+      
+  # Run weekly to catch any environment-related regressions
+  schedule:
+    - cron: '0 2 * * 1'  # Every Monday at 2 AM UTC
+    
+  # Allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  deeply-nested-regression:
+    name: 412-File Deeply Nested Component Test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 8
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'pnpm'
+        
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+      
+    - name: Build project
+      run: pnpm build
+      
+    - name: Verify 412-file test case integrity
+      run: |
+        echo "Verifying deeply nested test case structure..."
+        find tests/complex-document-editor-migration/source -name "*.ts" -o -name "*.tsx" | wc -l
+        find tests/complex-document-editor-migration/source -type d | wc -l
+        
+    - name: Run deeply nested regression tests
+      run: pnpm test:integration -- tests/integration/deeplyNestedMigration.test.ts --reporter=verbose
+      env:
+        NODE_OPTIONS: '--max-old-space-size=8192'  # Extra memory for complex tests
+        
+    - name: Test CLI with complex structure (dry run)
+      run: |
+        cd tests/complex-document-editor-migration
+        node ../../dist/index.js source destination/features/document-editor --dry-run --verbose
+        
+    - name: Performance benchmark
+      run: |
+        echo "Running performance benchmark on 412-file structure..."
+        time pnpm test:integration -- tests/integration/deeplyNestedMigration.test.ts
+        
+    - name: Memory usage check
+      run: |
+        echo "Checking memory usage during complex operations..."
+        /usr/bin/time -v pnpm test:integration -- tests/integration/deeplyNestedMigration.test.ts 2>&1 | grep "Maximum resident set size"
+        
+  cross-platform-regression:
+    name: Cross-Platform Regression Test
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [18.x, 20.x]
+        
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 8
+        
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'pnpm'
+        
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+      
+    - name: Build project
+      run: pnpm build
+      
+    - name: Run deeply nested regression test
+      run: pnpm test:integration -- tests/integration/deeplyNestedMigration.test.ts
+      env:
+        NODE_OPTIONS: '--max-old-space-size=4096'
+        
+    - name: Test CLI binary cross-platform
+      shell: bash
+      run: |
+        if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+          node dist/index.js --help
+        else
+          ./dist/index.js --help
+        fi 

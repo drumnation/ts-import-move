@@ -1,0 +1,97 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    name: Test Suite
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 8
+        
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'pnpm'
+        
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+      
+    - name: Lint code
+      run: pnpm lint
+      
+    - name: Build project
+      run: pnpm build
+      
+    - name: Run unit tests
+      run: pnpm test:unit
+      
+    - name: Run integration tests (including deeply nested regression)
+      run: pnpm test:integration
+      
+    - name: Run e2e tests
+      run: pnpm test:e2e
+      
+    - name: Run CLI rules tests
+      run: pnpm test:rules
+      
+    - name: Verify build artifacts
+      run: |
+        test -f dist/index.js
+        test -f dist/index.cjs
+        test -x dist/index.js
+        test -x dist/index.cjs
+        
+    - name: Test CLI binary
+      run: |
+        node dist/index.js --help
+        
+  publish:
+    name: Publish to NPM
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 8
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'pnpm'
+        registry-url: 'https://registry.npmjs.org'
+        
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+      
+    - name: Build project
+      run: pnpm build
+      
+    - name: Publish to NPM
+      run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      continue-on-error: true  # Don't fail if version already exists 
