@@ -23,13 +23,11 @@ interface MoveFilesOptions {
 
 // Robust path resolver: absolute, as-given, or resolved
 function resolveInputPath(input: string, cwd: string) {
+  // If already absolute, return as-is
   if (path.isAbsolute(input)) return input;
-  if (fs.existsSync(input)) return path.resolve(cwd, input);
-  const joined = path.join(cwd, input);
-  if (fs.existsSync(joined)) return joined;
-  const base = path.join(cwd, path.basename(input));
-  if (fs.existsSync(base)) return base;
-  return input;
+  
+  // For relative paths, always resolve to absolute
+  return path.resolve(cwd, input);
 }
 
 /**
@@ -200,7 +198,15 @@ export async function moveFiles(
         const relPath = path.relative(entry.sourceDirRoot, entry.filePath);
         if (fs.existsSync(absoluteDestination) && fs.statSync(absoluteDestination).isDirectory()) {
           // Preserve directory structure when moving into a directory
-          destPath = path.join(absoluteDestination, path.basename(entry.sourceDirRoot), relPath);
+          const sourceBasename = path.basename(entry.sourceDirRoot);
+          const destBasename = path.basename(absoluteDestination);
+          
+          // Check if destination already ends with the source directory name
+          if (destBasename === sourceBasename) {
+            destPath = path.join(absoluteDestination, relPath);
+          } else {
+            destPath = path.join(absoluteDestination, sourceBasename, relPath);
+          }
         }
       } else if (fs.existsSync(absoluteDestination) && fs.statSync(absoluteDestination).isDirectory()) {
         // For individual files, just use basename
@@ -229,7 +235,15 @@ export async function moveFiles(
       if (fs.existsSync(absoluteDestination) && fs.statSync(absoluteDestination).isDirectory()) {
         if (entry.sourceDirRoot) {
           // When moving a directory into another directory, preserve the root directory name
-          destDir = path.join(absoluteDestination, path.basename(entry.sourceDirRoot), relPath);
+          const sourceBasename = path.basename(entry.sourceDirRoot);
+          const destBasename = path.basename(absoluteDestination);
+          
+          // Check if destination already ends with the source directory name
+          if (destBasename === sourceBasename) {
+            destDir = path.join(absoluteDestination, relPath);
+          } else {
+            destDir = path.join(absoluteDestination, sourceBasename, relPath);
+          }
         } else {
           // Simple directory to directory move
           destDir = path.join(absoluteDestination, relPath);
@@ -260,7 +274,18 @@ export async function moveFiles(
       let sourceRootArg = undefined;
       if (entry.sourceDirRoot && entry.relPathFromSourceRoot) {
         // Directory move: preserve structure by including the source directory name at the destination
-        destPath = path.join(absoluteDestination, path.basename(entry.sourceDirRoot), entry.relPathFromSourceRoot);
+        const sourceBasename = path.basename(entry.sourceDirRoot);
+        const destBasename = path.basename(absoluteDestination);
+        
+        // Check if destination already ends with the source directory name
+        if (destBasename === sourceBasename) {
+          // Don't duplicate the directory name
+          destPath = path.join(absoluteDestination, entry.relPathFromSourceRoot);
+        } else {
+          // Preserve directory structure by including the source directory name
+          destPath = path.join(absoluteDestination, sourceBasename, entry.relPathFromSourceRoot);
+        }
+        
         fs.mkdirSync(path.dirname(destPath), { recursive: true });
         sourceRootArg = entry.sourceDirRoot;
         if (options.verbose) {
@@ -270,7 +295,16 @@ export async function moveFiles(
         // When moving a file from a directory, preserve its path relative to the source root
         const relPath = path.relative(entry.sourceDirRoot, filePath);
         if (fs.existsSync(absoluteDestination) && fs.statSync(absoluteDestination).isDirectory()) {
-          destPath = path.join(absoluteDestination, path.basename(entry.sourceDirRoot), relPath);
+          const sourceBasename = path.basename(entry.sourceDirRoot);
+          const destBasename = path.basename(absoluteDestination);
+          
+          // Check if destination already ends with the source directory name
+          if (destBasename === sourceBasename) {
+            destPath = path.join(absoluteDestination, relPath);
+          } else {
+            destPath = path.join(absoluteDestination, sourceBasename, relPath);
+          }
+          
           // Ensure parent directory exists
           fs.mkdirSync(path.dirname(destPath), { recursive: true });
         }

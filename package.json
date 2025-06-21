@@ -9,7 +9,7 @@
     "dev": "tsx bin/index.ts",
     "clean": "rm -rf dist",
     "build": "pnpm clean && tsup src/index.ts src/cli-install-rules.ts --format esm,cjs --dts",
-    "postbuild": "chmod +x dist/index.js dist/index.cjs && echo '#!/usr/bin/env node' | cat - dist/index.js > temp && mv temp dist/index.js && echo '#!/usr/bin/env node' | cat - dist/index.cjs > temp && mv temp dist/index.cjs",
+    "postbuild": "chmod +x dist/index.js dist/index.cjs",
     "test:unit": "NODE_OPTIONS=--max-old-space-size=4096 vitest run tests/unit",
     "test:integration": "NODE_OPTIONS=--max-old-space-size=4096 vitest run tests/integration",
     "test:e2e": "NODE_OPTIONS=--max-old-space-size=4096 vitest run tests/e2e",
