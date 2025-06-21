@@ -123,50 +123,46 @@ describe('MovedFilesMap', () => {
 });
 
 describe('execMoveCommand', () => {
-  // Mock child_process using vi.doMock within the describe block
-  const execSyncMock = vi.fn();
-  vi.doMock('child_process', () => ({
-    __esModule: true, // Indicate it's an ES module mock
-    ...child_process, // Spread original module properties (like constants)
-    execSync: execSyncMock, // Override execSync
-  }));
+  // Simple mock setup that actually works
+  beforeEach(() => {
+    vi.resetAllMocks();
+  });
 
   const src = 'src/old/FileA.ts';
   const dest = 'src/new/FileA.ts';
 
-  beforeEach(async () => {
-    // Reset the mock before each test
-    execSyncMock.mockReset();
-    // Re-import the module under test to get the mocked version
-    // This is often necessary when using vi.doMock
-    // We don't actually need the return value here, just the side effect of re-importing
-    await import('../../src/lib/execMoveCommand.js'); 
-  });
-
   it('should call mv with correct arguments', async () => {
-    execSyncMock.mockImplementation(() => {}); // Simulate success
-    const { execMoveCommand } = await import('../../src/lib/execMoveCommand.js'); // Import again to ensure mocked version is used
+    // Mock execSync to prevent actual command execution
+    const execSyncSpy = vi.spyOn(child_process, 'execSync').mockImplementation(() => '');
+    
+    const { execMoveCommand } = await import('../../src/lib/execMoveCommand.js');
+    
     execMoveCommand(src, dest, { force: true, verbose: true });
-    expect(execSyncMock).toHaveBeenCalledWith(
+    
+    expect(execSyncSpy).toHaveBeenCalledWith(
       `mv -f "${src}" "${dest}"`,
       { stdio: 'inherit' }
     );
-    expect(execSyncMock).toHaveBeenCalledTimes(1);
+    expect(execSyncSpy).toHaveBeenCalledTimes(1);
+    
+    execSyncSpy.mockRestore();
   });
 
   it('should throw and log error if mv fails', async () => {
     const mockError = new Error('Command failed: mv -f "src/old/FileA.ts" "src/new/FileA.ts"');
-    // Add properties that execSync error usually has
-    Object.assign(mockError, { status: 1, signal: null, output: [null, null, null], pid: 123, stdout: null, stderr: 'mv: rename ...'});
-    execSyncMock.mockImplementation(() => { throw mockError; }); // Simulate failure
-
-    const { execMoveCommand } = await import('../../src/lib/execMoveCommand.js'); // Import again
+    Object.assign(mockError, { status: 1, signal: null, output: [null, null, null], pid: 123, stdout: null, stderr: null });
     
-    // We need to assert the properties of the error, not just the object itself, 
-    // because the dynamic import might return a slightly different error instance.
-    expect(() => execMoveCommand(src, dest, { force: true, verbose: true }))
-      .toThrowError(expect.objectContaining({ message: mockError.message, status: 1 })); 
+    const execSyncSpy = vi.spyOn(child_process, 'execSync').mockImplementation(() => {
+      throw mockError;
+    });
 
-    expect(execSyncMock).toHaveBeenCalledTimes(1);
+    const { execMoveCommand } = await import('../../src/lib/execMoveCommand.js');
+    
+    expect(() => execMoveCommand(src, dest, { force: true, verbose: true }))
+      .toThrowError(expect.objectContaining({ message: mockError.message, status: 1 }));
+
+    expect(execSyncSpy).toHaveBeenCalledTimes(1);
+    
+    execSyncSpy.mockRestore();
   });
 }); 
