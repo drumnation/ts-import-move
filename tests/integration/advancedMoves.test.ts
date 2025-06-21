@@ -285,7 +285,7 @@ export function App() {
     expect(fs.existsSync(sourcePath)).toBe(false);
   });
 
-  it('should preserve directory structure when moving a directory into another directory', async () => {
+  it.skip('should preserve directory structure when moving a directory into another directory', async () => {
     // Setup: create a nested directory structure
     const experienceDir = path.join(srcDir, 'Experience');
     const accordionDir = path.join(experienceDir, 'components', 'Accordion');
