@@ -364,4 +364,36 @@ export async function moveFiles(
       sourceFile.saveSync();
     }
   }
+
+  // Clean up empty source directories after moving all files
+  const sourceDirectoriesToCleanup = new Set<string>();
+  for (const entry of uniqueFiles) {
+    if (entry.sourceDirRoot) {
+      sourceDirectoriesToCleanup.add(entry.sourceDirRoot);
+    }
+  }
+
+  // Remove empty source directories (from deepest to shallowest)
+  const sortedDirectories = Array.from(sourceDirectoriesToCleanup)
+    .sort((a, b) => b.length - a.length); // Sort by path length (deepest first)
+
+  for (const sourceDir of sortedDirectories) {
+    try {
+      if (fs.existsSync(sourceDir)) {
+        const remainingContents = fs.readdirSync(sourceDir);
+        if (remainingContents.length === 0) {
+          if (options.verbose) {
+            console.log(`Removing empty source directory: ${sourceDir}`);
+          }
+          fs.rmdirSync(sourceDir);
+        } else if (options.verbose) {
+          console.log(`Source directory not empty, keeping: ${sourceDir} (contains: ${remainingContents.join(', ')})`);
+        }
+      }
+    } catch (err) {
+      if (options.verbose) {
+        console.log(`Could not remove source directory ${sourceDir}: ${err}`);
+      }
+    }
+  }
 }
