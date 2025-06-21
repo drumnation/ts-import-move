@@ -47,6 +47,21 @@ export interface MoveOptions {
    * Show detailed operation logs
    */
   verbose?: boolean;
+  
+  /**
+   * New debug flag for import analysis
+   */
+  debugImports?: boolean;
+  
+  /**
+   * Path to tsconfig.json
+   */
+  tsConfigPath?: string;
+  
+  /**
+   * Follow symlinks
+   */
+  followSymlinks?: boolean;
 }
 
 /**

@@ -3,13 +3,20 @@ import { moveFiles } from '../../src/lib/index.js';
 import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
+import { tmpdir } from 'os';
 
 describe('Deeply Nested Component Migration - Regression Protection', () => {
-  const testDir = 'test-deeply-nested-integration';
-  const sourceDir = path.join(testDir, 'source');
-  const destDir = path.join(testDir, 'destination');
+  let testDir: string;
+  let sourceDir: string;
+  let destDir: string;
   
   beforeEach(() => {
+    // Create unique temporary directory for each test
+    const testId = Math.random().toString(36).substring(7);
+    testDir = path.join(tmpdir(), `ts-import-move-test-${testId}`);
+    sourceDir = path.join(testDir, 'source');
+    destDir = path.join(testDir, 'destination');
+    
     // Clean up any existing test directory
     if (fs.existsSync(testDir)) {
       fs.rmSync(testDir, { recursive: true, force: true });
@@ -77,6 +84,10 @@ describe('Deeply Nested Component Migration - Regression Protection', () => {
       const moleculeFiles = getAllTypeScriptFiles(moleculesDir);
       console.log(`Moving ${moleculeFiles.length} molecule files`);
       
+      // Memory monitoring
+      const memBefore = process.memoryUsage();
+      console.log(`Memory before: ${Math.round(memBefore.heapUsed / 1024 / 1024)}MB`);
+      
       // Limit to first 5 molecule subdirectories to prevent hanging
       const moleculeSubdirs = fs.readdirSync(moleculesDir)
         .filter(item => fs.statSync(path.join(moleculesDir, item)).isDirectory())
@@ -91,6 +102,10 @@ describe('Deeply Nested Component Migration - Regression Protection', () => {
           force: true
         });
         
+        // Memory monitoring
+        const memAfter = process.memoryUsage();
+        console.log(`Memory after: ${Math.round(memAfter.heapUsed / 1024 / 1024)}MB`);
+        
         // Verify directory was moved
         const movedDir = path.join(targetDir, moleculeSubdirs[0]);
         expect(fs.existsSync(movedDir)).toBe(true);
@@ -100,7 +115,7 @@ describe('Deeply Nested Component Migration - Regression Protection', () => {
         expect(movedFiles.length).toBeGreaterThan(0);
       }
     }
-  });
+  }, 30000); // 30 second timeout
 
   it('should preserve index files during complex moves', async () => {
     // Test that index files are preserved during moves

@@ -1,26 +1,39 @@
-import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { moveFiles } from '../../src/lib/index.js';
 import { execSync as exec } from 'child_process';
+import { tmpdir } from 'os';
 
 describe('Advanced Move Operations Tests', () => {
-  const testDir = path.join(process.cwd(), 'test-temp-advanced');
-  const srcDir = path.join(testDir, 'src');
-  
-  // Test directory structure
-  const utilsDir = path.join(srcDir, 'utils');
-  const componentsDir = path.join(srcDir, 'components');
-  const formsDir = path.join(componentsDir, 'forms');
-  const sharedDir = path.join(srcDir, 'shared');
-  const featuresDir = path.join(srcDir, 'features');
-  const servicesDir = path.join(srcDir, 'services');
-  const apiDir = path.join(srcDir, 'api');
-
+  let testDir: string;
+  let srcDir: string;
+  let utilsDir: string;
+  let componentsDir: string;
+  let formsDir: string;
+  let sharedDir: string;
+  let featuresDir: string;
+  let servicesDir: string;
+  let apiDir: string;
   let originalCwd: string;
 
-  beforeAll(() => {
+  beforeEach(() => {
     originalCwd = process.cwd();
+    
+    // Create unique temporary directory for each test
+    const testId = Math.random().toString(36).substring(7);
+    testDir = path.join(tmpdir(), `ts-import-move-advanced-${testId}`);
+    srcDir = path.join(testDir, 'src');
+    
+    // Test directory structure
+    utilsDir = path.join(srcDir, 'utils');
+    componentsDir = path.join(srcDir, 'components');
+    formsDir = path.join(componentsDir, 'forms');
+    sharedDir = path.join(srcDir, 'shared');
+    featuresDir = path.join(srcDir, 'features');
+    servicesDir = path.join(srcDir, 'services');
+    apiDir = path.join(srcDir, 'api');
+    
     // Create test directory structure
     fs.mkdirSync(utilsDir, { recursive: true });
     fs.mkdirSync(componentsDir, { recursive: true });
@@ -128,7 +141,7 @@ export function App() {
   });
   
   // Clean up after tests
-  afterAll(() => {
+  afterEach(() => {
     process.chdir(originalCwd);
     fs.rmSync(testDir, { recursive: true, force: true });
   });
@@ -285,7 +298,7 @@ export function App() {
     expect(fs.existsSync(sourcePath)).toBe(false);
   });
 
-  it.skip('should preserve directory structure when moving a directory into another directory', async () => {
+  it('should preserve directory structure when moving a directory into another directory', async () => {
     // Setup: create a nested directory structure
     const experienceDir = path.join(srcDir, 'Experience');
     const accordionDir = path.join(experienceDir, 'components', 'Accordion');
@@ -345,7 +358,7 @@ export function App() {
     // Print directory structure for debugging
     console.log('Directory structure before move:');
     exec('find .', { cwd, stdio: 'inherit' });
-    const binPath = path.relative(cwd, path.join(__dirname, '../../bin/ts-import-move.js'));
+    const binPath = path.join(originalCwd, 'bin/ts-import-move.js');
     const destRel = path.relative(cwd, destDir);
 
     // Run the CLI with local relative paths

@@ -14,5 +14,5 @@
       "@/shared-components/*": ["./source/shared-components/*"]
     }
   },
-  "include": ["source/**/*"]
+  "include": ["**/*"]
 } 
