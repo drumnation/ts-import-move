@@ -166,14 +166,20 @@ export const validateFiles = (files: readonly string[]): void => {
 };
 
 /**
- * Pure function to determine processing mode
+ * Pure function to determine processing mode based on file count
+ * 
+ * Processing Modes:
+ * - standard: < 15 files - Full TypeScript project context with complete type checking
+ * - surgical: 15-35 files - Selective file loading for balanced performance  
+ * - chunked: 35-50 files - Balanced processing approach with moderate batching
+ * - streaming: 50+ files - Memory-efficient batch processing for large codebases
  */
 export const determineProcessingMode = (
   fileCount: number
 ): 'standard' | 'surgical' | 'chunked' | 'streaming' => {
-  if (fileCount > 50) return 'streaming';
-  if (fileCount > 30) return 'chunked';
-  if (fileCount > 10) return 'surgical';
+  if (fileCount >= 50) return 'streaming';
+  if (fileCount >= 35) return 'chunked';
+  if (fileCount >= 15) return 'surgical';
   return 'standard';
 };
 
@@ -328,6 +334,95 @@ export const moveFiles = async (
     console.log(`Using ${processingMode} processing mode for ${uniqueFiles.length} files`);
   }
   
+  // Extract source directory root for all processing modes
+  const sourceDirRoot = uniqueFiles.find(f => f.sourceDirRoot)?.sourceDirRoot;
+  
+  // STREAMING MODE: Use batch processing for large file sets
+  if (processingMode === 'streaming') {
+    if (options.verbose) {
+      console.log(chalk.blue('🚀 Activating streaming mode for memory-efficient processing'));
+    }
+    
+    const { processFilesInBatches, calculateOptimalBatchSize, getMemoryUsage } = await import('./streaming-processor.service.js');
+    
+    const initialMemory = getMemoryUsage();
+    if (options.verbose) {
+      console.log(chalk.blue(`💾 Initial memory usage: ${initialMemory.heapUsed}MB heap, ${initialMemory.rss}MB RSS`));
+    }
+    
+    const batchSize = calculateOptimalBatchSize(files.length);
+    
+    const streamingResult = await processFilesInBatches(files, absoluteDestination, {
+      batchSize,
+      verbose: options.verbose,
+      force: options.force,
+      tsConfigPath: projectConfig.tsConfigPath || undefined,
+      sourceDirRoot
+    });
+    
+    const finalMemory = getMemoryUsage();
+    if (options.verbose) {
+      console.log(chalk.green(`💾 Final memory usage: ${finalMemory.heapUsed}MB heap, ${finalMemory.rss}MB RSS`));
+      console.log(chalk.green(`📊 Memory increase: ${finalMemory.heapUsed - initialMemory.heapUsed}MB heap`));
+    }
+    
+    // Convert relative imports to absolute imports if enabled
+    const shouldConvertToAbsolute = options.absoluteImports !== false;
+    
+    if (shouldConvertToAbsolute && projectConfig.tsConfigPath) {
+      if (options.verbose) {
+        console.log('Converting relative imports to absolute imports...');
+      }
+      
+      try {
+        // For streaming mode, we need to process absolute imports in batches too
+        const { convertProjectToAbsoluteImports } = await import('./absolute-imports.service.js');
+        
+        // Create a temporary project just for absolute imports conversion
+        const tempProject = new Project({
+          tsConfigFilePath: projectConfig.tsConfigPath,
+          useInMemoryFileSystem: false // Use real file system since files are already moved
+        });
+        
+        // Add moved files to project
+        for (const movedFile of streamingResult.movedFiles) {
+          if (fs.existsSync(movedFile)) {
+            tempProject.addSourceFileAtPath(movedFile);
+          }
+        }
+        
+        const aliasPrefix = options.aliasPrefix || '@';
+        const projectRoot = path.dirname(projectConfig.tsConfigPath);
+        
+        const totalConversions = convertProjectToAbsoluteImports(
+          tempProject.getSourceFiles(),
+          projectConfig.tsConfigPath,
+          aliasPrefix,
+          projectRoot,
+          options.verbose || false
+        );
+        
+        if (options.verbose) {
+          console.log(`✅ Converted ${totalConversions} imports to absolute paths`);
+        }
+        
+        // Save the absolute import changes
+        tempProject.saveSync();
+        
+        // Clean up temp project
+        tempProject.getSourceFiles().forEach(sf => sf.forget());
+        
+      } catch (error) {
+        if (options.verbose) {
+          console.warn(`⚠️ Failed to convert imports to absolute: ${error instanceof Error ? error.message : String(error)}`);
+        }
+      }
+    }
+    
+    return streamingResult;
+  }
+  
+  // TRADITIONAL MODES: Use existing logic for smaller file sets
   // Initialize TypeScript project
   let project: Project;
   let tsConfigSuccessfullyLoaded = false;
@@ -466,8 +561,6 @@ export const moveFiles = async (
   }
   
   // If not dry-run, proceed with actual move operations
-  const sourceDirRoot = uniqueFiles.find(f => f.sourceDirRoot)?.sourceDirRoot;
-  
   if (options.verbose && sourceDirRoot) {
     console.log(`Using source directory root: ${sourceDirRoot}`);
   }

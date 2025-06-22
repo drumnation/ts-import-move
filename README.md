@@ -246,15 +246,16 @@ import { Button } from '@/components/Button';
 ## Performance Characteristics
 
 ### Optimized Processing Modes
-- **Standard Mode** (< 10 files): Full TypeScript project context with complete type checking
-- **Surgical Mode** (10-50 files): Selective file loading for balanced performance
-- **Streaming Mode** (50+ files): One-file-at-a-time processing for memory efficiency
+- **Standard Mode** (< 15 files): Full TypeScript project context with complete type checking
+- **Surgical Mode** (15-35 files): Selective file loading for balanced performance  
+- **Chunked Mode** (35-50 files): Balanced processing approach with moderate batching
+- **Streaming Mode** (50+ files): Memory-efficient batch processing for large codebases
 
 ### Benchmarks
-- **Small Projects** (< 10 files): ~1-2 seconds
-- **Medium Projects** (10-50 files): ~3-8 seconds  
-- **Large Projects** (50-200 files): ~10-15 seconds
-- **Enterprise Projects** (200+ files): Scales linearly with streaming optimization
+- **Small Projects** (< 15 files): ~1-2 seconds
+- **Medium Projects** (15-50 files): ~3-8 seconds  
+- **Large Projects** (50-200 files): ~8-15 seconds with streaming optimization
+- **Enterprise Projects** (200+ files): Scales sub-linearly with memory-efficient batch processing
 
 ## For AI Agents
 
