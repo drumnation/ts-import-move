@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import fs from 'fs';
 import path from 'path';
-import { moveFiles } from '../../src/lib/index.js';
+import { moveFiles } from '@/lib/index.js';
 import { execSync as exec } from 'child_process';
 import { tmpdir } from 'os';
 
@@ -166,9 +166,9 @@ export function App() {
     // Verify imports were updated
     const datePickerContent = fs.readFileSync(path.join(formsDir, 'DatePicker.ts'), 'utf-8');
     const inputContent = fs.readFileSync(path.join(formsDir, 'Input.ts'), 'utf-8');
-    
-    expect(datePickerContent).toContain("from '../../shared/formatting'");
-    expect(inputContent).toContain("from '../../shared/validation'");
+      
+    expect(datePickerContent).toContain("from '@/shared/formatting'");
+    expect(inputContent).toContain("from '@/shared/validation'");
   });
   
   // Test 2: Move a directory recursively
@@ -226,7 +226,7 @@ export function App() {
     
     // Verify imports were updated
     const buttonContent = fs.readFileSync(path.join(componentsDir, 'Button.ts'), 'utf-8');
-    expect(buttonContent).toContain("from '../shared/stringUtils'");
+    expect(buttonContent).toContain("from '@/shared/stringUtils'");
   });
   
   // Test 4: Move files with pattern matching

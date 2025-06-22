@@ -13,15 +13,15 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 
-import { LexicalEditor, LexicalEditorRedux } from '../index';
+import { LexicalEditor, LexicalEditorRedux } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/index';
 import { 
   convertLexicalNodeToDocumentBlock,
   convertDocumentBlockToLexicalNode 
-} from '../LexicalEditor.redux';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.redux';
 import documentSlice from '@/stores/document.slice';
 import documentHistorySlice from '@/stores/documentHistory.slice';
 import type { DocumentBlock, DocumentState, CommandHistoryState } from '@/stores/document.types';
-import type { LexicalASTNode } from '../LexicalEditor.types';
+import type { LexicalASTNode } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.types';
 
 // Mock store setup
 const createTestStore = (initialState = {}) => {

@@ -4,13 +4,13 @@
  */
 
 // Main component
-export { PanelControls } from './PanelControls';
+export { PanelControls } from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/PanelControls';
 
 // Custom hook
-export { usePanelControls } from './PanelControls.hook';
+export { usePanelControls } from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/PanelControls.hook';
 
 // Sub-components
-export { ControlGroup, ControlButton } from './components';
+export { ControlGroup, ControlButton } from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/components';
 
 // Type exports
 export type {
@@ -20,7 +20,7 @@ export type {
   ControlButtonProps,
   ControlGroupProps,
   PanelControlConfig
-} from './PanelControls.types';
+} from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/PanelControls.types';
 
 // Logic utilities (for advanced usage)
 export {
@@ -30,4 +30,4 @@ export {
   getPanelSide,
   getPanelLocation,
   getButtonVariant
-} from './PanelControls.logic'; 
+} from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/PanelControls.logic'; 

@@ -13,7 +13,7 @@ import type {
   AssetsIndexState,
   AssetsIndexActions,
   AssetMetadata
-} from './Assets.types';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/Assets.types';
 
 // Default upload configuration
 const DEFAULT_UPLOAD_CONFIG: AssetUploadConfig = {

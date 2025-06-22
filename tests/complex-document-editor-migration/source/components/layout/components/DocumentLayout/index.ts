@@ -4,15 +4,15 @@
  */
 
 // Main components
-export { DocumentLayout } from './DocumentLayout';
-export { DocumentLayoutDesktop } from './DocumentLayout.desktop';
-export { DocumentLayoutMobile } from './DocumentLayout.mobile';
+export { DocumentLayout } from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/DocumentLayout';
+export { DocumentLayoutDesktop } from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/DocumentLayout.desktop';
+export { DocumentLayoutMobile } from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/DocumentLayout.mobile';
 
 // Redux integration
-export { DocumentEditorLayoutRedux } from './DocumentEditorLayout.redux';
+export { DocumentEditorLayoutRedux } from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/DocumentEditorLayout.redux';
 
 // Shared logic
-export * from './DocumentLayout.logic';
+export * from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/DocumentLayout.logic';
 
 // Type exports
-export type * from './DocumentLayout.types'; 
+export type * from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/DocumentLayout.types'; 

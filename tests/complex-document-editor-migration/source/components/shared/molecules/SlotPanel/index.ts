@@ -6,7 +6,7 @@
  * @module SlotPanel
  */
 
-export { SlotPanel } from './SlotPanel';
+export { SlotPanel } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlotPanel/SlotPanel';
 export type { 
   SlotPanelProps, 
   StyledPanelContainerProps,
@@ -14,11 +14,11 @@ export type {
   StyledPanelContentProps,
   ResizeDirection,
   IconConfig
-} from './SlotPanel.types';
-export { useSlotPanel, usePanelDragging } from './SlotPanel.hook';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlotPanel/SlotPanel.types';
+export { useSlotPanel, usePanelDragging } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlotPanel/SlotPanel.hook';
 export { 
   getCollapseIconType, 
   getResizerDirection, 
   getIconConfig,
   getAnimationConfig 
-} from './SlotPanel.logic'; 
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlotPanel/SlotPanel.logic'; 

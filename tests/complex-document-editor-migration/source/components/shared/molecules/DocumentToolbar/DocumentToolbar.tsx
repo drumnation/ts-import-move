@@ -8,14 +8,14 @@
  */
 
 import React from 'react';
-import type { DocumentToolbarProps } from './DocumentToolbar.types';
-import { useDocumentToolbar, useToolbarVisibility } from './DocumentToolbar.hook';
-import { ListButton, IndentControls } from './components';
+import type { DocumentToolbarProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/DocumentToolbar.types';
+import { useDocumentToolbar, useToolbarVisibility } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/DocumentToolbar.hook';
+import { ListButton, IndentControls } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/components';
 import {
   ToolbarContainer,
   ButtonGroup,
   ToolbarLabel
-} from './DocumentToolbar.styles';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/DocumentToolbar.styles';
 
 /**
  * DocumentToolbar component for document formatting

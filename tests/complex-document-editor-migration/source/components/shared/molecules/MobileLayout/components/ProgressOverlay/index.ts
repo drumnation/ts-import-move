@@ -1,2 +1,2 @@
-export { ProgressOverlay } from './ProgressOverlay';
-export type { ProgressOverlayProps, ExecutionState } from './ProgressOverlay.types'; 
+export { ProgressOverlay } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components/ProgressOverlay/ProgressOverlay';
+export type { ProgressOverlayProps, ExecutionState } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components/ProgressOverlay/ProgressOverlay.types'; 

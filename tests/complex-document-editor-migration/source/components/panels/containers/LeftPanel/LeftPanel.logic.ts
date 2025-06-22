@@ -8,7 +8,7 @@
  */
 
 import { useCallback, useState } from 'react';
-import type { LeftPanelProps, LeftPanelLogic } from './LeftPanel.types';
+import type { LeftPanelProps, LeftPanelLogic } from '@/tests/complex-document-editor-migration/source/components/panels/containers/LeftPanel/LeftPanel.types';
 
 /**
  * Custom hook providing shared left panel logic

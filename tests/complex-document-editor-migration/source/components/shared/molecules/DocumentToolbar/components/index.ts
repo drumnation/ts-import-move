@@ -1,2 +1,2 @@
-export { ListButton } from './ListButton';
-export { IndentControls } from './IndentControls'; 
+export { ListButton } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/components/ListButton';
+export { IndentControls } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/components/IndentControls'; 

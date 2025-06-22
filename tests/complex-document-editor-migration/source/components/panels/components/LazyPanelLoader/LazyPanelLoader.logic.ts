@@ -2,7 +2,7 @@
  * LazyPanelLoader Business Logic
  * Pure functions for panel loading logic
  */
-import type { LazyPanelState } from './LazyPanelLoader.types';
+import type { LazyPanelState } from '@/tests/complex-document-editor-migration/source/components/panels/components/LazyPanelLoader/LazyPanelLoader.types';
 
 // Panel Loading Decision Logic
 export const shouldLoadPanel = (

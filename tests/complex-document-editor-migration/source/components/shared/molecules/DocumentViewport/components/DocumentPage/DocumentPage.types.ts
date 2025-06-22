@@ -1,5 +1,5 @@
-import type { DocumentPage as DocumentPageData } from '../../../../DocumentEditorPage.types';
-import type { ViewMode } from '../../DocumentViewport.types';
+import type { DocumentPage as DocumentPageData } from '@/tests/complex-document-editor-migration/source/components/shared/DocumentEditorPage.types';
+import type { ViewMode } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/DocumentViewport.types';
 
 export interface DocumentPageProps {
   /** Page data */

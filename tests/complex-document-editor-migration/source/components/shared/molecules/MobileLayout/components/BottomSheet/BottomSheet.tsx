@@ -2,8 +2,8 @@ import React from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { ActionIcon } from '@mantine/core';
 import { IconX } from '@tabler/icons-react';
-import { BottomSheetProps } from './BottomSheet.types';
-import { sheetVariants, backdropVariants } from './BottomSheet.logic';
+import { BottomSheetProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components/BottomSheet/BottomSheet.types';
+import { sheetVariants, backdropVariants } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components/BottomSheet/BottomSheet.logic';
 import {
   BottomSheet as StyledBottomSheet,
   SheetHandle,
@@ -11,7 +11,7 @@ import {
   SheetTitle,
   SheetContent,
   Backdrop
-} from './BottomSheet.styles';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components/BottomSheet/BottomSheet.styles';
 
 export const BottomSheet: React.FC<BottomSheetProps> = ({
   isOpen,

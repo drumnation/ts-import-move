@@ -4,17 +4,17 @@
  */
 
 // Main component (platform router)
-export { ResearchPanel } from './ResearchPanel';
+export { ResearchPanel } from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel';
 
 // Platform-specific implementations
-export { DesktopResearchPanel } from './ResearchPanel.web';
-export { MobileResearchPanel } from './ResearchPanel.mobile';
+export { DesktopResearchPanel } from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.web';
+export { MobileResearchPanel } from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.mobile';
 
 // Shared logic hook
-export { useResearchPanelLogic } from './ResearchPanel.logic';
+export { useResearchPanelLogic } from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.logic';
 
 // Legacy hook (for backward compatibility)
-export { useDocumentResearch } from './ResearchPanel.hook';
+export { useDocumentResearch } from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.hook';
 
 // Type exports - New Level 3 types
 export type {
@@ -38,7 +38,7 @@ export type {
   ComponentVariant,
   AnimationConfig,
   AccessibilityConfig,
-} from './ResearchPanel.types';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.types';
 
 // Type exports - Legacy types (for backward compatibility)
 export type {
@@ -49,7 +49,7 @@ export type {
   VectorStoreConfig,
   ResearchState,
   ResearchActions
-} from './ResearchPanel.types';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.types';
 
 // Re-export Redux slice types
 export type {
@@ -57,4 +57,4 @@ export type {
   Citation,
   SearchQuery,
   ResearchSession,
-} from './ResearchPanel.types'; 
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.types'; 

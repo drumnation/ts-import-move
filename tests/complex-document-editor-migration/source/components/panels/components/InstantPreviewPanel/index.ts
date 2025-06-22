@@ -6,5 +6,5 @@
  * @module InstantPreviewPanel
  */
 
-export { InstantPreviewPanel } from './InstantPreviewPanel';
-export type { InstantPreviewPanelProps } from './InstantPreviewPanel.types'; 
+export { InstantPreviewPanel } from '@/tests/complex-document-editor-migration/source/components/panels/components/InstantPreviewPanel/InstantPreviewPanel';
+export type { InstantPreviewPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/InstantPreviewPanel/InstantPreviewPanel.types'; 

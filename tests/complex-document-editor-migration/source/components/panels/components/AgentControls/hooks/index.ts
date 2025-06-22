@@ -3,6 +3,6 @@
  * @module agentControls/hooks
  */
 
-export { useAgentControls } from './useAgentControls';
-export { useAgentExecution } from './useAgentExecution';
-export { useQuickActions } from './useQuickActions'; 
+export { useAgentControls } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/hooks/useAgentControls';
+export { useAgentExecution } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/hooks/useAgentExecution';
+export { useQuickActions } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/hooks/useQuickActions'; 

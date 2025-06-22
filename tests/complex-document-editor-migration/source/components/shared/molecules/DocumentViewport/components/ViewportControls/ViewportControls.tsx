@@ -8,15 +8,15 @@ import {
   IconMinus,
   IconPlus
 } from '@tabler/icons-react';
-import type { ViewportControlsProps } from './ViewportControls.types';
-import { ZoomText } from './ViewportControls.styles';
+import type { ViewportControlsProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/components/ViewportControls/ViewportControls.types';
+import { ZoomText } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/components/ViewportControls/ViewportControls.styles';
 import { 
   shouldShowZoomControls, 
   shouldShowPageNavigation, 
   formatZoomPercentage,
   getIconSize,
   getGapSize
-} from './ViewportControls.logic';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/components/ViewportControls/ViewportControls.logic';
 
 export const ViewportControls: React.FC<ViewportControlsProps> = ({
   viewMode,

@@ -8,10 +8,10 @@
  */
 
 import { useCallback, useState, useRef, useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '../../../../../../hooks/store.hooks';
-import { selectSplitRatios, selectColumnConstraints } from '../../../../../../stores/selectors/layout.selectors';
-import { adjustSplit, setResizing } from '../../../../../../stores/layout.slice';
-import type { SplitState, SplitConstraints, SplitHandlers } from './VerticalSplitter.types';
+import { useAppSelector, useAppDispatch } from '@/tests/hooks/store.hooks';
+import { selectSplitRatios, selectColumnConstraints } from '@/tests/stores/selectors/layout.selectors';
+import { adjustSplit, setResizing } from '@/tests/stores/layout.slice';
+import type { SplitState, SplitConstraints, SplitHandlers } from '@/tests/complex-document-editor-migration/source/components/layout/resize/VerticalSplitter/VerticalSplitter.types';
 
 /**
  * Pure functions for split calculations

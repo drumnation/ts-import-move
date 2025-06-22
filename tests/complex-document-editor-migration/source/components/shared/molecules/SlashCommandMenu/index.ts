@@ -1,2 +1,2 @@
-export { SlashCommandMenu } from './SlashCommandMenu';
-export type { SlashCommandMenuProps } from './SlashCommandMenu.types'; 
+export { SlashCommandMenu } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlashCommandMenu/SlashCommandMenu';
+export type { SlashCommandMenuProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlashCommandMenu/SlashCommandMenu.types'; 

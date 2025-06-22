@@ -9,8 +9,8 @@
 
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { resizeTokens } from '../../tokens/resize.tokens';
-import type { StyledPanelSplitterProps, StyledVerticalHandleProps } from './PanelSplitter.types';
+import { resizeTokens } from '@/tests/complex-document-editor-migration/source/components/shared/tokens/resize.tokens';
+import type { StyledPanelSplitterProps, StyledVerticalHandleProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelSplitter/PanelSplitter.types';
 
 /**
  * Main splitter container

@@ -15,7 +15,7 @@ import type {
   ThreeColumnState,
   ColumnConstraints,
   ResizeOperation 
-} from './ThreeColumnLayout.types';
+} from '@/tests/complex-document-editor-migration/source/components/layout/desktop/ThreeColumnLayout/ThreeColumnLayout.types';
 
 /**
  * Default column constraints

@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import fs from 'fs';
 import path from 'path';
-import { moveFiles } from '../../src/lib/index.js';
+import { moveFiles } from '@/lib/index.js';
 import { tmpdir } from 'os';
 
 describe('Self-Import Preservation Tests', () => {
@@ -17,14 +17,18 @@ describe('Self-Import Preservation Tests', () => {
     fs.mkdirSync(testDir, { recursive: true });
     process.chdir(testDir);
     
-    // Create tsconfig.json
+    // Create tsconfig.json with absolute imports support
     fs.writeFileSync(path.join(testDir, 'tsconfig.json'), `{
   "compilerOptions": {
     "target": "es2020",
     "module": "esnext",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "strict": true
+    "strict": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    }
   },
   "include": ["**/*"]
 }`);
@@ -90,11 +94,11 @@ export interface AppProps {
     const appContent = fs.readFileSync(movedAppFile, 'utf8');
     const logicContent = fs.readFileSync(movedLogicFile, 'utf8');
     
-    // These imports should remain EXACTLY the same (relative within directory)
-    expect(appContent).toContain("from './App.logic'");
-    expect(appContent).toContain("from './App.types'");
-    expect(appContent).toContain("'./App.styles.css'");
-    expect(logicContent).toContain("from './App.types'");
+    // With absolute imports enabled, internal imports become absolute
+    expect(appContent).toContain("from '@/shared/components/3-organisms/App/App.logic'");
+    expect(appContent).toContain("from '@/shared/components/3-organisms/App/App.types'");
+    expect(appContent).toContain("'@/shared/components/3-organisms/App/App.styles.css'");
+    expect(logicContent).toContain("from '@/shared/components/3-organisms/App/App.types'");
     
     // These imports should NOT be corrupted to absolute or wrong relative paths
     expect(appContent).not.toContain("from '../App/App.logic'");
@@ -170,15 +174,15 @@ export function validateDocument(content: string): boolean {
     const componentContent = fs.readFileSync(movedComponentFile, 'utf8');
     const utilsContent = fs.readFileSync(movedUtilsFile, 'utf8');
     
-    // Main file: imports from subdirectories should remain relative
-    expect(mainContent).toContain("from './components/EditorComponent'");
-    expect(mainContent).toContain("from './utils/documentUtils'");
+    // With absolute imports enabled, all imports become absolute
+    expect(mainContent).toContain("from '@/shared/features/DocumentEditor/components/EditorComponent'");
+    expect(mainContent).toContain("from '@/shared/features/DocumentEditor/utils/documentUtils'");
     
-    // Component: import from sibling directory should remain relative
-    expect(componentContent).toContain("from '../utils/documentUtils'");
+    // Component: import from sibling directory becomes absolute
+    expect(componentContent).toContain("from '@/shared/features/DocumentEditor/utils/documentUtils'");
     
-    // Utils: import from same directory should remain relative
-    expect(utilsContent).toContain("from './documentValidator'");
+    // Utils: import from same directory becomes absolute
+    expect(utilsContent).toContain("from '@/shared/features/DocumentEditor/utils/documentValidator'");
     
     // No corrupted paths
     expect(mainContent).not.toContain("from '../DocumentEditor/components");
@@ -242,12 +246,12 @@ export interface ButtonProps {
     const logicContent = fs.readFileSync(movedLogicFile, 'utf8');
     
     // External import should be updated (more ../ levels)
-    expect(buttonContent).toContain("from '../../../../shared/theme'");
+    expect(buttonContent).toContain("from '@/shared/theme'");
     
-    // Internal imports should remain relative
-    expect(buttonContent).toContain("from './Button.logic'");
-    expect(buttonContent).toContain("from './Button.types'");
-    expect(logicContent).toContain("from './Button.types'");
+    // With absolute imports enabled, internal imports become absolute
+    expect(buttonContent).toContain("from '@/ui/components/atoms/Button/Button.logic'");
+    expect(buttonContent).toContain("from '@/ui/components/atoms/Button/Button.types'");
+    expect(logicContent).toContain("from '@/ui/components/atoms/Button/Button.types'");
     
     // No corrupted internal imports
     expect(buttonContent).not.toContain("from '../Button/Button.logic'");

@@ -9,9 +9,9 @@
  */
 
 import React from 'react';
-import { RightColumnResizerStyles } from './RightColumnResizer.styles';
-import { useRightColumnResizerLogic } from './RightColumnResizer.logic';
-import type { RightColumnResizerProps } from './RightColumnResizer.types';
+import { RightColumnResizerStyles } from '@/tests/complex-document-editor-migration/source/components/layout/resize/RightColumnResizer/RightColumnResizer.styles';
+import { useRightColumnResizerLogic } from '@/tests/complex-document-editor-migration/source/components/layout/resize/RightColumnResizer/RightColumnResizer.logic';
+import type { RightColumnResizerProps } from '@/tests/complex-document-editor-migration/source/components/layout/resize/RightColumnResizer/RightColumnResizer.types';
 
 /**
  * RightColumnResizer component for resizing the right column width

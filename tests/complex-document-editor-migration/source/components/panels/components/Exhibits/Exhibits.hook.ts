@@ -9,7 +9,7 @@ import {
   ExhibitSortDirection,
   ExhibitCitation,
   DocumentLocation
-} from './Exhibits.types';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/Exhibits.types';
 
 // Helper functions (pure)
 const generateExhibitLabel = (existingLabels: string[]): string => {

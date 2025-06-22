@@ -15,7 +15,7 @@ import {
   IconChevronsLeft, 
   IconChevronsRight 
 } from '@tabler/icons-react';
-import { usePageNavigatorLogic, formatPageDisplay } from './PageNavigator.logic';
+import { usePageNavigatorLogic, formatPageDisplay } from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.logic';
 import {
   PageNavigatorBottomBar,
   PageControls,
@@ -26,8 +26,8 @@ import {
   CompactControls,
   ErrorContainer,
   LoadingContainer
-} from './PageNavigator.styles';
-import type { PageNavigatorMobileProps } from './PageNavigator.types';
+} from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.styles';
+import type { PageNavigatorMobileProps } from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.types';
 
 /**
  * Mobile variant of PageNavigator with touch-optimized interface

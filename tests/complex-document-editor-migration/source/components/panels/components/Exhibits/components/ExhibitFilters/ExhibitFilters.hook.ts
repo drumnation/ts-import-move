@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { ExhibitFiltersType, ExhibitStatus, DateRangeState } from './ExhibitFilters.types';
+import { ExhibitFiltersType, ExhibitStatus, DateRangeState } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitFilters/ExhibitFilters.types';
 import {
   calculateActiveFilters,
   calculateFilterCounts,
@@ -7,7 +7,7 @@ import {
   createClearFiltersPayload,
   createDateRangeFilter,
   parseInputDate
-} from './ExhibitFilters.logic';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitFilters/ExhibitFilters.logic';
 
 export const useExhibitFilters = (
   filters: ExhibitFiltersType,

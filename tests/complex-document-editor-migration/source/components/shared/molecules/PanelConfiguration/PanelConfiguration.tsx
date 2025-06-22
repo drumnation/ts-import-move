@@ -8,8 +8,8 @@
  */
 
 import React from 'react';
-import type { PanelConfigurationProps } from './PanelConfiguration.types';
-import { usePanelConfiguration } from './PanelConfiguration.hook';
+import type { PanelConfigurationProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelConfiguration/PanelConfiguration.types';
+import { usePanelConfiguration } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelConfiguration/PanelConfiguration.hook';
 
 export const PanelConfiguration = ({
   onDocumentUpdate,
@@ -26,4 +26,4 @@ export const PanelConfiguration = ({
 };
 
 // Export the hook for direct usage when component wrapper isn't needed
-export { usePanelConfiguration } from './PanelConfiguration.hook'; 
+export { usePanelConfiguration } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelConfiguration/PanelConfiguration.hook'; 

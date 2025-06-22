@@ -21,8 +21,8 @@ import {
   IconPointer
 } from '@tabler/icons-react';
 import { FormatButtonGroup } from '@/shared-components/molecules/FormatButtonGroup';
-import { useFormattingToolbar, FORMATTING_SHORTCUTS } from './FormattingToolbar.logic';
-import type { FormattingToolbarVariantProps } from './FormattingToolbar.types';
+import { useFormattingToolbar, FORMATTING_SHORTCUTS } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/FormattingToolbar/FormattingToolbar.logic';
+import type { FormattingToolbarVariantProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/FormattingToolbar/FormattingToolbar.types';
 
 /**
  * FormattingToolbar Desktop Implementation

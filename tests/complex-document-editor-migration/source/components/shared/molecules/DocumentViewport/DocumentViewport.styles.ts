@@ -7,7 +7,7 @@ import type {
   PageNumberProps,
   NavigationControlsProps,
   ThumbnailGridProps
-} from './DocumentViewport.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/DocumentViewport.types';
 
 export const ViewportContainer = styled.div`
   height: 100%;

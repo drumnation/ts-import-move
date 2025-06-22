@@ -34,13 +34,13 @@ import {
   MessageBubble,
   ChatInputArea,
   EmptyConversationState
-} from '../AiAssistant.styles';
-import type { ChatConversation, ChatMessage } from '../AiAssistant.types';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/AiAssistant/AiAssistant.styles';
+import type { ChatConversation, ChatMessage } from '@/tests/complex-document-editor-migration/source/components/panels/components/AiAssistant/AiAssistant.types';
 import {
   formatMessageTimestamp,
   getMessageStatusColor,
   shouldShowMessageMetadata
-} from '../AiAssistant.logic';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/AiAssistant/AiAssistant.logic';
 
 interface ChatInterfaceProps {
   conversation: ChatConversation;

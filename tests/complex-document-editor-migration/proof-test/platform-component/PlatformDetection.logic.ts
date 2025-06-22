@@ -15,7 +15,7 @@ import type {
   PlatformState,
   PlatformDetectionHook,
   MediaQueryConfig,
-} from '../destination/shared/components/1-atoms/platform-component/PlatformDetection.types';
+} from '@/tests/complex-document-editor-migration/proof-test/destination/shared/components/1-atoms/platform-component/PlatformDetection.types';
 
 /**
  * Default breakpoint configuration

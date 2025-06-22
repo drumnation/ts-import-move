@@ -6,7 +6,7 @@
  * @module DocumentToolbar.logic
  */
 
-import type { SelectionState } from './DocumentToolbar.types';
+import type { SelectionState } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/DocumentToolbar.types';
 
 /**
  * Determine if a list action should be enabled

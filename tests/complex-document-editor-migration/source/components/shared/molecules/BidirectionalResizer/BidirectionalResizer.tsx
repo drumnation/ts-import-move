@@ -7,10 +7,10 @@
  */
 
 import React, { memo } from 'react';
-import { useResizeHandlers } from './BidirectionalResizer.hook';
-import { getResizeIcon } from './BidirectionalResizer.logic';
-import { ResizerContainer, ResizeHandle } from './BidirectionalResizer.styles';
-import type { BidirectionalResizerProps } from './BidirectionalResizer.types';
+import { useResizeHandlers } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/BidirectionalResizer/BidirectionalResizer.hook';
+import { getResizeIcon } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/BidirectionalResizer/BidirectionalResizer.logic';
+import { ResizerContainer, ResizeHandle } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/BidirectionalResizer/BidirectionalResizer.styles';
+import type { BidirectionalResizerProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/BidirectionalResizer/BidirectionalResizer.types';
 
 /**
  * High-performance bidirectional resizer component for column and panel resizing

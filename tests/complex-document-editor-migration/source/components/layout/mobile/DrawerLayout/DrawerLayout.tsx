@@ -10,8 +10,8 @@
 
 import React, { useRef, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { useDrawerLayout } from './DrawerLayout.logic';
-import type { DrawerLayoutProps, DrawerPosition } from './DrawerLayout.types';
+import { useDrawerLayout } from '@/tests/complex-document-editor-migration/source/components/layout/mobile/DrawerLayout/DrawerLayout.logic';
+import type { DrawerLayoutProps, DrawerPosition } from '@/tests/complex-document-editor-migration/source/components/layout/mobile/DrawerLayout/DrawerLayout.types';
 import {
   LayoutContainer,
   MainContent,
@@ -25,7 +25,7 @@ import {
   TouchArea,
   drawerVariants,
   backdropVariants,
-} from './DrawerLayout.styles';
+} from '@/tests/complex-document-editor-migration/source/components/layout/mobile/DrawerLayout/DrawerLayout.styles';
 
 /**
  * DrawerLayout component

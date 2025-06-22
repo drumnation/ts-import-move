@@ -9,11 +9,11 @@
  */
 
 import React from 'react';
-import { PlatformRouter } from '../layout/PlatformDetection';
-import { RightPanelDesktop } from './RightPanel.desktop';
-import { RightPanelMobile } from './RightPanel.mobile';
-import { useRightPanel } from './RightPanel.logic';
-import type { RightPanelProps } from './RightPanel.types';
+import { PlatformRouter } from '@/tests/complex-document-editor-migration/source/components/panels/containers/layout/PlatformDetection';
+import { RightPanelDesktop } from '@/tests/complex-document-editor-migration/source/components/panels/containers/RightPanel/RightPanel.desktop';
+import { RightPanelMobile } from '@/tests/complex-document-editor-migration/source/components/panels/containers/RightPanel/RightPanel.mobile';
+import { useRightPanel } from '@/tests/complex-document-editor-migration/source/components/panels/containers/RightPanel/RightPanel.logic';
+import type { RightPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/containers/RightPanel/RightPanel.types';
 
 /**
  * Main RightPanel component with platform routing

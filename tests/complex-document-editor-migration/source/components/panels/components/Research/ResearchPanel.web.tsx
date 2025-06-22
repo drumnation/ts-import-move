@@ -41,8 +41,8 @@ import {
   IconStar,
   IconPlus,
 } from '@tabler/icons-react';
-import { useResearchPanelLogic } from './ResearchPanel.logic';
-import type { DesktopResearchPanelProps } from './ResearchPanel.types';
+import { useResearchPanelLogic } from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.logic';
+import type { DesktopResearchPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.types';
 
 /**
  * Desktop Research Panel Implementation

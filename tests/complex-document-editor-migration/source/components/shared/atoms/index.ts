@@ -8,13 +8,13 @@
  */
 
 // Atoms - Basic building blocks
-export { PanelHeader } from './PanelHeader';
-export { PanelContent } from './PanelContent';
-export { VerticalResizer } from './VerticalResizer';
-export { HorizontalResizer } from './HorizontalResizer';
-export { LoadingSpinner } from './LoadingSpinner';
-export { ErrorDisplay } from './ErrorDisplay';
-export { Button } from './Button';
+export { PanelHeader } from '@/tests/complex-document-editor-migration/source/components/shared/atoms/PanelHeader';
+export { PanelContent } from '@/tests/complex-document-editor-migration/source/components/shared/atoms/PanelContent';
+export { VerticalResizer } from '@/tests/complex-document-editor-migration/source/components/shared/atoms/VerticalResizer';
+export { HorizontalResizer } from '@/tests/complex-document-editor-migration/source/components/shared/atoms/HorizontalResizer';
+export { LoadingSpinner } from '@/tests/complex-document-editor-migration/source/components/shared/atoms/LoadingSpinner';
+export { ErrorDisplay } from '@/tests/complex-document-editor-migration/source/components/shared/atoms/ErrorDisplay';
+export { Button } from '@/tests/complex-document-editor-migration/source/components/shared/atoms/Button';
 
 // TODO: Additional atoms to be implemented
 // export { Icon } from './Icon';

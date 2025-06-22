@@ -17,16 +17,16 @@ import {
   IconFile
 } from '@tabler/icons-react';
 
-import { ExhibitItemProps } from './ExhibitItem.types';
-import { StyledCard, ExhibitLabel } from './ExhibitItem.styles';
+import { ExhibitItemProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitItem/ExhibitItem.types';
+import { StyledCard, ExhibitLabel } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitItem/ExhibitItem.styles';
 import { 
   getStatusColor, 
   getStatusIcon, 
   getRelevanceColor,
   formatCitationsText,
   formatTagsDisplay
-} from './ExhibitItem.logic';
-import { useExhibitItemHandlers } from './ExhibitItem.hook';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitItem/ExhibitItem.logic';
+import { useExhibitItemHandlers } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitItem/ExhibitItem.hook';
 
 export const ExhibitItem: React.FC<ExhibitItemProps> = (props) => {
   const {

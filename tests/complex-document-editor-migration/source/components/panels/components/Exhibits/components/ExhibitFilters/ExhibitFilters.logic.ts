@@ -1,4 +1,4 @@
-import { ExhibitFiltersType, ExhibitStatus, FilterOption, FilterCounts } from './ExhibitFilters.types';
+import { ExhibitFiltersType, ExhibitStatus, FilterOption, FilterCounts } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitFilters/ExhibitFilters.types';
 
 export const statusOptions: FilterOption[] = [
   { value: 'draft', label: 'Draft' },

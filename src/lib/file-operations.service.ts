@@ -6,7 +6,7 @@
 import fs from 'fs';
 import path from 'path';
 import { Project } from 'ts-morph';
-import { ImportPathContext, resolveImportPath, createMoveMapping } from './import-path.service.js';
+import { ImportPathContext, resolveImportPath, createMoveMapping } from '@/lib/import-path.service.js';
 
 export interface FileOperation {
   readonly type: 'move' | 'create-dir' | 'remove-dir';

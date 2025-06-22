@@ -3,7 +3,7 @@
  * @module AssetPreview.types
  */
 
-import type { Asset } from '../../Assets.types';
+import type { Asset } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/Assets.types';
 
 export interface AssetPreviewProps {
   /** Asset to preview */

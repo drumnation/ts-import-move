@@ -8,14 +8,14 @@
  */
 
 // Main component
-export { PanelSplitter as default, PanelSplitter } from './PanelSplitter';
+export { PanelSplitter as default, PanelSplitter } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelSplitter/PanelSplitter';
 
 // Hooks
 export { 
   usePanelSplitter,
   usePanelSplitHandlers,
   usePanelSplitConstraints 
-} from './PanelSplitter.hook';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelSplitter/PanelSplitter.hook';
 
 // Types
 export type {
@@ -28,7 +28,7 @@ export type {
   StyledPanelSplitterProps,
   StyledVerticalHandleProps,
   UsePanelSplitHandlers
-} from './PanelSplitter.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelSplitter/PanelSplitter.types';
 
 // Styled components (for direct styling needs)
 export {
@@ -38,7 +38,7 @@ export {
   // Legacy exports for backward compatibility
   PanelSplitterContainer,
   VerticalSplitHandle
-} from './PanelSplitter.styles';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelSplitter/PanelSplitter.styles';
 
 // Logic utilities (if needed for testing or custom implementations)
 export {
@@ -46,4 +46,4 @@ export {
   calculateNewSplitRatio,
   validateSplitConfig,
   getVerticalSplitIcon
-} from './PanelSplitter.logic'; 
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelSplitter/PanelSplitter.logic'; 

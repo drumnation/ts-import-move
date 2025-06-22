@@ -8,10 +8,10 @@
  */
 
 // Main component export
-export { PanelManager } from './PanelManager';
+export { PanelManager } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager';
 
 // Hook exports
-export { usePanelManager } from './PanelManager.hook';
+export { usePanelManager } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager.hook';
 
 // Type exports
 export type {
@@ -20,7 +20,7 @@ export type {
   PanelManagerHookParams,
   PanelManagerState,
   PanelSlotCreationConfig
-} from './PanelManager.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager.types';
 
 // Logic function exports
 export {
@@ -31,12 +31,12 @@ export {
   generatePanelId,
   getRecommendedPanelSizes,
   PanelLifecycleManager
-} from './PanelManager.logic';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager.logic';
 
 // Legacy compatibility exports (for gradual migration)
 // These allow existing imports to continue working during refactor
-export { PanelManager as PanelConfiguration } from './PanelManager';
-export { usePanelManager as usePanelConfiguration } from './PanelManager.hook';
-export type { PanelManagerProps as PanelConfigurationProps } from './PanelManager.types';
-export type { UsePanelManagerReturn as UsePanelConfigurationReturn } from './PanelManager.types';
-export type { PanelManagerHookParams as PanelConfigurationHookParams } from './PanelManager.types'; 
+export { PanelManager as PanelConfiguration } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager';
+export { usePanelManager as usePanelConfiguration } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager.hook';
+export type { PanelManagerProps as PanelConfigurationProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager.types';
+export type { UsePanelManagerReturn as UsePanelConfigurationReturn } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager.types';
+export type { PanelManagerHookParams as PanelConfigurationHookParams } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager.types'; 

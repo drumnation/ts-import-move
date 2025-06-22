@@ -15,7 +15,7 @@ import {
   IconEye,
   IconDotsVertical
 } from '@tabler/icons-react';
-import type { TopBarProps, StatusIndicatorProps, ActionBarProps } from './TopBar.types';
+import type { TopBarProps, StatusIndicatorProps, ActionBarProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/TopBar/TopBar.types';
 import {
   TopBarContainer,
   TitleBarSection,
@@ -24,7 +24,7 @@ import {
   StatusDot,
   StatusText,
   MobileActionsMenu
-} from './TopBar.styles';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/TopBar/TopBar.styles';
 
 /**
  * Status indicator component

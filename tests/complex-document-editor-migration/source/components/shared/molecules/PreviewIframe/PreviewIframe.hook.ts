@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { DocumentAST, PreviewState } from './PreviewIframe.types';
-import { generatePreviewHTML } from './PreviewIframe.logic';
+import { DocumentAST, PreviewState } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PreviewIframe/PreviewIframe.types';
+import { generatePreviewHTML } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PreviewIframe/PreviewIframe.logic';
 
 interface UsePreviewIframeOptions {
   documentId: string;

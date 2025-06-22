@@ -3,8 +3,8 @@
  * @module EditorCanvas.logic
  */
 
-import type { PanelSlot, PanelResizeConfig } from '../../DocumentEditorPage.types';
-import type { GroupedPanels } from './EditorCanvas.types';
+import type { PanelSlot, PanelResizeConfig } from '@/tests/complex-document-editor-migration/source/components/shared/DocumentEditorPage.types';
+import type { GroupedPanels } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/EditorCanvas.types';
 
 /**
  * Groups panel slots by location and slot position

@@ -8,13 +8,13 @@
  */
 
 import React, { useCallback, useState } from 'react';
-import { ErrorBoundary } from '../../shared-components/ErrorBoundary';
+import { ErrorBoundary } from '@/tests/shared-components/ErrorBoundary';
 import { DragDropProvider } from '@/shared-components/providers/DragDropProvider';
-import { usePlatformDetection, useDocumentContent } from './DocumentEditorPage.hook';
-import type { DocumentEditorPageProps, PanelSlot } from './DocumentEditorPage.types';
-import { EditorCanvas } from './components/shared/molecules/EditorCanvas';
-import { usePanelConfiguration } from './components/shared/molecules/PanelConfiguration';
-import { useDocumentProvider } from './components/shared/molecules/DocumentProvider';
+import { usePlatformDetection, useDocumentContent } from '@/tests/complex-document-editor-migration/source/DocumentEditorPage.hook';
+import type { DocumentEditorPageProps, PanelSlot } from '@/tests/complex-document-editor-migration/source/DocumentEditorPage.types';
+import { EditorCanvas } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas';
+import { usePanelConfiguration } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelConfiguration';
+import { useDocumentProvider } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentProvider';
 
 /**
  * AI-Powered Document Editor with Slot-Based Panel System

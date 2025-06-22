@@ -5,7 +5,7 @@ import {
   validateDragOperation,
   executeDragDropOperation,
   getAllNodesWithContext
-} from './dragDrop';
+} from '@/tests/complex-document-editor-migration/source/logic/dragDrop';
 
 // Mock legal document structure for testing
 const mockDocument = {

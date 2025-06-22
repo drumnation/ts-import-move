@@ -1,5 +1,5 @@
-import { Node as ASTNode, ParagraphNode } from '../../../../types/legal-document-ast';
-import { LexicalASTNode } from './LexicalEditor.types';
+import { Node as ASTNode, ParagraphNode } from '@/tests/complex-document-editor-migration/source/types/legal-document-ast';
+import { LexicalASTNode } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.types';
 
 /**
  * AST to Lexical conversion utilities

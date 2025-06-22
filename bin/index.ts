@@ -4,7 +4,7 @@
 */
 
 import { Command } from 'commander';
-import { moveAction } from '../src/commands/move.js';
+import { moveAction } from '@/commands/move.js';
 
 const program = new Command();
 
@@ -21,6 +21,8 @@ program
   .option('-v, --verbose', 'Display detailed operation logs')
   .option('--extensions <ext>', 'Comma-separated file extensions (e.g. .ts,.tsx)', '.ts,.tsx')
   .option('--tsconfig <path>', 'Path to tsconfig.json')
+  .option('--no-absolute-imports', 'Keep relative imports instead of converting to absolute imports')
+  .option('--alias-prefix <prefix>', 'Alias prefix for absolute imports', '@')
   .parse(process.argv);
 
 // Extract non-option arguments

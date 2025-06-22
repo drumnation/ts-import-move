@@ -6,7 +6,7 @@
  * @module SlotPanel.types
  */
 
-import type { PanelSlot, PanelResizeConfig } from '../../DocumentEditorPage.types';
+import type { PanelSlot, PanelResizeConfig } from '@/tests/complex-document-editor-migration/source/components/shared/DocumentEditorPage.types';
 
 export interface SlotPanelProps extends PanelSlot {
   /** Panel size in pixels or percentage */

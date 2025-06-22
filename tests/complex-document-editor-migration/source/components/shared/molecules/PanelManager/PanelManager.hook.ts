@@ -13,10 +13,10 @@ import React from 'react';
 import type { 
   PanelManagerHookParams, 
   UsePanelManagerReturn 
-} from './PanelManager.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager.types';
 import { AiAssistant } from '@/pages/DocumentEditorPage/components/panels/components/AiAssistant';
-import { PanelContentBox } from './components/PanelContentBox';
-import { DocumentInfoPanel } from './components/DocumentInfoPanel';
+import { PanelContentBox } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/components/PanelContentBox';
+import { DocumentInfoPanel } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/components/DocumentInfoPanel';
 import { 
   PANEL_SIZES, 
   PANEL_DATA, 
@@ -24,7 +24,7 @@ import {
   generatePanelId,
   PanelLifecycleManager,
   getRecommendedPanelSizes
-} from './PanelManager.logic';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager.logic';
 
 /**
  * Custom hook for panel management and coordination

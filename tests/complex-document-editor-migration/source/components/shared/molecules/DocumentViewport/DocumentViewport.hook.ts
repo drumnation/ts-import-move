@@ -1,13 +1,13 @@
 import { useState, useRef, useCallback } from 'react';
-import { usePlatformDetection } from '../../../../DocumentEditorPage.hook';
+import { usePlatformDetection } from '@/tests/complex-document-editor-migration/source/DocumentEditorPage.hook';
 import {
   calculateZoomLevel,
   getDefaultZoomState,
   shouldTriggerViewModeChange,
   getNextPageIndex,
   getPreviousPageIndex
-} from './DocumentViewport.logic';
-import type { DocumentViewportProps, ViewMode } from './DocumentViewport.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/DocumentViewport.logic';
+import type { DocumentViewportProps, ViewMode } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/DocumentViewport.types';
 
 /**
  * Hook for managing zoom functionality

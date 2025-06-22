@@ -10,7 +10,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { resizeTokens } from '../tokens/resize.tokens';
+import { resizeTokens } from '@/tests/complex-document-editor-migration/source/components/shared/tokens/resize.tokens';
 
 interface VerticalResizerProps {
   /** Resize handler - receives delta in pixels */

@@ -2,8 +2,8 @@ import React from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Text } from '@mantine/core';
 import { IconLoader } from '@tabler/icons-react';
-import { ProgressOverlayProps } from './ProgressOverlay.types';
-import { progressOverlayVariants, validateProgress, formatProgressMessage } from './ProgressOverlay.logic';
+import { ProgressOverlayProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components/ProgressOverlay/ProgressOverlay.types';
+import { progressOverlayVariants, validateProgress, formatProgressMessage } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components/ProgressOverlay/ProgressOverlay.logic';
 import { 
   StyledProgressOverlay, 
   ProgressContent, 
@@ -11,7 +11,7 @@ import {
   ProgressBar, 
   ProgressFill,
   LoadingIcon 
-} from './ProgressOverlay.styles';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components/ProgressOverlay/ProgressOverlay.styles';
 
 export const ProgressOverlay: React.FC<ProgressOverlayProps> = ({
   executionState

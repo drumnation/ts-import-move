@@ -4,8 +4,8 @@
  */
 
 // Main component exports
-export { LexicalEditor } from './LexicalEditor';
-export { LexicalEditorRedux } from './LexicalEditorRedux';
+export { LexicalEditor } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor';
+export { LexicalEditorRedux } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditorRedux';
 
 // Type exports
 export type { 
@@ -16,7 +16,7 @@ export type {
   LexicalHeadingNode,
   OnChangePluginProps,
   InitializerPluginProps
-} from './LexicalEditor.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.types';
 
 // Redux integration exports
 export {
@@ -25,7 +25,7 @@ export {
   convertDocumentBlockToLexicalNode,
   createOptimizedEditorTheme,
   isReduxIntegrationAvailable
-} from './LexicalEditor.redux';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.redux';
 
 // Plugin exports
 export {
@@ -34,4 +34,4 @@ export {
   KeyboardShortcutsPlugin,
   SelectionPlugin,
   useContentChangeHandler
-} from './LexicalEditor.hook'; 
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.hook'; 

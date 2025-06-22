@@ -15,7 +15,7 @@ import type {
   ChatConversation,
   ChatMessage,
   AIFunction
-} from './AiAssistant.types';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/AiAssistant/AiAssistant.types';
 import {
   createNewConversation,
   createUserMessage,
@@ -23,7 +23,7 @@ import {
   addMessageToConversation,
   convertAIResponseToMessage,
   convertConversationToHistory
-} from './AiAssistant.logic';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/AiAssistant/AiAssistant.logic';
 
 /**
  * Custom hook for AI Assistant panel state management

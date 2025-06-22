@@ -6,7 +6,7 @@
  * @module slashCommandParser
  */
 
-import type { SlashCommand } from '../AiAssistant.types';
+import type { SlashCommand } from '@/tests/complex-document-editor-migration/source/components/panels/components/AiAssistant/AiAssistant.types';
 import {
   IconScale,
   IconFileText,

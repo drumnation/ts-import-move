@@ -8,16 +8,16 @@
  */
 
 import React from 'react';
-import { usePlatformDetection } from '../../../layout/components/PlatformDetection';
-import { useResizablePanel } from './ResizablePanel.hook';
+import { usePlatformDetection } from '@/tests/complex-document-editor-migration/source/components/layout/components/PlatformDetection';
+import { useResizablePanel } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ResizablePanel/ResizablePanel.hook';
 import {
   PanelContainer,
   ResizeHandle,
   RailView,
   CollapseButton,
   RailButton
-} from './ResizablePanel.styles';
-import type { ResizablePanelProps } from './ResizablePanel.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ResizablePanel/ResizablePanel.styles';
+import type { ResizablePanelProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ResizablePanel/ResizablePanel.types';
 
 export const ResizablePanel: React.FC<ResizablePanelProps> = ({
   children,

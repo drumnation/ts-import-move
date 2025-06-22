@@ -3,5 +3,5 @@
  * @module ASTDebugPanel
  */
 
-export { ASTDebugPanel } from './ASTDebugPanel';
-export type { ASTDebugPanelProps } from './ASTDebugPanel.types'; 
+export { ASTDebugPanel } from '@/tests/complex-document-editor-migration/source/components/panels/components/ASTDebugPanel/ASTDebugPanel';
+export type { ASTDebugPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/ASTDebugPanel/ASTDebugPanel.types'; 

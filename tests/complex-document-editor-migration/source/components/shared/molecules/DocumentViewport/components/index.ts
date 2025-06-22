@@ -1,3 +1,3 @@
-export { DocumentPage } from './DocumentPage';
-export type { DocumentPageProps } from './DocumentPage';
-export { ViewportControls } from './ViewportControls'; 
+export { DocumentPage } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/components/DocumentPage';
+export type { DocumentPageProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/components/DocumentPage';
+export { ViewportControls } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/components/ViewportControls'; 

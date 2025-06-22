@@ -11,9 +11,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { HorizontalResizer } from '../shared/atoms/HorizontalResizer';
-import { VerticalResizer } from '../shared/atoms/VerticalResizer';
-import type { DocumentLayoutProps, DocumentLayoutLogic } from './DocumentLayout.types';
+import { HorizontalResizer } from '@/tests/complex-document-editor-migration/source/components/layout/components/shared/atoms/HorizontalResizer';
+import { VerticalResizer } from '@/tests/complex-document-editor-migration/source/components/layout/components/shared/atoms/VerticalResizer';
+import type { DocumentLayoutProps, DocumentLayoutLogic } from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/DocumentLayout.types';
 
 interface DocumentLayoutDesktopProps extends DocumentLayoutProps, DocumentLayoutLogic {}
 

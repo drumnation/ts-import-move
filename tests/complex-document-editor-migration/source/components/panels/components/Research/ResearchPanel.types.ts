@@ -4,7 +4,7 @@
  */
 
 import { ReactNode } from 'react';
-import type { LegalCase, Citation, SearchQuery, ResearchSession } from '../../../../../stores/research.slice';
+import type { LegalCase, Citation, SearchQuery, ResearchSession } from '@/tests/complex-document-editor-migration/stores/research.slice';
 
 export interface DocumentPassage {
   /** Unique passage identifier */
@@ -520,4 +520,4 @@ export type {
   Citation,
   SearchQuery,
   ResearchSession,
-} from '../../../../../stores/research.slice'; 
+} from '@/tests/complex-document-editor-migration/stores/research.slice'; 

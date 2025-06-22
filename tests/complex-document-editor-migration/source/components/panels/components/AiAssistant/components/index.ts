@@ -4,4 +4,4 @@
  * @module AiAssistant.components
  */
 
-export { ChatInterface } from './ChatInterface'; 
+export { ChatInterface } from '@/tests/complex-document-editor-migration/source/components/panels/components/AiAssistant/components/ChatInterface'; 

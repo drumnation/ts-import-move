@@ -3,8 +3,8 @@
  * @module DesktopCanvasLayout.types
  */
 
-import type { MultiPageDocument } from '../../../../DocumentEditorPage.types';
-import type { GroupedPanels, PanelCalculations, PanelHandlers } from '../../EditorCanvas.types';
+import type { MultiPageDocument } from '@/tests/complex-document-editor-migration/source/components/shared/DocumentEditorPage.types';
+import type { GroupedPanels, PanelCalculations, PanelHandlers } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/EditorCanvas.types';
 
 export interface DesktopCanvasLayoutProps {
   /** Document to display */

@@ -3,7 +3,7 @@
  * Styled components using @emotion/styled
  */
 import styled from '@emotion/styled';
-import type { ListButtonProps } from './DocumentToolbar.types';
+import type { ListButtonProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/DocumentToolbar.types';
 
 // Main toolbar container
 export const ToolbarContainer = styled.div<{ position: 'top' | 'floating'; visible: boolean }>`

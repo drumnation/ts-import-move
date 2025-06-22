@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { moveFiles } from '../../src/lib/index.js';
+import { moveFiles } from '@/lib/index.js';
 import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';

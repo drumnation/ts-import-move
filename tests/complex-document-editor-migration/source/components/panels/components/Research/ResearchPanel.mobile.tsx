@@ -39,8 +39,8 @@ import {
   IconMenu2,
 } from '@tabler/icons-react';
 import { useDisclosure, useScrollIntoView } from '@mantine/hooks';
-import { useResearchPanelLogic } from './ResearchPanel.logic';
-import type { MobileResearchPanelProps } from './ResearchPanel.types';
+import { useResearchPanelLogic } from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.logic';
+import type { MobileResearchPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.types';
 
 /**
  * Mobile Research Panel Implementation

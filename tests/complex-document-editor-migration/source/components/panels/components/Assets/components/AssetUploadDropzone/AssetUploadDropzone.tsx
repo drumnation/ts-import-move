@@ -22,15 +22,15 @@ import {
 } from '@tabler/icons-react';
 import { Dropzone, FileWithPath } from '@mantine/dropzone';
 import { useMediaQuery } from '@mantine/hooks';
-import type { AssetUploadDropzoneProps, DropzoneContentProps } from './AssetUploadDropzone.types';
-import { formatFileSize, getAcceptedFormats, handleFileReject } from './AssetUploadDropzone.logic';
+import type { AssetUploadDropzoneProps, DropzoneContentProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetUploadDropzone/AssetUploadDropzone.types';
+import { formatFileSize, getAcceptedFormats, handleFileReject } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetUploadDropzone/AssetUploadDropzone.logic';
 import {
   UploadingContainer,
   DropzoneContent,
   IconContainer,
   FileTypeIcon,
   StyledText
-} from './AssetUploadDropzone.styles';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetUploadDropzone/AssetUploadDropzone.styles';
 
 const DropzoneIdleContent: React.FC<DropzoneContentProps> = ({
   isMobile,

@@ -24,14 +24,14 @@ import {
 } from '@tabler/icons-react';
 import { motion } from 'framer-motion';
 import { modalVariants } from '@/animations';
-import type { AiAssistantProps } from './AiAssistant.types';
-import { useAiAssistant } from './AiAssistant.hook';
-import { ChatInterface } from './components';
+import type { AiAssistantProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/AiAssistant/AiAssistant.types';
+import { useAiAssistant } from '@/tests/complex-document-editor-migration/source/components/panels/components/AiAssistant/AiAssistant.hook';
+import { ChatInterface } from '@/tests/complex-document-editor-migration/source/components/panels/components/AiAssistant/components';
 import {
   AiAssistantContainer,
   AiAssistantHeader,
   SubtleContextDisplay
-} from './AiAssistant.styles';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/AiAssistant/AiAssistant.styles';
 
 /**
  * AI Assistant Panel Component with named export

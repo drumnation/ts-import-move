@@ -9,11 +9,11 @@
  */
 
 import React from 'react';
-import { PlatformRouter } from './PlatformDetection';
-import { DocumentLayoutDesktop } from './DocumentLayout.desktop';
-import { DocumentLayoutMobile } from './DocumentLayout.mobile';
-import { useDocumentLayout } from './DocumentLayout.logic';
-import type { DocumentLayoutProps } from './DocumentLayout.types';
+import { PlatformRouter } from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/PlatformDetection';
+import { DocumentLayoutDesktop } from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/DocumentLayout.desktop';
+import { DocumentLayoutMobile } from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/DocumentLayout.mobile';
+import { useDocumentLayout } from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/DocumentLayout.logic';
+import type { DocumentLayoutProps } from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/DocumentLayout.types';
 
 /**
  * Main DocumentLayout component with platform routing

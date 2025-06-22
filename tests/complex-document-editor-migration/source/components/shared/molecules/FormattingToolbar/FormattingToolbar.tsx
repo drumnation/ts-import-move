@@ -9,9 +9,9 @@
 
 import React from 'react';
 import { PlatformRouter } from '@/pages/DocumentEditorPage/components/layout/components/PlatformDetection';
-import { FormattingToolbarMobile } from './FormattingToolbar.mobile';
-import { FormattingToolbarDesktop } from './FormattingToolbar.desktop';
-import type { FormattingToolbarProps } from './FormattingToolbar.types';
+import { FormattingToolbarMobile } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/FormattingToolbar/FormattingToolbar.mobile';
+import { FormattingToolbarDesktop } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/FormattingToolbar/FormattingToolbar.desktop';
+import type { FormattingToolbarProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/FormattingToolbar/FormattingToolbar.types';
 
 /**
  * FormattingToolbar - Platform Router Component

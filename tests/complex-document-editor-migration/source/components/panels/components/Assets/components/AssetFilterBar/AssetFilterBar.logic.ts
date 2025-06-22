@@ -3,7 +3,7 @@
  * @module AssetFilterBar.logic
  */
 
-import type { AssetFilter, AssetType } from './AssetFilterBar.types';
+import type { AssetFilter, AssetType } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetFilterBar/AssetFilterBar.types';
 
 /**
  * Check if any filters are currently active

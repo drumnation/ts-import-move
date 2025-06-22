@@ -3,7 +3,7 @@
  * Styled components using @emotion/styled
  */
 import styled from '@emotion/styled';
-import type { ControlButtonProps } from './PanelControls.types';
+import type { ControlButtonProps } from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/PanelControls.types';
 
 // Main container for panel controls
 export const ControlsContainer = styled.div<{ position: 'bottom' | 'top' | 'left' | 'right' }>`

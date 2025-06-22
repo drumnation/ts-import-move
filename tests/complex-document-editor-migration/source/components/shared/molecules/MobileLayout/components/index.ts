@@ -1,2 +1,2 @@
-export { BottomSheet } from './BottomSheet/BottomSheet';
-export { ProgressOverlay } from './ProgressOverlay'; 
+export { BottomSheet } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components/BottomSheet/BottomSheet';
+export { ProgressOverlay } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components/ProgressOverlay'; 

@@ -7,7 +7,7 @@
  * @module ConfigurablePanel.logic
  */
 
-import type { ResizeDirection, IconConfig } from './ConfigurablePanel.types';
+import type { ResizeDirection, IconConfig } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ConfigurablePanel/ConfigurablePanel.types';
 
 /**
  * Determines the appropriate collapse icon based on panel location and mobile state

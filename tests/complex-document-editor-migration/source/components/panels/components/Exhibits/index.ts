@@ -1,5 +1,5 @@
-export { Panel } from './Exhibits';
-export { ExhibitsPanel } from './ExhibitsPanel';
-export type { ExhibitsPanelProps, ExhibitsPanelState, ExhibitActions } from './ExhibitsPanel.types';
-export * from './Exhibits.types';
-export * from './Exhibits.hook'; 
+export { Panel } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/Exhibits';
+export { ExhibitsPanel } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/ExhibitsPanel';
+export type { ExhibitsPanelProps, ExhibitsPanelState, ExhibitActions } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/ExhibitsPanel.types';
+export * from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/Exhibits.types';
+export * from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/Exhibits.hook'; 

@@ -3,7 +3,7 @@
  * @module DesktopCanvasLayout
  */
 
-export { DesktopCanvasLayout } from './DesktopCanvasLayout';
+export { DesktopCanvasLayout } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/DesktopCanvasLayout/DesktopCanvasLayout';
 export type {
   DesktopCanvasLayoutProps,
   LayoutState,
@@ -11,4 +11,4 @@ export type {
   ContainerDimensions,
   DesktopLayoutProps,
   PanelSlotContainerProps,
-} from './DesktopCanvasLayout.types'; 
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/DesktopCanvasLayout/DesktopCanvasLayout.types'; 

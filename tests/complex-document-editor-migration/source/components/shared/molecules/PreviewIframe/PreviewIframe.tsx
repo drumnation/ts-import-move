@@ -1,15 +1,15 @@
 import React from 'react';
 import { Button, Group, Loader, Center, Text, Box } from '@mantine/core';
 import { IconRefresh, IconExternalLink } from '@tabler/icons-react';
-import { PreviewIframeProps } from './PreviewIframe.types';
-import { usePreviewIframe } from './PreviewIframe.hook';
+import { PreviewIframeProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PreviewIframe/PreviewIframe.types';
+import { usePreviewIframe } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PreviewIframe/PreviewIframe.hook';
 import {
   PreviewContainer,
   PreviewBox,
   LoadingOverlay,
   ErrorOverlay,
   StyledIframe
-} from './PreviewIframe.styles';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PreviewIframe/PreviewIframe.styles';
 
 /**
  * PreviewIframe Component

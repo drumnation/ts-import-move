@@ -11,7 +11,7 @@ vi.mock('os');
 vi.mock('readline');
 
 // Import the function to test
-import { installCursorRules } from '../src/cli-install-rules.js';
+import { installCursorRules } from '@/cli-install-rules.js';
 
 describe('install-cursor-rules CLI command', () => {
   // Mock data

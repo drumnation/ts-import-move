@@ -1,2 +1,2 @@
-export { DocumentInfoPanel } from './DocumentInfoPanel';
-export type { DocumentInfoPanelProps } from './DocumentInfoPanel.types'; 
+export { DocumentInfoPanel } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelConfiguration/components/DocumentInfoPanel/DocumentInfoPanel';
+export type { DocumentInfoPanelProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelConfiguration/components/DocumentInfoPanel/DocumentInfoPanel.types'; 

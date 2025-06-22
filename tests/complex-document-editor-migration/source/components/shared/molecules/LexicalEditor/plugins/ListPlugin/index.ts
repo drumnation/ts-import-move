@@ -1,2 +1,2 @@
-export { ListPlugin, useListCommands } from './ListPlugin';
-export type { ListPluginProps } from './ListPlugin'; 
+export { ListPlugin, useListCommands } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/plugins/ListPlugin/ListPlugin';
+export type { ListPluginProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/plugins/ListPlugin/ListPlugin'; 

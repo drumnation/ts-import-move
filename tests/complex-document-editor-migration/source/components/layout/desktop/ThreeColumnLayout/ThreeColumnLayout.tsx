@@ -9,10 +9,10 @@
  */
 
 import React, { useRef, useEffect } from 'react';
-import { HorizontalResizer } from '../../../shared/atoms/HorizontalResizer';
-import { VerticalResizer } from '../../../shared/atoms/VerticalResizer';
-import { useThreeColumnLayout } from './ThreeColumnLayout.logic';
-import type { ThreeColumnLayoutProps } from './ThreeColumnLayout.types';
+import { HorizontalResizer } from '@/tests/complex-document-editor-migration/source/components/shared/atoms/HorizontalResizer';
+import { VerticalResizer } from '@/tests/complex-document-editor-migration/source/components/shared/atoms/VerticalResizer';
+import { useThreeColumnLayout } from '@/tests/complex-document-editor-migration/source/components/layout/desktop/ThreeColumnLayout/ThreeColumnLayout.logic';
+import type { ThreeColumnLayoutProps } from '@/tests/complex-document-editor-migration/source/components/layout/desktop/ThreeColumnLayout/ThreeColumnLayout.types';
 import {
   LayoutContainer,
   LeftColumn,
@@ -23,7 +23,7 @@ import {
   ColumnPlaceholder,
   LayoutDebugInfo,
   CollapseButton,
-} from './ThreeColumnLayout.styles';
+} from '@/tests/complex-document-editor-migration/source/components/layout/desktop/ThreeColumnLayout/ThreeColumnLayout.styles';
 
 /**
  * ThreeColumnLayout component

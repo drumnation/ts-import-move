@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import fs from 'fs';
-import { handleFileMove } from '../../src/lib/fileHandler.js';
-import type { MovedFilesMap } from '../../src/types/index.d.js';
+import { handleFileMove } from '@/lib/fileHandler.js';
+import type { MovedFilesMap } from '@/types/index.d.js';
 import child_process from 'child_process';
 
 // Define expected function types for casting

@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
-import type { ResizeState, PanelPosition } from './ResizablePanel.types';
+import type { ResizeState, PanelPosition } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ResizablePanel/ResizablePanel.types';
 
 interface UseResizablePanelParams {
   initialWidth: number;

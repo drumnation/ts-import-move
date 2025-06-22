@@ -13,7 +13,7 @@ import { IconEye, IconDownload, IconRefresh } from '@tabler/icons-react';
 import { InstantPreview } from '@/shared-components/atoms/InstantPreview';
 import { generateDocumentHtml } from '@/shared-components/molecules/DocumentSnapshot/DocumentSnapshot.logic';
 import { exportAndDownloadPdf } from '@/services/documentPdfExport.service';
-import type { InstantPreviewPanelProps } from './InstantPreviewPanel.types';
+import type { InstantPreviewPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/InstantPreviewPanel/InstantPreviewPanel.types';
 
 /**
  * InstantPreviewPanel Component

@@ -42,11 +42,11 @@ import {
 } from '@tabler/icons-react';
 import { Dropzone, FileWithPath } from '@mantine/dropzone';
 import { useMediaQuery } from '@mantine/hooks';
-import { useAssetsIndex } from './Assets.hook';
-import { AssetPreview } from './components/AssetPreview';
-import { AssetFilterBar } from './components/AssetFilterBar/index';
-import { AssetUploadDropzone } from './components/AssetUploadDropzone';
-import type { Asset, AssetType } from './Assets.types';
+import { useAssetsIndex } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/Assets.hook';
+import { AssetPreview } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetPreview';
+import { AssetFilterBar } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetFilterBar/index';
+import { AssetUploadDropzone } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetUploadDropzone';
+import type { Asset, AssetType } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/Assets.types';
 
 export interface AssetsProps {
   /** Panel size constraints */

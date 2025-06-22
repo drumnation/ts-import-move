@@ -4,10 +4,10 @@
  */
 
 // Main component
-export { LeftColumnResizer } from './LeftColumnResizer';
+export { LeftColumnResizer } from '@/tests/complex-document-editor-migration/source/components/layout/resize/LeftColumnResizer/LeftColumnResizer';
 
 // Types
-export type { LeftColumnResizerProps } from './LeftColumnResizer.types';
+export type { LeftColumnResizerProps } from '@/tests/complex-document-editor-migration/source/components/layout/resize/LeftColumnResizer/LeftColumnResizer.types';
 
 // Business logic functions
 export {
@@ -27,13 +27,13 @@ export {
   resetResizeState,
   validateResizeConfig,
   calculateResizeMetrics
-} from './LeftColumnResizer.logic';
+} from '@/tests/complex-document-editor-migration/source/components/layout/resize/LeftColumnResizer/LeftColumnResizer.logic';
 
 // Custom hooks
 export { 
   useLeftColumnResizer,
   useResizePerformance 
-} from './LeftColumnResizer.hook';
+} from '@/tests/complex-document-editor-migration/source/components/layout/resize/LeftColumnResizer/LeftColumnResizer.hook';
 
 // Styled components (for advanced usage)
 export {
@@ -47,4 +47,4 @@ export {
   handleVariants,
   previewVariants,
   indicatorVariants
-} from './LeftColumnResizer.styles'; 
+} from '@/tests/complex-document-editor-migration/source/components/layout/resize/LeftColumnResizer/LeftColumnResizer.styles'; 

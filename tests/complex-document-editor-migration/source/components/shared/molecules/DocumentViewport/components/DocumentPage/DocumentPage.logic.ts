@@ -1,4 +1,4 @@
-import type { ViewMode } from '../../DocumentViewport.types';
+import type { ViewMode } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/DocumentViewport.types';
 
 /**
  * Get hover scale factor based on view mode

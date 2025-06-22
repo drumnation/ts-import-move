@@ -8,9 +8,9 @@
  */
 
 // Main Panel Containers (Level 3 Platform Separation)
-export * from './containers/LeftPanel';
-export * from './containers/RightPanel'; 
-export * from './containers/CenterPanel';
+export * from '@/tests/complex-document-editor-migration/source/components/panels/containers/LeftPanel';
+export * from '@/tests/complex-document-editor-migration/source/components/panels/containers/RightPanel'; 
+export * from '@/tests/complex-document-editor-migration/source/components/panels/containers/CenterPanel';
 
 // Panel Content Components
-export * from './components'; 
+export * from '@/tests/complex-document-editor-migration/source/components/panels/components'; 

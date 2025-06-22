@@ -8,10 +8,10 @@
  */
 
 // Main component export
-export { DocumentEditorLayout } from './DocumentEditorLayout';
+export { DocumentEditorLayout } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout';
 
 // Hook exports
-export { useDocumentEditorLayout } from './DocumentEditorLayout.hook';
+export { useDocumentEditorLayout } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout.hook';
 
 // Type exports
 export type {
@@ -24,7 +24,7 @@ export type {
   PanelHandlers,
   LayoutState,
   ContainerDimensions
-} from './DocumentEditorLayout.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout.types';
 
 // Logic function exports
 export {
@@ -36,11 +36,11 @@ export {
   getPanelId,
   validatePanelSize,
   getResponsiveBreakpoints
-} from './DocumentEditorLayout.logic';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout.logic';
 
 // Legacy compatibility exports (for gradual migration)
 // These allow existing imports to continue working during refactor
-export { DocumentEditorLayout as EditorCanvas } from './DocumentEditorLayout';
-export { useDocumentEditorLayout as useEditorCanvas } from './DocumentEditorLayout.hook';
-export type { DocumentEditorLayoutProps as EditorCanvasProps } from './DocumentEditorLayout.types';
-export type { LayoutContainerProps as CanvasContainerProps } from './DocumentEditorLayout.types'; 
+export { DocumentEditorLayout as EditorCanvas } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout';
+export { useDocumentEditorLayout as useEditorCanvas } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout.hook';
+export type { DocumentEditorLayoutProps as EditorCanvasProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout.types';
+export type { LayoutContainerProps as CanvasContainerProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout.types'; 

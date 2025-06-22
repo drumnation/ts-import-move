@@ -9,9 +9,9 @@
  */
 
 import { useCallback, useState, useRef, useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '../../../../../../hooks/store.hooks';
-import { selectColumnConstraints, selectRightColumnSize } from '../../../../../../stores/selectors/layout.selectors';
-import { resizeColumn, setResizing } from '../../../../../../stores/layout.slice';
+import { useAppSelector, useAppDispatch } from '@/tests/hooks/store.hooks';
+import { selectColumnConstraints, selectRightColumnSize } from '@/tests/stores/selectors/layout.selectors';
+import { resizeColumn, setResizing } from '@/tests/stores/layout.slice';
 import type { 
   RightColumnResizerProps, 
   RightResizeState, 
@@ -20,7 +20,7 @@ import type {
   ResizeState,
   ResizeConstraints,
   ResizeHandlers
-} from './RightColumnResizer.types';
+} from '@/tests/complex-document-editor-migration/source/components/layout/resize/RightColumnResizer/RightColumnResizer.types';
 
 /**
  * Calculate maximum allowed width based on layout constraints

@@ -29,7 +29,7 @@ import {
 import type { 
   LexicalASTNode, 
   LexicalEditorReduxProps 
-} from './LexicalEditor.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.types';
 import type { DocumentBlock } from '@/stores/document.types';
 
 /**

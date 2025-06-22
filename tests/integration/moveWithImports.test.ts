@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import fs from 'fs';
 import path from 'path';
-import { moveFiles } from '../../src/lib/index.js';
+import { moveFiles } from '@/lib/index.js';
 
 describe('moveFiles integration test', () => {
   const testDir = path.join(process.cwd(), 'test-temp-integration');
@@ -90,7 +90,7 @@ export function Button({ label, onClick }: ButtonProps) {
     
     // Read the component file to verify imports were updated
     const buttonContent = fs.readFileSync(path.join(componentsDir, 'Button.ts'), 'utf-8');
-    expect(buttonContent).toContain("import { toTitleCase, generateId } from '../shared/helpers'");
+    expect(buttonContent).toContain("import { toTitleCase, generateId } from '@/shared/helpers'");
     expect(buttonContent).not.toContain("import { toTitleCase, generateId } from '../utils/helpers'");
   });
 }); 

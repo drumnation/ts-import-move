@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ProgressOverlay } from './ProgressOverlay';
-import { ExecutionState } from './ProgressOverlay.types';
+import { ProgressOverlay } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components/ProgressOverlay/ProgressOverlay';
+import { ExecutionState } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components/ProgressOverlay/ProgressOverlay.types';
 
 const meta: Meta<typeof ProgressOverlay> = {
   title: 'Mobile/ProgressOverlay',

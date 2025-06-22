@@ -4,7 +4,7 @@ import type {
   PageWrapperStyledProps,
   PageContentStyledProps,
   PageNumberStyledProps
-} from './DocumentPage.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/components/DocumentPage/DocumentPage.types';
 
 export const PageWrapper = styled(motion.div)<PageWrapperStyledProps>`
   background: white;

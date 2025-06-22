@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { MantineProvider } from '@mantine/core';
-import { DocumentInfoPanel } from '../DocumentInfoPanel';
-import type { DocumentInfoPanelProps } from '../DocumentInfoPanel.types';
+import { DocumentInfoPanel } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelConfiguration/components/DocumentInfoPanel/DocumentInfoPanel';
+import type { DocumentInfoPanelProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelConfiguration/components/DocumentInfoPanel/DocumentInfoPanel.types';
 
 const defaultProps: DocumentInfoPanelProps = {
   createdDate: 'Today',

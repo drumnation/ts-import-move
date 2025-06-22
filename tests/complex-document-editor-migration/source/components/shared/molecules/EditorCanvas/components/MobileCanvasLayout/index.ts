@@ -1,2 +1,2 @@
-export { MobileCanvasLayout } from './MobileCanvasLayout';
-export type { MobileCanvasLayoutProps } from './MobileCanvasLayout.types'; 
+export { MobileCanvasLayout } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/MobileCanvasLayout/MobileCanvasLayout';
+export type { MobileCanvasLayoutProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/MobileCanvasLayout/MobileCanvasLayout.types'; 

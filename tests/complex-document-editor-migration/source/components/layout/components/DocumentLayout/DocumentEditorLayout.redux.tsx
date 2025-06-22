@@ -11,8 +11,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { PlatformProvider } from './PlatformDetection';
-import { LeftPanel, RightPanel, useLeftPanelRedux, useRightPanelRedux } from '../panels';
+import { PlatformProvider } from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/PlatformDetection';
+import { LeftPanel, RightPanel, useLeftPanelRedux, useRightPanelRedux } from '@/tests/complex-document-editor-migration/source/components/layout/components/panels';
 
 const EditorContainer = styled(motion.div)`
   display: flex;

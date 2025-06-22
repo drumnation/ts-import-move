@@ -1,4 +1,4 @@
-import type { Asset } from '../../../../../stores/assets.slice';
+import type { Asset } from '@/tests/complex-document-editor-migration/stores/assets.slice';
 
 /**
  * AssetPanel component props interface

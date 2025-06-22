@@ -3,7 +3,7 @@
  * @module EditorCanvas.types
  */
 
-import type { PanelSlot, PanelResizeConfig, MultiPageDocument } from '../../DocumentEditorPage.types';
+import type { PanelSlot, PanelResizeConfig, MultiPageDocument } from '@/tests/complex-document-editor-migration/source/components/shared/DocumentEditorPage.types';
 
 export interface EditorCanvasProps {
   /** Document to display */

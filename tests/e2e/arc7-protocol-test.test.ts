@@ -61,6 +61,7 @@ describe('ARC-7 Protocol: Complex Architectural Migration', () => {
       const movedBFile = path.join(destinationDir, 'moved', 'ComponentB', 'ComponentB.tsx');
       const bContent = fs.readFileSync(movedBFile, 'utf-8');
       
+      // Without tsconfig absolute imports support, the relative import remains
       expect(bContent).toContain('from \'../ComponentA/ComponentA\'');
       
     } finally {

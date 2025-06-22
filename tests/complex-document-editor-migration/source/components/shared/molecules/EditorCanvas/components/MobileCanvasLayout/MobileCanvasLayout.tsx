@@ -4,11 +4,11 @@
  */
 
 import React from 'react';
-import { DocumentViewport } from '../../../DocumentViewport/DocumentViewport';
-import { SlotPanel } from '../../../SlotPanel/SlotPanel';
-import { MobileLayout, CenterContent } from './MobileCanvasLayout.styles';
-import { useMobileCanvasLayout } from './MobileCanvasLayout.hook';
-import type { MobileCanvasLayoutProps } from './MobileCanvasLayout.types';
+import { DocumentViewport } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/DocumentViewport';
+import { SlotPanel } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlotPanel/SlotPanel';
+import { MobileLayout, CenterContent } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/MobileCanvasLayout/MobileCanvasLayout.styles';
+import { useMobileCanvasLayout } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/MobileCanvasLayout/MobileCanvasLayout.hook';
+import type { MobileCanvasLayoutProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/MobileCanvasLayout/MobileCanvasLayout.types';
 
 export const MobileCanvasLayout: React.FC<MobileCanvasLayoutProps> = ({
   document,

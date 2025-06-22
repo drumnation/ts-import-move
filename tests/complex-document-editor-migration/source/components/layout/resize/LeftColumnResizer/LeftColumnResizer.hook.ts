@@ -9,7 +9,7 @@ import type {
   LeftColumnResizerLogic,
   ResizeState, 
   ResizeConstraints 
-} from './LeftColumnResizer.types';
+} from '@/tests/complex-document-editor-migration/source/components/layout/resize/LeftColumnResizer/LeftColumnResizer.types';
 import {
   calculateConstraints,
   validateWidth,
@@ -18,7 +18,7 @@ import {
   createResizeState,
   updateResizeState,
   resetResizeState
-} from './LeftColumnResizer.logic';
+} from '@/tests/complex-document-editor-migration/source/components/layout/resize/LeftColumnResizer/LeftColumnResizer.logic';
 
 /**
  * Custom hook for left column resizer functionality

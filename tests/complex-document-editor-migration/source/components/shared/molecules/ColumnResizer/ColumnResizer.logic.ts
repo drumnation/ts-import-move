@@ -7,7 +7,7 @@
  * @module ColumnResizer.logic
  */
 
-import type { ColumnResizeConfig, ColumnResizeState } from './ColumnResizer.types';
+import type { ColumnResizeConfig, ColumnResizeState } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ColumnResizer/ColumnResizer.types';
 
 /**
  * Calculates the new column width based on mouse/touch movement

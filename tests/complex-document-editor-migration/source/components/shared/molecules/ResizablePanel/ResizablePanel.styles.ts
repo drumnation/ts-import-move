@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { resizeTokens } from '../../tokens/resize.tokens';
-import type { PanelPosition, TouchConfig } from './ResizablePanel.types';
+import { resizeTokens } from '@/tests/complex-document-editor-migration/source/components/shared/tokens/resize.tokens';
+import type { PanelPosition, TouchConfig } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ResizablePanel/ResizablePanel.types';
 
 export const PanelContainer = styled(motion.div)<{ 
   position: PanelPosition; 

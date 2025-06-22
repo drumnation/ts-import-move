@@ -3,15 +3,15 @@
  * @module AssetPreview
  */
 
-export { AssetPreview } from './AssetPreview';
+export { AssetPreview } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetPreview/AssetPreview';
 export type { 
   AssetPreviewProps, 
   AssetPreviewSize, 
   AssetPreviewSizeVariant 
-} from './AssetPreview.types';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetPreview/AssetPreview.types';
 export { 
   SIZE_MAP, 
   getIconSize, 
   getTypeIcon, 
   getDimensions 
-} from './AssetPreview.logic'; 
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetPreview/AssetPreview.logic'; 

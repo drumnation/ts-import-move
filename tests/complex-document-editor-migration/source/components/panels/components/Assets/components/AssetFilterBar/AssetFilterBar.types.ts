@@ -3,7 +3,7 @@
  * @module AssetFilterBar.types
  */
 
-import type { AssetType as BaseAssetType, AssetFilter } from '../../Assets.types';
+import type { AssetType as BaseAssetType, AssetFilter } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/Assets.types';
 
 export type AssetType = BaseAssetType | 'all';
 

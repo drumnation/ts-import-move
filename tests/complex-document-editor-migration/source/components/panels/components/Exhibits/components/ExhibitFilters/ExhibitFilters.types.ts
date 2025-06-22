@@ -1,4 +1,4 @@
-import { ExhibitFilters as ExhibitFiltersType, ExhibitStatus } from '../Exhibits.types';
+import { ExhibitFilters as ExhibitFiltersType, ExhibitStatus } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/Exhibits.types';
 
 export interface ExhibitFiltersProps {
   filters: ExhibitFiltersType;

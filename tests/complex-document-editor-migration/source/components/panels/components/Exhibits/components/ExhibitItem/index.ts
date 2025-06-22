@@ -1,11 +1,11 @@
-export { ExhibitItem } from './ExhibitItem';
-export type { ExhibitItemProps, ExhibitStatus, ExhibitRelevance } from './ExhibitItem.types';
+export { ExhibitItem } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitItem/ExhibitItem';
+export type { ExhibitItemProps, ExhibitStatus, ExhibitRelevance } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitItem/ExhibitItem.types';
 export { 
   getStatusColor, 
   getStatusIcon, 
   getRelevanceColor,
   formatCitationsText,
   formatTagsDisplay
-} from './ExhibitItem.logic';
-export { useExhibitItemHandlers } from './ExhibitItem.hook';
-export { StyledCard, ExhibitLabel } from './ExhibitItem.styles'; 
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitItem/ExhibitItem.logic';
+export { useExhibitItemHandlers } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitItem/ExhibitItem.hook';
+export { StyledCard, ExhibitLabel } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitItem/ExhibitItem.styles'; 

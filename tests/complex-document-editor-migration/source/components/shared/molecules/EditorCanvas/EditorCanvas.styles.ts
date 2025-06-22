@@ -5,7 +5,7 @@
 
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import type { CanvasContainerProps, DesktopLayoutProps, PanelSlotContainerProps } from './EditorCanvas.types';
+import type { CanvasContainerProps, DesktopLayoutProps, PanelSlotContainerProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/EditorCanvas.types';
 
 export const CanvasContainer = styled(motion.div)<CanvasContainerProps>`
   display: flex;

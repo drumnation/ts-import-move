@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import type { QuickAction } from '../agentControls.types';
-import { getQuickActions } from '../agentControls.logic';
+import type { QuickAction } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/agentControls.types';
+import { getQuickActions } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/agentControls.logic';
 
 interface UseQuickActionsProps {
   onActionSelect: (action: QuickAction) => void;

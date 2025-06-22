@@ -7,7 +7,7 @@
  */
 
 // Main component
-export { VerticalSplitter, VerticalSplitterMemo } from './VerticalSplitter';
+export { VerticalSplitter, VerticalSplitterMemo } from '@/tests/complex-document-editor-migration/source/components/layout/resize/VerticalSplitter/VerticalSplitter';
 
 // Types
 export type { 
@@ -17,7 +17,7 @@ export type {
   SplitEvent,
   SplitHandlers,
   SplitterStyles,
-} from './VerticalSplitter.types';
+} from '@/tests/complex-document-editor-migration/source/components/layout/resize/VerticalSplitter/VerticalSplitter.types';
 
 // Logic utilities (for testing or advanced usage)
 export {
@@ -29,7 +29,7 @@ export {
   useVerticalSplitterLogic,
   createSplitConstraints,
   validateSplitState,
-} from './VerticalSplitter.logic';
+} from '@/tests/complex-document-editor-migration/source/components/layout/resize/VerticalSplitter/VerticalSplitter.logic';
 
 // Styled components (for customization)
-export { VerticalSplitterStyles } from './VerticalSplitter.styles'; 
+export { VerticalSplitterStyles } from '@/tests/complex-document-editor-migration/source/components/layout/resize/VerticalSplitter/VerticalSplitter.styles'; 

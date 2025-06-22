@@ -10,11 +10,11 @@
  */
 
 import React from 'react';
-import { LayoutContainer } from './DocumentEditorLayout.styles';
-import { useDocumentEditorLayout } from './DocumentEditorLayout.hook';
-import { MobileCanvasLayout } from './components/MobileCanvasLayout';
-import { DesktopCanvasLayout } from './components/DesktopCanvasLayout';
-import type { DocumentEditorLayoutProps } from './DocumentEditorLayout.types';
+import { LayoutContainer } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout.styles';
+import { useDocumentEditorLayout } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout.hook';
+import { MobileCanvasLayout } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/components/MobileCanvasLayout';
+import { DesktopCanvasLayout } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/components/DesktopCanvasLayout';
+import type { DocumentEditorLayoutProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout.types';
 
 /**
  * DocumentEditorLayout Component

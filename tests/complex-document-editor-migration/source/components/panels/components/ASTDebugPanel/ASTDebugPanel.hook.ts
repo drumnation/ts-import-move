@@ -7,8 +7,8 @@
  */
 
 import { useState, useCallback, useEffect } from 'react';
-import { useLexicalSnapshot } from '../../../shared/molecules/LexicalEditor/LexicalEditor.snapshot';
-import type { DebugViewMode, DebugPanelState } from './ASTDebugPanel.types';
+import { useLexicalSnapshot } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.snapshot';
+import type { DebugViewMode, DebugPanelState } from '@/tests/complex-document-editor-migration/source/components/panels/components/ASTDebugPanel/ASTDebugPanel.types';
 
 /**
  * Hook for managing AST Debug Panel functionality

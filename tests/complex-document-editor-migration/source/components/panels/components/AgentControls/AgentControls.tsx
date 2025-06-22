@@ -5,10 +5,10 @@
 
 import React from 'react';
 import { useMediaQuery } from '@mantine/hooks';
-import type { AgentControlsProps } from './agentControls.types';
-import { useAgentControls, useAgentExecution, useQuickActions } from './hooks';
-import { MobileLayout } from './components/MobileLayout';
-import { DesktopLayout } from './components/DesktopLayout';
+import type { AgentControlsProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/agentControls.types';
+import { useAgentControls, useAgentExecution, useQuickActions } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/hooks';
+import { MobileLayout } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/components/MobileLayout';
+import { DesktopLayout } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/components/DesktopLayout';
 
 export const AgentControls: React.FC<AgentControlsProps> = ({
   selectedNodes = [],

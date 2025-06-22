@@ -1,2 +1,2 @@
-export { PreviewIframe } from './PreviewIframe';
-export type { PreviewIframeProps, DocumentAST, ContentNode, PreviewState } from './PreviewIframe.types'; 
+export { PreviewIframe } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PreviewIframe/PreviewIframe';
+export type { PreviewIframeProps, DocumentAST, ContentNode, PreviewState } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PreviewIframe/PreviewIframe.types'; 

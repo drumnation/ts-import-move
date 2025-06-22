@@ -8,7 +8,7 @@ export {
   PlatformProvider, 
   usePlatformDetection, 
   PlatformRouter 
-} from './PlatformDetection';
+} from '@/tests/complex-document-editor-migration/source/components/layout/components/PlatformDetection/PlatformDetection';
 
 // Type exports
-export type { PlatformConfig } from './PlatformDetection'; 
+export type { PlatformConfig } from '@/tests/complex-document-editor-migration/source/components/layout/components/PlatformDetection/PlatformDetection'; 

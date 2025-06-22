@@ -12,8 +12,8 @@
  */
 
 import React from 'react';
-import { PanelContentBox } from './PanelContentBox';
-import type { PanelContentBoxProps } from './PanelContentBox.types';
+import { PanelContentBox } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/components/PanelContentBox/PanelContentBox';
+import type { PanelContentBoxProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/components/PanelContentBox/PanelContentBox.types';
 
 // Example usage of the component for reference
 export const PanelContentBoxExamples = {

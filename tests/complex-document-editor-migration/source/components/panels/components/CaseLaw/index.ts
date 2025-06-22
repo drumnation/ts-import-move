@@ -1,3 +1,3 @@
-export { CaseLaw } from './CaseLaw';
-export * from './CaseLaw.types';
-export * from './CaseLaw.hook'; 
+export { CaseLaw } from '@/tests/complex-document-editor-migration/source/components/panels/components/CaseLaw/CaseLaw';
+export * from '@/tests/complex-document-editor-migration/source/components/panels/components/CaseLaw/CaseLaw.types';
+export * from '@/tests/complex-document-editor-migration/source/components/panels/components/CaseLaw/CaseLaw.hook'; 

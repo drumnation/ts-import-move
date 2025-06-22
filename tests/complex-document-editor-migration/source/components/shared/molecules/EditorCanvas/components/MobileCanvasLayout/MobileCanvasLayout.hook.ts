@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
-import { createPanelProps, type RenderPanelConfig } from './MobileCanvasLayout.logic';
-import type { PanelSlot } from '../../../../DocumentEditorPage.types';
-import type { PanelCalculations, PanelHandlers } from '../../EditorCanvas.types';
+import { createPanelProps, type RenderPanelConfig } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/MobileCanvasLayout/MobileCanvasLayout.logic';
+import type { PanelSlot } from '@/tests/complex-document-editor-migration/source/components/shared/DocumentEditorPage.types';
+import type { PanelCalculations, PanelHandlers } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/EditorCanvas.types';
 
 export interface UseMobileCanvasLayoutProps {
   panelSlots: PanelSlot[];

@@ -4,7 +4,7 @@ import {
   IconClock,
   IconEdit,
 } from '@tabler/icons-react';
-import { SimpleCitationStatus } from './CaseLaw.types';
+import { SimpleCitationStatus } from '@/tests/complex-document-editor-migration/source/components/panels/components/CaseLaw/CaseLaw.types';
 
 export const getStatusColor = (status: SimpleCitationStatus): string => {
   switch (status) {

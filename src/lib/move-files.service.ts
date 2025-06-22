@@ -10,11 +10,11 @@ import chalk from 'chalk';
 import fs from 'fs';
 
 
-import { findTsConfigForFiles } from '../commands/utils.js';
-import { executeDryRun } from './dry-run.service.js';
-import { ImportPathContext } from './import-path.service.js';
-import { safeParseSourceFile, defaultParseOptions } from './safe-parser.service.js';
-import { executeFileMove } from './file-operations.service.js';
+import { findTsConfigForFiles } from '@/commands/utils.js';
+import { executeDryRun } from '@/lib/dry-run.service.js';
+import { ImportPathContext } from '@/lib/import-path.service.js';
+import { safeParseSourceFile, defaultParseOptions } from '@/lib/safe-parser.service.js';
+import { executeFileMove } from '@/lib/file-operations.service.js';
 
 export interface MoveFilesOptions {
   readonly extensions?: string;
@@ -25,6 +25,8 @@ export interface MoveFilesOptions {
   readonly tsConfigPath?: string;
   readonly recursive?: boolean;
   readonly tsconfig?: string;
+  readonly absoluteImports?: boolean;
+  readonly aliasPrefix?: string;
 }
 
 export interface FileEntry {
@@ -474,6 +476,48 @@ export const moveFiles = async (
     force: options.force ?? false,
     sourceDirRoot
   });
+  
+  // Convert relative imports to absolute imports if enabled (default: true)
+  const shouldConvertToAbsolute = options.absoluteImports !== false;
+  
+  if (shouldConvertToAbsolute && projectConfig.tsConfigPath) {
+    if (options.verbose) {
+      console.log('Converting relative imports to absolute imports...');
+    }
+    
+    try {
+      const { convertProjectToAbsoluteImports } = await import('./absolute-imports.service.js');
+      const aliasPrefix = options.aliasPrefix || '@';
+      const projectRoot = path.dirname(projectConfig.tsConfigPath);
+      
+      const totalConversions = convertProjectToAbsoluteImports(
+        project.getSourceFiles(),
+        projectConfig.tsConfigPath,
+        aliasPrefix,
+        projectRoot,
+        options.verbose || false
+      );
+      
+      if (options.verbose) {
+        console.log(`✅ Converted ${totalConversions} imports to absolute paths`);
+      }
+      
+      // Save the absolute import changes
+      project.saveSync();
+      
+    } catch (error) {
+      if (options.verbose) {
+        console.warn(`⚠️ Failed to convert imports to absolute: ${error instanceof Error ? error.message : String(error)}`);
+      }
+      // Don't fail the entire operation if absolute imports conversion fails
+    }
+  } else if (options.verbose) {
+    if (!shouldConvertToAbsolute) {
+      console.log('Skipping absolute imports conversion (disabled by --no-absolute-imports)');
+    } else {
+      console.log('Skipping absolute imports conversion (no tsconfig found)');
+    }
+  }
   
   return result;
 }; 

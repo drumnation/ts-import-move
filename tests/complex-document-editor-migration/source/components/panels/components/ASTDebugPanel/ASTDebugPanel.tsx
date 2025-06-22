@@ -9,7 +9,7 @@
 
 import React, { useCallback, useMemo } from 'react';
 import { IconCode, IconRefresh, IconChevronDown, IconChevronRight, IconFileText } from '@tabler/icons-react';
-import type { ASTDebugPanelProps, DebugViewMode } from './ASTDebugPanel.types';
+import type { ASTDebugPanelProps, DebugViewMode } from '@/tests/complex-document-editor-migration/source/components/panels/components/ASTDebugPanel/ASTDebugPanel.types';
 import {
   DebugPanelContainer,
   DebugPanelHeader,
@@ -30,7 +30,7 @@ import {
   MetadataContainer,
   NodeCount,
   LastUpdated
-} from './ASTDebugPanel.styles';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/ASTDebugPanel/ASTDebugPanel.styles';
 
 /**
  * Format timestamp for display

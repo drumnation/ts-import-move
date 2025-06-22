@@ -8,14 +8,14 @@
 
 import { useCallback, useMemo } from 'react';
 import { useMediaQuery } from '@mantine/hooks';
-import type { DocumentToolbarProps, SelectionState } from './DocumentToolbar.types';
+import type { DocumentToolbarProps, SelectionState } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/DocumentToolbar.types';
 import { 
   isListActionEnabled,
   isListButtonActive,
   validateSelectionState,
   getOptimalButtonSize,
   createListActionLabel
-} from './DocumentToolbar.logic';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/DocumentToolbar.logic';
 
 /**
  * Main hook for DocumentToolbar component state and behavior

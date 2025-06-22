@@ -1,4 +1,4 @@
-import type { AssetUploadConfig } from './AssetUploadDropzone.types';
+import type { AssetUploadConfig } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetUploadDropzone/AssetUploadDropzone.types';
 
 /**
  * Formats file size from bytes to MB with one decimal place

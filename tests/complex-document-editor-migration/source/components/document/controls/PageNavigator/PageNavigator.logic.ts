@@ -20,7 +20,7 @@ import type {
   PageNavigationState,
   PageNavigationActions,
   PageThumbnail
-} from './PageNavigator.types';
+} from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.types';
 
 /**
  * Pure function to calculate page range for pagination

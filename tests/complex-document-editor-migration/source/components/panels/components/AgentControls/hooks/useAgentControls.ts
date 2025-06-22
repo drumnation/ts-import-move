@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
-import type { QuickAction } from '../agentControls.types';
-import { getModelOptions, canExecuteInstruction } from '../agentControls.logic';
+import type { QuickAction } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/agentControls.types';
+import { getModelOptions, canExecuteInstruction } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/agentControls.logic';
 
 interface UseAgentControlsProps {
   targetPath?: string;

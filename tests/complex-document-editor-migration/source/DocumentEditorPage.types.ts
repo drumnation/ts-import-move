@@ -7,11 +7,11 @@ import { ReactNode } from 'react';
 import type { 
   LegalDocument, 
   Node
-} from '../../types/legal-document-ast';
+} from '@/tests/types/legal-document-ast';
 import type { 
   DocumentPoolItem,
   ExhibitAssignmentData
-} from '../../shared-components/molecules/DocumentPool/DocumentPool.types';
+} from '@/tests/shared-components/molecules/DocumentPool/DocumentPool.types';
 
 export interface DocumentEditorPageProps {
   /** Initial document to load */

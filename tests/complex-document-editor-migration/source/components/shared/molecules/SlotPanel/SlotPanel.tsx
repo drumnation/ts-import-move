@@ -15,15 +15,15 @@ import {
   IconChevronLeft, 
   IconChevronRight
 } from '@tabler/icons-react';
-import { BidirectionalResizer } from '../BidirectionalResizer/BidirectionalResizer';
-import { useSlotPanel } from './SlotPanel.hook';
+import { BidirectionalResizer } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/BidirectionalResizer/BidirectionalResizer';
+import { useSlotPanel } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlotPanel/SlotPanel.hook';
 import { 
   PanelContainer, 
   PanelHeader, 
   PanelContent, 
   MobileDragHandle 
-} from './SlotPanel.styles';
-import type { SlotPanelProps } from './SlotPanel.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlotPanel/SlotPanel.styles';
+import type { SlotPanelProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlotPanel/SlotPanel.types';
 
 /**
  * Icon mapping for collapse/expand functionality

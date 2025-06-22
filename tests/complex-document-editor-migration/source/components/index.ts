@@ -8,10 +8,10 @@
  */
 
 // Layout Components (Architectural)
-export * from './layout';
+export * from '@/tests/complex-document-editor-migration/source/components/layout';
 
 // Panel System (Feature-specific)
-export * from './panels';
+export * from '@/tests/complex-document-editor-migration/source/components/panels';
 
 // Shared Components (Atomic Design System)
 // Note: Import directly from shared/atoms, shared/molecules, etc. to avoid conflicts

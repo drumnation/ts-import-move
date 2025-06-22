@@ -9,8 +9,8 @@
 import React from 'react';
 import { Group, Tooltip } from '@mantine/core';
 import { IconIndentIncrease, IconIndentDecrease } from '@tabler/icons-react';
-import type { IndentControlsProps } from '../../DocumentToolbar.types';
-import { IndentButton } from '../../DocumentToolbar.styles';
+import type { IndentControlsProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/DocumentToolbar.types';
+import { IndentButton } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/DocumentToolbar.styles';
 
 /**
  * IndentControls component for managing list nesting

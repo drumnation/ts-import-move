@@ -7,9 +7,9 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MantineProvider } from '@mantine/core';
 import { vi } from 'vitest';
-import { DocumentEditorPage } from '../DocumentEditorPage';
-import { DocumentStore } from '../../../stores/DocumentStore';
-import { mockDocumentData } from '../../../__mocks__/documentMocks';
+import { DocumentEditorPage } from '@/tests/complex-document-editor-migration/source/DocumentEditorPage';
+import { DocumentStore } from '@/tests/stores/DocumentStore';
+import { mockDocumentData } from '@/tests/__mocks__/documentMocks';
 
 // Mock the DocumentStore
 vi.mock('../../../stores/DocumentStore', () => ({

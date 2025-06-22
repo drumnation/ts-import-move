@@ -10,18 +10,18 @@ import React, { useState, useCallback, useRef } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Group, Text, ActionIcon } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
-import { useDocumentViewport } from './DocumentViewport.hook';
+import { useDocumentViewport } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/DocumentViewport.hook';
 import { 
   ViewportContainer, 
   ViewportHeader, 
   PageContainer, 
   NavigationControls,
   ThumbnailGrid 
-} from './DocumentViewport.styles';
-import { ViewportControls } from './components/ViewportControls';
-import { DocumentPage } from './components/DocumentPage';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/DocumentViewport.styles';
+import { ViewportControls } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/components/ViewportControls';
+import { DocumentPage } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/components/DocumentPage';
 import { EditorNodePalette } from '@/shared-components/molecules/EditorNodePalette';
-import type { DocumentViewportProps } from './DocumentViewport.types';
+import type { DocumentViewportProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/DocumentViewport.types';
 import type { DocumentPage as DocumentPageData } from '@/pages/DocumentEditorPage/DocumentEditorPage.types';
 import type { NodeCommandWithMetadata } from '@/shared-components/molecules/EditorNodePalette/EditorNodePalette.types';
 

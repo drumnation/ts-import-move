@@ -11,9 +11,9 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { PanelHeader } from '../atoms/PanelHeader';
-import { PanelContent } from '../atoms/PanelContent';
-import type { CenterPanelProps, CenterPanelLogic } from './CenterPanel.types';
+import { PanelHeader } from '@/tests/complex-document-editor-migration/source/components/panels/containers/atoms/PanelHeader';
+import { PanelContent } from '@/tests/complex-document-editor-migration/source/components/panels/containers/atoms/PanelContent';
+import type { CenterPanelProps, CenterPanelLogic } from '@/tests/complex-document-editor-migration/source/components/panels/containers/CenterPanel/CenterPanel.types';
 
 interface CenterPanelMobileProps extends CenterPanelProps, CenterPanelLogic {}
 

@@ -3,11 +3,11 @@
  * Stateful logic for panel control operations
  */
 import { useCallback } from 'react';
-import { useAppDispatch } from '../../../../../../stores/store';
-import { openPanel, closePanel } from '../../../../../../stores/panels.slice';
-import { leftPanelActions, rightPanelActions } from '../../../panels';
-import type { PanelControlsProps } from './PanelControls.types';
-import { createControlGroups } from './PanelControls.logic';
+import { useAppDispatch } from '@/tests/stores/store';
+import { openPanel, closePanel } from '@/tests/stores/panels.slice';
+import { leftPanelActions, rightPanelActions } from '@/tests/complex-document-editor-migration/source/components/panels';
+import type { PanelControlsProps } from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/PanelControls.types';
+import { createControlGroups } from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/PanelControls.logic';
 
 export const usePanelControls = (props: PanelControlsProps = {}) => {
   const { visible = true, position = 'bottom' } = props;

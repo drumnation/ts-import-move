@@ -9,9 +9,9 @@
  */
 
 import React from 'react';
-import { VerticalSplitterStyles } from './VerticalSplitter.styles';
-import { useVerticalSplitterLogic } from './VerticalSplitter.logic';
-import type { VerticalSplitterProps } from './VerticalSplitter.types';
+import { VerticalSplitterStyles } from '@/tests/complex-document-editor-migration/source/components/layout/resize/VerticalSplitter/VerticalSplitter.styles';
+import { useVerticalSplitterLogic } from '@/tests/complex-document-editor-migration/source/components/layout/resize/VerticalSplitter/VerticalSplitter.logic';
+import type { VerticalSplitterProps } from '@/tests/complex-document-editor-migration/source/components/layout/resize/VerticalSplitter/VerticalSplitter.types';
 
 /**
  * VerticalSplitter component for splitting panels vertically within columns

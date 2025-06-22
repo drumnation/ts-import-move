@@ -13,7 +13,7 @@ import type {
   StyledPanelContainerProps, 
   StyledPanelHeaderProps, 
   StyledPanelContentProps 
-} from './ConfigurablePanel.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ConfigurablePanel/ConfigurablePanel.types';
 
 /**
  * Main panel container with responsive layout and animation support

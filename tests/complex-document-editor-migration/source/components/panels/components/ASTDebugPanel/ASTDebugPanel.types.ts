@@ -6,7 +6,7 @@
  * @module ASTDebugPanel.types
  */
 
-import type { LexicalASTNode } from '../../../shared/molecules/LexicalEditor/LexicalEditor.types';
+import type { LexicalASTNode } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.types';
 
 /**
  * View modes for the debug panel

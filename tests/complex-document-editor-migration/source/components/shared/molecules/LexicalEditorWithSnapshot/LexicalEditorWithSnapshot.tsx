@@ -10,11 +10,11 @@
 import React, { useMemo } from 'react';
 import { Stack, Group, Paper } from '@mantine/core';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
-import { LexicalEditor } from '../LexicalEditor';
+import { LexicalEditor } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor';
 import { DocumentSnapshot } from '@/shared-components/molecules/DocumentSnapshot';
-import { useLexicalSnapshot } from '../LexicalEditor/LexicalEditor.snapshot';
+import { useLexicalSnapshot } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.snapshot';
 import { usePlatformDetection } from '@/pages/DocumentEditorPage/components/layout/platform';
-import type { LexicalEditorProps } from '../LexicalEditor/LexicalEditor.types';
+import type { LexicalEditorProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.types';
 
 /**
  * Extended props for editor with snapshot capabilities

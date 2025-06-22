@@ -4,7 +4,7 @@
  */
 
 import { ReactNode } from 'react';
-import type { Node } from '../../../../../types/legal-document-ast';
+import type { Node } from '@/tests/complex-document-editor-migration/types/legal-document-ast';
 
 export type AgentInstructionType = 
   | 'summarize'

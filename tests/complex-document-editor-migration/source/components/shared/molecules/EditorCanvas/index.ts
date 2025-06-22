@@ -1,4 +1,4 @@
-export { EditorCanvas } from './EditorCanvas';
+export { EditorCanvas } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/EditorCanvas';
 export type { 
   EditorCanvasProps, 
   CanvasContainerProps, 
@@ -7,4 +7,4 @@ export type {
   GroupedPanels,
   PanelCalculations,
   PanelHandlers
-} from './EditorCanvas.types'; 
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/EditorCanvas.types'; 

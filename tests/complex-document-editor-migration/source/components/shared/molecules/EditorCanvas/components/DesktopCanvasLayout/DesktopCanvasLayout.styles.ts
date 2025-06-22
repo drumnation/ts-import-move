@@ -4,7 +4,7 @@
  */
 
 import styled from '@emotion/styled';
-import type { DesktopLayoutProps, PanelSlotContainerProps } from './DesktopCanvasLayout.types';
+import type { DesktopLayoutProps, PanelSlotContainerProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/DesktopCanvasLayout/DesktopCanvasLayout.types';
 
 export const DesktopLayout = styled.div<DesktopLayoutProps>`
   display: flex;

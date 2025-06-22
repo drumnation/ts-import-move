@@ -5,8 +5,8 @@
 
 import { useCallback } from 'react';
 import { useMediaQuery } from '@mantine/hooks';
-import type { AssetFilterBarProps, AssetFilterBarHookReturn, AssetType } from './AssetFilterBar.types';
-import { hasActiveFilters as checkActiveFilters, createDefaultFilter, toggleSortDirection as toggleDirection } from './AssetFilterBar.logic';
+import type { AssetFilterBarProps, AssetFilterBarHookReturn, AssetType } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetFilterBar/AssetFilterBar.types';
+import { hasActiveFilters as checkActiveFilters, createDefaultFilter, toggleSortDirection as toggleDirection } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetFilterBar/AssetFilterBar.logic';
 
 /**
  * Custom hook for AssetFilterBar component logic

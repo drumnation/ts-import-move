@@ -12,9 +12,9 @@ import {
   convertLexicalNodeToDocumentBlock,
   convertDocumentBlockToLexicalNode,
   createOptimizedEditorTheme
-} from '../LexicalEditor.redux';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.redux';
 import type { DocumentBlock } from '@/stores/document.types';
-import type { LexicalASTNode } from '../LexicalEditor.types';
+import type { LexicalASTNode } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.types';
 
 // Mock platform detection utilities
 const mockMatchMedia = (query: string) => ({

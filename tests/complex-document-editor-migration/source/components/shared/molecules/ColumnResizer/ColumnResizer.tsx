@@ -11,13 +11,13 @@
 
 import React from 'react';
 import { usePlatformDetection } from '@/pages/DocumentEditorPage/DocumentEditorPage.hook';
-import { useColumnResizeHandlers } from './ColumnResizer.hook';
-import { getHorizontalResizeIcon } from './ColumnResizer.logic';
+import { useColumnResizeHandlers } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ColumnResizer/ColumnResizer.hook';
+import { getHorizontalResizeIcon } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ColumnResizer/ColumnResizer.logic';
 import { 
   ColumnResizerContainer, 
   HorizontalResizeHandle 
-} from './ColumnResizer.styles';
-import type { ColumnResizerProps } from './ColumnResizer.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ColumnResizer/ColumnResizer.styles';
+import type { ColumnResizerProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ColumnResizer/ColumnResizer.types';
 
 /**
  * ColumnResizer Component

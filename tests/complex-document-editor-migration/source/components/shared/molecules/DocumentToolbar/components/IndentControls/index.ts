@@ -1,1 +1,1 @@
-export { IndentControls } from './IndentControls'; 
+export { IndentControls } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/components/IndentControls/IndentControls'; 

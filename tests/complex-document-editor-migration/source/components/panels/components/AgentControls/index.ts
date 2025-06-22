@@ -4,10 +4,10 @@
  */
 
 // Main components
-export { AgentControls } from './AgentControls';
+export { AgentControls } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/AgentControls';
 
 // Hooks
-export { useAgentControls, useAgentExecution, useQuickActions } from './hooks/index';
+export { useAgentControls, useAgentExecution, useQuickActions } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/hooks/index';
 
 // Type exports
 export type {
@@ -21,4 +21,4 @@ export type {
   AgentControlsActions,
   AgentControlsProps,
   ModelOption
-} from './agentControls.types'; 
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/agentControls.types'; 

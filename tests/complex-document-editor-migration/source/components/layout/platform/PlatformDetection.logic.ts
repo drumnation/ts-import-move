@@ -15,7 +15,7 @@ import type {
   PlatformState,
   PlatformDetectionHook,
   MediaQueryConfig,
-} from './PlatformDetection.types';
+} from '@/tests/complex-document-editor-migration/source/components/layout/platform/PlatformDetection.types';
 
 /**
  * Default breakpoint configuration

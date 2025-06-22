@@ -4,7 +4,7 @@
  */
 
 // Main components
-export { DocumentEditorPage, DocumentEditorPageContent } from './DocumentEditorPage';
+export { DocumentEditorPage, DocumentEditorPageContent } from '@/tests/complex-document-editor-migration/source/DocumentEditorPage';
 
 // Navigation aids for AI agents
 export { 
@@ -12,13 +12,13 @@ export {
   TASK_TO_LOCATION_MAP, 
   BUG_FIX_LOCATIONS,
   findLocation 
-} from './NAVIGATION_MAP';
+} from '@/tests/complex-document-editor-migration/source/NAVIGATION_MAP';
 export { 
   useDocumentEditor, 
   useDocumentStats, 
   usePlatformDetection,
   useDocumentContent 
-} from './DocumentEditorPage.hook';
+} from '@/tests/complex-document-editor-migration/source/DocumentEditorPage.hook';
 export { 
   generateMockDocument,
   calculateDocumentStats,
@@ -31,7 +31,7 @@ export {
   generateDocumentOutline,
   getSampleDocumentText,
   createSampleLegalDocument
-} from './DocumentEditorPage.logic';
+} from '@/tests/complex-document-editor-migration/source/DocumentEditorPage.logic';
 export type {
   DocumentEditorPageProps,
   PanelState,
@@ -43,10 +43,10 @@ export type {
   DocumentPoolEntry,
   RecentDocument,
   CanvasVariant
-} from './DocumentEditorPage.types';
+} from '@/tests/complex-document-editor-migration/source/DocumentEditorPage.types';
 
 // Sub-component exports
-export { TopBar, StatusIndicator, ActionBar } from './components/shared/molecules/TopBar';
-export { usePanelConfiguration } from './components/shared/molecules/PanelConfiguration';
-export { useDocumentProvider } from './components/shared/molecules/DocumentProvider';
-export { SampleDocumentContent } from './components/shared/molecules/SampleDocumentContent'; 
+export { TopBar, StatusIndicator, ActionBar } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/TopBar';
+export { usePanelConfiguration } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelConfiguration';
+export { useDocumentProvider } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentProvider';
+export { SampleDocumentContent } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SampleDocumentContent'; 

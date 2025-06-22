@@ -1,5 +1,5 @@
 import type { PanelResizeConfig } from '@/pages/DocumentEditorPage/DocumentEditorPage.types';
-import type { ResizePosition } from './BidirectionalResizer.types';
+import type { ResizePosition } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/BidirectionalResizer/BidirectionalResizer.types';
 
 /**
  * Calculates the new size based on mouse/touch movement and current configuration

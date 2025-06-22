@@ -37,9 +37,9 @@ import {
 } from '@tabler/icons-react';
 import { Dropzone } from '@mantine/dropzone';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useAssetPanelLogic } from './AssetPanel.logic';
-import type { AssetPanelProps } from './AssetPanel.types';
-import type { Asset } from '../../../../../stores/assets.slice';
+import { useAssetPanelLogic } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/AssetPanel.logic';
+import type { AssetPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/AssetPanel.types';
+import type { Asset } from '@/tests/complex-document-editor-migration/stores/assets.slice';
 
 /**
  * AssetPanel Mobile Implementation

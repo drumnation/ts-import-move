@@ -1,6 +1,6 @@
-export { AssetUploadDropzone } from './AssetUploadDropzone';
+export { AssetUploadDropzone } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetUploadDropzone/AssetUploadDropzone';
 export type {
   AssetUploadDropzoneProps,
   AssetUploadConfig,
   DropzoneContentProps
-} from './AssetUploadDropzone.types'; 
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetUploadDropzone/AssetUploadDropzone.types'; 

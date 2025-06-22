@@ -9,9 +9,9 @@
 
 import React, { memo } from 'react';
 import { useMediaQuery } from '@mantine/hooks';
-import { PageNavigatorWeb } from './PageNavigator.web';
-import { PageNavigatorMobile } from './PageNavigator.mobile';
-import type { PageNavigatorProps } from './PageNavigator.types';
+import { PageNavigatorWeb } from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.web';
+import { PageNavigatorMobile } from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.mobile';
+import type { PageNavigatorProps } from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.types';
 
 /**
  * PageNavigator with automatic platform detection

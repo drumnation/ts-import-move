@@ -8,11 +8,11 @@
  */
 
 import React from 'react';
-import { PlatformRouter } from '../layout/PlatformDetection';
-import { LeftPanelDesktop } from './LeftPanel.desktop';
-import { LeftPanelMobile } from './LeftPanel.mobile';
-import { useLeftPanel } from './LeftPanel.logic';
-import type { LeftPanelProps } from './LeftPanel.types';
+import { PlatformRouter } from '@/tests/complex-document-editor-migration/source/components/panels/containers/layout/PlatformDetection';
+import { LeftPanelDesktop } from '@/tests/complex-document-editor-migration/source/components/panels/containers/LeftPanel/LeftPanel.desktop';
+import { LeftPanelMobile } from '@/tests/complex-document-editor-migration/source/components/panels/containers/LeftPanel/LeftPanel.mobile';
+import { useLeftPanel } from '@/tests/complex-document-editor-migration/source/components/panels/containers/LeftPanel/LeftPanel.logic';
+import type { LeftPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/containers/LeftPanel/LeftPanel.types';
 
 /**
  * Main LeftPanel component with platform routing

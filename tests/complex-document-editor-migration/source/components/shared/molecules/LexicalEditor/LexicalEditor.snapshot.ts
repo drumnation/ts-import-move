@@ -8,7 +8,7 @@
  */
 
 import { useState, useCallback } from 'react';
-import type { LexicalASTNode } from './LexicalEditor.types';
+import type { LexicalASTNode } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.types';
 
 /**
  * Safe hook for extracting snapshot data from Lexical editor

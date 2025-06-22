@@ -12,8 +12,8 @@
  */
 
 import React from 'react';
-import type { PanelManagerProps } from './PanelManager.types';
-import { usePanelManager } from './PanelManager.hook';
+import type { PanelManagerProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager.types';
+import { usePanelManager } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager.hook';
 
 /**
  * PanelManager Component
@@ -44,4 +44,4 @@ export const PanelManager: React.FC<PanelManagerProps> = ({
 };
 
 // Export the hook for direct usage when component wrapper isn't needed
-export { usePanelManager } from './PanelManager.hook'; 
+export { usePanelManager } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager.hook'; 

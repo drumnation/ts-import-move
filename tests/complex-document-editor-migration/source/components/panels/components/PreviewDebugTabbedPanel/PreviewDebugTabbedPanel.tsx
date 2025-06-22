@@ -10,9 +10,9 @@
 import React, { useState, useCallback } from 'react';
 import { Tabs, Group, Text, Badge, ActionIcon } from '@mantine/core';
 import { IconEye, IconCode, IconChevronUp, IconChevronDown } from '@tabler/icons-react';
-import { InstantPreviewPanel } from '../InstantPreviewPanel/InstantPreviewPanel';
-import { ASTDebugPanel } from '../ASTDebugPanel/ASTDebugPanel';
-import type { PreviewDebugTabbedPanelProps } from './PreviewDebugTabbedPanel.types';
+import { InstantPreviewPanel } from '@/tests/complex-document-editor-migration/source/components/panels/components/InstantPreviewPanel/InstantPreviewPanel';
+import { ASTDebugPanel } from '@/tests/complex-document-editor-migration/source/components/panels/components/ASTDebugPanel/ASTDebugPanel';
+import type { PreviewDebugTabbedPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/PreviewDebugTabbedPanel/PreviewDebugTabbedPanel.types';
 
 /**
  * PreviewDebugTabbedPanel Component

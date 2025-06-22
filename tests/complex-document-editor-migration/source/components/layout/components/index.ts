@@ -4,6 +4,6 @@
  */
 
 // Layout components
-export * from './DocumentLayout';
-export * from './PlatformDetection';
-export * from './PanelControls'; 
+export * from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout';
+export * from '@/tests/complex-document-editor-migration/source/components/layout/components/PlatformDetection';
+export * from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls'; 

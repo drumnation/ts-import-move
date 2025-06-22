@@ -1,4 +1,4 @@
-import { ExhibitItem, ExhibitFormData, ExhibitFilters, ExhibitSortField, ExhibitSortDirection } from './Exhibits.types';
+import { ExhibitItem, ExhibitFormData, ExhibitFilters, ExhibitSortField, ExhibitSortDirection } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/Exhibits.types';
 
 /**
  * Props for ExhibitsPanel component

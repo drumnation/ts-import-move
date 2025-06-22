@@ -8,8 +8,8 @@
 
 import { renderHook } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { useDocumentProvider } from './DocumentProvider';
-import type { DocumentProviderProps } from './DocumentProvider.types';
+import { useDocumentProvider } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentProvider/DocumentProvider';
+import type { DocumentProviderProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentProvider/DocumentProvider.types';
 
 describe('useDocumentProvider', () => {
   const mockProps: DocumentProviderProps = {

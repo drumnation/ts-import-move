@@ -13,7 +13,7 @@ import type {
   LayoutContainerProps, 
   DesktopLayoutProps, 
   PanelSlotContainerProps 
-} from './DocumentEditorLayout.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout.types';
 
 /**
  * Main layout container

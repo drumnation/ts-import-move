@@ -16,7 +16,7 @@ import {
   IconChevronsRight,
   IconRefresh
 } from '@tabler/icons-react';
-import { usePageNavigatorLogic, formatPageDisplay } from './PageNavigator.logic';
+import { usePageNavigatorLogic, formatPageDisplay } from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.logic';
 import {
   PageNavigatorSidebar,
   PageControls,
@@ -30,8 +30,8 @@ import {
   NavigationButton,
   ErrorContainer,
   LoadingContainer
-} from './PageNavigator.styles';
-import type { PageNavigatorWebProps } from './PageNavigator.types';
+} from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.styles';
+import type { PageNavigatorWebProps } from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.types';
 
 /**
  * Web variant of PageNavigator with desktop-optimized interface

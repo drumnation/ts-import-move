@@ -1,8 +1,8 @@
 import React from 'react';
 import { useMediaQuery } from '@mantine/hooks';
-import { AssetPanelWeb } from './AssetPanel.web';
-import { AssetPanelMobile } from './AssetPanel.mobile';
-import type { AssetPanelProps } from './AssetPanel.types';
+import { AssetPanelWeb } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/AssetPanel.web';
+import { AssetPanelMobile } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/AssetPanel.mobile';
+import type { AssetPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/AssetPanel.types';
 
 /**
  * AssetPanel - Entry point with platform routing

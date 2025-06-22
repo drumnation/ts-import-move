@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import type { PanelResizeConfig } from '@/pages/DocumentEditorPage/DocumentEditorPage.types';
-import type { ResizePosition } from './BidirectionalResizer.types';
-import { calculateNewSize, createResizePosition } from './BidirectionalResizer.logic';
+import type { ResizePosition } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/BidirectionalResizer/BidirectionalResizer.types';
+import { calculateNewSize, createResizePosition } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/BidirectionalResizer/BidirectionalResizer.logic';
 
 export interface UseResizeHandlers {
   isResizing: boolean;

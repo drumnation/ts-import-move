@@ -6,11 +6,11 @@
  * 
  * @module PanelControls
  */
-import type { PanelControlsProps } from './PanelControls.types';
-import { ControlsContainer } from './PanelControls.styles';
-import { usePanelControls } from './PanelControls.hook';
-import { ControlGroup, ControlButton } from './components';
-import { getButtonVariant } from './PanelControls.logic';
+import type { PanelControlsProps } from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/PanelControls.types';
+import { ControlsContainer } from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/PanelControls.styles';
+import { usePanelControls } from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/PanelControls.hook';
+import { ControlGroup, ControlButton } from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/components';
+import { getButtonVariant } from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/PanelControls.logic';
 
 export const PanelControls = (props: PanelControlsProps) => {
   const {

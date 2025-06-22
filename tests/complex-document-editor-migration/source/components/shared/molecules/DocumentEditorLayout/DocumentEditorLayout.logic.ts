@@ -8,7 +8,7 @@
  */
 
 import type { PanelSlot, PanelResizeConfig } from '@/pages/DocumentEditorPage/DocumentEditorPage.types';
-import type { GroupedPanels, ContainerDimensions } from './DocumentEditorLayout.types';
+import type { GroupedPanels, ContainerDimensions } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout.types';
 
 /**
  * Groups panel slots by location and slot position

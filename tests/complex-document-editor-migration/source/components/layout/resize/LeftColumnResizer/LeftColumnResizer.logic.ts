@@ -8,16 +8,16 @@
  */
 
 import { useCallback, useState, useRef, useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '../../../../../../hooks/store.hooks';
-import { selectColumnConstraints, selectLeftColumnSize } from '../../../../../../stores/selectors/layout.selectors';
-import { resizeColumn, setResizing } from '../../../../../../stores/layout.slice';
+import { useAppSelector, useAppDispatch } from '@/tests/hooks/store.hooks';
+import { selectColumnConstraints, selectLeftColumnSize } from '@/tests/stores/selectors/layout.selectors';
+import { resizeColumn, setResizing } from '@/tests/stores/layout.slice';
 import type { 
   LeftColumnResizerProps, 
   ResizeState, 
   ResizeConstraints,
   ResizeEvent,
   ResizeHandlers
-} from './LeftColumnResizer.types';
+} from '@/tests/complex-document-editor-migration/source/components/layout/resize/LeftColumnResizer/LeftColumnResizer.types';
 
 // Default constraints for left column resizing
 const DEFAULT_CONSTRAINTS = {

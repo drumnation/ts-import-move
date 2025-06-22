@@ -9,8 +9,8 @@
 import React from 'react';
 import { Tooltip } from '@mantine/core';
 import { IconList, IconListNumbers } from '@tabler/icons-react';
-import type { ListButtonProps } from '../../DocumentToolbar.types';
-import { ListButton as StyledListButton } from '../../DocumentToolbar.styles';
+import type { ListButtonProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/DocumentToolbar.types';
+import { ListButton as StyledListButton } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/DocumentToolbar.styles';
 
 /**
  * ListButton component for creating/toggling lists

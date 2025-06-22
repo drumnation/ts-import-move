@@ -7,8 +7,8 @@
 import React from 'react';
 import { Paper, Group, Text, Box, Kbd } from '@mantine/core';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SlashCommand } from '../../hooks/useSlashCommands';
-import { SlashCommandMenuProps } from './SlashCommandMenu.types';
+import { SlashCommand } from '@/tests/complex-document-editor-migration/source/components/shared/hooks/useSlashCommands';
+import { SlashCommandMenuProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlashCommandMenu/SlashCommandMenu.types';
 
 /**
  * Individual command item component

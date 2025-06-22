@@ -4,17 +4,17 @@
  */
 
 import React, { useCallback } from 'react';
-import { DocumentViewport } from '../../../DocumentViewport/DocumentViewport';
-import { SlotPanel } from '../../../SlotPanel/SlotPanel';
-import { BidirectionalResizer } from '../../../BidirectionalResizer/BidirectionalResizer';
-import { DesktopLayout, PanelSlotContainer, CenterContent } from './DesktopCanvasLayout.styles';
-import type { DesktopCanvasLayoutProps } from './DesktopCanvasLayout.types';
+import { DocumentViewport } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/DocumentViewport';
+import { SlotPanel } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlotPanel/SlotPanel';
+import { BidirectionalResizer } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/BidirectionalResizer/BidirectionalResizer';
+import { DesktopLayout, PanelSlotContainer, CenterContent } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/DesktopCanvasLayout/DesktopCanvasLayout.styles';
+import type { DesktopCanvasLayoutProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/DesktopCanvasLayout/DesktopCanvasLayout.types';
 import {
   calculatePanelRenderData,
   shouldRenderSplitResizer,
   createSplitResizeHandler,
   createPanelHandlers,
-} from './DesktopCanvasLayout.logic';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/DesktopCanvasLayout/DesktopCanvasLayout.logic';
 
 export const DesktopCanvasLayout: React.FC<DesktopCanvasLayoutProps> = ({
   document,

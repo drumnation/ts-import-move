@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
-import { PageWrapper, PageContent, PageNumber } from './DocumentPage.styles';
-import { getHoverScale, getTapScale, isPageActive } from './DocumentPage.logic';
-import type { DocumentPageProps } from './DocumentPage.types';
+import { PageWrapper, PageContent, PageNumber } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/components/DocumentPage/DocumentPage.styles';
+import { getHoverScale, getTapScale, isPageActive } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/components/DocumentPage/DocumentPage.logic';
+import type { DocumentPageProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/components/DocumentPage/DocumentPage.types';
 
 /**
  * DocumentPage component displays a single page of a document with responsive styling

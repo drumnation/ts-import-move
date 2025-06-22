@@ -13,8 +13,8 @@ import {
   getResizerDirection, 
   getIconConfig,
   getAnimationConfig 
-} from './SlotPanel.logic';
-import type { SlotPanelProps } from './SlotPanel.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlotPanel/SlotPanel.logic';
+import type { SlotPanelProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlotPanel/SlotPanel.types';
 
 /**
  * Main hook for SlotPanel component state and handlers

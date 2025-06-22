@@ -4,7 +4,7 @@ import {
   IconSearch, 
   IconEdit 
 } from '@tabler/icons-react';
-import { QuickAction, DocumentNode, RecentInstruction } from './MobileLayout.types';
+import { QuickAction, DocumentNode, RecentInstruction } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/MobileLayout.types';
 
 // Quick action definitions (icons will be added in the hook)
 export const QUICK_ACTION_DEFINITIONS = [

@@ -34,9 +34,9 @@ import {
   ContentContainer,
   SearchContainer,
   EmptyStateContainer
-} from './CaseLaw.styles';
-import { CaseLawProps, SimpleCitation } from './CaseLaw.types';
-import { getStatusColor, getStatusIcon } from './CaseLaw.logic';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/CaseLaw/CaseLaw.styles';
+import { CaseLawProps, SimpleCitation } from '@/tests/complex-document-editor-migration/source/components/panels/components/CaseLaw/CaseLaw.types';
+import { getStatusColor, getStatusIcon } from '@/tests/complex-document-editor-migration/source/components/panels/components/CaseLaw/CaseLaw.logic';
 
 const mockCitations: SimpleCitation[] = [
   {

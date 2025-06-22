@@ -14,11 +14,11 @@ import {
   SignatureBlock,
   FooterBlock,
   Section
-} from '../../types/legal-document-ast';
-import { NodeType } from '../../shared-components/molecules/NodePalette/NodePalette.types';
+} from '@/tests/types/legal-document-ast';
+import { NodeType } from '@/tests/shared-components/molecules/NodePalette/NodePalette.types';
 import { v4 as uuidv4 } from 'uuid';
-import type { LegalDocument } from '../../types/legal-document-ast';
-import type { DocumentPoolEntry, RecentDocument } from './DocumentEditorPage.types';
+import type { LegalDocument } from '@/tests/types/legal-document-ast';
+import type { DocumentPoolEntry, RecentDocument } from '@/tests/complex-document-editor-migration/source/DocumentEditorPage.types';
 
 /**
  * Create a new empty node of the specified type

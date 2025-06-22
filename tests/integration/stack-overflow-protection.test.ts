@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import fs from 'fs';
 import path from 'path';
-import { moveFiles } from '../../src/lib/index.js';
+import { moveFiles } from '@/lib/index.js';
 import { tmpdir } from 'os';
 
 describe('Stack Overflow Protection Tests', () => {
@@ -17,7 +17,7 @@ describe('Stack Overflow Protection Tests', () => {
     fs.mkdirSync(testDir, { recursive: true });
     process.chdir(testDir);
     
-    // Create tsconfig.json
+    // Create tsconfig.json with absolute imports support
     fs.writeFileSync(path.join(testDir, 'tsconfig.json'), `{
   "compilerOptions": {
     "target": "es2020",
@@ -25,7 +25,11 @@ describe('Stack Overflow Protection Tests', () => {
     "moduleResolution": "node",
     "esModuleInterop": true,
     "strict": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    }
   },
   "include": ["**/*"]
 }`);
@@ -123,9 +127,9 @@ export const DeepLogic = (props: DeepComponentProps) => {
     expect(fs.existsSync(path.join(destDir, 'DeepComponent.tsx'))).toBe(true);
     expect(fs.existsSync(path.join(destDir, 'DeepComponent.logic.ts'))).toBe(true);
     
-    // Verify imports were updated correctly despite complex JSX
+    // Verify imports were updated correctly despite complex JSX (absolute imports)
     const movedComponent = fs.readFileSync(path.join(destDir, 'DeepComponent.tsx'), 'utf8');
-    expect(movedComponent).toContain("from './DeepComponent.logic'");
+    expect(movedComponent).toContain("from '@/moved/DeepComponent.logic'");
   });
 
   it('should handle complex object literals and nested expressions', async () => {
@@ -217,7 +221,7 @@ export const ConfigValidator = {
     expect(fs.existsSync(movedConfigFile)).toBe(true);
     
     const configContent = fs.readFileSync(movedConfigFile, 'utf8');
-    expect(configContent).toContain("from './ConfigValidator'");
+    expect(configContent).toContain("from '@/shared/config/ConfigValidator'");
   });
 
   it('should handle files with moderately complex expressions without stack overflow', async () => {
@@ -298,6 +302,6 @@ export const DataValidator = {
     expect(fs.existsSync(movedProcessorFile)).toBe(true);
     
     const processorContent = fs.readFileSync(movedProcessorFile, 'utf8');
-    expect(processorContent).toContain("from './DataValidator'");
+    expect(processorContent).toContain("from '@/shared/utils/DataValidator'");
   });
 }); 

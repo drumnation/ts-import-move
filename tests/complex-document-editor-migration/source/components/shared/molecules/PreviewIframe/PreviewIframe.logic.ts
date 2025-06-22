@@ -1,4 +1,4 @@
-import { DocumentAST, ContentNode } from './PreviewIframe.types';
+import { DocumentAST, ContentNode } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PreviewIframe/PreviewIframe.types';
 
 /**
  * Generate complete HTML document from AST data

@@ -5,7 +5,7 @@
 
 import styled from '@emotion/styled';
 import { Box, BoxProps } from '@mantine/core';
-import type { AssetPreviewSizeVariant } from './AssetPreview.types';
+import type { AssetPreviewSizeVariant } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetPreview/AssetPreview.types';
 
 interface PreviewContainerProps extends BoxProps {
   size: AssetPreviewSizeVariant;

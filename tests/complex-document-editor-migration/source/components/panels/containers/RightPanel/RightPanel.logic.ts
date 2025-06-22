@@ -9,7 +9,7 @@
  */
 
 import { useCallback, useState } from 'react';
-import type { RightPanelProps, RightPanelLogic } from './RightPanel.types';
+import type { RightPanelProps, RightPanelLogic } from '@/tests/complex-document-editor-migration/source/components/panels/containers/RightPanel/RightPanel.types';
 
 /**
  * Custom hook providing shared right panel logic

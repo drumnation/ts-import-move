@@ -1,4 +1,4 @@
-import type { ZoomState, NavigationState, ViewMode } from './DocumentViewport.types';
+import type { ZoomState, NavigationState, ViewMode } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/DocumentViewport.types';
 
 /**
  * Calculate navigation state based on current page and total pages

@@ -6,7 +6,7 @@
  * @module AiAssistant.logic
  */
 
-import type { QuickPrompt, AIFunction, ChatMessage, ChatConversation, AIResponse } from './AiAssistant.types';
+import type { QuickPrompt, AIFunction, ChatMessage, ChatConversation, AIResponse } from '@/tests/complex-document-editor-migration/source/components/panels/components/AiAssistant/AiAssistant.types';
 import {
   IconScale,
   IconFileText,

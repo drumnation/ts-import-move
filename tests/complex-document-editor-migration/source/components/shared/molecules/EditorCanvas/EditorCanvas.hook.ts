@@ -4,28 +4,28 @@
  */
 
 import { useMemo, useCallback, useEffect, useRef, useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../../../../../../hooks/store.hooks';
+import { useAppSelector, useAppDispatch } from '@/tests/hooks/store.hooks';
 import { 
   selectLayoutState,
   selectColumnSizes,
   selectSplitRatios,
   selectPanelVisibility
-} from '../../../../../../stores/selectors/layout.selectors';
+} from '@/tests/stores/selectors/layout.selectors';
 import {
   resizeColumn,
   adjustSplit,
   togglePanel,
   setResizing
-} from '../../../../../../stores/layout.slice';
-import { usePlatformDetection, useSafeAreaInsets } from '../../../../DocumentEditorPage.hook';
+} from '@/tests/stores/layout.slice';
+import { usePlatformDetection, useSafeAreaInsets } from '@/tests/complex-document-editor-migration/source/DocumentEditorPage.hook';
 import { 
   groupPanelsByLocation, 
   calculatePanelSize, 
   createResizeConfig,
   calculateWidthPercent,
   getPanelId
-} from './EditorCanvas.logic';
-import type { EditorCanvasProps, GroupedPanels, PanelCalculations, PanelHandlers } from './EditorCanvas.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/EditorCanvas.logic';
+import type { EditorCanvasProps, GroupedPanels, PanelCalculations, PanelHandlers } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/EditorCanvas.types';
 
 /**
  * Custom hook for EditorCanvas component logic - now with Redux integration

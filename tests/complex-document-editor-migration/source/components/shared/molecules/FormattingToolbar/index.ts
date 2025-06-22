@@ -3,11 +3,11 @@
  * @module molecules/FormattingToolbar
  */
 
-export { FormattingToolbar } from './FormattingToolbar';
+export { FormattingToolbar } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/FormattingToolbar/FormattingToolbar';
 export type { 
   FormattingToolbarProps,
   SelectionFormatState,
   HeadingLevel,
   TextFormatType,
-} from './FormattingToolbar.types';
-export { useFormattingToolbar } from './FormattingToolbar.logic'; 
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/FormattingToolbar/FormattingToolbar.types';
+export { useFormattingToolbar } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/FormattingToolbar/FormattingToolbar.logic'; 

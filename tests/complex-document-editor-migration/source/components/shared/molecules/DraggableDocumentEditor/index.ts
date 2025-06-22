@@ -3,5 +3,5 @@
  * @module DraggableDocumentEditor
  */
 
-export { DraggableDocumentEditor } from './DraggableDocumentEditor';
-export type { DraggableDocumentEditorProps } from './DraggableDocumentEditor.types'; 
+export { DraggableDocumentEditor } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DraggableDocumentEditor/DraggableDocumentEditor';
+export type { DraggableDocumentEditorProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DraggableDocumentEditor/DraggableDocumentEditor.types'; 

@@ -30,14 +30,14 @@ import {
   createResizeConfig,
   calculateWidthPercent,
   getPanelId
-} from './DocumentEditorLayout.logic';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout.logic';
 import type { 
   DocumentEditorLayoutProps, 
   GroupedPanels, 
   PanelCalculations, 
   PanelHandlers,
   ContainerDimensions
-} from './DocumentEditorLayout.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentEditorLayout/DocumentEditorLayout.types';
 
 /**
  * Custom hook for DocumentEditorLayout component logic

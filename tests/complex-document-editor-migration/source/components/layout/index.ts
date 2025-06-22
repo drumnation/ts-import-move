@@ -8,26 +8,26 @@
  */
 
 // Organized layout components
-export * from './components';
+export * from '@/tests/complex-document-editor-migration/source/components/layout/components';
 
 // Desktop layout components
 export { 
   ThreeColumnLayout, 
   useThreeColumnLayout 
-} from './desktop';
+} from '@/tests/complex-document-editor-migration/source/components/layout/desktop';
 
 // Mobile layout components
 export { 
   DrawerLayout, 
   useDrawerLayout 
-} from './mobile';
+} from '@/tests/complex-document-editor-migration/source/components/layout/mobile';
 
 // Resize components
 export { 
   LeftColumnResizer, 
   RightColumnResizer, 
   VerticalSplitter 
-} from './resize';
+} from '@/tests/complex-document-editor-migration/source/components/layout/resize';
 
 // Platform detection system
 export {
@@ -41,7 +41,7 @@ export {
   useMediaQuery,
   useResponsiveValue,
   usePlatformClasses,
-} from './platform';
+} from '@/tests/complex-document-editor-migration/source/components/layout/platform';
 
 // Desktop layout types
 export type {
@@ -49,7 +49,7 @@ export type {
   ThreeColumnLayoutLogic,
   ColumnConfiguration,
   ColumnConstraints,
-} from './desktop';
+} from '@/tests/complex-document-editor-migration/source/components/layout/desktop';
 
 // Mobile layout types
 export type {
@@ -63,14 +63,14 @@ export type {
   SwipeDirection,
   DrawerAnimationConfig,
   DrawerConstraints,
-} from './mobile';
+} from '@/tests/complex-document-editor-migration/source/components/layout/mobile';
 
 // Resize component types
 export type {
   LeftColumnResizerProps,
   RightColumnResizerProps,
   VerticalSplitterProps,
-} from './resize';
+} from '@/tests/complex-document-editor-migration/source/components/layout/resize';
 
 // Platform detection types
 export type {
@@ -84,4 +84,4 @@ export type {
   PlatformContextType,
   MediaQueryConfig,
   PlatformComponentProps,
-} from './platform'; 
+} from '@/tests/complex-document-editor-migration/source/components/layout/platform'; 

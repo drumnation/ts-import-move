@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { resizeTokens } from '../../tokens/resize.tokens';
-import type { StyledResizerProps, StyledHandleProps } from './BidirectionalResizer.types';
+import { resizeTokens } from '@/tests/complex-document-editor-migration/source/components/shared/tokens/resize.tokens';
+import type { StyledResizerProps, StyledHandleProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/BidirectionalResizer/BidirectionalResizer.types';
 
 export const ResizerContainer = styled(motion.div)<StyledResizerProps>`
   ${props => props.resizeType === 'split' && props.direction === 'vertical' 

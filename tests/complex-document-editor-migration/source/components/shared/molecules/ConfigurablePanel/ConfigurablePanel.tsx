@@ -19,14 +19,14 @@ import {
   IconChevronRight
 } from '@tabler/icons-react';
 import { BidirectionalResizer } from '@/pages/DocumentEditorPage/components/shared/molecules/BidirectionalResizer/BidirectionalResizer';
-import { useConfigurablePanel } from './ConfigurablePanel.hook';
+import { useConfigurablePanel } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ConfigurablePanel/ConfigurablePanel.hook';
 import { 
   PanelContainer, 
   PanelHeader, 
   PanelContent, 
   MobileDragHandle 
-} from './ConfigurablePanel.styles';
-import type { ConfigurablePanelProps } from './ConfigurablePanel.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ConfigurablePanel/ConfigurablePanel.styles';
+import type { ConfigurablePanelProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ConfigurablePanel/ConfigurablePanel.types';
 
 /**
  * Icon mapping for collapse/expand functionality

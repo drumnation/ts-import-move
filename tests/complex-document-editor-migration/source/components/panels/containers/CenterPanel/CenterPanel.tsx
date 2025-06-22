@@ -9,11 +9,11 @@
  */
 
 import React from 'react';
-import { PlatformRouter } from '../layout/PlatformDetection';
-import { CenterPanelDesktop } from './CenterPanel.desktop';
-import { CenterPanelMobile } from './CenterPanel.mobile';
-import { useCenterPanel } from './CenterPanel.logic';
-import type { CenterPanelProps } from './CenterPanel.types';
+import { PlatformRouter } from '@/tests/complex-document-editor-migration/source/components/panels/containers/layout/PlatformDetection';
+import { CenterPanelDesktop } from '@/tests/complex-document-editor-migration/source/components/panels/containers/CenterPanel/CenterPanel.desktop';
+import { CenterPanelMobile } from '@/tests/complex-document-editor-migration/source/components/panels/containers/CenterPanel/CenterPanel.mobile';
+import { useCenterPanel } from '@/tests/complex-document-editor-migration/source/components/panels/containers/CenterPanel/CenterPanel.logic';
+import type { CenterPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/containers/CenterPanel/CenterPanel.types';
 
 /**
  * Main CenterPanel component with platform routing

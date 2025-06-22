@@ -3,7 +3,7 @@ export {
   shouldShowZoomControls, 
   shouldShowPageNavigation, 
   formatZoomPercentage 
-} from '../../DocumentViewport.logic';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/DocumentViewport.logic';
 
 /**
  * Get icon size based on mobile state

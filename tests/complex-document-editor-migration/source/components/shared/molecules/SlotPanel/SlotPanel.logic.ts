@@ -6,7 +6,7 @@
  * @module SlotPanel.logic
  */
 
-import type { ResizeDirection, IconConfig } from './SlotPanel.types';
+import type { ResizeDirection, IconConfig } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlotPanel/SlotPanel.types';
 
 /**
  * Determines the appropriate collapse icon based on panel location and mobile state

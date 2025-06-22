@@ -9,7 +9,7 @@
 
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import type { DrawerPosition } from './DrawerLayout.types';
+import type { DrawerPosition } from '@/tests/complex-document-editor-migration/source/components/layout/mobile/DrawerLayout/DrawerLayout.types';
 
 export const LayoutContainer = styled.div`
   position: relative;

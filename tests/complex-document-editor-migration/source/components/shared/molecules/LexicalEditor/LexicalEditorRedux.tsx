@@ -40,15 +40,15 @@ import {
 import { 
   useLexicalEditorRedux,
   createOptimizedEditorTheme
-} from './LexicalEditor.redux';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.redux';
 import { 
   OnChangePlugin,
   InitializerPlugin,
   KeyboardShortcutsPlugin,
   SelectionPlugin
-} from './LexicalEditor.hook';
-import { EditorContainer, PlaceholderContainer } from './LexicalEditor.styles';
-import type { LexicalEditorReduxProps } from './LexicalEditor.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.hook';
+import { EditorContainer, PlaceholderContainer } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.styles';
+import type { LexicalEditorReduxProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.types';
 
 import { 
   ListPlugin as LexicalListPlugin 
@@ -56,7 +56,7 @@ import {
 
 import { 
   ListPlugin as ListStatePlugin 
-} from './plugins/ListPlugin';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/plugins/ListPlugin';
 
 /**
  * Performance-optimized editor plugins for Redux integration

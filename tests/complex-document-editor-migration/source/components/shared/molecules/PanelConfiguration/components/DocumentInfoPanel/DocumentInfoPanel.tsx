@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, Box } from '@mantine/core';
-import type { DocumentInfoPanelProps } from './DocumentInfoPanel.types';
+import type { DocumentInfoPanelProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelConfiguration/components/DocumentInfoPanel/DocumentInfoPanel.types';
 
 export const DocumentInfoPanel = ({
   createdDate = 'Today',

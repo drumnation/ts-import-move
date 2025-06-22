@@ -20,7 +20,7 @@ import {
   IconShare,
   IconTrash
 } from '@tabler/icons-react';
-import type { SessionsProps } from './Sessions.types';
+import type { SessionsProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/Sessions/Sessions.types';
 import {
   SessionsContainer,
   SessionsHeader,
@@ -28,9 +28,9 @@ import {
   SessionsScrollArea,
   SessionsFooter,
   EmptyStateContainer
-} from './Sessions.styles';
-import { getActivityIcon, getStatusColor, formatDuration } from './Sessions.logic';
-import { useSessions } from './Sessions.hook';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Sessions/Sessions.styles';
+import { getActivityIcon, getStatusColor, formatDuration } from '@/tests/complex-document-editor-migration/source/components/panels/components/Sessions/Sessions.logic';
+import { useSessions } from '@/tests/complex-document-editor-migration/source/components/panels/components/Sessions/Sessions.hook';
 
 export const Sessions: React.FC<SessionsProps> = ({ className }) => {
   const {

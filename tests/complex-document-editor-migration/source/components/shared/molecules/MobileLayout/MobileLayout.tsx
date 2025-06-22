@@ -29,11 +29,11 @@ import {
   IconHistory,
   IconFocus2
 } from '@tabler/icons-react';
-import { usePlatformDetection } from '../../DocumentEditorPage.hook';
-import { useMobileLayout } from './MobileLayout.hook';
-import { MobileLayoutProps } from './MobileLayout.types';
-import { cleanActionLabel } from './MobileLayout.logic';
-import { BottomSheet, ProgressOverlay } from './components';
+import { usePlatformDetection } from '@/tests/complex-document-editor-migration/source/components/shared/DocumentEditorPage.hook';
+import { useMobileLayout } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/MobileLayout.hook';
+import { MobileLayoutProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/MobileLayout.types';
+import { cleanActionLabel } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/MobileLayout.logic';
+import { BottomSheet, ProgressOverlay } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components';
 import {
   MobileContainer,
   TopToolbar,
@@ -46,7 +46,7 @@ import {
   QuickActionsGrid,
   WarningBox,
   TargetBox
-} from './MobileLayout.styles';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/MobileLayout.styles';
 
 export const MobileLayout: React.FC<MobileLayoutProps> = ({
   documentContent,

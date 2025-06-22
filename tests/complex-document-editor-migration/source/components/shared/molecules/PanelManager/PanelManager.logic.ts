@@ -8,7 +8,7 @@
  */
 
 import type { PanelSlot } from '@/pages/DocumentEditorPage/DocumentEditorPage.types';
-import type { PanelSlotCreationConfig } from './PanelManager.types';
+import type { PanelSlotCreationConfig } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/PanelManager.types';
 
 /**
  * Panel size configuration constants

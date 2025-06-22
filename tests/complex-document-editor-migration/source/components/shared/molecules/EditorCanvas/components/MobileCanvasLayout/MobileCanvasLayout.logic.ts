@@ -1,5 +1,5 @@
-import type { PanelSlot } from '../../../../DocumentEditorPage.types';
-import type { PanelCalculations, PanelHandlers } from '../../EditorCanvas.types';
+import type { PanelSlot } from '@/tests/complex-document-editor-migration/source/components/shared/DocumentEditorPage.types';
+import type { PanelCalculations, PanelHandlers } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/EditorCanvas.types';
 
 export interface RenderPanelConfig {
   panel: PanelSlot;

@@ -1,2 +1,2 @@
-export { PanelContentBox } from './PanelContentBox';
-export type { PanelContentBoxProps } from './PanelContentBox.types'; 
+export { PanelContentBox } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/components/PanelContentBox/PanelContentBox';
+export type { PanelContentBoxProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelManager/components/PanelContentBox/PanelContentBox.types'; 

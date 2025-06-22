@@ -1,4 +1,4 @@
-import { ExhibitItem as ExhibitItemType } from '../../Exhibits.types';
+import { ExhibitItem as ExhibitItemType } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/Exhibits.types';
 
 export interface ExhibitItemProps {
   exhibit: ExhibitItemType;

@@ -1,4 +1,4 @@
-import type { QuickAction, ModelOption } from './agentControls.types';
+import type { QuickAction, ModelOption } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/agentControls.types';
 
 /**
  * Quick actions configuration

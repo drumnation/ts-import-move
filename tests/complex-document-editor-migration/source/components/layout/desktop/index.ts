@@ -7,7 +7,7 @@
  * @module desktop/index
  */
 
-export { ThreeColumnLayout, useThreeColumnLayout } from './ThreeColumnLayout';
+export { ThreeColumnLayout, useThreeColumnLayout } from '@/tests/complex-document-editor-migration/source/components/layout/desktop/ThreeColumnLayout';
 export type {
   ThreeColumnLayoutProps,
   ThreeColumnLayoutLogic,
@@ -15,4 +15,4 @@ export type {
   ColumnConfiguration,
   ColumnConstraints,
   ResizeOperation,
-} from './ThreeColumnLayout'; 
+} from '@/tests/complex-document-editor-migration/source/components/layout/desktop/ThreeColumnLayout'; 

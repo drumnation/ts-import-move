@@ -4,8 +4,8 @@
  */
 
 // Legacy components (for backward compatibility)
-export { Assets } from './Assets';
-export { useAssetsIndex } from './Assets.hook';
+export { Assets } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/Assets';
+export { useAssetsIndex } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/Assets.hook';
 
 // Legacy type exports
 export type {
@@ -19,19 +19,19 @@ export type {
   AssetsIndexActions,
   AssetGridProps,
   AssetUploadDropzoneProps,
-} from './Assets.types';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/Assets.types';
 
 // Legacy component exports
-export { AssetPreview } from './components/AssetPreview';
-export type { AssetPreviewProps } from './components/AssetPreview';
-export { AssetFilterBar } from './components/AssetFilterBar/index';
-export { AssetUploadDropzone } from './components/AssetUploadDropzone';
+export { AssetPreview } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetPreview';
+export type { AssetPreviewProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetPreview';
+export { AssetFilterBar } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetFilterBar/index';
+export { AssetUploadDropzone } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetUploadDropzone';
 
 // New refactored components (preferred)
-export { AssetPanel } from './AssetPanel';
-export { AssetPanelWeb } from './AssetPanel.web';
-export { AssetPanelMobile } from './AssetPanel.mobile';
-export { useAssetPanelLogic } from './AssetPanel.logic';
+export { AssetPanel } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/AssetPanel';
+export { AssetPanelWeb } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/AssetPanel.web';
+export { AssetPanelMobile } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/AssetPanel.mobile';
+export { useAssetPanelLogic } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/AssetPanel.logic';
 
 // New refactored types
 export type { 
@@ -42,4 +42,4 @@ export type {
   AssetPreviewModalProps,
   AssetViewMode,
   AssetPanelLayout,
-} from './AssetPanel.types'; 
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/AssetPanel.types'; 

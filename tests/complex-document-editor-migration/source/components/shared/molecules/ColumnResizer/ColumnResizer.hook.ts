@@ -11,15 +11,15 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import type { 
   ColumnResizeConfig, 
   ColumnResizeState 
-} from './ColumnResizer.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ColumnResizer/ColumnResizer.types';
 import { 
   calculateNewColumnWidth, 
   createColumnResizeState,
   validateColumnConfig 
-} from './ColumnResizer.logic';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ColumnResizer/ColumnResizer.logic';
 import { useDispatch, useSelector } from 'react-redux';
 import { throttle } from 'lodash';
-import type { ColumnResizerHookReturn, ResizeDirection } from './ColumnResizer.types';
+import type { ColumnResizerHookReturn, ResizeDirection } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ColumnResizer/ColumnResizer.types';
 import type { RootState } from '@/stores/store';
 
 /**

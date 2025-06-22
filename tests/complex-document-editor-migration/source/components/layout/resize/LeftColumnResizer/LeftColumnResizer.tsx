@@ -9,9 +9,9 @@
  */
 
 import React from 'react';
-import { LeftColumnResizerStyles } from './LeftColumnResizer.styles';
-import { useLeftColumnResizerLogic } from './LeftColumnResizer.logic';
-import type { LeftColumnResizerProps } from './LeftColumnResizer.types';
+import { LeftColumnResizerStyles } from '@/tests/complex-document-editor-migration/source/components/layout/resize/LeftColumnResizer/LeftColumnResizer.styles';
+import { useLeftColumnResizerLogic } from '@/tests/complex-document-editor-migration/source/components/layout/resize/LeftColumnResizer/LeftColumnResizer.logic';
+import type { LeftColumnResizerProps } from '@/tests/complex-document-editor-migration/source/components/layout/resize/LeftColumnResizer/LeftColumnResizer.types';
 
 /**
  * LeftColumnResizer component for resizing the left column width

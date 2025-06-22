@@ -2,8 +2,8 @@
 * Command: move.ts – Handles moving imports as per the project plan.
 */
 
-import { MoveOptions } from '../types/index.js';
-import { moveFiles as moveFilesImpl } from '../lib/index.js';
+import { MoveOptions } from '@/types/index.js';
+import { moveFiles as moveFilesImpl } from '@/lib/index.js';
 
 export async function moveAction(
   sources: string[],

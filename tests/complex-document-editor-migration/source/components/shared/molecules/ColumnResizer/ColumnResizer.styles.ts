@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 import type { 
   StyledColumnResizerProps, 
   StyledHorizontalHandleProps 
-} from './ColumnResizer.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ColumnResizer/ColumnResizer.types';
 
 /**
  * Main container for the column resizer

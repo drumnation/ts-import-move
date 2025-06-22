@@ -1,4 +1,4 @@
-import type { MultiPageDocument } from '../../../../DocumentEditorPage.types';
+import type { MultiPageDocument } from '@/tests/complex-document-editor-migration/source/DocumentEditorPage.types';
 
 export interface DocumentViewportProps {
   /** Document data */

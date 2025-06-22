@@ -12,7 +12,7 @@ import {
   VerificationSource,
   CitationStatus,
   VerificationIssue
-} from './CaseLaw.types';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/CaseLaw/CaseLaw.types';
 
 // Helper functions (pure)
 const filterCitations = (citations: CaseLawCitation[], filters: CaseLawFilters): CaseLawCitation[] => {

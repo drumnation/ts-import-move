@@ -1,9 +1,9 @@
 import { useCallback, useMemo } from 'react';
-import { useAppSelector, useAppDispatch } from '../../../../../hooks/store.hooks';
+import { useAppSelector, useAppDispatch } from '@/tests/complex-document-editor-migration/hooks/store.hooks';
 import {
   selectFilteredAssets,
   selectSelectedAssets,
-} from '../../../../../stores/selectors/panel.selectors';
+} from '@/tests/complex-document-editor-migration/stores/selectors/panel.selectors';
 import {
   uploadAsset,
   deleteAsset,
@@ -19,8 +19,8 @@ import {
   clearFilters,
   setViewMode,
   setPreviewAsset,
-} from '../../../../../stores/assets.slice';
-import type { Asset } from '../../../../../stores/assets.slice';
+} from '@/tests/complex-document-editor-migration/stores/assets.slice';
+import type { Asset } from '@/tests/complex-document-editor-migration/stores/assets.slice';
 
 /**
  * Shared asset panel logic hook

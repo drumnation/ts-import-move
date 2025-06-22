@@ -1,4 +1,4 @@
-export { MobileLayout } from './MobileLayout';
+export { MobileLayout } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/MobileLayout';
 export type { 
   MobileLayoutProps, 
   DocumentNode, 
@@ -8,4 +8,4 @@ export type {
   SheetType,
   TouchTargetConfig,
   SheetContentData
-} from './MobileLayout.types'; 
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/MobileLayout.types'; 

@@ -8,11 +8,11 @@
  */
 
 // Main component export
-export { PageNavigator } from './PageNavigator';
+export { PageNavigator } from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator';
 
 // Platform-specific exports (for advanced usage)
-export { PageNavigatorWeb } from './PageNavigator.web';
-export { PageNavigatorMobile } from './PageNavigator.mobile';
+export { PageNavigatorWeb } from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.web';
+export { PageNavigatorMobile } from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.mobile';
 
 // Type exports
 export type {
@@ -25,7 +25,7 @@ export type {
   PageNavigatorLogicHook,
   PageNavigatorVariant,
   PageNavigatorStyleProps
-} from './PageNavigator.types';
+} from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.types';
 
 // Logic exports (for advanced usage)
 export {
@@ -34,4 +34,4 @@ export {
   validatePageNumber,
   formatPageDisplay,
   calculateThumbnailDimensions
-} from './PageNavigator.logic'; 
+} from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.logic'; 

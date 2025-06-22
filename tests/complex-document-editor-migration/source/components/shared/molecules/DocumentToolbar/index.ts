@@ -1,2 +1,2 @@
-export { DocumentToolbar } from './DocumentToolbar';
-export type { DocumentToolbarProps } from './DocumentToolbar.types'; 
+export { DocumentToolbar } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/DocumentToolbar';
+export type { DocumentToolbarProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/DocumentToolbar.types'; 

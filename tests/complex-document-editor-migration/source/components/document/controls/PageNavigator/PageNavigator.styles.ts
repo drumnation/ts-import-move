@@ -9,7 +9,7 @@
 
 import styled from '@emotion/styled';
 import { Box, Button, ActionIcon } from '@mantine/core';
-import type { PageNavigatorStyleProps } from './PageNavigator.types';
+import type { PageNavigatorStyleProps } from '@/tests/complex-document-editor-migration/source/components/document/controls/PageNavigator/PageNavigator.types';
 
 /**
  * Base container for PageNavigator

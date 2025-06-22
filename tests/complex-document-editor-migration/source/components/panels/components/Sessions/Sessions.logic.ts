@@ -5,7 +5,7 @@ import {
   IconCheck,
   IconClock
 } from '@tabler/icons-react';
-import type { SessionActivity, ActivityType, ActivityStatus } from './Sessions.types';
+import type { SessionActivity, ActivityType, ActivityStatus } from '@/tests/complex-document-editor-migration/source/components/panels/components/Sessions/Sessions.types';
 
 export const mockActivities: SessionActivity[] = [
   {

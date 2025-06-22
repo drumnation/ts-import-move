@@ -17,13 +17,13 @@ import type {
   DraggableDocumentEditorProps,
   DraggableNodeRendererProps,
   NodeRendererMap 
-} from './DraggableDocumentEditor.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DraggableDocumentEditor/DraggableDocumentEditor.types';
 import type { Node as ASTNode } from '@/types/legal-document-ast';
 import { 
   executeDragDropOperation,
   createDragResult,
   getAllNodesWithContext 
-} from '../../../logic/dragDrop';
+} from '@/tests/complex-document-editor-migration/source/components/logic/dragDrop';
 import {
   EditorContainer,
   SectionHeader,
@@ -35,7 +35,7 @@ import {
   ExhibitNode,
   EmptyState,
   DragFeedback
-} from './DraggableDocumentEditor.styles';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DraggableDocumentEditor/DraggableDocumentEditor.styles';
 
 /**
  * Individual Node Renderers

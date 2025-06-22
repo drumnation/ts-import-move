@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Box, Text } from '@mantine/core';
-import { MobileLayout } from './MobileLayout';
-import { DocumentNode } from './MobileLayout.types';
+import { MobileLayout } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/MobileLayout';
+import { DocumentNode } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/MobileLayout.types';
 
 const meta: Meta<typeof MobileLayout> = {
   title: 'Pages/DocumentEditor/MobileLayout',

@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { createProgressSimulation, generateSimulatedResult } from '../agentControls.logic';
+import { createProgressSimulation, generateSimulatedResult } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/agentControls.logic';
 
 interface UseAgentExecutionProps {
   instruction: string;

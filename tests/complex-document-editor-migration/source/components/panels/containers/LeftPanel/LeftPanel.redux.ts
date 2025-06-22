@@ -9,12 +9,12 @@
  */
 
 import React, { useCallback } from 'react';
-import { useAppSelector, useAppDispatch } from '../../../../stores/store';
+import { useAppSelector, useAppDispatch } from '@/tests/complex-document-editor-migration/source/stores/store';
 import {
   selectLeftTopPanel,
   selectLeftBottomPanel,
   selectSplitRatios,
-} from '../../../../stores/selectors/panel.selectors';
+} from '@/tests/complex-document-editor-migration/source/stores/selectors/panel.selectors';
 import {
   openPanel,
   closePanel,
@@ -22,8 +22,8 @@ import {
   adjustSplitRatio,
   collapsePanel,
   expandPanel,
-} from '../../../../stores/panels.slice';
-import type { LeftPanelProps } from './LeftPanel.types';
+} from '@/tests/complex-document-editor-migration/source/stores/panels.slice';
+import type { LeftPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/containers/LeftPanel/LeftPanel.types';
 
 /**
  * Custom hook providing Redux-connected LeftPanel props

@@ -8,10 +8,10 @@
  */
 
 import React from 'react';
-import { LexicalEditor } from '../LexicalEditor/LexicalEditor';
-import { FormattingToolbar } from '../FormattingToolbar/FormattingToolbar';
-import { DocumentPageContainer } from './DocumentProvider.styles';
-import type { DocumentProviderProps, UseDocumentProviderReturn } from './DocumentProvider.types';
+import { LexicalEditor } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor';
+import { FormattingToolbar } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/FormattingToolbar/FormattingToolbar';
+import { DocumentPageContainer } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentProvider/DocumentProvider.styles';
+import type { DocumentProviderProps, UseDocumentProviderReturn } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentProvider/DocumentProvider.types';
 
 /**
  * Creates a mock document structure for the editor

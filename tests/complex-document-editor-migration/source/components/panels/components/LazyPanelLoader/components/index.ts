@@ -3,5 +3,5 @@
  * @module LazyPanelLoader/components
  */
 
-export { DefaultLoadingComponent } from './DefaultLoadingComponent';
-export { DefaultErrorFallback } from './DefaultErrorFallback'; 
+export { DefaultLoadingComponent } from '@/tests/complex-document-editor-migration/source/components/panels/components/LazyPanelLoader/components/DefaultLoadingComponent';
+export { DefaultErrorFallback } from '@/tests/complex-document-editor-migration/source/components/panels/components/LazyPanelLoader/components/DefaultErrorFallback'; 

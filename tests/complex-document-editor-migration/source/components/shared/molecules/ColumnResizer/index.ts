@@ -8,13 +8,13 @@
  */
 
 // Main component
-export { ColumnResizer } from './ColumnResizer';
+export { ColumnResizer } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ColumnResizer/ColumnResizer';
 
 // Hooks
 export { 
   useColumnResizeHandlers,
   useColumnConstraints
-} from './ColumnResizer.hook';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ColumnResizer/ColumnResizer.hook';
 
 // Types
 export type { 
@@ -24,7 +24,7 @@ export type {
   StyledColumnResizerProps,
   StyledHorizontalHandleProps,
   UseColumnResizeHandlers
-} from './ColumnResizer.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ColumnResizer/ColumnResizer.types';
 
 // Logic functions
 export {
@@ -34,10 +34,10 @@ export {
   getHorizontalResizeIcon,
   validateColumnConfig,
   calculateOptimalColumnWidth
-} from './ColumnResizer.logic';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ColumnResizer/ColumnResizer.logic';
 
 // Styled components
 export {
   ColumnResizerContainer,
   HorizontalResizeHandle
-} from './ColumnResizer.styles'; 
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ColumnResizer/ColumnResizer.styles'; 

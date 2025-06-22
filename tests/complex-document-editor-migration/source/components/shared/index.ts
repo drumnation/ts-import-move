@@ -4,7 +4,7 @@
  */
 
 // Atomic design exports
-export * from './atoms';
-export * from './molecules';
-export * from './organisms';
-export * from './templates'; 
+export * from '@/tests/complex-document-editor-migration/source/components/shared/atoms';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/molecules';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/organisms';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/templates'; 

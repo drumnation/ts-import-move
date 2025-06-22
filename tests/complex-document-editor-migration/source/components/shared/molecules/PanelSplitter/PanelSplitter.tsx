@@ -28,13 +28,13 @@
  */
 
 import React, { memo } from 'react';
-import { usePanelSplitter } from './PanelSplitter.hook';
+import { usePanelSplitter } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelSplitter/PanelSplitter.hook';
 import { 
   StyledPanelSplitter, 
   StyledVerticalHandle, 
   StyledSplitterContent 
-} from './PanelSplitter.styles';
-import type { PanelSplitterProps } from './PanelSplitter.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelSplitter/PanelSplitter.styles';
+import type { PanelSplitterProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelSplitter/PanelSplitter.types';
 
 /**
  * PanelSplitter Component

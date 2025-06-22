@@ -10,8 +10,8 @@ import {
   formatDocumentTitle, 
   shouldShowAction,
   getIconSize 
-} from './TopBar.logic';
-import type { TopBarProps } from './TopBar.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/TopBar/TopBar.logic';
+import type { TopBarProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/TopBar/TopBar.types';
 
 /**
  * Custom hook for TopBar responsive behavior and state management

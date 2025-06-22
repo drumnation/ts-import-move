@@ -21,16 +21,16 @@ import {
   IconFileText
 } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
-import { usePlatformDetection } from '../../../../DocumentEditorPage.hook';
-import { useExhibits } from './Exhibits.hook';
-import { ExhibitFilters } from './components/ExhibitFilters';
-import { ExhibitItem } from './components/ExhibitItem';
+import { usePlatformDetection } from '@/tests/complex-document-editor-migration/source/DocumentEditorPage.hook';
+import { useExhibits } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/Exhibits.hook';
+import { ExhibitFilters } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitFilters';
+import { ExhibitItem } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitItem';
 import {
   ExhibitItem as ExhibitItemType,
   ExhibitFormData,
   ExhibitSortField,
   ExhibitSortDirection
-} from './Exhibits.types';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/Exhibits.types';
 import {
   StyledContainer,
   StyledHeader,
@@ -39,7 +39,7 @@ import {
   StyledFiltersSection,
   StyledContent,
   StyledEmptyState
-} from './ExhibitsPanel.styles';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/ExhibitsPanel.styles';
 
 const sortOptions = [
   { value: 'label', label: 'Label (A-Z)' },

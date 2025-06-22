@@ -3,5 +3,5 @@
  * @module panels/components/AgentControls/components
  */
 
-export * from './DesktopLayout';
-export * from './MobileLayout'; 
+export * from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/components/DesktopLayout';
+export * from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/components/MobileLayout'; 

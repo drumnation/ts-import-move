@@ -1,4 +1,4 @@
-import { TouchTargetConfig as MobileLayoutTouchTargetConfig, SheetType as MobileLayoutSheetType } from '../../MobileLayout.types';
+import { TouchTargetConfig as MobileLayoutTouchTargetConfig, SheetType as MobileLayoutSheetType } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/MobileLayout.types';
 
 // Re-export types for component use
 export type TouchTargetConfig = MobileLayoutTouchTargetConfig;

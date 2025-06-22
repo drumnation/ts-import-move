@@ -2,7 +2,7 @@
  * PanelControls Business Logic
  * Pure functions for panel control operations
  */
-import type { PanelPosition, PanelAction, PanelControlConfig } from './PanelControls.types';
+import type { PanelPosition, PanelAction, PanelControlConfig } from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/PanelControls.types';
 
 // Panel control configuration factory
 export const createPanelControlConfig = (

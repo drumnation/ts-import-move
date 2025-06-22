@@ -2,7 +2,7 @@
  * SlashCommandMenu Component Types
  */
 
-import { SlashCommand } from '../../hooks/useSlashCommands';
+import { SlashCommand } from '@/tests/complex-document-editor-migration/source/components/shared/hooks/useSlashCommands';
 
 export interface SlashCommandMenuProps {
   /** Whether the menu is visible */

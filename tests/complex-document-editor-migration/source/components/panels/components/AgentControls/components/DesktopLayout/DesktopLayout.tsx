@@ -32,8 +32,8 @@ import {
   IconX,
   IconAlertTriangle
 } from '@tabler/icons-react';
-import type { QuickAction, ModelOption } from '../agentControls.types';
-import { getSelectedNodesDisplayText } from '../agentControls.logic';
+import type { QuickAction, ModelOption } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/components/agentControls.types';
+import { getSelectedNodesDisplayText } from '@/tests/complex-document-editor-migration/source/components/panels/components/AgentControls/components/agentControls.logic';
 
 interface DesktopLayoutProps {
   selectedNodes: string[];

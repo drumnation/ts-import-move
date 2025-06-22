@@ -1,1 +1,1 @@
-export { ListButton } from './ListButton'; 
+export { ListButton } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentToolbar/components/ListButton/ListButton'; 

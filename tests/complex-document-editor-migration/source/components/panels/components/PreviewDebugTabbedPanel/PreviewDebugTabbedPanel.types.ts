@@ -6,8 +6,8 @@
  * @module PreviewDebugTabbedPanel.types
  */
 
-import type { InstantPreviewPanelProps } from '../InstantPreviewPanel/InstantPreviewPanel.types';
-import type { ASTDebugPanelProps } from '../ASTDebugPanel/ASTDebugPanel.types';
+import type { InstantPreviewPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/InstantPreviewPanel/InstantPreviewPanel.types';
+import type { ASTDebugPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/ASTDebugPanel/ASTDebugPanel.types';
 
 /**
  * Tab configuration for the tabbed panel

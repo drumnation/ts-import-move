@@ -5,8 +5,8 @@
  */
 
 import React from 'react';
-import { AssetUploadDropzone } from './AssetUploadDropzone';
-import type { AssetUploadDropzoneProps } from './AssetUploadDropzone.types';
+import { AssetUploadDropzone } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetUploadDropzone/AssetUploadDropzone';
+import type { AssetUploadDropzoneProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetUploadDropzone/AssetUploadDropzone.types';
 
 // Story configurations for documentation purposes
 

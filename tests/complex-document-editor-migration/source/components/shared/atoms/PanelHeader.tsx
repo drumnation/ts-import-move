@@ -10,7 +10,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { usePlatformDetection } from '../../layout/platform';
+import { usePlatformDetection } from '@/tests/complex-document-editor-migration/source/components/layout/platform';
 
 const HeaderContainer = styled(motion.div)<{ 
   platform: 'desktop' | 'mobile' | 'tablet';

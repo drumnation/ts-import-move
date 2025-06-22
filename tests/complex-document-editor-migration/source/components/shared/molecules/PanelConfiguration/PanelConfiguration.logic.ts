@@ -1,4 +1,4 @@
-import type { PanelSlot } from '../../DocumentEditorPage.types';
+import type { PanelSlot } from '@/tests/complex-document-editor-migration/source/components/shared/DocumentEditorPage.types';
 
 export const PANEL_SIZES = {
   LEFT_TOP_MIN: 240,

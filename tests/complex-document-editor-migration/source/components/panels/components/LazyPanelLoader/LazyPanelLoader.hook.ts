@@ -4,7 +4,7 @@
  */
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useMediaQuery } from '@mantine/hooks';
-import type { LazyPanelLoaderProps, LazyPanelState } from './LazyPanelLoader.types';
+import type { LazyPanelLoaderProps, LazyPanelState } from '@/tests/complex-document-editor-migration/source/components/panels/components/LazyPanelLoader/LazyPanelLoader.types';
 import {
   shouldLoadPanel,
   createIntersectionObserverOptions,
@@ -14,7 +14,7 @@ import {
   resetErrorState,
   createInitialPanelState,
   validatePanelLoaderProps
-} from './LazyPanelLoader.logic';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/LazyPanelLoader/LazyPanelLoader.logic';
 
 export const useLazyPanelLoader = (props: LazyPanelLoaderProps) => {
   const {

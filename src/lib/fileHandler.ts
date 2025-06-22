@@ -2,7 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { MoveOptions } from '../types/index.js';
+import { MoveOptions } from '@/types/index.js';
 
 /**
  * Handles the file move operation, creating directories as needed

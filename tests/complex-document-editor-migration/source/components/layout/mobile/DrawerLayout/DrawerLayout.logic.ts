@@ -19,7 +19,7 @@ import type {
   SwipeDirection,
   DrawerAnimationConfig,
   DrawerConstraints 
-} from './DrawerLayout.types';
+} from '@/tests/complex-document-editor-migration/source/components/layout/mobile/DrawerLayout/DrawerLayout.types';
 
 /**
  * Default animation configuration

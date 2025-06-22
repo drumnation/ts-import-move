@@ -16,9 +16,9 @@ import {
   IconSortAscending,
   IconSortDescending
 } from '@tabler/icons-react';
-import type { AssetFilterBarProps } from './AssetFilterBar.types';
-import { useAssetFilterBar } from './AssetFilterBar.hook';
-import { getSortOptions, getTypeFilterOptions } from './AssetFilterBar.logic';
+import type { AssetFilterBarProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetFilterBar/AssetFilterBar.types';
+import { useAssetFilterBar } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetFilterBar/AssetFilterBar.hook';
+import { getSortOptions, getTypeFilterOptions } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetFilterBar/AssetFilterBar.logic';
 import {
   FilterContainer,
   SearchInput,
@@ -27,7 +27,7 @@ import {
   SortActionIcon,
   MobileGroup,
   FiltersGroup
-} from './AssetFilterBar.styles';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetFilterBar/AssetFilterBar.styles';
 
 export const AssetFilterBar: React.FC<AssetFilterBarProps> = ({
   filter,

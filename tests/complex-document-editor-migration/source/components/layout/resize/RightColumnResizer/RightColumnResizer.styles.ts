@@ -10,7 +10,7 @@
 
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import type { ResizerStyles } from './RightColumnResizer.types';
+import type { ResizerStyles } from '@/tests/complex-document-editor-migration/source/components/layout/resize/RightColumnResizer/RightColumnResizer.types';
 
 /**
  * Main resizer container for right column

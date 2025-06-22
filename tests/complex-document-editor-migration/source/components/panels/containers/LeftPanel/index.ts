@@ -4,24 +4,24 @@
  */
 
 // Main component (platform router)
-export { LeftPanel } from './LeftPanel';
+export { LeftPanel } from '@/tests/complex-document-editor-migration/source/components/panels/containers/LeftPanel/LeftPanel';
 
 // Platform-specific implementations
-export { LeftPanelDesktop } from './LeftPanel.desktop';
-export { LeftPanelMobile } from './LeftPanel.mobile';
+export { LeftPanelDesktop } from '@/tests/complex-document-editor-migration/source/components/panels/containers/LeftPanel/LeftPanel.desktop';
+export { LeftPanelMobile } from '@/tests/complex-document-editor-migration/source/components/panels/containers/LeftPanel/LeftPanel.mobile';
 
 // Shared logic
-export { useLeftPanel } from './LeftPanel.logic';
+export { useLeftPanel } from '@/tests/complex-document-editor-migration/source/components/panels/containers/LeftPanel/LeftPanel.logic';
 
 // Redux integration
 export { 
   useLeftPanelRedux,
   leftPanelActions,
-} from './LeftPanel.redux';
+} from '@/tests/complex-document-editor-migration/source/components/panels/containers/LeftPanel/LeftPanel.redux';
 
 // Type exports
 export type {
   PanelContent,
   LeftPanelProps,
   LeftPanelLogic,
-} from './LeftPanel.types'; 
+} from '@/tests/complex-document-editor-migration/source/components/panels/containers/LeftPanel/LeftPanel.types'; 

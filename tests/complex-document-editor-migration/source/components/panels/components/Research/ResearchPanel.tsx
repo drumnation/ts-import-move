@@ -37,14 +37,14 @@ import {
 } from '@tabler/icons-react';
 import { useMediaQuery } from '@mantine/hooks';
 import { Dropzone, FileWithPath } from '@mantine/dropzone';
-import { useDocumentResearch } from './ResearchPanel.hook';
+import { useDocumentResearch } from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.hook';
 import type { 
   ResearchQuery, 
   DocumentPassage,
   BaseResearchPanelProps
-} from './ResearchPanel.types';
-import { DesktopResearchPanel } from './ResearchPanel.web';
-import { MobileResearchPanel } from './ResearchPanel.mobile';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.types';
+import { DesktopResearchPanel } from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.web';
+import { MobileResearchPanel } from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.mobile';
 
 /**
  * Research Panel - Level 3 Platform Separation

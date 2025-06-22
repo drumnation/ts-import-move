@@ -15,7 +15,7 @@ export {
   PlatformShow,
   PlatformHide,
   usePlatformContext,
-} from './PlatformDetection';
+} from '@/tests/complex-document-editor-migration/proof-test/destination/shared/components/1-atoms/platform-component/PlatformDetection';
 
 // Logic and hooks
 export {
@@ -28,7 +28,7 @@ export {
   createMediaQueryListener,
   getViewportDimensions,
   DEFAULT_BREAKPOINTS,
-} from './PlatformDetection.logic';
+} from '@/tests/complex-document-editor-migration/proof-test/destination/shared/components/1-atoms/platform-component/PlatformDetection.logic';
 
 // Types
 export type {
@@ -42,4 +42,4 @@ export type {
   PlatformContextType,
   MediaQueryConfig,
   PlatformComponentProps,
-} from './PlatformDetection.types'; 
+} from '@/tests/complex-document-editor-migration/proof-test/destination/shared/components/1-atoms/platform-component/PlatformDetection.types'; 

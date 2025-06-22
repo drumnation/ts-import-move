@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { TouchTargetConfig } from './MobileLayout.types';
+import { TouchTargetConfig } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/MobileLayout.types';
 
 export const MobileContainer = styled.div`
   height: 100vh;

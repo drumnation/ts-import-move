@@ -9,7 +9,7 @@
 
 import React from 'react';
 import { getSampleDocumentText } from '@/pages/DocumentEditorPage/DocumentEditorPage.logic';
-import { SampleDocumentContentProps } from './SampleDocumentContent.types';
+import { SampleDocumentContentProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SampleDocumentContent/SampleDocumentContent.types';
 import {
   DocumentContainer,
   DocumentTitle,
@@ -20,7 +20,7 @@ import {
   SignatureSection,
   SignatureLine,
   SignatureUnderline,
-} from './SampleDocumentContent.styles';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SampleDocumentContent/SampleDocumentContent.styles';
 
 /**
  * Renders the sample document content with proper legal formatting

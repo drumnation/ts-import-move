@@ -25,6 +25,8 @@ program
   .option('-i, --interactive', 'prompt before overwrite', false)
   .option('--tsconfig <path>', 'path to tsconfig.json file')
   .option('--extensions <exts>', 'file extensions to process', '.ts,.tsx,.js,.jsx')
+  .option('--no-absolute-imports', 'keep relative imports instead of converting to absolute')
+  .option('--alias-prefix <prefix>', 'alias prefix for absolute imports', '@')
   .action(async (sources, options) => {
     if (sources.length < 2) {
       console.error('ts-import-move: missing destination file operand after', sources[0] || 'source');
@@ -45,8 +47,15 @@ program
       interactive: options.interactive && !options.force,
       tsConfigPath: options.tsconfig,
       extensions: options.extensions,
-      noClobber: options.noClobber
+      noClobber: options.noClobber,
+      absoluteImports: options.absoluteImports !== false,
+      aliasPrefix: options.aliasPrefix
     };
+    
+    if (options.verbose) {
+      console.log('CLI DEBUG: options.absoluteImports =', options.absoluteImports);
+      console.log('CLI DEBUG: moveOptions.absoluteImports =', moveOptions.absoluteImports);
+    }
     
     try {
       await moveAction(sourceFiles, destination, moveOptions);

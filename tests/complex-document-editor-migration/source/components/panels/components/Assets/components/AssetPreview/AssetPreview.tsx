@@ -6,7 +6,7 @@
 import React, { useCallback, memo } from 'react';
 import { Image, Text, Stack } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
-import type { AssetPreviewProps } from './AssetPreview.types';
+import type { AssetPreviewProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetPreview/AssetPreview.types';
 import {
   PreviewContainer,
   PreviewImage,
@@ -14,8 +14,8 @@ import {
   SelectionIndicator,
   MetadataOverlay,
   ProcessingOverlay
-} from './AssetPreview.styles';
-import { getTypeIcon } from './AssetPreview.logic';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetPreview/AssetPreview.styles';
+import { getTypeIcon } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetPreview/AssetPreview.logic';
 
 const AssetPreviewComponent: React.FC<AssetPreviewProps> = ({
   asset,

@@ -35,9 +35,9 @@ import {
   ListItemNode
 } from '@lexical/list';
 
-import { LexicalEditorProps } from './LexicalEditor.types';
-import { EditorContainer, PlaceholderContainer } from './LexicalEditor.styles';
-import { convertDocumentToLexicalNodes } from './LexicalEditor.logic';
+import { LexicalEditorProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.types';
+import { EditorContainer, PlaceholderContainer } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.styles';
+import { convertDocumentToLexicalNodes } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.logic';
 import { 
   OnChangePlugin,
   InitializerPlugin,
@@ -45,12 +45,12 @@ import {
   SelectionPlugin,
   BulkContentPlugin,
   useContentChangeHandler
-} from './LexicalEditor.hook';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.hook';
 
 // Local enhanced list plugin for list state tracking and indentation controls
 import { 
   ListPlugin as ListStatePlugin 
-} from './plugins/ListPlugin';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/plugins/ListPlugin';
 
 /**
  * Main Lexical Editor Component

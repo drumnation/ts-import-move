@@ -12,7 +12,7 @@ import type {
   StyledPanelContainerProps, 
   StyledPanelHeaderProps, 
   StyledPanelContentProps 
-} from './SlotPanel.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlotPanel/SlotPanel.types';
 
 export const PanelContainer = styled(motion.div)<StyledPanelContainerProps>`
   position: relative;

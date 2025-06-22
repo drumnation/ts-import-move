@@ -3,8 +3,8 @@
  * @module DesktopCanvasLayout.logic
  */
 
-import type { GroupedPanels, PanelCalculations, PanelHandlers } from '../../EditorCanvas.types';
-import type { LayoutState } from './DesktopCanvasLayout.types';
+import type { GroupedPanels, PanelCalculations, PanelHandlers } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/EditorCanvas.types';
+import type { LayoutState } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/DesktopCanvasLayout/DesktopCanvasLayout.types';
 
 export interface RenderPanelParams {
   panel: any;

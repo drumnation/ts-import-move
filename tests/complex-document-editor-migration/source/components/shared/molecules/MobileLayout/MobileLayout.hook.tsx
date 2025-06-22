@@ -10,7 +10,7 @@ import {
   RecentInstruction, 
   DocumentNode,
   QuickAction
-} from './MobileLayout.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/MobileLayout.types';
 import {
   QUICK_ACTION_DEFINITIONS,
   getAvailableQuickActionDefinitions,
@@ -19,7 +19,7 @@ import {
   shouldShowLinkedNodesWarning,
   PROGRESS_STEPS,
   createProgressMessage
-} from './MobileLayout.logic';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/MobileLayout.logic';
 
 interface UseMobileLayoutProps {
   selectedNode?: DocumentNode;

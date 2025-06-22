@@ -6,9 +6,9 @@
  * @module DocumentProvider.types
  */
 
-import type { LegalDocument } from '../../../../types/legal-document-ast';
-import type { LexicalASTNode } from '../LexicalEditor/LexicalEditor.types';
-import type { MultiPageDocument } from '../../DocumentEditorPage.types';
+import type { LegalDocument } from '@/tests/complex-document-editor-migration/source/types/legal-document-ast';
+import type { LexicalASTNode } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.types';
+import type { MultiPageDocument } from '@/tests/complex-document-editor-migration/source/components/shared/DocumentEditorPage.types';
 
 /**
  * Props for the DocumentProvider hook

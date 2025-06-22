@@ -6,8 +6,8 @@
  * @module DrawerLayout
  */
 
-export { DrawerLayout } from './DrawerLayout';
-export { useDrawerLayout } from './DrawerLayout.logic';
+export { DrawerLayout } from '@/tests/complex-document-editor-migration/source/components/layout/mobile/DrawerLayout/DrawerLayout';
+export { useDrawerLayout } from '@/tests/complex-document-editor-migration/source/components/layout/mobile/DrawerLayout/DrawerLayout.logic';
 export type {
   DrawerLayoutProps,
   DrawerLayoutLogic,
@@ -19,4 +19,4 @@ export type {
   SwipeDirection,
   DrawerAnimationConfig,
   DrawerConstraints,
-} from './DrawerLayout.types'; 
+} from '@/tests/complex-document-editor-migration/source/components/layout/mobile/DrawerLayout/DrawerLayout.types'; 

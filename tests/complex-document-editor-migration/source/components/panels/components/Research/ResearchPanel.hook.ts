@@ -13,7 +13,7 @@ import type {
   DocumentPassage,
   ResearchDocument,
   VectorStoreConfig
-} from './ResearchPanel.types';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Research/ResearchPanel.types';
 
 // Default query configuration
 const DEFAULT_QUERY: ResearchQuery = {

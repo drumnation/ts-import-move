@@ -62,6 +62,16 @@ export interface MoveOptions {
    * Follow symlinks
    */
   followSymlinks?: boolean;
+  
+  /**
+   * Convert relative imports to absolute imports (default: true)
+   */
+  absoluteImports?: boolean;
+  
+  /**
+   * Alias prefix for absolute imports (default: '@')
+   */
+  aliasPrefix?: string;
 }
 
 /**

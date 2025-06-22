@@ -9,7 +9,7 @@
  */
 
 import { useCallback, useState, useMemo } from 'react';
-import type { CenterPanelProps, CenterPanelLogic } from './CenterPanel.types';
+import type { CenterPanelProps, CenterPanelLogic } from '@/tests/complex-document-editor-migration/source/components/panels/containers/CenterPanel/CenterPanel.types';
 
 /**
  * Custom hook providing shared center panel logic

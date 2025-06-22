@@ -6,10 +6,10 @@ import { Command } from 'commander';
 // These imports will be used in the full implementation
 // import fastGlob from 'fast-glob';
 // import { Project } from 'ts-morph';
-import { installCursorRules } from './cli-install-rules.js';
+import { installCursorRules } from '@/cli-install-rules.js';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import { moveAction } from './commands/move.js';
+import { moveAction } from '@/commands/move.js';
 
 // Create __dirname equivalent for ESM/CJS compatibility
 let __dirname: string;

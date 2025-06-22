@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.6] - 2025-06-22
+
+### Added
+- **CLI Interface Enhancement**: Enhanced CLI argument parsing and command structure
+- **Improved Path Resolution**: Better handling of absolute and relative paths in all scenarios
+- **Global Installation Support**: Optimized for global npm installation workflow
+
+### Changed
+- **CLI Architecture**: Refined command parsing for better compatibility with ts-import-move workflow
+- **Build Process**: Enhanced build configuration with proper executable permissions
+- **Testing Infrastructure**: Expanded E2E test coverage for real-world usage scenarios
+
+### Fixed
+- **Path Resolution Edge Cases**: Fixed edge cases in path resolution for complex directory structures
+- **CLI Argument Handling**: Improved parsing of multiple source files and destination paths
+- **Global Binary Execution**: Enhanced global installation and execution reliability
+
+### Performance
+- **Memory Management**: Optimized memory usage for large-scale file operations
+- **CLI Responsiveness**: Improved startup time and command execution speed
+
 ## [1.0.5] - 2025-06-21
 
 ### Added

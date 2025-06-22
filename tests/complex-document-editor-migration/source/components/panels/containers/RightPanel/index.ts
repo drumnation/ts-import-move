@@ -4,23 +4,23 @@
  */
 
 // Main component (platform router)
-export { RightPanel } from './RightPanel';
+export { RightPanel } from '@/tests/complex-document-editor-migration/source/components/panels/containers/RightPanel/RightPanel';
 
 // Platform-specific implementations
-export { RightPanelDesktop } from './RightPanel.desktop';
-export { RightPanelMobile } from './RightPanel.mobile';
+export { RightPanelDesktop } from '@/tests/complex-document-editor-migration/source/components/panels/containers/RightPanel/RightPanel.desktop';
+export { RightPanelMobile } from '@/tests/complex-document-editor-migration/source/components/panels/containers/RightPanel/RightPanel.mobile';
 
 // Shared logic
-export { useRightPanel } from './RightPanel.logic';
+export { useRightPanel } from '@/tests/complex-document-editor-migration/source/components/panels/containers/RightPanel/RightPanel.logic';
 
 // Redux integration
 export { 
   useRightPanelRedux,
   rightPanelActions,
-} from './RightPanel.redux';
+} from '@/tests/complex-document-editor-migration/source/components/panels/containers/RightPanel/RightPanel.redux';
 
 // Type exports
 export type {
   RightPanelProps,
   RightPanelLogic,
-} from './RightPanel.types'; 
+} from '@/tests/complex-document-editor-migration/source/components/panels/containers/RightPanel/RightPanel.types'; 

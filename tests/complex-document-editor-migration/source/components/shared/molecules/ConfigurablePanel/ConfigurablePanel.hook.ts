@@ -14,8 +14,8 @@ import {
   getResizerDirection, 
   getIconConfig,
   getAnimationConfig 
-} from './ConfigurablePanel.logic';
-import type { ConfigurablePanelProps } from './ConfigurablePanel.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ConfigurablePanel/ConfigurablePanel.logic';
+import type { ConfigurablePanelProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ConfigurablePanel/ConfigurablePanel.types';
 
 /**
  * Main hook for ConfigurablePanel component state and handlers

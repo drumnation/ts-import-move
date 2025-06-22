@@ -2,8 +2,8 @@
  * ControlButton Sub-component
  * Individual control button with variants
  */
-import type { ControlButtonProps } from '../PanelControls.types';
-import { ControlButton as StyledControlButton } from '../PanelControls.styles';
+import type { ControlButtonProps } from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/components/PanelControls.types';
+import { ControlButton as StyledControlButton } from '@/tests/complex-document-editor-migration/source/components/layout/components/PanelControls/components/PanelControls.styles';
 
 export const ControlButton = ({ 
   onClick, 

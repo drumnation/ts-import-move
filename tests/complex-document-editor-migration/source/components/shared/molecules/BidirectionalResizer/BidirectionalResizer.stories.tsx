@@ -7,8 +7,8 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { BidirectionalResizer } from './BidirectionalResizer';
-import { resizeTokens } from '../../tokens/resize.tokens';
+import { BidirectionalResizer } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/BidirectionalResizer/BidirectionalResizer';
+import { resizeTokens } from '@/tests/complex-document-editor-migration/source/components/shared/tokens/resize.tokens';
 import type { PanelResizeConfig } from '@/pages/DocumentEditorPage/DocumentEditorPage.types';
 
 const meta: Meta<typeof BidirectionalResizer> = {

@@ -8,7 +8,7 @@ import {
   IconX,
   IconFile
 } from '@tabler/icons-react';
-import { ExhibitStatus, ExhibitRelevance } from './ExhibitItem.types';
+import { ExhibitStatus, ExhibitRelevance } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitItem/ExhibitItem.types';
 
 export const getStatusColor = (status: ExhibitStatus): string => {
   switch (status) {

@@ -16,7 +16,7 @@ import type {
   LayoutConfiguration,
   PanelVisibility,
   ResizeConstraints 
-} from './DocumentLayout.types';
+} from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/DocumentLayout.types';
 
 /**
  * Default layout configuration

@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../../../../../hooks/store.hooks';
+import { useAppSelector, useAppDispatch } from '@/tests/complex-document-editor-migration/hooks/store.hooks';
 import {
   performSearch,
   addCitation,
@@ -18,13 +18,13 @@ import {
   setSortBy,
   setSortOrder,
   setSelectedCase,
-} from '../../../../../stores/research.slice';
+} from '@/tests/complex-document-editor-migration/stores/research.slice';
 import type { 
   LegalCase, 
   Citation, 
   SearchQuery,
   ResearchSession,
-} from '../../../../../stores/research.slice';
+} from '@/tests/complex-document-editor-migration/stores/research.slice';
 
 /**
  * Research Panel Query Form State

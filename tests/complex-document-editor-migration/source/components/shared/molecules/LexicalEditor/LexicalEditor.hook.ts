@@ -30,7 +30,7 @@ import {
   INSERT_ORDERED_LIST_COMMAND,
   INSERT_UNORDERED_LIST_COMMAND,
 } from '@lexical/list';
-import { LexicalASTNode, OnChangePluginProps, InitializerPluginProps } from './LexicalEditor.types';
+import { LexicalASTNode, OnChangePluginProps, InitializerPluginProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.types';
 
 /**
  * Command for inserting AI-generated content as a single undoable transaction

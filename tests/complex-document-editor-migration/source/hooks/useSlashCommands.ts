@@ -6,7 +6,7 @@
  */
 
 import { useState, useCallback, useEffect } from 'react';
-import { DocumentStore } from '../../../stores/DocumentStore';
+import { DocumentStore } from '@/tests/stores/DocumentStore';
 
 export interface SlashCommand {
   id: string;

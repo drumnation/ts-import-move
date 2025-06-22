@@ -9,7 +9,7 @@
 
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import type { SplitterStyles } from './VerticalSplitter.types';
+import type { SplitterStyles } from '@/tests/complex-document-editor-migration/source/components/layout/resize/VerticalSplitter/VerticalSplitter.types';
 
 /**
  * VerticalSplitter styled components

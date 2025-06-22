@@ -1,2 +1,2 @@
-export { ViewportControls } from './ViewportControls';
-export type { ViewportControlsProps } from './ViewportControls.types'; 
+export { ViewportControls } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/components/ViewportControls/ViewportControls';
+export type { ViewportControlsProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport/components/ViewportControls/ViewportControls.types'; 

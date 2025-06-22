@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { ExhibitItemProps } from './ExhibitItem.types';
+import { ExhibitItemProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitItem/ExhibitItem.types';
 
 export const useExhibitItemHandlers = ({
   exhibit,

@@ -10,8 +10,8 @@ import {
   IconFileText,
   IconFile
 } from '@tabler/icons-react';
-import type { AssetType } from '../../Assets.types';
-import type { AssetPreviewSizeVariant, AssetPreviewSize } from './AssetPreview.types';
+import type { AssetType } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/Assets.types';
+import type { AssetPreviewSizeVariant, AssetPreviewSize } from '@/tests/complex-document-editor-migration/source/components/panels/components/Assets/components/AssetPreview/AssetPreview.types';
 
 /**
  * Size mapping for different preview sizes

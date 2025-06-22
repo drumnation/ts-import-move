@@ -6,5 +6,5 @@
  * @module PreviewDebugTabbedPanel
  */
 
-export { PreviewDebugTabbedPanel } from './PreviewDebugTabbedPanel';
-export type { PreviewDebugTabbedPanelProps } from './PreviewDebugTabbedPanel.types'; 
+export { PreviewDebugTabbedPanel } from '@/tests/complex-document-editor-migration/source/components/panels/components/PreviewDebugTabbedPanel/PreviewDebugTabbedPanel';
+export type { PreviewDebugTabbedPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/PreviewDebugTabbedPanel/PreviewDebugTabbedPanel.types'; 

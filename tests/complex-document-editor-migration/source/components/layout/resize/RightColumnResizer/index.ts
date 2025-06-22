@@ -8,7 +8,7 @@
  */
 
 // Main component
-export { RightColumnResizer, RightColumnResizerMemo } from './RightColumnResizer';
+export { RightColumnResizer, RightColumnResizerMemo } from '@/tests/complex-document-editor-migration/source/components/layout/resize/RightColumnResizer/RightColumnResizer';
 
 // Types
 export type { 
@@ -18,7 +18,7 @@ export type {
   ResizeEvent,
   ResizeHandlers,
   ResizerStyles,
-} from './RightColumnResizer.types';
+} from '@/tests/complex-document-editor-migration/source/components/layout/resize/RightColumnResizer/RightColumnResizer.types';
 
 // Logic utilities (for testing or advanced usage)
 export {
@@ -29,7 +29,7 @@ export {
   useRightColumnResizerLogic,
   createResizeConstraints,
   validateResizeState,
-} from './RightColumnResizer.logic';
+} from '@/tests/complex-document-editor-migration/source/components/layout/resize/RightColumnResizer/RightColumnResizer.logic';
 
 // Styled components (for customization)
-export { RightColumnResizerStyles } from './RightColumnResizer.styles'; 
+export { RightColumnResizerStyles } from '@/tests/complex-document-editor-migration/source/components/layout/resize/RightColumnResizer/RightColumnResizer.styles'; 

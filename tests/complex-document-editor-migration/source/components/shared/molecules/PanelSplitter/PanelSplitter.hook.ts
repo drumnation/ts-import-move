@@ -12,19 +12,19 @@ import type {
   PanelSplitConfig, 
   PanelSplitState,
   UsePanelSplitHandlers
-} from './PanelSplitter.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelSplitter/PanelSplitter.types';
 import { 
   calculateNewSplitRatio, 
   createPanelSplitState,
   validateSplitConfig 
-} from './PanelSplitter.logic';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelSplitter/PanelSplitter.logic';
 import { useDispatch, useSelector } from 'react-redux';
 import { throttle } from 'lodash';
 import type { 
   PanelSplitterHookReturn, 
   ColumnType, 
   PanelSplitConstraints 
-} from './PanelSplitter.types';
+} from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelSplitter/PanelSplitter.types';
 import type { RootState } from '@/stores/store';
 
 /**

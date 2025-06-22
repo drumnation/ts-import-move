@@ -1,9 +1,9 @@
 import React from 'react';
-import type { PanelConfigurationHookParams, UsePanelConfigurationReturn } from './PanelConfiguration.types';
+import type { PanelConfigurationHookParams, UsePanelConfigurationReturn } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelConfiguration/PanelConfiguration.types';
 import { AiAssistant } from '@/pages/DocumentEditorPage/components/panels/components/AiAssistant';
 import { InfoPanel } from '@/shared-components/molecules/InfoPanel';
-import { PanelContentBox } from './components/PanelContentBox';
-import { PANEL_SIZES, PANEL_DATA, createPanelSlotConfig } from './PanelConfiguration.logic';
+import { PanelContentBox } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelConfiguration/components/PanelContentBox';
+import { PANEL_SIZES, PANEL_DATA, createPanelSlotConfig } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelConfiguration/PanelConfiguration.logic';
 import { EditorNodePalette } from '@/shared-components/molecules/EditorNodePalette';
 import { PreviewDebugTabbedPanel } from '@/pages/DocumentEditorPage/components/panels/components/PreviewDebugTabbedPanel';
 import type { Node } from '@/types/legal-document-ast';

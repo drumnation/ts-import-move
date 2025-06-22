@@ -17,8 +17,8 @@ import {
   IconChevronUp
 } from '@tabler/icons-react';
 
-import { ExhibitFiltersProps } from './ExhibitFilters.types';
-import { useExhibitFilters } from './ExhibitFilters.hook';
+import { ExhibitFiltersProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitFilters/ExhibitFilters.types';
+import { useExhibitFilters } from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitFilters/ExhibitFilters.hook';
 import {
   statusOptions,
   relevanceOptions,
@@ -26,7 +26,7 @@ import {
   formatDateForInput,
   formatDateRangeForDisplay,
   shouldShowDateRangeButton
-} from './ExhibitFilters.logic';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitFilters/ExhibitFilters.logic';
 import {
   FilterContainer,
   SearchContainer,
@@ -45,7 +45,7 @@ import {
   RemoveFilterButton,
   SearchInput,
   ClearSearchButton
-} from './ExhibitFilters.styles';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Exhibits/components/ExhibitFilters/ExhibitFilters.styles';
 
 export const ExhibitFilters: React.FC<ExhibitFiltersProps> = ({
   filters,

@@ -10,7 +10,7 @@
 import React from 'react';
 import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
-import { EditorContainer } from './LexicalEditor.styles';
+import { EditorContainer } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.styles';
 
 describe('LexicalEditor Styles', () => {
   describe('M5.2: Perfect List Alignment', () => {

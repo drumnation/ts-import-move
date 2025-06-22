@@ -6,6 +6,6 @@
  * @module ThreeColumnLayout
  */
 
-export { ThreeColumnLayout } from './ThreeColumnLayout';
-export type { ThreeColumnLayoutProps } from './ThreeColumnLayout.types';
-export { useThreeColumnLayout } from './ThreeColumnLayout.logic'; 
+export { ThreeColumnLayout } from '@/tests/complex-document-editor-migration/source/components/layout/desktop/ThreeColumnLayout/ThreeColumnLayout';
+export type { ThreeColumnLayoutProps } from '@/tests/complex-document-editor-migration/source/components/layout/desktop/ThreeColumnLayout/ThreeColumnLayout.types';
+export { useThreeColumnLayout } from '@/tests/complex-document-editor-migration/source/components/layout/desktop/ThreeColumnLayout/ThreeColumnLayout.logic'; 

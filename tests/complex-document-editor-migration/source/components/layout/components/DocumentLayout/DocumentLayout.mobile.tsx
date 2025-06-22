@@ -11,7 +11,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { DocumentLayoutProps, DocumentLayoutLogic } from './DocumentLayout.types';
+import type { DocumentLayoutProps, DocumentLayoutLogic } from '@/tests/complex-document-editor-migration/source/components/layout/components/DocumentLayout/DocumentLayout.types';
 
 interface DocumentLayoutMobileProps extends DocumentLayoutProps, DocumentLayoutLogic {}
 

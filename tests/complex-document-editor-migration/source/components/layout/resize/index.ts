@@ -7,10 +7,10 @@
  * @module resize/index
  */
 
-export { LeftColumnResizer } from './LeftColumnResizer';
-export { RightColumnResizer } from './RightColumnResizer';
-export { VerticalSplitter } from './VerticalSplitter';
+export { LeftColumnResizer } from '@/tests/complex-document-editor-migration/source/components/layout/resize/LeftColumnResizer';
+export { RightColumnResizer } from '@/tests/complex-document-editor-migration/source/components/layout/resize/RightColumnResizer';
+export { VerticalSplitter } from '@/tests/complex-document-editor-migration/source/components/layout/resize/VerticalSplitter';
 
-export type { LeftColumnResizerProps } from './LeftColumnResizer';
-export type { RightColumnResizerProps } from './RightColumnResizer';
-export type { VerticalSplitterProps } from './VerticalSplitter'; 
+export type { LeftColumnResizerProps } from '@/tests/complex-document-editor-migration/source/components/layout/resize/LeftColumnResizer';
+export type { RightColumnResizerProps } from '@/tests/complex-document-editor-migration/source/components/layout/resize/RightColumnResizer';
+export type { VerticalSplitterProps } from '@/tests/complex-document-editor-migration/source/components/layout/resize/VerticalSplitter'; 

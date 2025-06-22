@@ -20,8 +20,8 @@ import {
   IconShare,
   IconTrash
 } from '@tabler/icons-react';
-import { usePlatformDetection } from '../../layout/components/PlatformDetection';
-import type { SessionsPanelProps } from './SessionsPanel.types';
+import { usePlatformDetection } from '@/tests/complex-document-editor-migration/source/components/panels/layout/components/PlatformDetection';
+import type { SessionsPanelProps } from '@/tests/complex-document-editor-migration/source/components/panels/components/Sessions/SessionsPanel.types';
 import {
   StyledContainer,
   StyledHeader,
@@ -31,9 +31,9 @@ import {
   StyledFooter,
   StyledEmptyState,
   StyledSessionStats
-} from './SessionsPanel.styles';
-import { getActivityIcon, getStatusColor, formatDuration } from './Sessions.logic';
-import { useSessions } from './Sessions.hook';
+} from '@/tests/complex-document-editor-migration/source/components/panels/components/Sessions/SessionsPanel.styles';
+import { getActivityIcon, getStatusColor, formatDuration } from '@/tests/complex-document-editor-migration/source/components/panels/components/Sessions/Sessions.logic';
+import { useSessions } from '@/tests/complex-document-editor-migration/source/components/panels/components/Sessions/Sessions.hook';
 
 export const SessionsPanel: React.FC<SessionsPanelProps> = ({ 
   className,

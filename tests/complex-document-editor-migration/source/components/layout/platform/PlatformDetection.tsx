@@ -10,12 +10,12 @@
 import React, { createContext, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from '@emotion/styled';
-import { usePlatformDetection } from './PlatformDetection.logic';
+import { usePlatformDetection } from '@/tests/complex-document-editor-migration/source/components/layout/platform/PlatformDetection.logic';
 import type {
   PlatformProviderProps,
   PlatformRouterProps,
   PlatformContextType,
-} from './PlatformDetection.types';
+} from '@/tests/complex-document-editor-migration/source/components/layout/platform/PlatformDetection.types';
 
 /**
  * Platform context

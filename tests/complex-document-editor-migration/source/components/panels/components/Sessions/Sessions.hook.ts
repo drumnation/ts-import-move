@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
-import type { SessionActivity } from './Sessions.types';
-import { mockActivities, calculateSessionStats } from './Sessions.logic';
+import type { SessionActivity } from '@/tests/complex-document-editor-migration/source/components/panels/components/Sessions/Sessions.types';
+import { mockActivities, calculateSessionStats } from '@/tests/complex-document-editor-migration/source/components/panels/components/Sessions/Sessions.logic';
 
 export const useSessions = () => {
   const [activities, setActivities] = useState<SessionActivity[]>(mockActivities);

@@ -4,25 +4,25 @@
  */
 
 // Editor components
-export * from './BidirectionalResizer';
-export * from './DocumentProvider';
-export * from './DocumentViewport';
-export * from './EditorCanvas';
-export * from './LexicalEditor';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/molecules/BidirectionalResizer';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentProvider';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/molecules/DocumentViewport';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor';
 
 // Layout components
-export * from './MobileLayout';
-export * from './ResizablePanel';
-export * from './SlotPanel';
-export * from './TopBar';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/molecules/ResizablePanel';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlotPanel';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/molecules/TopBar';
 
 // Panel components
-export * from './PanelConfiguration';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelConfiguration';
 
 // Content components
-export * from './PreviewIframe';
-export * from './SampleDocumentContent';
-export * from './SlashCommandMenu';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PreviewIframe';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SampleDocumentContent';
+export * from '@/tests/complex-document-editor-migration/source/components/shared/molecules/SlashCommandMenu';
 
 // Note: Components export different things (hooks, components, types)
 // Import directly from specific component folders for precise control 

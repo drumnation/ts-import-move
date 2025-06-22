@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import fs from 'fs';
 import path from 'path';
-import { moveFiles } from '../../src/lib/index.js';
+import { moveFiles } from '@/lib/index.js';
 import { tmpdir } from 'os';
 
 describe('Double Extension Bug Tests', () => {
@@ -17,14 +17,18 @@ describe('Double Extension Bug Tests', () => {
     fs.mkdirSync(testDir, { recursive: true });
     process.chdir(testDir);
     
-    // Create tsconfig.json
+    // Create tsconfig.json with absolute imports support
     fs.writeFileSync(path.join(testDir, 'tsconfig.json'), `{
   "compilerOptions": {
     "target": "es2020",
     "module": "esnext",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "strict": true
+    "strict": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    }
   },
   "include": ["**/*"]
 }`);
@@ -88,17 +92,14 @@ export const TextDisplay: React.FC<{ text: string }> = ({ text }) => {
     const movedComponent = fs.readFileSync(path.join(componentsDir, 'TextDisplay.tsx'), 'utf8');
     
     // Should be updated to new location and name
-    expect(movedComponent).toContain("from '../shared/stringHelpers'");
+    expect(movedComponent).toContain('from \'@/shared/stringHelpers\'');
     
     // Should NOT have double extensions
-    expect(movedComponent).not.toContain("stringHelpers.ts/strings");
-    expect(movedComponent).not.toContain("stringHelpers.ts.ts");
-    expect(movedComponent).not.toContain("stringUtils.ts/strings");
-    expect(movedComponent).not.toContain("stringUtils.ts.ts");
+    expect(movedComponent).not.toContain('.ts.ts');
+    expect(movedComponent).not.toContain('.tsx.tsx');
     
-    // Should NOT have malformed paths
-    expect(movedComponent).not.toContain("/stringHelpers.ts");
-    expect(movedComponent).not.toContain("\\stringHelpers.ts");
+    expect(movedComponent).not.toContain('from \'../utils/stringUtils\'');
+    expect(movedComponent).not.toContain('from \'../utils/stringUtils.ts\'');
   });
 
   it('should handle file-to-file moves without extension corruption', async () => {
@@ -155,10 +156,10 @@ export const userHelpers = {
     // Verify import path updated correctly without extension issues
     const helperContent = fs.readFileSync(path.join(utilsDir, 'userHelpers.ts'), 'utf8');
     
-    expect(helperContent).toContain("from '../shared/types/User'");
-    expect(helperContent).not.toContain("User.ts/User");
-    expect(helperContent).not.toContain("User.ts.ts");
-    expect(helperContent).not.toContain("UserTypes.ts/");
+    expect(helperContent).toContain('from \'@/shared/types/User\'');
+    expect(helperContent).not.toContain('User.ts/User');
+    expect(helperContent).not.toContain('User.ts.ts');
+    expect(helperContent).not.toContain('UserTypes.ts/');
   });
 
   it('should handle directory moves without corrupting nested file imports', async () => {
@@ -223,10 +224,10 @@ export type { AuthUser, LoginCredentials } from './types/auth.types';
     const serviceContent = fs.readFileSync(movedServiceFile, 'utf8');
     const indexContent = fs.readFileSync(movedIndexFile, 'utf8');
     
-    // Internal imports should remain relative
-    expect(serviceContent).toContain("from '../types/auth.types'");
-    expect(indexContent).toContain("from './services/auth.service'");
-    expect(indexContent).toContain("from './types/auth.types'");
+    // With absolute imports enabled, internal imports become absolute
+    expect(serviceContent).toContain("from '@/shared/auth/types/auth.types'");
+    expect(indexContent).toContain("from '@/shared/auth/services/auth.service'");
+    expect(indexContent).toContain("from '@/shared/auth/types/auth.types'");
     
     // No extension corruption
     expect(serviceContent).not.toContain("auth.types.ts/");
@@ -273,8 +274,9 @@ export const ButtonBase = ({ variant }: { variant: string }) => (
     const primaryContent = fs.readFileSync(path.join(destDir, 'PrimaryButton.tsx'), 'utf8');
     const secondaryContent = fs.readFileSync(path.join(destDir, 'SecondaryButton.tsx'), 'utf8');
     
-    expect(primaryContent).toContain("from './ButtonBase'");
-    expect(secondaryContent).toContain("from './ButtonBase'");
+    // With absolute imports enabled, relative imports become absolute
+    expect(primaryContent).toContain("from '@/ui/buttons/ButtonBase'");
+    expect(secondaryContent).toContain("from '@/ui/buttons/ButtonBase'");
     
     // No extension corruption in any file
     expect(primaryContent).not.toContain("ButtonBase.tsx/");

@@ -7,7 +7,7 @@
  * @module PanelSplitter.logic
  */
 
-import type { PanelSplitConfig, PanelSplitState } from './PanelSplitter.types';
+import type { PanelSplitConfig, PanelSplitState } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/PanelSplitter/PanelSplitter.types';
 
 /**
  * Calculates the new split ratio based on mouse/touch movement

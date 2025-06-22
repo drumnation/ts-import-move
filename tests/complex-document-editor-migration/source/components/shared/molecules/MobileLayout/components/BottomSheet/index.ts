@@ -1,2 +1,2 @@
-export { BottomSheet } from './BottomSheet';
-export type { BottomSheetProps, TouchTargetConfig, SheetType } from './BottomSheet.types'; 
+export { BottomSheet } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components/BottomSheet/BottomSheet';
+export type { BottomSheetProps, TouchTargetConfig, SheetType } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/MobileLayout/components/BottomSheet/BottomSheet.types'; 

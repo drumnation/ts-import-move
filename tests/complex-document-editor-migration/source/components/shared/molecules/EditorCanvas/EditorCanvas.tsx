@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-import { CanvasContainer } from './EditorCanvas.styles';
-import { useEditorCanvas } from './EditorCanvas.hook';
-import { MobileCanvasLayout } from './components/MobileCanvasLayout';
-import { DesktopCanvasLayout } from './components/DesktopCanvasLayout';
-import type { EditorCanvasProps } from './EditorCanvas.types';
+import { CanvasContainer } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/EditorCanvas.styles';
+import { useEditorCanvas } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/EditorCanvas.hook';
+import { MobileCanvasLayout } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/MobileCanvasLayout';
+import { DesktopCanvasLayout } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/components/DesktopCanvasLayout';
+import type { EditorCanvasProps } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/EditorCanvas/EditorCanvas.types';
 
 export const EditorCanvas: React.FC<EditorCanvasProps> = ({
   document,

@@ -14,8 +14,8 @@ import type {
   EditorLayoutState,
   PanelLayout,
   SafeAreaInsets
-} from './DocumentEditorPage.types';
-import type { LegalDocument, Node, ParagraphNode } from '../../types/legal-document-ast';
+} from '@/tests/complex-document-editor-migration/source/DocumentEditorPage.types';
+import type { LegalDocument, Node, ParagraphNode } from '@/tests/types/legal-document-ast';
 import { 
   IconFileText,
   IconScale,
@@ -25,9 +25,9 @@ import {
   IconSparkles
 } from '@tabler/icons-react';
 import { useMediaQuery } from '@mantine/hooks';
-import type { LexicalASTNode } from './components/shared/molecules/LexicalEditor/LexicalEditor.types';
-import { createSampleLegalDocument } from './DocumentEditorPage.logic';
-import { DocumentStore } from '../../stores/DocumentStore';
+import type { LexicalASTNode } from '@/tests/complex-document-editor-migration/source/components/shared/molecules/LexicalEditor/LexicalEditor.types';
+import { createSampleLegalDocument } from '@/tests/complex-document-editor-migration/source/DocumentEditorPage.logic';
+import { DocumentStore } from '@/tests/stores/DocumentStore';
 import { debounce } from 'lodash';
 
 /**

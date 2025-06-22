@@ -10,12 +10,12 @@
 import React, { createContext, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from '@emotion/styled';
-import { usePlatformDetection } from '../destination/shared/components/1-atoms/platform-component/PlatformDetection.logic';
+import { usePlatformDetection } from '@/tests/complex-document-editor-migration/proof-test/destination/shared/components/1-atoms/platform-component/PlatformDetection.logic';
 import type {
   PlatformProviderProps,
   PlatformRouterProps,
   PlatformContextType,
-} from '../destination/shared/components/1-atoms/platform-component/PlatformDetection.types';
+} from '@/tests/complex-document-editor-migration/proof-test/destination/shared/components/1-atoms/platform-component/PlatformDetection.types';
 
 /**
  * Platform context

@@ -10,11 +10,11 @@
 import React, { memo } from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { PanelHeader } from '../atoms/PanelHeader';
-import { PanelContent } from '../atoms/PanelContent';
-import { VerticalResizer } from '../atoms/VerticalResizer';
-import { HorizontalResizer } from '../atoms/HorizontalResizer';
-import type { LeftPanelProps, LeftPanelLogic } from './LeftPanel.types';
+import { PanelHeader } from '@/tests/complex-document-editor-migration/source/components/panels/containers/atoms/PanelHeader';
+import { PanelContent } from '@/tests/complex-document-editor-migration/source/components/panels/containers/atoms/PanelContent';
+import { VerticalResizer } from '@/tests/complex-document-editor-migration/source/components/panels/containers/atoms/VerticalResizer';
+import { HorizontalResizer } from '@/tests/complex-document-editor-migration/source/components/panels/containers/atoms/HorizontalResizer';
+import type { LeftPanelProps, LeftPanelLogic } from '@/tests/complex-document-editor-migration/source/components/panels/containers/LeftPanel/LeftPanel.types';
 
 interface LeftPanelDesktopProps extends LeftPanelProps, LeftPanelLogic {}
 
