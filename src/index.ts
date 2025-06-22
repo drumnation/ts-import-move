@@ -11,14 +11,32 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { moveAction } from './commands/move.js';
 
-// Create __dirname equivalent for ESM
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// Create __dirname equivalent for ESM/CJS compatibility
+let __dirname: string;
+try {
+  // ESM: import.meta.url is available
+  if (typeof import.meta !== 'undefined' && import.meta.url) {
+    const __filename = fileURLToPath(import.meta.url);
+    __dirname = dirname(__filename);
+  } else {
+    throw new Error('import.meta.url not available');
+  }
+} catch {
+  // CJS fallback: use __dirname directly (available in CommonJS)
+  __dirname = (globalThis as { __dirname?: string }).__dirname || process.cwd();
+}
 
-// Import version from package.json
-const packageJson = JSON.parse(
-  fs.readFileSync(path.join(__dirname, '../package.json'), 'utf8')
-);
+// Import version from package.json - use the CLI binary's directory, not CWD
+let packageJson: { version: string };
+try {
+  // Try to find package.json relative to the CLI binary location
+  const packageJsonPath = path.join(__dirname, '../package.json');
+  packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+} catch {
+  // Fallback: if we can't find package.json, provide a default version
+  console.warn('Warning: Could not load package.json version, using fallback');
+  packageJson = { version: '1.0.3' };
+}
 
 // Initialize the CLI
 const program = new Command();

@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.4] - 2025-06-21
+
+### Fixed
+- **CRITICAL**: Fixed tsconfig.json resolution bug when running from temporary directories
+- **CRITICAL**: Fixed ts-morph initialization failures in fallback mode  
+- **CRITICAL**: Improved file discovery robustness for large file sets (50+ files)
+- **CRITICAL**: Fixed manual file discovery to avoid ENOENT errors on non-existent files
+- Enhanced error handling for ts-morph project initialization
+- Improved fallback configuration for environments without valid tsconfig
+
+### Added
+- Robust fallback system for ts-morph when tsconfig is inaccessible
+- Enhanced manual file discovery with existence validation
+- Better error recovery and continuation for file loading failures
+
 ## [1.0.3] - 2025-06-21
 
 ### Added

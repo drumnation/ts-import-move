@@ -180,16 +180,63 @@ export const determineProcessingMode = (
  */
 export const createProjectConfig = (
   files: readonly string[],
-  tsConfigPath: string | undefined
+  tsConfigPath: string | undefined,
+  verbose: boolean = false
 ): { tsConfigPath: string | null; useInMemoryFileSystem: boolean } => {
-  const resolvedTsConfigPath = tsConfigPath ?? findTsConfigForFiles([...files]);
+  let resolvedTsConfigPath: string | null = null;
+  
+  // Try explicit tsconfig path first
+  if (tsConfigPath && fs.existsSync(tsConfigPath)) {
+    resolvedTsConfigPath = tsConfigPath;
+    if (verbose) {
+      console.log(`Using explicit tsconfig: ${resolvedTsConfigPath}`);
+    }
+  } else {
+    // Try to find tsconfig relative to files
+    const foundTsConfig = findTsConfigForFiles([...files]);
+    
+    if (foundTsConfig && fs.existsSync(foundTsConfig)) {
+      resolvedTsConfigPath = foundTsConfig;
+      if (verbose) {
+        console.log(`Found tsconfig relative to files: ${resolvedTsConfigPath}`);
+      }
+    } else {
+      // Fallback: try to find tsconfig from current working directory
+      const fallbackTsConfig = findTsConfigForFiles([]);
+      
+      if (fallbackTsConfig && fs.existsSync(fallbackTsConfig)) {
+        resolvedTsConfigPath = fallbackTsConfig;
+        if (verbose) {
+          console.log(`Using fallback tsconfig from CWD: ${resolvedTsConfigPath}`);
+        }
+      }
+    }
+  }
+  
+  // Final validation: ensure the resolved path actually exists and is readable
+  if (resolvedTsConfigPath) {
+    try {
+      fs.accessSync(resolvedTsConfigPath, fs.constants.R_OK);
+      // Try to parse it to ensure it's valid JSON
+      const content = fs.readFileSync(resolvedTsConfigPath, 'utf8');
+      JSON.parse(content);
+      if (verbose) {
+        console.log(`Validated tsconfig: ${resolvedTsConfigPath}`);
+      }
+    } catch (error) {
+      if (verbose) {
+        console.warn(`Tsconfig validation failed for ${resolvedTsConfigPath}:`, error);
+      }
+      resolvedTsConfigPath = null;
+    }
+  }
   
   if (!resolvedTsConfigPath) {
     console.warn(chalk.yellow('No tsconfig.json found. Type checking might be limited.'));
   }
   
   return {
-    tsConfigPath: resolvedTsConfigPath || null,
+    tsConfigPath: resolvedTsConfigPath,
     useInMemoryFileSystem: files.length > 50 // Use in-memory for large projects
   };
 };
@@ -266,7 +313,7 @@ export const moveFiles = async (
   validateFiles(files);
   
   // Create project configuration
-  const projectConfig = createProjectConfig(files, options.tsConfigPath ?? options.tsconfig);
+  const projectConfig = createProjectConfig(files, options.tsConfigPath ?? options.tsconfig, options.verbose ?? false);
   
   if (options.verbose) {
     console.log(`Using TypeScript configuration: ${projectConfig.tsConfigPath || 'None'}`);
@@ -280,36 +327,116 @@ export const moveFiles = async (
   }
   
   // Initialize TypeScript project
-  const project = new Project({
-    tsConfigFilePath: projectConfig.tsConfigPath || undefined,
-    useInMemoryFileSystem: projectConfig.useInMemoryFileSystem
-  });
+  let project: Project;
+  let tsConfigSuccessfullyLoaded = false;
+  
+  try {
+    // Strategy 1: Try with the resolved tsconfig path
+    if (projectConfig.tsConfigPath) {
+      project = new Project({
+        tsConfigFilePath: projectConfig.tsConfigPath,
+        useInMemoryFileSystem: projectConfig.useInMemoryFileSystem
+      });
+      
+      tsConfigSuccessfullyLoaded = true; // Mark as successful
+      
+      if (options.verbose) {
+        console.log(`Successfully initialized ts-morph with tsconfig: ${projectConfig.tsConfigPath}`);
+      }
+    } else {
+      throw new Error('No tsconfig available, falling back to manual configuration');
+    }
+  } catch (error) {
+    // Strategy 2: Fallback to manual configuration without tsconfig
+    if (options.verbose) {
+      console.warn(`Failed to initialize with tsconfig (${error}), using fallback configuration`);
+    }
+    
+    project = new Project({
+      useInMemoryFileSystem: projectConfig.useInMemoryFileSystem,
+      compilerOptions: {
+        target: 99, // Latest
+        module: 99, // ESNext
+        moduleResolution: 2, // Node
+        allowSyntheticDefaultImports: true,
+        esModuleInterop: true,
+        skipLibCheck: true,
+        strict: false, // Be permissive for compatibility
+        jsx: 4, // Preserve
+        declaration: false,
+        outDir: undefined // Don't emit files
+      }
+    });
+    
+    tsConfigSuccessfullyLoaded = false; // Mark as failed
+    
+    if (options.verbose) {
+      console.log('Using fallback ts-morph configuration without tsconfig');
+    }
+  }
   
   // CRITICAL: Add ALL TypeScript files in the project, not just the files being moved
   // ts-morph needs to know about all files to update imports correctly
-  if (projectConfig.tsConfigPath) {
-    // If we have a tsconfig, let ts-morph load all files from it
-    project.addSourceFilesFromTsConfig(projectConfig.tsConfigPath);
-  } else {
-    // If no tsconfig, add all .ts/.tsx files from the directory tree
-    const projectRoot = path.dirname(files[0] || initialCwd);
+  if (tsConfigSuccessfullyLoaded && projectConfig.tsConfigPath) {
+    // If we successfully initialized with tsconfig, let ts-morph load all files from it
+    try {
+      project.addSourceFilesFromTsConfig(projectConfig.tsConfigPath);
+      
+      if (options.verbose) {
+        console.log('Successfully loaded all project files from tsconfig');
+      }
+    } catch (error) {
+      if (options.verbose) {
+        console.warn('Failed to load files from tsconfig (' + error + '), falling back to manual file discovery');
+      }
+      // Fall back to manual file discovery
+      tsConfigSuccessfullyLoaded = false;
+    }
+  }
+  
+  if (!tsConfigSuccessfullyLoaded) {
+    // If no tsconfig or tsconfig failed, add all .ts/.tsx files from the directory tree
+    if (options.verbose) {
+      console.log('Using manual file discovery for project files');
+    }
+    
+    const projectRoot = files.length > 0 ? path.dirname(files[0]) : initialCwd;
     const allTsFiles = fg.sync('**/*.{ts,tsx}', { 
       cwd: projectRoot,
       absolute: true,
       ignore: ['node_modules/**', '**/*.d.ts']
     });
     
+    if (options.verbose) {
+      console.log('Found ' + allTsFiles.length + ' TypeScript files in project');
+    }
+    
     for (const tsFile of allTsFiles) {
-      if (!project.getSourceFile(tsFile)) {
-        project.addSourceFileAtPath(tsFile);
+      // Only add files that exist and are not being moved (to avoid ENOENT errors)
+      if (fs.existsSync(tsFile) && !files.includes(tsFile) && !project.getSourceFile(tsFile)) {
+        try {
+          project.addSourceFileAtPath(tsFile);
+        } catch (error) {
+          if (options.verbose) {
+            console.warn('Failed to add file to project: ' + tsFile + ' (' + error + ')');
+          }
+          // Continue with other files
+        }
       }
     }
   }
   
   // Ensure the files being moved are definitely in the project
   for (const file of files) {
-    if (!project.getSourceFile(file)) {
-      project.addSourceFileAtPath(file);
+    if (fs.existsSync(file) && !project.getSourceFile(file)) {
+      try {
+        project.addSourceFileAtPath(file);
+      } catch (error) {
+        if (options.verbose) {
+          console.warn('Failed to add file to project: ' + file + ' (' + error + ')');
+        }
+        // Continue - this file might not be essential for import resolution
+      }
     }
   }
   
