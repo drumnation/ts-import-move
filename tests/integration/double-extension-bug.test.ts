@@ -230,9 +230,9 @@ export type { AuthUser, LoginCredentials } from './types/auth.types';
     expect(indexContent).toContain("from '@/shared/auth/types/auth.types'");
     
     // No extension corruption
-    expect(serviceContent).not.toContain("auth.types.ts/");
-    expect(indexContent).not.toContain("auth.service.ts/");
-    expect(indexContent).not.toContain("auth.types.ts/");
+    expect(serviceContent).not.toContain('auth.types.ts/');
+    expect(indexContent).not.toContain('auth.service.ts/');
+    expect(indexContent).not.toContain('auth.types.ts/');
   });
 
   it('should handle glob pattern moves without extension corruption', async () => {
@@ -279,9 +279,9 @@ export const ButtonBase = ({ variant }: { variant: string }) => (
     expect(secondaryContent).toContain("from '@/ui/buttons/ButtonBase'");
     
     // No extension corruption in any file
-    expect(primaryContent).not.toContain("ButtonBase.tsx/");
-    expect(secondaryContent).not.toContain("ButtonBase.tsx/");
-    expect(primaryContent).not.toContain("ButtonBase.tsx.tsx");
-    expect(secondaryContent).not.toContain("ButtonBase.tsx.tsx");
+    expect(primaryContent).not.toContain('ButtonBase.tsx/');
+    expect(secondaryContent).not.toContain('ButtonBase.tsx/');
+    expect(primaryContent).not.toContain('ButtonBase.tsx.tsx');
+    expect(secondaryContent).not.toContain('ButtonBase.tsx.tsx');
   });
 }); 

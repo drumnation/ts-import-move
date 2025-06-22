@@ -212,10 +212,10 @@ export const convertProjectToAbsoluteImports = (
   let totalUpdated = 0;
   
   if (verbose) {
-         console.log('\n🔄 Converting relative imports to absolute imports:');
+    console.log('\n🔄 Converting relative imports to absolute imports:');
     console.log(`  Alias prefix: ${aliasConfig.prefix}`);
     console.log(`  Base URL: ${aliasConfig.baseUrl}`);
-    console.log(`  Path mappings:`);
+    console.log('  Path mappings:');
     for (const [alias, target] of aliasConfig.paths.entries()) {
       console.log(`    ${alias} → ${target}`);
     }

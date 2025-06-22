@@ -360,137 +360,137 @@ export const Button = {
       expect(installCursorRulesMock).toHaveBeenCalled();
     });
   });
+});
+
+describe('move command with --no-absolute-imports', () => {
+  let tempDir: string;
+
+  beforeEach(() => {
+    tempDir = path.join(__dirname, '../../test-temp-e2e-relative');
+    if (fs.existsSync(tempDir)) {
+      fs.rmSync(tempDir, { recursive: true, force: true });
+    }
+    fs.mkdirSync(tempDir, { recursive: true });
+      
+    // Create test project structure
+    fs.mkdirSync(path.join(tempDir, 'src', 'components'), { recursive: true });
+    fs.mkdirSync(path.join(tempDir, 'src', 'utils'), { recursive: true });
+    fs.mkdirSync(path.join(tempDir, 'src', 'shared'), { recursive: true });
+      
+    // Create tsconfig.json with path aliases
+    const tsconfigContent = {
+      compilerOptions: {
+        target: 'ES2020',
+        module: 'ESNext',
+        moduleResolution: 'node',
+        baseUrl: './src',
+        paths: {
+          '@/*': ['*'],
+          '@/shared/*': ['shared/*'],
+          '@/features/*': ['features/*'],
+          '@/components/*': ['components/*'],
+          '@/utils/*': ['utils/*']
+        }
+      },
+      include: ['src/**/*']
+    };
+    fs.writeFileSync(
+      path.join(tempDir, 'tsconfig.json'),
+      JSON.stringify(tsconfigContent, null, 2)
+    );
+      
+    // Create format utility
+    fs.writeFileSync(
+      path.join(tempDir, 'src/utils/format.ts'),
+      'export const formatDate = (date: Date): string => date.toISOString();\n'
+    );
+      
+    // Create Card component that imports format utility
+    fs.writeFileSync(
+      path.join(tempDir, 'src/components/Card.ts'),
+      'import { formatDate } from \'../utils/format\';\n\nexport const Card = () => formatDate(new Date());\n'
+    );
   });
 
-  describe('move command with --no-absolute-imports', () => {
-    let tempDir: string;
+  afterEach(() => {
+    if (fs.existsSync(tempDir)) {
+      fs.rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
 
-    beforeEach(() => {
-      tempDir = path.join(__dirname, '../../test-temp-e2e-relative');
-      if (fs.existsSync(tempDir)) {
-        fs.rmSync(tempDir, { recursive: true, force: true });
+  it('should preserve relative imports when --no-absolute-imports flag is used', async () => {
+    const cliPath = path.join(__dirname, '../../bin/index.ts');
+    const sourceFile = path.join(tempDir, 'src/utils/format.ts');
+    const destinationDir = path.join(tempDir, 'src/shared');
+    const cardPath = path.join(tempDir, 'src/components/Card.ts');
+
+    console.log('CLI Output with --no-absolute-imports:');
+      
+    // Run the CLI command with --no-absolute-imports flag
+    const result = execSync(
+      `pnpm tsx "${cliPath}" "${sourceFile}" "${destinationDir}" --no-absolute-imports --verbose --force`,
+      { 
+        encoding: 'utf-8',
+        cwd: tempDir
       }
-      fs.mkdirSync(tempDir, { recursive: true });
+    );
       
-      // Create test project structure
-      fs.mkdirSync(path.join(tempDir, 'src', 'components'), { recursive: true });
-      fs.mkdirSync(path.join(tempDir, 'src', 'utils'), { recursive: true });
-      fs.mkdirSync(path.join(tempDir, 'src', 'shared'), { recursive: true });
-      
-      // Create tsconfig.json with path aliases
-      const tsconfigContent = {
-        compilerOptions: {
-          target: 'ES2020',
-          module: 'ESNext',
-          moduleResolution: 'node',
-          baseUrl: './src',
-          paths: {
-            '@/*': ['*'],
-            '@/shared/*': ['shared/*'],
-            '@/features/*': ['features/*'],
-            '@/components/*': ['components/*'],
-            '@/utils/*': ['utils/*']
-          }
-        },
-        include: ['src/**/*']
-      };
-      fs.writeFileSync(
-        path.join(tempDir, 'tsconfig.json'),
-        JSON.stringify(tsconfigContent, null, 2)
-      );
-      
-      // Create format utility
-      fs.writeFileSync(
-        path.join(tempDir, 'src/utils/format.ts'),
-        'export const formatDate = (date: Date): string => date.toISOString();\n'
-      );
-      
-      // Create Card component that imports format utility
-      fs.writeFileSync(
-        path.join(tempDir, 'src/components/Card.ts'),
-        'import { formatDate } from \'../utils/format\';\n\nexport const Card = () => formatDate(new Date());\n'
-      );
-    });
+    console.log(result);
 
-    afterEach(() => {
-      if (fs.existsSync(tempDir)) {
-        fs.rmSync(tempDir, { recursive: true, force: true });
+    // Check that file was moved
+    expect(fs.existsSync(sourceFile)).toBe(false);
+    expect(fs.existsSync(path.join(destinationDir, 'format.ts'))).toBe(true);
+
+    // Check that imports are still relative (not converted to absolute)
+    const cardContent = fs.readFileSync(cardPath, 'utf-8');
+    const hasRelativeImport = cardContent.includes('from \'../shared/format\'');
+      
+    expect(hasRelativeImport).toBe(true);
+    expect(cardContent).not.toContain('from \'@/shared/format\'');
+    expect(cardContent).not.toContain('from \'../utils/format\'');
+  });
+
+  it('should handle multiple files with --no-absolute-imports', async () => {
+    // Create additional test files
+    fs.writeFileSync(
+      path.join(tempDir, 'src/utils/date.ts'),
+      'export const formatDateShort = (date: Date): string => date.toDateString();\n'
+    );
+    fs.writeFileSync(
+      path.join(tempDir, 'src/utils/string.ts'),
+      'export const capitalizeString = (str: string): string => str.toUpperCase();\n'
+    );
+      
+    // Create Button component that imports both utilities
+    fs.writeFileSync(
+      path.join(tempDir, 'src/components/Button.ts'),
+      'import { formatDateShort } from \'../utils/date\';\nimport { capitalizeString } from \'../utils/string\';\n\nexport const Button = () => capitalizeString(formatDateShort(new Date()));\n'
+    );
+
+    const cliPath = path.join(__dirname, '../../bin/index.ts');
+    const dateFile = path.join(tempDir, 'src/utils/date.ts');
+    const stringFile = path.join(tempDir, 'src/utils/string.ts');
+    const destinationDir = path.join(tempDir, 'src/shared');
+    const buttonPath = path.join(tempDir, 'src/components/Button.ts');
+
+    // Run the CLI command with multiple sources and --no-absolute-imports
+    const result = execSync(
+      `pnpm tsx "${cliPath}" "${dateFile}" "${stringFile}" "${destinationDir}" --no-absolute-imports --verbose`,
+      { 
+        encoding: 'utf-8',
+        cwd: tempDir
       }
-    });
+    );
 
-    it('should preserve relative imports when --no-absolute-imports flag is used', async () => {
-      const cliPath = path.join(__dirname, '../../bin/index.ts');
-      const sourceFile = path.join(tempDir, 'src/utils/format.ts');
-      const destinationDir = path.join(tempDir, 'src/shared');
-      const cardPath = path.join(tempDir, 'src/components/Card.ts');
+    // Check that files were moved
+    expect(fs.existsSync(dateFile)).toBe(false);
+    expect(fs.existsSync(stringFile)).toBe(false);
+    expect(fs.existsSync(path.join(destinationDir, 'date.ts'))).toBe(true);
+    expect(fs.existsSync(path.join(destinationDir, 'string.ts'))).toBe(true);
 
-      console.log('CLI Output with --no-absolute-imports:');
-      
-      // Run the CLI command with --no-absolute-imports flag
-      const result = execSync(
-        `pnpm tsx "${cliPath}" "${sourceFile}" "${destinationDir}" --no-absolute-imports --verbose --force`,
-        { 
-          encoding: 'utf-8',
-          cwd: tempDir
-        }
-      );
-      
-      console.log(result);
-
-      // Check that file was moved
-      expect(fs.existsSync(sourceFile)).toBe(false);
-      expect(fs.existsSync(path.join(destinationDir, 'format.ts'))).toBe(true);
-
-      // Check that imports are still relative (not converted to absolute)
-      const cardContent = fs.readFileSync(cardPath, 'utf-8');
-      const hasRelativeImport = cardContent.includes('from \'../shared/format\'');
-      
-      expect(hasRelativeImport).toBe(true);
-      expect(cardContent).not.toContain('from \'@/shared/format\'');
-      expect(cardContent).not.toContain('from \'../utils/format\'');
-    });
-
-    it('should handle multiple files with --no-absolute-imports', async () => {
-      // Create additional test files
-      fs.writeFileSync(
-        path.join(tempDir, 'src/utils/date.ts'),
-        'export const formatDateShort = (date: Date): string => date.toDateString();\n'
-      );
-      fs.writeFileSync(
-        path.join(tempDir, 'src/utils/string.ts'),
-        'export const capitalizeString = (str: string): string => str.toUpperCase();\n'
-      );
-      
-      // Create Button component that imports both utilities
-      fs.writeFileSync(
-        path.join(tempDir, 'src/components/Button.ts'),
-        'import { formatDateShort } from \'../utils/date\';\nimport { capitalizeString } from \'../utils/string\';\n\nexport const Button = () => capitalizeString(formatDateShort(new Date()));\n'
-      );
-
-      const cliPath = path.join(__dirname, '../../bin/index.ts');
-      const dateFile = path.join(tempDir, 'src/utils/date.ts');
-      const stringFile = path.join(tempDir, 'src/utils/string.ts');
-      const destinationDir = path.join(tempDir, 'src/shared');
-      const buttonPath = path.join(tempDir, 'src/components/Button.ts');
-
-      // Run the CLI command with multiple sources and --no-absolute-imports
-      const result = execSync(
-        `pnpm tsx "${cliPath}" "${dateFile}" "${stringFile}" "${destinationDir}" --no-absolute-imports --verbose`,
-        { 
-          encoding: 'utf-8',
-          cwd: tempDir
-        }
-      );
-
-      // Check that files were moved
-      expect(fs.existsSync(dateFile)).toBe(false);
-      expect(fs.existsSync(stringFile)).toBe(false);
-      expect(fs.existsSync(path.join(destinationDir, 'date.ts'))).toBe(true);
-      expect(fs.existsSync(path.join(destinationDir, 'string.ts'))).toBe(true);
-
-      // Check that imports remain relative (not converted to absolute)
-      const buttonContent = fs.readFileSync(buttonPath, 'utf-8');
-      expect(buttonContent).toContain('from \'../shared/date\'');
-      expect(buttonContent).toContain('from \'../shared/string\'');
-    });
-  }); 
+    // Check that imports remain relative (not converted to absolute)
+    const buttonContent = fs.readFileSync(buttonPath, 'utf-8');
+    expect(buttonContent).toContain('from \'../shared/date\'');
+    expect(buttonContent).toContain('from \'../shared/string\'');
+  });
+}); 

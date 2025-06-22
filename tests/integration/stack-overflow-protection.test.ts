@@ -50,7 +50,7 @@ describe('Stack Overflow Protection Tests', () => {
     // Generate 150 levels of nested JSX (known to cause stack overflow in v1.0.0)
     const deepJSX = Array(150).fill(0).reduce((acc, _, i) => 
       `<div className="level-${i}" key="${i}">${acc}</div>`, 
-      '<span className="deep-content">Deep nested content</span>'
+    '<span className="deep-content">Deep nested content</span>'
     );
     
     const complexComponent = `
@@ -232,7 +232,7 @@ export const ConfigValidator = {
     // Generate moderately complex expression (realistic length that shouldn't break)
     const complexExpression = Array(50).fill(0).reduce((expr, _, i) => 
       `${expr}.map(x => x + ${i}).filter(x => x > 0)`,
-      'data'
+    'data'
     );
     
     const processorFile = `

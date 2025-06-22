@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import fs from 'fs';
-import { handleFileMove } from '@/lib/fileHandler.js';
+import { handleFileMove } from '@/lib/file-handler.service.js';
 import type { MovedFilesMap } from '@/types/index.d.js';
-import child_process from 'child_process';
+import * as child_process from 'child_process';
 
 // Define expected function types for casting
 type ExistsSyncFn = (path: fs.PathLike) => boolean;
@@ -122,47 +122,68 @@ describe('MovedFilesMap', () => {
   });
 });
 
+// Mock child_process module
+vi.mock('child_process', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('child_process')>();
+  return {
+    ...actual,
+    execSync: vi.fn(),
+  };
+});
+
 describe('execMoveCommand', () => {
-  // Simple mock setup that actually works
+  const src = 'src/old/FileA.ts';
+  const dest = 'src/new/FileA.ts';
+
   beforeEach(() => {
     vi.resetAllMocks();
   });
 
-  const src = 'src/old/FileA.ts';
-  const dest = 'src/new/FileA.ts';
-
   it('should call mv with correct arguments', async () => {
-    // Mock execSync to prevent actual command execution
-    const execSyncSpy = vi.spyOn(child_process, 'execSync').mockImplementation(() => '');
+    const mockExecSync = vi.fn();
+    vi.doMock('child_process', async (importOriginal) => {
+      const actual = await importOriginal<typeof import('child_process')>();
+      return {
+        ...actual,
+        execSync: mockExecSync,
+      };
+    });
     
-    const { execMoveCommand } = await import('../../src/lib/execMoveCommand.js');
+    // Import the module after setting up the mock
+    const { execMoveCommand } = await import('../../src/lib/exec-move-command.service');
     
     execMoveCommand(src, dest, { force: true, verbose: true });
     
-    expect(execSyncSpy).toHaveBeenCalledWith(
+    expect(mockExecSync).toHaveBeenCalledWith(
       `mv -f "${src}" "${dest}"`,
       { stdio: 'inherit' }
     );
-    expect(execSyncSpy).toHaveBeenCalledTimes(1);
-    
-    execSyncSpy.mockRestore();
+    expect(mockExecSync).toHaveBeenCalledTimes(1);
   });
 
   it('should throw and log error if mv fails', async () => {
     const mockError = new Error('Command failed: mv -f "src/old/FileA.ts" "src/new/FileA.ts"');
     Object.assign(mockError, { status: 1, signal: null, output: [null, null, null], pid: 123, stdout: null, stderr: null });
     
-    const execSyncSpy = vi.spyOn(child_process, 'execSync').mockImplementation(() => {
+    const mockExecSync = vi.fn().mockImplementation(() => {
       throw mockError;
     });
+    
+    vi.doMock('child_process', async (importOriginal) => {
+      const actual = await importOriginal<typeof import('child_process')>();
+      return {
+        ...actual,
+        execSync: mockExecSync,
+      };
+    });
 
-    const { execMoveCommand } = await import('../../src/lib/execMoveCommand.js');
+    // Clear the module cache to ensure we get the new mock
+    vi.resetModules();
+    const { execMoveCommand } = await import('../../src/lib/exec-move-command.service');
     
     expect(() => execMoveCommand(src, dest, { force: true, verbose: true }))
       .toThrowError(expect.objectContaining({ message: mockError.message, status: 1 }));
 
-    expect(execSyncSpy).toHaveBeenCalledTimes(1);
-    
-    execSyncSpy.mockRestore();
+    expect(mockExecSync).toHaveBeenCalledTimes(1);
   });
 }); 
