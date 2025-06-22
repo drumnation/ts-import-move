@@ -35,29 +35,29 @@ const SpinnerContainer = styled(motion.div)<{ size: string }>`
 const Spinner = styled(motion.div)<{ size: string; color: string }>`
   width: ${props => 
     props.size === 'small' ? '16px' : 
-    props.size === 'medium' ? '24px' : '32px'
-  };
+      props.size === 'medium' ? '24px' : '32px'
+};
   height: ${props => 
     props.size === 'small' ? '16px' : 
-    props.size === 'medium' ? '24px' : '32px'
-  };
+      props.size === 'medium' ? '24px' : '32px'
+};
   border: ${props => props.size === 'small' ? '2px' : '3px'} solid transparent;
   border-top-color: ${props => 
     props.color === 'primary' ? '#3b82f6' :
-    props.color === 'secondary' ? '#10b981' : '#6b7280'
-  };
+      props.color === 'secondary' ? '#10b981' : '#6b7280'
+};
   border-radius: 50%;
 `;
 
 const LoadingMessage = styled(motion.span)<{ size: string; color: string }>`
   font-size: ${props => 
     props.size === 'small' ? '12px' : 
-    props.size === 'medium' ? '14px' : '16px'
-  };
+      props.size === 'medium' ? '14px' : '16px'
+};
   color: ${props => 
     props.color === 'primary' ? '#3b82f6' :
-    props.color === 'secondary' ? '#10b981' : '#6b7280'
-  };
+      props.color === 'secondary' ? '#10b981' : '#6b7280'
+};
   font-weight: 500;
   text-align: center;
 `;
@@ -69,7 +69,7 @@ const spinAnimation = {
   transition: {
     duration: 1,
     repeat: Infinity,
-    ease: "linear",
+    ease: 'linear',
   },
 };
 

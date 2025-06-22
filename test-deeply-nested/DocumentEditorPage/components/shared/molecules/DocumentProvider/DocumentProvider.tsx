@@ -20,7 +20,7 @@ export const useDocumentProvider = ({
   currentDocument,
   onContentChange,
   onNodeSelect,
-  placeholder = "Start typing your legal document..."
+  placeholder = 'Start typing your legal document...'
 }: DocumentProviderProps): UseDocumentProviderReturn => {
   const renderPageContent = React.useCallback(() => (
     <DocumentPageContainer>

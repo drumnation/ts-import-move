@@ -22,7 +22,7 @@ export const useSessions = () => {
 
   const sessionStats = useMemo(() => 
     calculateSessionStats(activities), 
-    [activities]
+  [activities]
   );
 
   const currentSessionInfo = useMemo(() => ({

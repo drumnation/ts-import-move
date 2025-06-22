@@ -19,32 +19,32 @@ export const createPanelControlConfig = (
 // Format action labels for display
 export const formatActionLabel = (action: PanelAction): string => {
   switch (action) {
-    case 'open':
-      return 'Open';
-    case 'close':
-      return 'Close';
-    case 'reset':
-      return 'Reset';
-    case 'closeAll':
-      return 'Close All';
-    default:
-      return action;
+  case 'open':
+    return 'Open';
+  case 'close':
+    return 'Close';
+  case 'reset':
+    return 'Reset';
+  case 'closeAll':
+    return 'Close All';
+  default:
+    return action;
   }
 };
 
 // Format position labels for display
 export const formatPositionLabel = (position: PanelPosition): string => {
   switch (position) {
-    case 'leftTop':
-      return 'Top';
-    case 'leftBottom':
-      return 'Bottom';
-    case 'rightTop':
-      return 'Top';
-    case 'rightBottom':
-      return 'Bottom';
-    default:
-      return position;
+  case 'leftTop':
+    return 'Top';
+  case 'leftBottom':
+    return 'Bottom';
+  case 'rightTop':
+    return 'Top';
+  case 'rightBottom':
+    return 'Bottom';
+  default:
+    return position;
   }
 };
 
@@ -81,14 +81,14 @@ export const createControlGroups = (handlers: Record<string, () => void>) => ({
 // Determine button variant based on action
 export const getButtonVariant = (action: PanelAction): 'primary' | 'secondary' | 'danger' => {
   switch (action) {
-    case 'open':
-      return 'primary';
-    case 'close':
-    case 'closeAll':
-      return 'danger';
-    case 'reset':
-      return 'secondary';
-    default:
-      return 'secondary';
+  case 'open':
+    return 'primary';
+  case 'close':
+  case 'closeAll':
+    return 'danger';
+  case 'reset':
+    return 'secondary';
+  default:
+    return 'secondary';
   }
 }; 

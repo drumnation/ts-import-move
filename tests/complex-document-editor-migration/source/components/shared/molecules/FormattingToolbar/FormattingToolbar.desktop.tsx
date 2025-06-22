@@ -112,23 +112,23 @@ export const FormattingToolbarDesktop: React.FC<FormattingToolbarVariantProps> =
 
   const currentHeadingValue = 
     selectionState.headingLevel === 1 ? 'heading1' :
-    selectionState.headingLevel === 2 ? 'heading2' :
-    selectionState.headingLevel === 3 ? 'heading3' :
-    'paragraph';
+      selectionState.headingLevel === 2 ? 'heading2' :
+        selectionState.headingLevel === 3 ? 'heading3' :
+          'paragraph';
 
   const handleHeadingSelect = (value: string | null) => {
     switch (value) {
-      case 'heading1':
-        actions.setHeadingLevel(1);
-        break;
-      case 'heading2':
-        actions.setHeadingLevel(2);
-        break;
-      case 'heading3':
-        actions.setHeadingLevel(3);
-        break;
-      default:
-        actions.setHeadingLevel(null);
+    case 'heading1':
+      actions.setHeadingLevel(1);
+      break;
+    case 'heading2':
+      actions.setHeadingLevel(2);
+      break;
+    case 'heading3':
+      actions.setHeadingLevel(3);
+      break;
+    default:
+      actions.setHeadingLevel(null);
     }
   };
 

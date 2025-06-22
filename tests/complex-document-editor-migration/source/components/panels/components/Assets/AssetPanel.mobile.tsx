@@ -413,10 +413,10 @@ const MobileAssetItem: React.FC<MobileAssetItemProps> = ({
   const getIcon = () => {
     const iconName = getAssetIcon(asset.type);
     switch (iconName) {
-      case 'IconFileTypePdf': return <IconFileTypePdf size={24} />;
-      case 'IconPhoto': return <IconPhoto size={24} />;
-      case 'IconFileText': return <IconFileText size={24} />;
-      default: return <IconFile size={24} />;
+    case 'IconFileTypePdf': return <IconFileTypePdf size={24} />;
+    case 'IconPhoto': return <IconPhoto size={24} />;
+    case 'IconFileText': return <IconFileText size={24} />;
+    default: return <IconFile size={24} />;
     }
   };
 

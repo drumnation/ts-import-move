@@ -55,24 +55,24 @@ export const ColumnResizerContainer = styled(motion.div)<StyledColumnResizerProp
     transition: background-color 0.2s ease;
     
     ${props => {
-      if (props.columnPosition === 'right') {
-        return `
+    if (props.columnPosition === 'right') {
+      return `
           top: 0;
           right: 50%;
           transform: translateX(50%);
           width: 2px;
           height: 100%;
         `;
-      } else {
-        return `
+    } else {
+      return `
           top: 0;
           left: 50%;
           transform: translateX(-50%);
           width: 2px;
           height: 100%;
         `;
-      }
-    }}
+    }
+  }}
   }
   
   /**

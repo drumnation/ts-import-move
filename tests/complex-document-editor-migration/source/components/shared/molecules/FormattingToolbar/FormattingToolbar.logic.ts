@@ -73,37 +73,37 @@ const convertASTToLexicalNodes = (astNodes: ASTNode[]) => {
 
   astNodes.forEach(node => {
     switch (node.type) {
-      case 'paragraph':
-        const paragraphNode = $createParagraphNode();
-        const textNode = $createTextNode(node.text);
-        paragraphNode.append(textNode);
-        lexicalNodes.push(paragraphNode);
-        break;
+    case 'paragraph':
+      const paragraphNode = $createParagraphNode();
+      const textNode = $createTextNode(node.text);
+      paragraphNode.append(textNode);
+      lexicalNodes.push(paragraphNode);
+      break;
 
-      case 'list':
-        const listNode = $createListNode(node.style === 'decimal' ? 'number' : 'bullet');
-        node.items.forEach(item => {
-          const listItemNode = $createListItemNode();
-          const itemTextNode = $createTextNode(item.text);
-          listItemNode.append(itemTextNode);
-          listNode.append(listItemNode);
-        });
-        lexicalNodes.push(listNode);
-        break;
+    case 'list':
+      const listNode = $createListNode(node.style === 'decimal' ? 'number' : 'bullet');
+      node.items.forEach(item => {
+        const listItemNode = $createListItemNode();
+        const itemTextNode = $createTextNode(item.text);
+        listItemNode.append(itemTextNode);
+        listNode.append(listItemNode);
+      });
+      lexicalNodes.push(listNode);
+      break;
 
-      case 'recital':
-        const recitalNode = $createParagraphNode();
-        const recitalText = $createTextNode(node.text);
-        recitalNode.append(recitalText);
-        lexicalNodes.push(recitalNode);
-        break;
+    case 'recital':
+      const recitalNode = $createParagraphNode();
+      const recitalText = $createTextNode(node.text);
+      recitalNode.append(recitalText);
+      lexicalNodes.push(recitalNode);
+      break;
 
-      default:
-        // Fallback for unknown node types
-        const fallbackNode = $createParagraphNode();
-        const fallbackText = $createTextNode(JSON.stringify(node));
-        fallbackNode.append(fallbackText);
-        lexicalNodes.push(fallbackNode);
+    default:
+      // Fallback for unknown node types
+      const fallbackNode = $createParagraphNode();
+      const fallbackText = $createTextNode(JSON.stringify(node));
+      fallbackNode.append(fallbackText);
+      lexicalNodes.push(fallbackNode);
     }
   });
 
@@ -280,8 +280,8 @@ export const useFormattingToolbar = () => {
         if (demoPetitionReliefAST.content.signatureBlock) {
           const signatureNode = $createParagraphNode();
           const signatureText = $createTextNode(
-            `Respectfully submitted,\n\n` +
-            `/s/ David Mieloch\n` +
+            'Respectfully submitted,\n\n' +
+            '/s/ David Mieloch\n' +
             `${demoPetitionReliefAST.content.signatureBlock.signerName}\n` +
             `${demoPetitionReliefAST.content.signatureBlock.signerTitle || ''}\n` +
             `Date: ${demoPetitionReliefAST.content.signatureBlock.date}`

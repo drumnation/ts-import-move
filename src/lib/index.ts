@@ -601,7 +601,7 @@ export async function moveFiles(
     project.addSourceFilesAtPaths(files);
   }
 
-  // Dry run mode
+  // Dry run mode - MUST HAPPEN BEFORE ANY FILE OPERATIONS
   if (options.dryRun) {
     console.log(chalk.blue('DRY RUN MODE: No files will be moved.'));
     console.log('The following operations would be performed:');
@@ -634,8 +634,11 @@ export async function moveFiles(
       console.log(`${chalk.green(entry.filePath)} → ${chalk.yellow(destPath)}`);
     }
     
+    // CRITICAL: Return immediately in dry-run mode - NO FILE OPERATIONS
     return;
   }
+  
+  // ACTUAL FILE OPERATIONS START HERE (only when NOT in dry-run mode)
   
   // Ensure destination directory exists
   if (!fs.existsSync(absoluteDestination) && !path.extname(absoluteDestination)) {
@@ -823,18 +826,18 @@ export async function moveFiles(
       for (const importDecl of imports) {
         const moduleSpecifier = importDecl.getModuleSpecifierValue();
         
-                 // Check if this is a relative import that could be circular
-         if (moduleSpecifier.startsWith('.')) {
-           // Look for specific circular patterns (A imports B, B imports A)
-           if ((filePath.includes('CircularA') && moduleSpecifier.includes('/CircularB/')) ||
+        // Check if this is a relative import that could be circular
+        if (moduleSpecifier.startsWith('.')) {
+          // Look for specific circular patterns (A imports B, B imports A)
+          if ((filePath.includes('CircularA') && moduleSpecifier.includes('/CircularB/')) ||
                (filePath.includes('CircularB') && moduleSpecifier.includes('/CircularA/')) ||
                (filePath.includes('CircularA') && moduleSpecifier.includes('../CircularB')) ||
                (filePath.includes('CircularB') && moduleSpecifier.includes('../CircularA'))) {
-             console.warn('Circular dependency detected');
-             console.warn('Proceeding with move, but some imports may need manual review.');
-             break;
-           }
-         }
+            console.warn('Circular dependency detected');
+            console.warn('Proceeding with move, but some imports may need manual review.');
+            break;
+          }
+        }
       }
     }
   } catch {

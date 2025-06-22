@@ -35,7 +35,7 @@ export const usePanelConfiguration = ({
     console.log('🎨 Node palette command selected:', command);
     
     // Map command to node type for insertion
-    let nodeType = command.name.toLowerCase();
+    const nodeType = command.name.toLowerCase();
     
     // Special handling for section insertion with auto-numbering
     if (command.name === 'Section' || command.id === 'section') {
@@ -54,47 +54,47 @@ export const usePanelConfiguration = ({
     
     // Handle other node types
     switch (nodeType) {
-      case 'paragraph':
-        onInsertNode?.({ type: 'paragraph', text: 'New paragraph...' });
-        break;
-      case 'heading':
-        onInsertNode?.({ type: 'heading', level: 1, text: 'New Heading' });
-        break;
-      case 'list':
-        onInsertNode?.({ 
-          type: 'list', 
-          style: 'decimal',
-          items: [
-            { text: '1. First list item...' },
-            { text: '2. Second list item...' }
-          ]
-        });
-        break;
-      case 'recital':
-        onInsertNode?.({ 
-          type: 'recital', 
-          text: 'WHEREAS, new recital clause establishing the relevant facts and circumstances...',
-          style: 'italic small-caps',
-          metadata: {
-            isWhereasClause: true,
-            formattingRules: ['italic', 'small-caps', 'indent']
-          }
-        });
-        break;
-      case 'exhibit':
-      case 'exhibitlabel':
-        onInsertNode?.({
-          type: 'exhibit',
-          nodeType: 'exhibit',
-          id: `exhibit-${Date.now()}`,
-          exhibitId: 'A',
-          text: 'Exhibit A - Document Title',
-          documentPoolId: undefined // Will be linked to document pool later
-        });
-        break;
-      default:
-        console.warn(`⚠️ Unknown node type for insertion: ${nodeType}`);
-        onInsertNode?.({ type: 'paragraph', text: `New ${command.name}...` });
+    case 'paragraph':
+      onInsertNode?.({ type: 'paragraph', text: 'New paragraph...' });
+      break;
+    case 'heading':
+      onInsertNode?.({ type: 'heading', level: 1, text: 'New Heading' });
+      break;
+    case 'list':
+      onInsertNode?.({ 
+        type: 'list', 
+        style: 'decimal',
+        items: [
+          { text: '1. First list item...' },
+          { text: '2. Second list item...' }
+        ]
+      });
+      break;
+    case 'recital':
+      onInsertNode?.({ 
+        type: 'recital', 
+        text: 'WHEREAS, new recital clause establishing the relevant facts and circumstances...',
+        style: 'italic small-caps',
+        metadata: {
+          isWhereasClause: true,
+          formattingRules: ['italic', 'small-caps', 'indent']
+        }
+      });
+      break;
+    case 'exhibit':
+    case 'exhibitlabel':
+      onInsertNode?.({
+        type: 'exhibit',
+        nodeType: 'exhibit',
+        id: `exhibit-${Date.now()}`,
+        exhibitId: 'A',
+        text: 'Exhibit A - Document Title',
+        documentPoolId: undefined // Will be linked to document pool later
+      });
+      break;
+    default:
+      console.warn(`⚠️ Unknown node type for insertion: ${nodeType}`);
+      onInsertNode?.({ type: 'paragraph', text: `New ${command.name}...` });
     }
   }, [onInsertNode]);
 
@@ -157,7 +157,7 @@ export const usePanelConfiguration = ({
       'top',
       PANEL_DATA.DOCUMENT_OUTLINE.title,
       React.createElement(PanelContentBox, {
-        title: "Sections",
+        title: 'Sections',
         description: PANEL_DATA.DOCUMENT_OUTLINE.description,
         items: PANEL_DATA.DOCUMENT_OUTLINE.items
       }),

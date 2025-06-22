@@ -361,10 +361,10 @@ const AssetItem: React.FC<AssetItemProps> = ({
   const getIcon = () => {
     const iconName = getAssetIcon(asset.type);
     switch (iconName) {
-      case 'IconFileTypePdf': return <IconFileTypePdf size={16} />;
-      case 'IconPhoto': return <IconPhoto size={16} />;
-      case 'IconFileText': return <IconFileText size={16} />;
-      default: return <IconFile size={16} />;
+    case 'IconFileTypePdf': return <IconFileTypePdf size={16} />;
+    case 'IconPhoto': return <IconPhoto size={16} />;
+    case 'IconFileText': return <IconFileText size={16} />;
+    default: return <IconFile size={16} />;
     }
   };
 

@@ -40,22 +40,22 @@ export const useSlotPanel = ({
 
   const collapseIconType = useMemo(() => 
     getCollapseIconType(isMobile, collapsed, location, slot), 
-    [isMobile, collapsed, location, slot]
+  [isMobile, collapsed, location, slot]
   );
 
   const resizerDirection = useMemo(() => 
     getResizerDirection(location, slot), 
-    [location, slot]
+  [location, slot]
   );
 
   const iconConfig = useMemo(() => 
     getIconConfig(isMobile), 
-    [isMobile]
+  [isMobile]
   );
 
   const animationConfig = useMemo(() => 
     getAnimationConfig(isMobile), 
-    [isMobile]
+  [isMobile]
   );
 
   return {

@@ -100,16 +100,16 @@ const Badge = styled.span<{ variant?: 'info' | 'warning' | 'success' | 'error' }
   
   ${props => {
     switch (props.variant) {
-      case 'info':
-        return 'background: #dbeafe; color: #1e40af;';
-      case 'warning':
-        return 'background: #fef3c7; color: #92400e;';
-      case 'success':
-        return 'background: #d1fae5; color: #065f46;';
-      case 'error':
-        return 'background: #fee2e2; color: #dc2626;';
-      default:
-        return 'background: #f1f5f9; color: #475569;';
+    case 'info':
+      return 'background: #dbeafe; color: #1e40af;';
+    case 'warning':
+      return 'background: #fef3c7; color: #92400e;';
+    case 'success':
+      return 'background: #d1fae5; color: #065f46;';
+    case 'error':
+      return 'background: #fee2e2; color: #dc2626;';
+    default:
+      return 'background: #f1f5f9; color: #475569;';
     }
   }}
 `;

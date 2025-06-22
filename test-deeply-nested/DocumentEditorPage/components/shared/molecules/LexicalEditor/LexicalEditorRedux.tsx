@@ -109,7 +109,7 @@ const PerformancePlugin: React.FC<{
 export const LexicalEditorRedux: React.FC<LexicalEditorReduxProps> = ({
   documentId,
   readOnly = false,
-  placeholder = "Begin typing your legal document...",
+  placeholder = 'Begin typing your legal document...',
   enableCollaboration = false,
   performanceSettings
 }) => {
@@ -137,7 +137,7 @@ export const LexicalEditorRedux: React.FC<LexicalEditorReduxProps> = ({
   // Optimized editor theme with performance settings
   const editorTheme = useMemo(() => 
     createOptimizedEditorTheme(performance.settings.enableVirtualization),
-    [performance.settings.enableVirtualization]
+  [performance.settings.enableVirtualization]
   );
 
   // Enhanced Lexical editor configuration with all features

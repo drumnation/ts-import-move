@@ -60,7 +60,7 @@ export const LexicalEditor: React.FC<LexicalEditorProps> = ({
   onContentChange,
   onNodeSelect,
   readOnly = false,
-  placeholder = "Begin typing your legal document...",
+  placeholder = 'Begin typing your legal document...',
   renderToolbar
 }) => {
   // Convert initial document to Lexical nodes

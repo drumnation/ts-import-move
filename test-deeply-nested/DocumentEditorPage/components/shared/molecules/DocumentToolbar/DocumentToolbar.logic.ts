@@ -19,17 +19,17 @@ export const isListActionEnabled = (
   if (!selectionState) return true; // Allow toggle when no selection state
 
   switch (action) {
-    case 'toggle':
-      return true; // Always allow toggling
+  case 'toggle':
+    return true; // Always allow toggling
 
-    case 'indent':
-      return selectionState.canIndent ?? false;
+  case 'indent':
+    return selectionState.canIndent ?? false;
 
-    case 'outdent':
-      return selectionState.canOutdent ?? false;
+  case 'outdent':
+    return selectionState.canOutdent ?? false;
 
-    default:
-      return false;
+  default:
+    return false;
   }
 };
 
@@ -49,12 +49,12 @@ export const isListButtonActive = (
  */
 export const getListIcon = (type: 'bullet' | 'numbered'): string => {
   switch (type) {
-    case 'bullet':
-      return 'list';
-    case 'numbered':
-      return 'list-numbers';
-    default:
-      return 'list';
+  case 'bullet':
+    return 'list';
+  case 'numbered':
+    return 'list-numbers';
+  default:
+    return 'list';
   }
 };
 
@@ -63,12 +63,12 @@ export const getListIcon = (type: 'bullet' | 'numbered'): string => {
  */
 export const getIndentIcon = (action: 'indent' | 'outdent'): string => {
   switch (action) {
-    case 'indent':
-      return 'indent-increase';
-    case 'outdent':
-      return 'indent-decrease';
-    default:
-      return 'indent-increase';
+  case 'indent':
+    return 'indent-increase';
+  case 'outdent':
+    return 'indent-decrease';
+  default:
+    return 'indent-increase';
   }
 };
 
@@ -77,12 +77,12 @@ export const getIndentIcon = (action: 'indent' | 'outdent'): string => {
  */
 export const formatListTypeLabel = (type: 'bullet' | 'numbered'): string => {
   switch (type) {
-    case 'bullet':
-      return 'Bullet List';
-    case 'numbered':
-      return 'Numbered List';
-    default:
-      return 'List';
+  case 'bullet':
+    return 'Bullet List';
+  case 'numbered':
+    return 'Numbered List';
+  default:
+    return 'List';
   }
 };
 
@@ -97,14 +97,14 @@ export const createListActionLabel = (
   const listLabel = formatListTypeLabel(type);
   
   switch (action) {
-    case 'toggle':
-      return isActive ? `Remove ${listLabel}` : `Create ${listLabel}`;
-    case 'indent':
-      return `Increase List Indent`;
-    case 'outdent':
-      return `Decrease List Indent`;
-    default:
-      return listLabel;
+  case 'toggle':
+    return isActive ? `Remove ${listLabel}` : `Create ${listLabel}`;
+  case 'indent':
+    return 'Increase List Indent';
+  case 'outdent':
+    return 'Decrease List Indent';
+  default:
+    return listLabel;
   }
 };
 

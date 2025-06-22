@@ -103,38 +103,38 @@ const sortCitations = (citations: CaseLawCitation[], field: CaseLawSortField, di
     let bValue: string | number | Date;
     
     switch (field) {
-      case 'citation':
-        aValue = a.citation.toLowerCase();
-        bValue = b.citation.toLowerCase();
-        break;
-      case 'title':
-        aValue = a.title.toLowerCase();
-        bValue = b.title.toLowerCase();
-        break;
-      case 'court':
-        aValue = a.court.toLowerCase();
-        bValue = b.court.toLowerCase();
-        break;
-      case 'year':
-        aValue = a.year;
-        bValue = b.year;
-        break;
-      case 'importance':
-        const importanceOrder = { 'landmark': 4, 'precedential': 3, 'persuasive': 2, 'routine': 1 };
-        aValue = importanceOrder[a.metadata.importance];
-        bValue = importanceOrder[b.metadata.importance];
-        break;
-      case 'verificationDate':
-        aValue = a.verification.verificationDate?.getTime() || 0;
-        bValue = b.verification.verificationDate?.getTime() || 0;
-        break;
-      case 'createdAt':
-        aValue = new Date(a.createdAt).getTime();
-        bValue = new Date(b.createdAt).getTime();
-        break;
-      default:
-        aValue = a.citation.toLowerCase();
-        bValue = b.citation.toLowerCase();
+    case 'citation':
+      aValue = a.citation.toLowerCase();
+      bValue = b.citation.toLowerCase();
+      break;
+    case 'title':
+      aValue = a.title.toLowerCase();
+      bValue = b.title.toLowerCase();
+      break;
+    case 'court':
+      aValue = a.court.toLowerCase();
+      bValue = b.court.toLowerCase();
+      break;
+    case 'year':
+      aValue = a.year;
+      bValue = b.year;
+      break;
+    case 'importance':
+      const importanceOrder = { 'landmark': 4, 'precedential': 3, 'persuasive': 2, 'routine': 1 };
+      aValue = importanceOrder[a.metadata.importance];
+      bValue = importanceOrder[b.metadata.importance];
+      break;
+    case 'verificationDate':
+      aValue = a.verification.verificationDate?.getTime() || 0;
+      bValue = b.verification.verificationDate?.getTime() || 0;
+      break;
+    case 'createdAt':
+      aValue = new Date(a.createdAt).getTime();
+      bValue = new Date(b.createdAt).getTime();
+      break;
+    default:
+      aValue = a.citation.toLowerCase();
+      bValue = b.citation.toLowerCase();
     }
     
     if (aValue < bValue) {

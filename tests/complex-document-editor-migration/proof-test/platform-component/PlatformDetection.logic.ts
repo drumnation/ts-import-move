@@ -263,14 +263,14 @@ export const useResponsiveValue = <T>(values: {
 
   return useMemo(() => {
     switch (platform) {
-      case 'mobile':
-        return values.mobile;
-      case 'tablet':
-        return values.tablet || values.mobile;
-      case 'desktop':
-        return values.desktop;
-      default:
-        return values.desktop;
+    case 'mobile':
+      return values.mobile;
+    case 'tablet':
+      return values.tablet || values.mobile;
+    case 'desktop':
+      return values.desktop;
+    default:
+      return values.desktop;
     }
   }, [platform, values]);
 };

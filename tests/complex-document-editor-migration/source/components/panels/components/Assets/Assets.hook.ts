@@ -91,24 +91,24 @@ export function useAssetsIndex() {
       let bValue: any;
 
       switch (sortBy) {
-        case 'name':
-          aValue = a.name.toLowerCase();
-          bValue = b.name.toLowerCase();
-          break;
-        case 'type':
-          aValue = a.type;
-          bValue = b.type;
-          break;
-        case 'uploadedAt':
-          aValue = new Date(a.metadata.uploadedAt).getTime();
-          bValue = new Date(b.metadata.uploadedAt).getTime();
-          break;
-        case 'fileSize':
-          aValue = a.metadata.fileSize;
-          bValue = b.metadata.fileSize;
-          break;
-        default:
-          return 0;
+      case 'name':
+        aValue = a.name.toLowerCase();
+        bValue = b.name.toLowerCase();
+        break;
+      case 'type':
+        aValue = a.type;
+        bValue = b.type;
+        break;
+      case 'uploadedAt':
+        aValue = new Date(a.metadata.uploadedAt).getTime();
+        bValue = new Date(b.metadata.uploadedAt).getTime();
+        break;
+      case 'fileSize':
+        aValue = a.metadata.fileSize;
+        bValue = b.metadata.fileSize;
+        break;
+      default:
+        return 0;
       }
 
       if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;

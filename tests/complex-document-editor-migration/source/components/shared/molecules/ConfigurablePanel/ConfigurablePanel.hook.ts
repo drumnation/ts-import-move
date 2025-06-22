@@ -54,7 +54,7 @@ export const useConfigurablePanel = ({
    */
   const collapseIconType = useMemo(() => 
     getCollapseIconType(isMobile, collapsed, location, slot), 
-    [isMobile, collapsed, location, slot]
+  [isMobile, collapsed, location, slot]
   );
 
   /**
@@ -63,7 +63,7 @@ export const useConfigurablePanel = ({
    */
   const resizerDirection = useMemo(() => 
     getResizerDirection(location, slot), 
-    [location, slot]
+  [location, slot]
   );
 
   /**
@@ -72,7 +72,7 @@ export const useConfigurablePanel = ({
    */
   const iconConfig = useMemo(() => 
     getIconConfig(isMobile), 
-    [isMobile]
+  [isMobile]
   );
 
   /**
@@ -81,7 +81,7 @@ export const useConfigurablePanel = ({
    */
   const animationConfig = useMemo(() => 
     getAnimationConfig(isMobile), 
-    [isMobile]
+  [isMobile]
   );
 
   return {

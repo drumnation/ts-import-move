@@ -58,22 +58,22 @@ export const PageNavigatorWeb = memo<PageNavigatorWebProps>(({
   // Handle keyboard navigation
   const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
     switch (event.key) {
-      case 'ArrowLeft':
-        event.preventDefault();
-        actions.previousPage();
-        break;
-      case 'ArrowRight':
-        event.preventDefault();
-        actions.nextPage();
-        break;
-      case 'Home':
-        event.preventDefault();
-        actions.firstPage();
-        break;
-      case 'End':
-        event.preventDefault();
-        actions.lastPage();
-        break;
+    case 'ArrowLeft':
+      event.preventDefault();
+      actions.previousPage();
+      break;
+    case 'ArrowRight':
+      event.preventDefault();
+      actions.nextPage();
+      break;
+    case 'Home':
+      event.preventDefault();
+      actions.firstPage();
+      break;
+    case 'End':
+      event.preventDefault();
+      actions.lastPage();
+      break;
     }
   }, [actions]);
 

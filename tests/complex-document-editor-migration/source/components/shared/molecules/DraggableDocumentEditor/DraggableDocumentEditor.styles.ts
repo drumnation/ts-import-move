@@ -103,15 +103,15 @@ export const ListNode = styled.div<{ listStyle: string }>`
   
   ${({ listStyle }) => {
     switch (listStyle) {
-      case 'decimal':
-        return 'list-style-type: decimal;';
-      case 'lower-alpha':
-        return 'list-style-type: lower-alpha;';
-      case 'upper-roman':
-        return 'list-style-type: upper-roman;';
-      case 'disc':
-      default:
-        return 'list-style-type: disc;';
+    case 'decimal':
+      return 'list-style-type: decimal;';
+    case 'lower-alpha':
+      return 'list-style-type: lower-alpha;';
+    case 'upper-roman':
+      return 'list-style-type: upper-roman;';
+    case 'disc':
+    default:
+      return 'list-style-type: disc;';
     }
   }}
   
@@ -257,9 +257,9 @@ export const DragFeedback = styled.div<{ isVisible: boolean; isValid: boolean }>
   
   &::after {
     content: '${({ isValid }) => 
-      isValid ? 'Drop to reorder' : 'Invalid drop position'}';
+    isValid ? 'Drop to reorder' : 'Invalid drop position'}';
     background-color: ${({ isValid }) => 
-      isValid ? '#22c55e' : '#ef4444'};
+    isValid ? '#22c55e' : '#ef4444'};
     color: white;
     padding: 12px 24px;
     border-radius: 8px;

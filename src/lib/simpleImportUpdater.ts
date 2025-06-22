@@ -36,9 +36,9 @@ const findTypeScriptFiles = (baseDir: string): string[] => {
           }
         }
       }
-         } catch {
-       // Ignore permission errors and continue
-     }
+    } catch {
+      // Ignore permission errors and continue
+    }
   };
   
   scanDirectory(baseDir);

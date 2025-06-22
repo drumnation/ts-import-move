@@ -37,17 +37,17 @@ const ErrorContainer = styled(motion.div)<{ type: string; size: string }>`
   justify-content: center;
   padding: ${props => 
     props.size === 'small' ? '12px' : 
-    props.size === 'medium' ? '16px' : '24px'
-  };
+      props.size === 'medium' ? '16px' : '24px'
+};
   border-radius: 8px;
   background: ${props => 
     props.type === 'error' ? '#fef2f2' :
-    props.type === 'warning' ? '#fffbeb' : '#eff6ff'
-  };
+      props.type === 'warning' ? '#fffbeb' : '#eff6ff'
+};
   border: 1px solid ${props => 
     props.type === 'error' ? '#fecaca' :
-    props.type === 'warning' ? '#fed7aa' : '#bfdbfe'
-  };
+      props.type === 'warning' ? '#fed7aa' : '#bfdbfe'
+};
   gap: ${props => props.size === 'small' ? '8px' : '12px'};
   max-width: 400px;
   text-align: center;
@@ -56,17 +56,17 @@ const ErrorContainer = styled(motion.div)<{ type: string; size: string }>`
 const ErrorIcon = styled(motion.div)<{ type: string; size: string }>`
   width: ${props => 
     props.size === 'small' ? '20px' : 
-    props.size === 'medium' ? '24px' : '32px'
-  };
+      props.size === 'medium' ? '24px' : '32px'
+};
   height: ${props => 
     props.size === 'small' ? '20px' : 
-    props.size === 'medium' ? '24px' : '32px'
-  };
+      props.size === 'medium' ? '24px' : '32px'
+};
   border-radius: 50%;
   background: ${props => 
     props.type === 'error' ? '#ef4444' :
-    props.type === 'warning' ? '#f59e0b' : '#3b82f6'
-  };
+      props.type === 'warning' ? '#f59e0b' : '#3b82f6'
+};
   color: white;
   display: flex;
   align-items: center;
@@ -74,16 +74,16 @@ const ErrorIcon = styled(motion.div)<{ type: string; size: string }>`
   font-weight: bold;
   font-size: ${props => 
     props.size === 'small' ? '12px' : 
-    props.size === 'medium' ? '14px' : '18px'
-  };
+      props.size === 'medium' ? '14px' : '18px'
+};
 `;
 
 const ErrorMessage = styled(motion.p)<{ size: string }>`
   margin: 0;
   font-size: ${props => 
     props.size === 'small' ? '14px' : 
-    props.size === 'medium' ? '16px' : '18px'
-  };
+      props.size === 'medium' ? '16px' : '18px'
+};
   font-weight: 500;
   color: #374151;
   line-height: 1.4;
@@ -92,7 +92,7 @@ const ErrorMessage = styled(motion.p)<{ size: string }>`
 const ErrorDetails = styled(motion.div)<{ size: string }>`
   font-size: ${props => 
     props.size === 'small' ? '12px' : '14px'
-  };
+};
   color: #6b7280;
   background: #f9fafb;
   padding: 8px 12px;
@@ -107,10 +107,10 @@ const ErrorDetails = styled(motion.div)<{ size: string }>`
 const ActionButton = styled(motion.button)<{ variant: string; size: string }>`
   padding: ${props => 
     props.size === 'small' ? '6px 12px' : '8px 16px'
-  };
+};
   font-size: ${props => 
     props.size === 'small' ? '12px' : '14px'
-  };
+};
   font-weight: 500;
   border-radius: 6px;
   border: none;
@@ -150,7 +150,7 @@ const containerVariants = {
     opacity: 1, 
     y: 0, 
     scale: 1,
-    transition: { duration: 0.3, ease: "easeOut" }
+    transition: { duration: 0.3, ease: 'easeOut' }
   },
 };
 
@@ -158,7 +158,7 @@ const iconVariants = {
   hidden: { scale: 0 },
   visible: { 
     scale: 1,
-    transition: { delay: 0.1, duration: 0.2, type: "spring" }
+    transition: { delay: 0.1, duration: 0.2, type: 'spring' }
   },
 };
 
@@ -166,7 +166,7 @@ const detailsVariants = {
   hidden: { opacity: 0, height: 0 },
   visible: { 
     opacity: 1, 
-    height: "auto",
+    height: 'auto',
     transition: { duration: 0.2 }
   },
 };
@@ -188,10 +188,10 @@ export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
 
   const getIconSymbol = () => {
     switch (type) {
-      case 'error': return '!';
-      case 'warning': return '⚠';
-      case 'info': return 'i';
-      default: return '!';
+    case 'error': return '!';
+    case 'warning': return '⚠';
+    case 'info': return 'i';
+    default: return '!';
     }
   };
 

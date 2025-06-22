@@ -50,20 +50,20 @@ export const mockActivities: SessionActivity[] = [
 
 export const getActivityIcon = (type: ActivityType) => {
   switch (type) {
-    case 'agent_run': return IconBrain;
-    case 'collaboration': return IconShare;
-    case 'edit': return IconUser;
-    case 'review': return IconCheck;
-    default: return IconClock;
+  case 'agent_run': return IconBrain;
+  case 'collaboration': return IconShare;
+  case 'edit': return IconUser;
+  case 'review': return IconCheck;
+  default: return IconClock;
   }
 };
 
 export const getStatusColor = (status: ActivityStatus) => {
   switch (status) {
-    case 'completed': return 'green';
-    case 'in_progress': return 'blue';
-    case 'failed': return 'red';
-    default: return 'gray';
+  case 'completed': return 'green';
+  case 'in_progress': return 'blue';
+  case 'failed': return 'red';
+  default: return 'gray';
   }
 };
 

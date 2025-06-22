@@ -47,9 +47,9 @@ const ResizerContainer = styled(motion.div)<{ isActive: boolean; disabled: boole
   
   &:hover {
     background: ${props => {
-      if (props.disabled) return resizeTokens.visual.backgroundInactive;
-      return resizeTokens.border.hover;
-    }};
+    if (props.disabled) return resizeTokens.visual.backgroundInactive;
+    return resizeTokens.border.hover;
+  }};
     opacity: ${props => props.disabled ? 1 : resizeTokens.interaction.hoverOpacity};
   }
   

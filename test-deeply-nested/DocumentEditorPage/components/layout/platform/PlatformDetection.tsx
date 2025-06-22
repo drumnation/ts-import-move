@@ -146,17 +146,17 @@ export const PlatformRouter: React.FC<PlatformRouterProps> = ({
   let ComponentToRender: React.ComponentType<any>;
   
   switch (platform) {
-    case 'mobile':
-      ComponentToRender = MobileComponent;
-      break;
-    case 'tablet':
-      ComponentToRender = TabletComponent || MobileComponent;
-      break;
-    case 'desktop':
-      ComponentToRender = DesktopComponent;
-      break;
-    default:
-      return <FallbackComponent />;
+  case 'mobile':
+    ComponentToRender = MobileComponent;
+    break;
+  case 'tablet':
+    ComponentToRender = TabletComponent || MobileComponent;
+    break;
+  case 'desktop':
+    ComponentToRender = DesktopComponent;
+    break;
+  default:
+    return <FallbackComponent />;
   }
 
   const platformProps = {

@@ -51,21 +51,21 @@ const DropzoneIdleContent: React.FC<DropzoneContentProps> = ({
       </FileTypeIcon>
     </IconContainer>
     
-         {isMobile ? (
-       <Stack align="center" gap={4}>
-         <Text size="sm" fw={500} ta="center">Tap to upload files</Text>
-         <Text size="xs" c="dimmed" ta="center">{getAcceptedFormats()}</Text>
-         <Text size="xs" c="dimmed" ta="center">Max {formatFileSize(config.maxFileSize)} per file</Text>
-       </Stack>
-     ) : (
-       <Stack align="center" gap={4}>
-         <Text size="lg" fw={500}>Drag files here or click to select</Text>
-         <Text size="sm" c="dimmed">
-           {getAcceptedFormats()} • Max {formatFileSize(config.maxFileSize)} per file
-         </Text>
-         <Text size="xs" c="dimmed">Up to {config.maxFiles} files at once</Text>
-       </Stack>
-     )}
+    {isMobile ? (
+      <Stack align="center" gap={4}>
+        <Text size="sm" fw={500} ta="center">Tap to upload files</Text>
+        <Text size="xs" c="dimmed" ta="center">{getAcceptedFormats()}</Text>
+        <Text size="xs" c="dimmed" ta="center">Max {formatFileSize(config.maxFileSize)} per file</Text>
+      </Stack>
+    ) : (
+      <Stack align="center" gap={4}>
+        <Text size="lg" fw={500}>Drag files here or click to select</Text>
+        <Text size="sm" c="dimmed">
+          {getAcceptedFormats()} • Max {formatFileSize(config.maxFileSize)} per file
+        </Text>
+        <Text size="xs" c="dimmed">Up to {config.maxFiles} files at once</Text>
+      </Stack>
+    )}
   </Stack>
 );
 

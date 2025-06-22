@@ -40,7 +40,7 @@ const Container = styled.div<ResizerStyles>`
   
   &:hover {
     background: ${({ $disabled }) => 
-      $disabled ? 'transparent' : 'rgba(59, 130, 246, 0.1)'};
+    $disabled ? 'transparent' : 'rgba(59, 130, 246, 0.1)'};
   }
   
   ${({ $isResizing }) => 

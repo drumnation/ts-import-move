@@ -73,7 +73,7 @@ export const useMobileLayout = ({
   // Check for linked nodes warning
   const showLinkedNodesWarning = useMemo(() => 
     shouldShowLinkedNodesWarning(selectedNode), 
-    [selectedNode]
+  [selectedNode]
   );
 
   // Sheet management

@@ -25,52 +25,52 @@ import type { DocumentPoolEntry, RecentDocument } from './DocumentEditorPage.typ
  */
 export const createEmptyNode = (nodeType: NodeType): Node | ExhibitLabel | SignatureBlock | FooterBlock => {
   switch (nodeType) {
-    case 'paragraph':
-      return {
-        type: 'paragraph',
-        text: 'Enter paragraph text here...'
-      } as ParagraphNode;
+  case 'paragraph':
+    return {
+      type: 'paragraph',
+      text: 'Enter paragraph text here...'
+    } as ParagraphNode;
       
-    case 'list':
-      return {
-        type: 'list',
-        style: 'decimal',
-        items: [{ text: 'List item 1', children: [] }]
-      } as ListNode;
+  case 'list':
+    return {
+      type: 'list',
+      style: 'decimal',
+      items: [{ text: 'List item 1', children: [] }]
+    } as ListNode;
       
-    case 'recital':
-      return {
-        type: 'recital',
-        text: 'WHEREAS, enter recital text here...'
-      } as RecitalNode;
+  case 'recital':
+    return {
+      type: 'recital',
+      text: 'WHEREAS, enter recital text here...'
+    } as RecitalNode;
       
-    case 'table':
-      return {
-        type: 'table',
-        headers: ['Column 1', 'Column 2'],
-        rows: [['Row 1 Col 1', 'Row 1 Col 2']]
-      } as TableBlock;
+  case 'table':
+    return {
+      type: 'table',
+      headers: ['Column 1', 'Column 2'],
+      rows: [['Row 1 Col 1', 'Row 1 Col 2']]
+    } as TableBlock;
       
-    case 'exhibit':
-      return {
-        id: `A-${Date.now()}`,
-        text: 'Exhibit A'
-      } as ExhibitLabel;
+  case 'exhibit':
+    return {
+      id: `A-${Date.now()}`,
+      text: 'Exhibit A'
+    } as ExhibitLabel;
       
-    case 'signature':
-      return {
-        signerName: 'Signer Name',
-        signerTitle: 'Title',
-        date: new Date().toISOString().split('T')[0]
-      } as SignatureBlock;
+  case 'signature':
+    return {
+      signerName: 'Signer Name',
+      signerTitle: 'Title',
+      date: new Date().toISOString().split('T')[0]
+    } as SignatureBlock;
       
-    case 'footer':
-      return {
-        text: 'Page 1 of 1'
-      } as FooterBlock;
+  case 'footer':
+    return {
+      text: 'Page 1 of 1'
+    } as FooterBlock;
       
-    default:
-      throw new Error(`Unknown node type: ${nodeType}`);
+  default:
+    throw new Error(`Unknown node type: ${nodeType}`);
   }
 };
 

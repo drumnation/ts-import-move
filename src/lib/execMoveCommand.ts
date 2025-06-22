@@ -28,7 +28,7 @@ export function execMoveCommand(
   } catch (err) {
     if (options.verbose) {
       // eslint-disable-next-line no-console
-      console.error(`[execMoveCommand] Error:`, err);
+      console.error('[execMoveCommand] Error:', err);
     }
     throw err;
   }

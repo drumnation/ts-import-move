@@ -82,137 +82,137 @@ export const MobileLayout: React.FC<MobileLayoutProps> = ({
 
   const getSheetContent = () => {
     switch (activeSheet) {
-      case 'tools':
-        return {
-          title: 'Document Tools',
-          content: (
-            <Box>
-              {leftPanelContent}
-              <Box mt="xl">
-                {rightPanelContent}
-              </Box>
+    case 'tools':
+      return {
+        title: 'Document Tools',
+        content: (
+          <Box>
+            {leftPanelContent}
+            <Box mt="xl">
+              {rightPanelContent}
             </Box>
-          )
-        };
-      case 'ai':
-        return {
-          title: 'Legal AI Agent',
-          content: (
-            <Box>
-              {/* Selection Context */}
-              {selectedNode && (
-                <SelectionContext>
-                  <Box style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                    <TargetBox>
-                      Target: {selectedNode.path}
-                    </TargetBox>
-                    <ActionIcon size="sm" variant="subtle" onClick={handleNodeDeselect}>
-                      <IconX size={12} />
-                    </ActionIcon>
-                  </Box>
-                  <Text size="sm" c="dimmed">
-                    {selectedNode.title}
-                  </Text>
-                </SelectionContext>
-              )}
-
-              {/* Linked Nodes Warning */}
-              {showLinkedNodesWarning && (
-                <WarningBox>
-                  <Box style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                    <IconAlertTriangle size={16} color="#f39c12" />
-                    <Text size="sm" fw={500}>Linked References Detected</Text>
-                  </Box>
-                  <Text size="sm" c="dimmed">
-                    This section references {selectedNode?.linkedNodes?.length} linked exhibit(s). 
-                    Agent will update both sections.
-                  </Text>
-                </WarningBox>
-              )}
-
-              {/* Quick Actions */}
-              {availableQuickActions.length > 0 && (
-                <Box>
-                  <Text size="sm" fw={500} mb="xs">Quick Actions</Text>
-                  <QuickActionsGrid>
-                    {availableQuickActions.map((action) => (
-                      <Button
-                        key={action.id}
-                        variant="light"
-                        size="sm"
-                        onClick={() => handleQuickAction(action)}
-                        style={{
-                          height: 48,
-                          fontSize: 12,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          gap: 4
-                        }}
-                      >
-                        {action.icon}
-                        <Text size="xs">{cleanActionLabel(action.label)}</Text>
-                      </Button>
-                    ))}
-                  </QuickActionsGrid>
-                </Box>
-              )}
-
-              {/* Instruction Input */}
-              <Box>
+          </Box>
+        )
+      };
+    case 'ai':
+      return {
+        title: 'Legal AI Agent',
+        content: (
+          <Box>
+            {/* Selection Context */}
+            {selectedNode && (
+              <SelectionContext>
                 <Box style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                  <Text size="sm" fw={500}>Instruction</Text>
-                  <ActionIcon size="sm" variant="subtle">
-                    <IconHistory size={14} />
+                  <TargetBox>
+                      Target: {selectedNode.path}
+                  </TargetBox>
+                  <ActionIcon size="sm" variant="subtle" onClick={handleNodeDeselect}>
+                    <IconX size={12} />
                   </ActionIcon>
                 </Box>
-                <Textarea
-                  ref={textareaRef}
-                  value={agentInstruction}
-                  onChange={(e) => setAgentInstruction(e.target.value)}
-                  placeholder="Describe what you want the AI agent to do..."
-                  rows={4}
-                  style={{ marginBottom: 16 }}
-                />
-                <Button
-                  fullWidth
-                  size="lg"
-                  leftSection={<IconRobot size={20} />}
-                  onClick={handleExecuteAgent}
-                  disabled={!agentInstruction.trim() || executionState.isExecuting}
-                  style={{ minHeight: 56 }}
-                >
-                  {executionState.isExecuting ? 'Running Agent...' : 'Run Agent'}
-                </Button>
-              </Box>
+                <Text size="sm" c="dimmed">
+                  {selectedNode.title}
+                </Text>
+              </SelectionContext>
+            )}
 
-              {/* Original Agent Content */}
-              <Box mt="xl">
-                {agentContent}
+            {/* Linked Nodes Warning */}
+            {showLinkedNodesWarning && (
+              <WarningBox>
+                <Box style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                  <IconAlertTriangle size={16} color="#f39c12" />
+                  <Text size="sm" fw={500}>Linked References Detected</Text>
+                </Box>
+                <Text size="sm" c="dimmed">
+                    This section references {selectedNode?.linkedNodes?.length} linked exhibit(s). 
+                    Agent will update both sections.
+                </Text>
+              </WarningBox>
+            )}
+
+            {/* Quick Actions */}
+            {availableQuickActions.length > 0 && (
+              <Box>
+                <Text size="sm" fw={500} mb="xs">Quick Actions</Text>
+                <QuickActionsGrid>
+                  {availableQuickActions.map((action) => (
+                    <Button
+                      key={action.id}
+                      variant="light"
+                      size="sm"
+                      onClick={() => handleQuickAction(action)}
+                      style={{
+                        height: 48,
+                        fontSize: 12,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 4
+                      }}
+                    >
+                      {action.icon}
+                      <Text size="xs">{cleanActionLabel(action.label)}</Text>
+                    </Button>
+                  ))}
+                </QuickActionsGrid>
               </Box>
-            </Box>
-          )
-        };
-      case 'settings':
-        return {
-          title: 'Settings',
-          content: (
+            )}
+
+            {/* Instruction Input */}
             <Box>
+              <Box style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                <Text size="sm" fw={500}>Instruction</Text>
+                <ActionIcon size="sm" variant="subtle">
+                  <IconHistory size={14} />
+                </ActionIcon>
+              </Box>
+              <Textarea
+                ref={textareaRef}
+                value={agentInstruction}
+                onChange={(e) => setAgentInstruction(e.target.value)}
+                placeholder="Describe what you want the AI agent to do..."
+                rows={4}
+                style={{ marginBottom: 16 }}
+              />
               <Button
-                variant={isLightweightMode ? "filled" : "light"}
-                leftSection={<IconFocus2 size={16} />}
-                onClick={toggleFocusMode}
-                mb="sm"
+                fullWidth
+                size="lg"
+                leftSection={<IconRobot size={20} />}
+                onClick={handleExecuteAgent}
+                disabled={!agentInstruction.trim() || executionState.isExecuting}
+                style={{ minHeight: 56 }}
               >
-                {isLightweightMode ? 'Exit Focus Mode' : 'Enable Focus Mode'}
+                {executionState.isExecuting ? 'Running Agent...' : 'Run Agent'}
               </Button>
-              <Text size="sm" c="dimmed">
-                Focus mode hides AI controls for distraction-free editing.
-              </Text>
             </Box>
-          )
-        };
-      default:
-        return { title: '', content: null };
+
+            {/* Original Agent Content */}
+            <Box mt="xl">
+              {agentContent}
+            </Box>
+          </Box>
+        )
+      };
+    case 'settings':
+      return {
+        title: 'Settings',
+        content: (
+          <Box>
+            <Button
+              variant={isLightweightMode ? 'filled' : 'light'}
+              leftSection={<IconFocus2 size={16} />}
+              onClick={toggleFocusMode}
+              mb="sm"
+            >
+              {isLightweightMode ? 'Exit Focus Mode' : 'Enable Focus Mode'}
+            </Button>
+            <Text size="sm" c="dimmed">
+                Focus mode hides AI controls for distraction-free editing.
+            </Text>
+          </Box>
+        )
+      };
+    default:
+      return { title: '', content: null };
     }
   };
 

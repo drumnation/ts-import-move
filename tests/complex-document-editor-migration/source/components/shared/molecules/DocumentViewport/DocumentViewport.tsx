@@ -108,23 +108,23 @@ export const DocumentViewport: React.FC<DocumentViewportProps> = (props) => {
 
   const renderPages = () => {
     switch (document.viewMode) {
-      case 'single': {
-        const currentPage = document.pages[document.currentPageIndex];
-        return currentPage ? renderPage(currentPage, document.currentPageIndex) : null;
-      }
+    case 'single': {
+      const currentPage = document.pages[document.currentPageIndex];
+      return currentPage ? renderPage(currentPage, document.currentPageIndex) : null;
+    }
         
-      case 'infinite':
-        return document.pages.map((page, index) => renderPage(page, index));
+    case 'infinite':
+      return document.pages.map((page, index) => renderPage(page, index));
         
-      case 'thumbnail':
-        return (
-          <ThumbnailGrid isMobile={!!isMobile}>
-            {document.pages.map((page, index) => renderPage(page, index))}
-          </ThumbnailGrid>
-        );
+    case 'thumbnail':
+      return (
+        <ThumbnailGrid isMobile={!!isMobile}>
+          {document.pages.map((page, index) => renderPage(page, index))}
+        </ThumbnailGrid>
+      );
         
-      default:
-        return null;
+    default:
+      return null;
     }
   };
 

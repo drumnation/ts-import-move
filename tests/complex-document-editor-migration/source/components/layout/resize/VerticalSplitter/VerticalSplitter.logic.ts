@@ -183,9 +183,9 @@ export const useVerticalSplitterLogic = (
         currentRatio: newRatio,
       }));
 
-             // Dispatch to Redux for global state updates
-       dispatch(adjustSplit({ column: splitKey, ratio: newRatio }));
-       onSplit?.(newRatio);
+      // Dispatch to Redux for global state updates
+      dispatch(adjustSplit({ column: splitKey, ratio: newRatio }));
+      onSplit?.(newRatio);
     });
   }, [splitState, effectiveConstraints, snapPoints, snapThreshold, column, dispatch, onSplit]);
 

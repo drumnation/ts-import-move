@@ -413,14 +413,14 @@ export const useDrawerLayout = (props: DrawerLayoutProps): DrawerLayoutLogic => 
     
     if (!drawer.isOpen && drawer.state === 'closed') {
       switch (position) {
-        case 'left':
-          return 'translateX(-100%)';
-        case 'right':
-          return 'translateX(100%)';
-        case 'bottom':
-          return 'translateY(100%)';
-        default:
-          return 'translateX(0)';
+      case 'left':
+        return 'translateX(-100%)';
+      case 'right':
+        return 'translateX(100%)';
+      case 'bottom':
+        return 'translateY(100%)';
+      default:
+        return 'translateX(0)';
       }
     }
 

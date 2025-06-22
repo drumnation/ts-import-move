@@ -51,8 +51,8 @@ export const DrawerContainer = styled(motion.div)<{ position: DrawerPosition }>`
   
   ${props => {
     switch (props.position) {
-      case 'left':
-        return `
+    case 'left':
+      return `
           top: 0;
           left: 0;
           bottom: 0;
@@ -60,8 +60,8 @@ export const DrawerContainer = styled(motion.div)<{ position: DrawerPosition }>`
           max-width: 320px;
           border-right: 1px solid #e5e7eb;
         `;
-      case 'right':
-        return `
+    case 'right':
+      return `
           top: 0;
           right: 0;
           bottom: 0;
@@ -69,8 +69,8 @@ export const DrawerContainer = styled(motion.div)<{ position: DrawerPosition }>`
           max-width: 320px;
           border-left: 1px solid #e5e7eb;
         `;
-      case 'bottom':
-        return `
+    case 'bottom':
+      return `
           left: 0;
           right: 0;
           bottom: 0;
@@ -80,8 +80,8 @@ export const DrawerContainer = styled(motion.div)<{ position: DrawerPosition }>`
           border-top-left-radius: 16px;
           border-top-right-radius: 16px;
         `;
-      default:
-        return '';
+    default:
+      return '';
     }
   }}
 `;
@@ -155,29 +155,29 @@ export const TouchArea = styled.div<{ position: DrawerPosition }>`
   
   ${props => {
     switch (props.position) {
-      case 'left':
-        return `
+    case 'left':
+      return `
           top: 0;
           left: 0;
           bottom: 0;
           width: 20px;
         `;
-      case 'right':
-        return `
+    case 'right':
+      return `
           top: 0;
           right: 0;
           bottom: 0;
           width: 20px;
         `;
-      case 'bottom':
-        return `
+    case 'bottom':
+      return `
           left: 0;
           right: 0;
           bottom: 0;
           height: 20px;
         `;
-      default:
-        return '';
+    default:
+      return '';
     }
   }}
 `;

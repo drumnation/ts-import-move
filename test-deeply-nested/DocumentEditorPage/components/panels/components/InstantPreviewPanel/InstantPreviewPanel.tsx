@@ -157,7 +157,7 @@ export const InstantPreviewPanel: React.FC<InstantPreviewPanelProps> = ({
             size="sm" 
             onClick={handleDownload}
             disabled={isLoading || isDownloading || !astData?.length}
-            title={isDownloading ? "Generating PDF..." : "Download PDF"}
+            title={isDownloading ? 'Generating PDF...' : 'Download PDF'}
             loading={isDownloading}
           >
             <IconDownload size={14} />

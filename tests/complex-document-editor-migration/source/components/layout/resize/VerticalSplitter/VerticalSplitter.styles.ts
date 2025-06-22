@@ -46,7 +46,7 @@ const Container = styled.div<SplitterStyles>`
   
   &:hover {
     background: ${({ $disabled }) => 
-      $disabled ? 'transparent' : 'rgba(59, 130, 246, 0.1)'};
+    $disabled ? 'transparent' : 'rgba(59, 130, 246, 0.1)'};
   }
   
   ${({ $isSplitting }) => 

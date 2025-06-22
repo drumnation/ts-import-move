@@ -188,7 +188,7 @@ const spinAnimation = {
   transition: {
     duration: 1,
     repeat: Infinity,
-    ease: "linear",
+    ease: 'linear',
   },
 };
 
@@ -230,8 +230,8 @@ export const Button: React.FC<ButtonProps> = ({
       aria-label={ariaLabel}
       variants={buttonVariants}
       initial="idle"
-      whileHover={!disabled && !loading ? "hover" : "idle"}
-      whileTap={!disabled && !loading ? "tap" : "idle"}
+      whileHover={!disabled && !loading ? 'hover' : 'idle'}
+      whileTap={!disabled && !loading ? 'tap' : 'idle'}
     >
       {loading && (
         <LoadingSpinner

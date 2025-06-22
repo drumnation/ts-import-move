@@ -152,7 +152,7 @@ export const useAiAssistant = ({
       // Add assistant message
       const assistantMessage = createAssistantMessage(
         response.success 
-          ? `✅ Successfully generated content! The document has been updated.`
+          ? '✅ Successfully generated content! The document has been updated.'
           : `❌ ${response.error}`,
         response.success,
         response.functionUsed as AIFunction,

@@ -35,7 +35,7 @@ export const PreviewContainer = styled(Box)<PreviewContainerProps>`
 
   &:hover {
     opacity: ${({ clickable, isDragging }) => 
-      clickable && !isDragging ? 0.9 : undefined};
+    clickable && !isDragging ? 0.9 : undefined};
   }
 `;
 

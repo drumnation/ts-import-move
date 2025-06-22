@@ -75,7 +75,7 @@ export const usePanelManager = ({
         'top',
         PANEL_DATA.DOCUMENT_OUTLINE.title,
         React.createElement(PanelContentBox, {
-          title: "Sections",
+          title: 'Sections',
           description: PANEL_DATA.DOCUMENT_OUTLINE.description,
           items: PANEL_DATA.DOCUMENT_OUTLINE.items
         }),
@@ -87,7 +87,7 @@ export const usePanelManager = ({
         'bottom',
         PANEL_DATA.ASSETS_RESOURCES.title,
         React.createElement(PanelContentBox, {
-          title: "Resources",
+          title: 'Resources',
           description: PANEL_DATA.ASSETS_RESOURCES.description,
           items: PANEL_DATA.ASSETS_RESOURCES.items
         }),

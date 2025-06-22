@@ -146,12 +146,12 @@ export const useAssetPanelLogic = () => {
 
   const getAssetIcon = useCallback((type: Asset['type']) => {
     switch (type) {
-      case 'pdf': return 'IconFileTypePdf';
-      case 'image': return 'IconPhoto';
-      case 'document': return 'IconFileText';
-      case 'video': return 'IconVideo';
-      case 'audio': return 'IconMusic';
-      default: return 'IconFile';
+    case 'pdf': return 'IconFileTypePdf';
+    case 'image': return 'IconPhoto';
+    case 'document': return 'IconFileText';
+    case 'video': return 'IconVideo';
+    case 'audio': return 'IconMusic';
+    default: return 'IconFile';
     }
   }, []);
 

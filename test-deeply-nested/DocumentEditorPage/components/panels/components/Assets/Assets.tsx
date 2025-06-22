@@ -130,10 +130,10 @@ export const Assets: React.FC<AssetsProps> = ({
   // Get asset type icon
   const getAssetIcon = (type: AssetType) => {
     switch (type) {
-      case 'pdf': return <IconFileTypePdf size={16} />;
-      case 'image': return <IconPhoto size={16} />;
-      case 'transcript': return <IconFileText size={16} />;
-      default: return <IconFile size={16} />;
+    case 'pdf': return <IconFileTypePdf size={16} />;
+    case 'image': return <IconPhoto size={16} />;
+    case 'transcript': return <IconFileText size={16} />;
+    default: return <IconFile size={16} />;
     }
   };
 

@@ -124,19 +124,19 @@ export const calculateOptimalSplitRatio = (
   let targetPercent: number;
   
   switch (contentHint) {
-    case 'minimal':
-      // Small bottom panel for minimal content (e.g., status bar)
-      targetPercent = Math.max(config.constraints.minPercent, 25);
-      break;
-    case 'extensive':
-      // Large bottom panel for extensive content (e.g., detailed logs)
-      targetPercent = Math.min(config.constraints.maxPercent, 70);
-      break;
-    case 'moderate':
-    default:
-      // Balanced split for moderate content
-      targetPercent = (config.constraints.minPercent + config.constraints.maxPercent) / 2;
-      break;
+  case 'minimal':
+    // Small bottom panel for minimal content (e.g., status bar)
+    targetPercent = Math.max(config.constraints.minPercent, 25);
+    break;
+  case 'extensive':
+    // Large bottom panel for extensive content (e.g., detailed logs)
+    targetPercent = Math.min(config.constraints.maxPercent, 70);
+    break;
+  case 'moderate':
+  default:
+    // Balanced split for moderate content
+    targetPercent = (config.constraints.minPercent + config.constraints.maxPercent) / 2;
+    break;
   }
   
   const targetRatio = targetPercent / 100;

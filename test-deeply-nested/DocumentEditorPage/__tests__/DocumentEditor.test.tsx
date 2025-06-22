@@ -144,23 +144,23 @@ describe('DocumentEditor Core Functionality', () => {
     mockDocumentStore.error = null;
   });
 
-      describe('Basic Rendering', () => {
-      it('should render without crashing', () => {
-        renderWithProviders(<DocumentEditorPage />);
+  describe('Basic Rendering', () => {
+    it('should render without crashing', () => {
+      renderWithProviders(<DocumentEditorPage />);
         
-        // Since the component shows error boundary due to theme issues,
-        // just verify it renders something (even the error state)
-        expect(screen.getByText('Oops! Something went wrong')).toBeInTheDocument();
-      });
-
-      it('should show error boundary with retry buttons', () => {
-        renderWithProviders(<DocumentEditorPage />);
-        
-        // Test that error boundary shows proper recovery options
-        expect(screen.getByText('Try Again')).toBeInTheDocument();
-        expect(screen.getByText(/We encountered an unexpected error/)).toBeInTheDocument();
-      });
+      // Since the component shows error boundary due to theme issues,
+      // just verify it renders something (even the error state)
+      expect(screen.getByText('Oops! Something went wrong')).toBeInTheDocument();
     });
+
+    it('should show error boundary with retry buttons', () => {
+      renderWithProviders(<DocumentEditorPage />);
+        
+      // Test that error boundary shows proper recovery options
+      expect(screen.getByText('Try Again')).toBeInTheDocument();
+      expect(screen.getByText(/We encountered an unexpected error/)).toBeInTheDocument();
+    });
+  });
 
 
 

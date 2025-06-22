@@ -7,7 +7,7 @@ export const ResizerContainer = styled(motion.div)<StyledResizerProps>`
   ${props => props.resizeType === 'split' && props.direction === 'vertical' 
     ? 'position: relative;' 
     : 'position: absolute;'
-  }
+}
   background: transparent;
   z-index: 20;
   
@@ -74,38 +74,38 @@ export const ResizerContainer = styled(motion.div)<StyledResizerProps>`
     opacity: ${props => props.isActive ? 1 : resizeTokens.interaction.hoverOpacity};
     
     ${props => {
-      if (props.direction === 'horizontal') {
-        // Always center the visual indicator in the resize handle
-        return `
+    if (props.direction === 'horizontal') {
+      // Always center the visual indicator in the resize handle
+      return `
           top: 0;
           left: 50%;
           transform: translateX(-50%);
           width: 2px;
           height: 100%;
         `;
-      } else {
-        // For vertical resizers - different positioning based on type
-        if (props.resizeType === 'split') {
-          // Split resizers show full-width line at the split position
-          return `
+    } else {
+      // For vertical resizers - different positioning based on type
+      if (props.resizeType === 'split') {
+        // Split resizers show full-width line at the split position
+        return `
             left: 0;
             top: 50%;
             transform: translateY(-50%);
             width: 100%;
             height: 2px;
           `;
-        } else {
-          // Regular panel resizers at bottom edge
-          return `
+      } else {
+        // Regular panel resizers at bottom edge
+        return `
             left: 0;
             bottom: 50%;
             transform: translateY(50%);
             width: 100%;
             height: 2px;
           `;
-        }
       }
-    }}
+    }
+  }}
   }
   
   &:hover::after {

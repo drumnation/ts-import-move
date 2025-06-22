@@ -12,44 +12,44 @@ import { ExhibitStatus, ExhibitRelevance } from './ExhibitItem.types';
 
 export const getStatusColor = (status: ExhibitStatus): string => {
   switch (status) {
-    case 'approved': 
-      return 'green';
-    case 'pending': 
-      return 'yellow';
-    case 'rejected': 
-      return 'red';
-    case 'draft': 
-      return 'gray';
-    default: 
-      return 'gray';
+  case 'approved': 
+    return 'green';
+  case 'pending': 
+    return 'yellow';
+  case 'rejected': 
+    return 'red';
+  case 'draft': 
+    return 'gray';
+  default: 
+    return 'gray';
   }
 };
 
 export const getStatusIcon = (status: ExhibitStatus) => {
   switch (status) {
-    case 'approved': 
-      return IconCheck;
-    case 'pending': 
-      return IconClock;
-    case 'rejected': 
-      return IconX;
-    case 'draft': 
-      return IconEdit;
-    default: 
-      return IconFile;
+  case 'approved': 
+    return IconCheck;
+  case 'pending': 
+    return IconClock;
+  case 'rejected': 
+    return IconX;
+  case 'draft': 
+    return IconEdit;
+  default: 
+    return IconFile;
   }
 };
 
 export const getRelevanceColor = (relevance?: ExhibitRelevance): string => {
   switch (relevance) {
-    case 'high': 
-      return 'red';
-    case 'medium': 
-      return 'yellow';
-    case 'low': 
-      return 'blue';
-    default: 
-      return 'gray';
+  case 'high': 
+    return 'red';
+  case 'medium': 
+    return 'yellow';
+  case 'low': 
+    return 'blue';
+  default: 
+    return 'gray';
   }
 };
 

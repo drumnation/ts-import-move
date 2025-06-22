@@ -338,22 +338,22 @@ export const useDocumentContent = () => {
       // Map palette command names to AST node types
       let newNode: Node;
       switch (nodeType) {
-        case 'paragraph':
-          newNode = {
-            type: 'paragraph',
-            text: 'New paragraph text...'
-          } as ParagraphNode;
-          break;
-        case 'heading':
-          // For now, treat heading as paragraph - will be enhanced later
-          newNode = {
-            type: 'paragraph',
-            text: 'New Heading'
-          } as ParagraphNode;
-          break;
-        default:
-          console.warn(`Unknown node type: ${nodeType}`);
-          return prev;
+      case 'paragraph':
+        newNode = {
+          type: 'paragraph',
+          text: 'New paragraph text...'
+        } as ParagraphNode;
+        break;
+      case 'heading':
+        // For now, treat heading as paragraph - will be enhanced later
+        newNode = {
+          type: 'paragraph',
+          text: 'New Heading'
+        } as ParagraphNode;
+        break;
+      default:
+        console.warn(`Unknown node type: ${nodeType}`);
+        return prev;
       }
       
       // Insert into first section

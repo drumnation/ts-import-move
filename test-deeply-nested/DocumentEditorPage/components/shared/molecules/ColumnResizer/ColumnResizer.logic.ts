@@ -122,16 +122,16 @@ export const calculateOptimalColumnWidth = (
   
   let targetPercent: number;
   switch (contentHint) {
-    case 'narrow':
-      targetPercent = Math.max(config.constraints.minPercent, 20);
-      break;
-    case 'wide':
-      targetPercent = Math.min(config.constraints.maxPercent, 40);
-      break;
-    case 'medium':
-    default:
-      targetPercent = (config.constraints.minPercent + config.constraints.maxPercent) / 2;
-      break;
+  case 'narrow':
+    targetPercent = Math.max(config.constraints.minPercent, 20);
+    break;
+  case 'wide':
+    targetPercent = Math.min(config.constraints.maxPercent, 40);
+    break;
+  case 'medium':
+  default:
+    targetPercent = (config.constraints.minPercent + config.constraints.maxPercent) / 2;
+    break;
   }
   
   const targetWidth = (targetPercent / 100) * containerWidth;

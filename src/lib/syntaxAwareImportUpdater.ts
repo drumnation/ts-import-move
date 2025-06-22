@@ -99,26 +99,26 @@ class SyntaxAwareImportUpdater {
     
     // CRITICAL FIX: Refresh the project to recognize moved files
     this.debugLog('Refreshing ts-morph project to recognize moved files...');
-         project.getSourceFiles().forEach(sourceFile => {
-       try {
-         sourceFile.refreshFromFileSystemSync();
-       } catch {
-         // File might have been moved, which is expected
-         this.debugLog(`File no longer exists at original location: ${sourceFile.getFilePath()}`);
-       }
-     });
+    project.getSourceFiles().forEach(sourceFile => {
+      try {
+        sourceFile.refreshFromFileSystemSync();
+      } catch {
+        // File might have been moved, which is expected
+        this.debugLog(`File no longer exists at original location: ${sourceFile.getFilePath()}`);
+      }
+    });
     
-         // Add the new files to the project
-     for (const [, newPath] of movedFiles.entries()) {
-       if (fs.existsSync(newPath)) {
-         try {
-           project.addSourceFileAtPath(newPath);
-           this.debugLog(`Added moved file to project: ${newPath}`);
-         } catch {
-           this.debugLog(`File already in project or error adding: ${newPath}`);
-         }
-       }
-     }
+    // Add the new files to the project
+    for (const [, newPath] of movedFiles.entries()) {
+      if (fs.existsSync(newPath)) {
+        try {
+          project.addSourceFileAtPath(newPath);
+          this.debugLog(`Added moved file to project: ${newPath}`);
+        } catch {
+          this.debugLog(`File already in project or error adding: ${newPath}`);
+        }
+      }
+    }
     
     // Record all moves in the global tracker
     this.log('🗺️  Building complete move map...');

@@ -382,31 +382,31 @@ export const useSlashCommands = () => {
     if (!state.isActive) return false;
 
     switch (event.key) {
-      case 'ArrowDown':
-        event.preventDefault();
-        navigateCommands('down');
-        return true;
+    case 'ArrowDown':
+      event.preventDefault();
+      navigateCommands('down');
+      return true;
       
-      case 'ArrowUp':
-        event.preventDefault();
-        navigateCommands('up');
-        return true;
+    case 'ArrowUp':
+      event.preventDefault();
+      navigateCommands('up');
+      return true;
       
-      case 'Enter':
-        event.preventDefault();
-        if (state.availableCommands[state.selectedIndex]) {
-          // Command execution would need context from caller
-          console.log('Execute command:', state.availableCommands[state.selectedIndex]);
-        }
-        return true;
+    case 'Enter':
+      event.preventDefault();
+      if (state.availableCommands[state.selectedIndex]) {
+        // Command execution would need context from caller
+        console.log('Execute command:', state.availableCommands[state.selectedIndex]);
+      }
+      return true;
       
-      case 'Escape':
-        event.preventDefault();
-        hideCommands();
-        return true;
+    case 'Escape':
+      event.preventDefault();
+      hideCommands();
+      return true;
       
-      default:
-        return false;
+    default:
+      return false;
     }
   }, [state.isActive, state.availableCommands, state.selectedIndex, navigateCommands, hideCommands]);
 

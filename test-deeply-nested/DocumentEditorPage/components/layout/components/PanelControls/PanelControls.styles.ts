@@ -10,32 +10,32 @@ export const ControlsContainer = styled.div<{ position: 'bottom' | 'top' | 'left
   position: fixed;
   ${props => {
     switch (props.position) {
-      case 'bottom':
-        return `
+    case 'bottom':
+      return `
           bottom: 20px;
           left: 50%;
           transform: translateX(-50%);
         `;
-      case 'top':
-        return `
+    case 'top':
+      return `
           top: 20px;
           left: 50%;
           transform: translateX(-50%);
         `;
-      case 'left':
-        return `
+    case 'left':
+      return `
           left: 20px;
           top: 50%;
           transform: translateY(-50%);
         `;
-      case 'right':
-        return `
+    case 'right':
+      return `
           right: 20px;
           top: 50%;
           transform: translateY(-50%);
         `;
-      default:
-        return `
+    default:
+      return `
           bottom: 20px;
           left: 50%;
           transform: translateX(-50%);
@@ -98,8 +98,8 @@ export const ControlButton = styled.button<{ variant?: ControlButtonProps['varia
   
   ${props => {
     switch (props.variant) {
-      case 'primary':
-        return `
+    case 'primary':
+      return `
           background: #3b82f6;
           color: white;
           border-color: #3b82f6;
@@ -113,8 +113,8 @@ export const ControlButton = styled.button<{ variant?: ControlButtonProps['varia
             background: #1d4ed8;
           }
         `;
-      case 'danger':
-        return `
+    case 'danger':
+      return `
           background: #ef4444;
           color: white;
           border-color: #ef4444;
@@ -128,8 +128,8 @@ export const ControlButton = styled.button<{ variant?: ControlButtonProps['varia
             background: #b91c1c;
           }
         `;
-      default:
-        return `
+    default:
+      return `
           background: white;
           color: #374151;
           

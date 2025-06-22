@@ -7,7 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.0] - 2025-06-21
+## [1.0.1] - 2024-06-21
+
+### Fixed
+- **CRITICAL**: Fixed dry-run mode bug where `--dry-run` flag was still moving files instead of just previewing changes
+- Dry-run now properly exits early before any file system operations
+- Added comprehensive dry-run preview output showing exactly what would be moved
+
+### Security
+- Prevents accidental file moves when using `--dry-run` flag
+
+## [1.0.0] - 2024-06-21
 
 ### 🎉 PRODUCTION READY - MAJOR RELEASE
 

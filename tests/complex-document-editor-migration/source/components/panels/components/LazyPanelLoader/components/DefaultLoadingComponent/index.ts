@@ -1,1 +1,1 @@
-export { DefaultLoadingComponent } from "./DefaultLoadingComponent";
+export { DefaultLoadingComponent } from './DefaultLoadingComponent';

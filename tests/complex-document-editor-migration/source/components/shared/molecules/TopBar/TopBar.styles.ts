@@ -98,10 +98,10 @@ export const StatusDot = styled.div<{ status: 'ready' | 'saving' | 'error' }>`
   flex-shrink: 0;
   background: ${props => {
     switch (props.status) {
-      case 'ready': return '#10b981';
-      case 'saving': return '#f59e0b';
-      case 'error': return '#ef4444';
-      default: return '#6b7280';
+    case 'ready': return '#10b981';
+    case 'saving': return '#f59e0b';
+    case 'error': return '#ef4444';
+    default: return '#6b7280';
     }
   }};
 `;

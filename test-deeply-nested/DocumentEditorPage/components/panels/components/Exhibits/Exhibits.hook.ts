@@ -97,30 +97,30 @@ const sortExhibits = (exhibits: ExhibitItem[], field: ExhibitSortField, directio
     let bValue: string | number | Date;
     
     switch (field) {
-      case 'label':
-        aValue = a.label;
-        bValue = b.label;
-        break;
-      case 'title':
-        aValue = a.title.toLowerCase();
-        bValue = b.title.toLowerCase();
-        break;
-      case 'createdAt':
-        aValue = new Date(a.createdAt).getTime();
-        bValue = new Date(b.createdAt).getTime();
-        break;
-      case 'status':
-        aValue = a.status;
-        bValue = b.status;
-        break;
-      case 'relevance':
-        const relevanceOrder = { 'high': 3, 'medium': 2, 'low': 1 };
-        aValue = relevanceOrder[a.metadata.relevance || 'low'];
-        bValue = relevanceOrder[b.metadata.relevance || 'low'];
-        break;
-      default:
-        aValue = a.title.toLowerCase();
-        bValue = b.title.toLowerCase();
+    case 'label':
+      aValue = a.label;
+      bValue = b.label;
+      break;
+    case 'title':
+      aValue = a.title.toLowerCase();
+      bValue = b.title.toLowerCase();
+      break;
+    case 'createdAt':
+      aValue = new Date(a.createdAt).getTime();
+      bValue = new Date(b.createdAt).getTime();
+      break;
+    case 'status':
+      aValue = a.status;
+      bValue = b.status;
+      break;
+    case 'relevance':
+      const relevanceOrder = { 'high': 3, 'medium': 2, 'low': 1 };
+      aValue = relevanceOrder[a.metadata.relevance || 'low'];
+      bValue = relevanceOrder[b.metadata.relevance || 'low'];
+      break;
+    default:
+      aValue = a.title.toLowerCase();
+      bValue = b.title.toLowerCase();
     }
     
     if (aValue < bValue) {

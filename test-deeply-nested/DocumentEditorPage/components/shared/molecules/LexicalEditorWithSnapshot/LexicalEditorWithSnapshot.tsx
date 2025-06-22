@@ -69,7 +69,7 @@ export const LexicalEditorWithSnapshot: React.FC<LexicalEditorWithSnapshotProps>
   document,
   onContentChange,
   readOnly = false,
-  placeholder = "Begin typing your legal document...",
+  placeholder = 'Begin typing your legal document...',
   showAstPanel = true,
   showPreview = true,
   snapshotOrientation = 'horizontal',

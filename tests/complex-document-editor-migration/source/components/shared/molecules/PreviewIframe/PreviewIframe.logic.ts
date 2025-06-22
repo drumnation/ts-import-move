@@ -241,32 +241,32 @@ export const renderContent = (content: ContentNode[]): string => {
  */
 const renderContentNode = (node: ContentNode): string => {
   switch (node.type) {
-    case 'paragraph':
-      return `<p class="paragraph">${node.text || ''}</p>`;
+  case 'paragraph':
+    return `<p class="paragraph">${node.text || ''}</p>`;
       
-    case 'list':
-      const listItems = node.items?.map((item) => 
-        `<li class="list-item">${item.text || ''}</li>`
-      ).join('') || '';
-      return `<ol class="list">${listItems}</ol>`;
+  case 'list':
+    const listItems = node.items?.map((item) => 
+      `<li class="list-item">${item.text || ''}</li>`
+    ).join('') || '';
+    return `<ol class="list">${listItems}</ol>`;
       
-    case 'recital':
-      return `<p class="recital">${node.text || ''}</p>`;
+  case 'recital':
+    return `<p class="recital">${node.text || ''}</p>`;
       
-    case 'table':
-      return renderTable(node);
+  case 'table':
+    return renderTable(node);
       
-    case 'exhibit':
-      return `<div class="exhibit-label">Exhibit ${node.id}: ${node.text || ''}</div>`;
+  case 'exhibit':
+    return `<div class="exhibit-label">Exhibit ${node.id}: ${node.text || ''}</div>`;
       
-    case 'signature':
-      return renderSignature(node);
+  case 'signature':
+    return renderSignature(node);
       
-    case 'footer':
-      return `<div class="footer-block">${node.text || ''}</div>`;
+  case 'footer':
+    return `<div class="footer-block">${node.text || ''}</div>`;
       
-    default:
-      return `<p>Unknown node type: ${(node as any).type}</p>`;
+  default:
+    return `<p>Unknown node type: ${(node as any).type}</p>`;
   }
 };
 

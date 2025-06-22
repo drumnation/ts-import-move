@@ -235,48 +235,48 @@ export function BulkContentPlugin() {
           const lexicalNodes = createLexicalNodesFromAST(nodes);
           
           switch (position) {
-            case 'start':
-              // Insert at beginning of document
-              const firstChild = root.getFirstChild();
-              lexicalNodes.reverse().forEach(node => {
-                if (firstChild) {
-                  firstChild.insertBefore(node);
+          case 'start':
+            // Insert at beginning of document
+            const firstChild = root.getFirstChild();
+            lexicalNodes.reverse().forEach(node => {
+              if (firstChild) {
+                firstChild.insertBefore(node);
+              } else {
+                root.append(node);
+              }
+            });
+            break;
+              
+          case 'end':
+            // Insert at end of document
+            lexicalNodes.forEach(node => {
+              root.append(node);
+            });
+            break;
+              
+          case 'cursor':
+          default:
+            // Insert at cursor position
+            if ($isRangeSelection(selection)) {
+              let targetNode = selection.anchor.getNode();
+              if (targetNode.getType() === 'text') {
+                targetNode = targetNode.getParent()!;
+              }
+                
+              lexicalNodes.forEach((node, index) => {
+                if (index === 0) {
+                  targetNode.insertAfter(node);
                 } else {
-                  root.append(node);
+                  lexicalNodes[index - 1].insertAfter(node);
                 }
               });
-              break;
-              
-            case 'end':
-              // Insert at end of document
+            } else {
+              // Fallback to end of document
               lexicalNodes.forEach(node => {
                 root.append(node);
               });
-              break;
-              
-            case 'cursor':
-            default:
-              // Insert at cursor position
-              if ($isRangeSelection(selection)) {
-                let targetNode = selection.anchor.getNode();
-                if (targetNode.getType() === 'text') {
-                  targetNode = targetNode.getParent()!;
-                }
-                
-                lexicalNodes.forEach((node, index) => {
-                  if (index === 0) {
-                    targetNode.insertAfter(node);
-                  } else {
-                    lexicalNodes[index - 1].insertAfter(node);
-                  }
-                });
-              } else {
-                // Fallback to end of document
-                lexicalNodes.forEach(node => {
-                  root.append(node);
-                });
-              }
-              break;
+            }
+            break;
           }
           
           console.log(`📦 Inserted ${nodes.length} bulk content nodes at position: ${position}`);
@@ -315,68 +315,68 @@ export function KeyboardShortcutsPlugin() {
         // Handle common shortcuts
         if (isModifierPressed) {
           switch (code) {
-            case 'KeyZ':
-              if (shiftKey) {
-                // Redo (Ctrl/Cmd+Shift+Z)
-                event.preventDefault();
-                editor.dispatchCommand(REDO_COMMAND, undefined);
-                console.log('↷ Redo command dispatched');
-                return true;
-              } else {
-                // Undo (Ctrl/Cmd+Z)
-                event.preventDefault();
-                editor.dispatchCommand(UNDO_COMMAND, undefined);
-                console.log('↶ Undo command dispatched');
-                return true;
-              }
-            case 'KeyY':
-              // Alternative Redo (Ctrl/Cmd+Y)
+          case 'KeyZ':
+            if (shiftKey) {
+              // Redo (Ctrl/Cmd+Shift+Z)
               event.preventDefault();
               editor.dispatchCommand(REDO_COMMAND, undefined);
-              console.log('↷ Redo command dispatched (Ctrl+Y)');
+              console.log('↷ Redo command dispatched');
               return true;
-            case 'KeyC':
-              // Copy (Ctrl/Cmd+C) - handled by RichTextPlugin/browser
-              console.log('📋 Copy operation (handled by browser)');
-              return false; // Allow default behavior
-            case 'KeyX':
-              // Cut (Ctrl/Cmd+X) - handled by RichTextPlugin/browser
-              console.log('✂️ Cut operation (handled by browser)');
-              return false; // Allow default behavior
-            case 'KeyV':
-              // Paste (Ctrl/Cmd+V) - handled by RichTextPlugin/browser
-              console.log('📌 Paste operation (handled by browser)');
-              return false; // Allow default behavior
-            case 'KeyB':
-              // Bold toggle (Ctrl/Cmd+B)
+            } else {
+              // Undo (Ctrl/Cmd+Z)
               event.preventDefault();
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
-              console.log('💪 Bold formatting toggled');
+              editor.dispatchCommand(UNDO_COMMAND, undefined);
+              console.log('↶ Undo command dispatched');
               return true;
-            case 'KeyI':
-              // Italic toggle (Ctrl/Cmd+I)
-              event.preventDefault();
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
-              console.log('🔤 Italic formatting toggled');
-              return true;
-            case 'KeyU':
-              // Underline toggle (Ctrl/Cmd+U)
-              event.preventDefault();
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
-              console.log('📝 Underline formatting toggled');
-              return true;
-            case 'Digit8':
-              // Bullet list (Ctrl/Cmd+8)
-              event.preventDefault();
-              editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined);
-              console.log('🔸 Bullet list created');
-              return true;
-            case 'Digit7':
-              // Numbered list (Ctrl/Cmd+7)
-              event.preventDefault();
-              editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined);
-              console.log('🔢 Numbered list created');
-              return true;
+            }
+          case 'KeyY':
+            // Alternative Redo (Ctrl/Cmd+Y)
+            event.preventDefault();
+            editor.dispatchCommand(REDO_COMMAND, undefined);
+            console.log('↷ Redo command dispatched (Ctrl+Y)');
+            return true;
+          case 'KeyC':
+            // Copy (Ctrl/Cmd+C) - handled by RichTextPlugin/browser
+            console.log('📋 Copy operation (handled by browser)');
+            return false; // Allow default behavior
+          case 'KeyX':
+            // Cut (Ctrl/Cmd+X) - handled by RichTextPlugin/browser
+            console.log('✂️ Cut operation (handled by browser)');
+            return false; // Allow default behavior
+          case 'KeyV':
+            // Paste (Ctrl/Cmd+V) - handled by RichTextPlugin/browser
+            console.log('📌 Paste operation (handled by browser)');
+            return false; // Allow default behavior
+          case 'KeyB':
+            // Bold toggle (Ctrl/Cmd+B)
+            event.preventDefault();
+            editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
+            console.log('💪 Bold formatting toggled');
+            return true;
+          case 'KeyI':
+            // Italic toggle (Ctrl/Cmd+I)
+            event.preventDefault();
+            editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
+            console.log('🔤 Italic formatting toggled');
+            return true;
+          case 'KeyU':
+            // Underline toggle (Ctrl/Cmd+U)
+            event.preventDefault();
+            editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
+            console.log('📝 Underline formatting toggled');
+            return true;
+          case 'Digit8':
+            // Bullet list (Ctrl/Cmd+8)
+            event.preventDefault();
+            editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined);
+            console.log('🔸 Bullet list created');
+            return true;
+          case 'Digit7':
+            // Numbered list (Ctrl/Cmd+7)
+            event.preventDefault();
+            editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined);
+            console.log('🔢 Numbered list created');
+            return true;
           }
         }
         
