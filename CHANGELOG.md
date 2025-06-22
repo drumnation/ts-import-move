@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.5] - 2025-06-21
+
+### Added
+- **Absolute Imports Feature**: Convert relative imports to absolute imports during move operations
+  - New `--absolute-imports` flag to enable automatic conversion of relative to absolute imports
+  - New `--alias-prefix` option to customize the path alias prefix (default: `@`)
+  - Automatic detection of path aliases from `tsconfig.json` configuration
+  - Intelligent path mapping that respects existing alias configurations
+  - Perfect for AI-driven refactoring workflows and modern TypeScript best practices
+- CLI argument parsing improvements for better compatibility with multiple source files
+
+### Changed
+- Updated CLI command structure to use `move` subcommand for better organization
+- Enhanced argument parsing to handle multiple source files more reliably
+
+### Fixed
+- Fixed CLI argument parsing issues with variadic arguments
+- Resolved import path corruption issues in build process
+
 ## [1.0.4] - 2025-06-21
 
 ### Fixed

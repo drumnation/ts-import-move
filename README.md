@@ -152,6 +152,22 @@ Debug import updates:
 ts-import-move --debug-imports --verbose src/components/ src/ui/
 ```
 
+Convert relative imports to absolute imports during move:
+
+```bash
+# Before: import { helper } from '../utils/helper';
+# After:  import { helper } from '@/utils/helper';
+ts-import-move move src/components/Button.tsx src/ui/ --absolute-imports
+```
+
+Use custom alias prefix:
+
+```bash
+# Before: import { helper } from '../utils/helper';
+# After:  import { helper } from '@app/utils/helper';
+ts-import-move move src/components/Button.tsx src/ui/ --absolute-imports --alias-prefix "@app"
+```
+
 ### Options
 
 - `-r, --recursive` - Recursively move directories
@@ -162,6 +178,70 @@ ts-import-move --debug-imports --verbose src/components/ src/ui/
 - `--debug-imports` - Show detailed import update diagnostics
 - `--extensions <ext>` - Specify file extensions to consider (default: `.ts,.tsx,.js,.jsx`)
 - `--tsconfig <path>` - Path to tsconfig.json (default: auto-detect)
+- `--absolute-imports` - Convert relative imports to absolute imports using path aliases
+- `--alias-prefix <prefix>` - Path alias prefix for absolute imports (default: `@`)
+
+## Absolute Imports Feature
+
+The `--absolute-imports` flag converts relative imports to absolute imports using path aliases defined in your `tsconfig.json`. This is particularly useful for AI-driven refactoring workflows where maintaining clean, absolute import paths is critical for maintainability.
+
+### Configuration
+
+The tool automatically detects path aliases from your `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/shared/*": ["./src/shared/*"]
+    }
+  }
+}
+```
+
+### Usage Examples
+
+**Basic absolute imports conversion:**
+```bash
+ts-import-move move src/components/Button.tsx src/ui/ --absolute-imports
+```
+
+**Custom alias prefix:**
+```bash
+ts-import-move move src/components/Button.tsx src/ui/ --absolute-imports --alias-prefix "@app"
+```
+
+**Before and after comparison:**
+```typescript
+// Before (relative imports)
+import { formatText } from '../utils/helper';
+import { APP_NAME } from '../shared/constants';
+import { Button } from './Button';
+
+// After (absolute imports)
+import { formatText } from '@/utils/helper';
+import { APP_NAME } from '@/shared/constants';
+import { Button } from '@/components/Button';
+```
+
+### Benefits for AI Refactoring
+
+- **Eliminates fragile relative paths** that break during large-scale refactoring
+- **Provides consistent import patterns** across the entire codebase
+- **Reduces cognitive load** for AI agents performing complex architectural changes
+- **Follows modern TypeScript best practices** (e.g., Bulletproof React patterns)
+- **Enables reliable automated refactoring** without path resolution errors
+
+### Compatibility
+
+- **mv command compatibility**: Use without `--absolute-imports` for standard behavior
+- **Incremental adoption**: Apply to specific moves without affecting existing code
+- **Configurable aliases**: Works with any path alias configuration
+- **Framework agnostic**: Compatible with React, Vue, Angular, and vanilla TypeScript projects
 
 ## Performance Characteristics
 
@@ -341,3 +421,22 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and contribution gu
 - **Self-Import Corruption**: Preserved internal relative imports in moved directories  
 - **Stack Overflow Crashes**: Safe AST parsing for complex JSX structures
 - **Memory Optimization**: Controlled growth for large-scale migrations
+
+## Quick Start
+
+```bash
+# Basic usage - move a file and update all imports
+ts-import-move move src/components/Button.tsx src/ui/
+
+# Move multiple files
+ts-import-move move src/utils/helper.ts src/types/user.ts src/shared/
+
+# Convert relative imports to absolute imports during move
+ts-import-move move src/components/Button.tsx src/ui/ --absolute-imports
+
+# Use custom alias prefix for absolute imports
+ts-import-move move src/components/Button.tsx src/ui/ --absolute-imports --alias-prefix "@app"
+
+# Dry run to preview changes
+ts-import-move move src/components/Button.tsx src/ui/ --dry-run --verbose
+```

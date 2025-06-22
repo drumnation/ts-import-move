@@ -156,6 +156,8 @@ Additional TypeScript-specific options:
 - `--debug-imports` - Show detailed import update diagnostics
 - `--extensions <ext>` - Specify file extensions to consider (default: `.ts,.tsx,.js,.jsx`)
 - `--tsconfig <path>` - Path to tsconfig.json (default: auto-detect)
+- `--absolute-imports` - Convert relative imports to absolute imports using path aliases
+- `--alias-prefix <prefix>` - Path alias prefix for absolute imports (default: `@`)
 
 ## Performance Characteristics
 
@@ -172,15 +174,53 @@ The tool automatically optimizes performance based on the number of files:
 - Prevents memory exhaustion on enterprise-scale codebases
 - Controlled memory growth (296MB → 641MB for 189 files)
 
+## Absolute Imports for AI Refactoring
+
+The `--absolute-imports` flag is particularly valuable for AI agents performing large-scale refactoring:
+
+### Why Use Absolute Imports?
+
+```typescript
+// Fragile relative imports (break during refactoring)
+import { formatText } from '../../../utils/helper';
+import { Button } from './Button';
+
+// Robust absolute imports (stable during refactoring)  
+import { formatText } from '@/utils/helper';
+import { Button } from '@/components/Button';
+```
+
+### Usage Examples
+
+**Convert relative to absolute imports during move:**
+```bash
+ts-import-move move src/components/Button.tsx src/ui/ --absolute-imports
+```
+
+**Use custom alias prefix:**
+```bash
+ts-import-move move src/components/Button.tsx src/ui/ --absolute-imports --alias-prefix "@app"
+```
+
+### Benefits for AI Agents
+
+- **Eliminates fragile relative paths** that break during complex refactoring
+- **Provides consistent import patterns** across the entire codebase
+- **Reduces debugging complexity** when performing architectural changes
+- **Follows modern TypeScript best practices** (e.g., Bulletproof React, ARC-7)
+- **Enables reliable automated refactoring** without path resolution errors
+
 ## Best Practices for AI Agents
 
 1. **Always use `ts-import-move` instead of `mv` for TypeScript files**
-2. **Use `--verbose` flag for transparency in what's happening**
-3. **Use `--debug-imports` flag when troubleshooting import issues**
-4. **Run with the `-n` flag first to preview changes when moving complex directories**
-5. **Remember to use quotes around glob patterns**
-6. **For large refactors (50+ files), expect 10-15 seconds processing time**
-7. **When creating automation scripts, use `ts-import-move` in place of `mv`**
+2. **Use `--absolute-imports` for large-scale refactoring** to prevent import path fragility
+3. **Use `--verbose` flag for transparency in what's happening**
+4. **Use `--debug-imports` flag when troubleshooting import issues**
+5. **Run with the `-n` flag first to preview changes when moving complex directories**
+6. **Remember to use quotes around glob patterns**
+7. **For large refactors (50+ files), expect 10-15 seconds processing time**
+8. **When creating automation scripts, use `ts-import-move` in place of `mv`**
+9. **Consider `--absolute-imports` when implementing modern architectural patterns**
 
 ## Debugging and Troubleshooting
 
